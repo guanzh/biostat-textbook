@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>双侧p值 · Two-tailed p-value</title>
+<style>
+  *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+  body{background:#0d1117;display:flex;justify-content:center;align-items:center;min-height:100vh;overflow:hidden;font-family:"Microsoft YaHei","PingFang SC","Noto Sans SC",sans-serif}
+  .stage-wrap{position:relative;box-shadow:0 0 80px rgba(0,0,0,0.5);border-radius:4px;overflow:hidden}
+  canvas{display:block}
+  .controls{position:fixed;bottom:0;left:0;right:0;background:rgba(13,17,23,0.92);backdrop-filter:blur(12px);padding:14px 24px;display:flex;align-items:center;gap:16px;color:#e0e4e8;font-size:13px;z-index:100;border-top:1px solid rgba(255,255,255,0.06)}
+  .controls button{background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);color:#d0d8e0;padding:7px 16px;border-radius:5px;cursor:pointer;font-size:13px;font-family:inherit;transition:background 0.15s}
+  .controls button:hover{background:rgba(255,255,255,0.15)}
+  .time-display{font-family:"SF Mono","Consolas",monospace;font-variant-numeric:tabular-nums;min-width:90px;color:#8899aa}
+  .scrubber{flex:1;height:5px;background:rgba(255,255,255,0.12);border-radius:3px;position:relative;cursor:pointer}
+  .scrubber-fill{position:absolute;top:0;left:0;height:100%;background:#e07b5a;border-radius:3px}
+  .title-overlay{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center;pointer-events:none;z-index:10}
+  .title-overlay h1{font-size:84px;font-weight:900;color:#e0e4e8;letter-spacing:0.12em;margin:0;line-height:1.2}
+  .title-overlay p{font-size:22px;font-weight:300;color:#8899aa;font-family:"Georgia","Times New Roman",serif;font-style:italic;margin-top:10px;letter-spacing:0.06em}
+  .watermark{position:absolute;bottom:24px;right:32px;font-size:11px;color:rgba(255,255,255,0.14);font-family:"SF Mono","Consolas",monospace;letter-spacing:0.12em;pointer-events:none;z-index:10}
+</style>
+</head>
+<body>
+
+<div class="stage-wrap" id="stageWrap">
+  <canvas id="mainCanvas"></canvas>
+  <div class="title-overlay" id="titleOverlay">
+    <h1>双侧 p 值</h1>
+    <p>Two-tailed test  ·  α = 0.05</p>
+  </div>
+  <div class="watermark" id="watermark">Created by Huashu-Design</div>
+</div>
+
+<div class="controls">
+  <button id="btnPlay">⏸ 暂停</button>
+  <button id="btnReplay">⏮ 重播</button>
+  <div class="time-display" id="timeDisplay">0.0s / 10.0s</div>
+  <div class="scrubber" id="scrubber"><div class="scrubber-fill" id="scrubFill"></div></div>
+</div>
+
+<script>
+// ═══════════════════════════════════════════════════════════
+// Two-tailed p-value  ·  10-second animation
+// H₀: μ=0  ·  α=0.05 → z_crit=±1.96  ·  z_obs=2.15  ·  p=0.0316
+// ═══════════════════════════════════════════════════════════
+(function(){
+  const canvas=document.getElementById('mainCanvas');
+  const ctx=canvas.getContext('2d');
+  const stageWrap=document.getElementById('stageWrap');
+  const titleOverlay=document.getElementById('titleOverlay');
+  const watermark=document.getElementById('watermark');
+  const btnPlay=document.getElementById('btnPlay');
+  const btnReplay=document.getElementById('btnReplay');
+  const timeDisplay=document.getElementById('timeDisplay');
+  const scrubFill=document.getElementById('scrubFill');
+  const scrubber=document.getElementById('scrubber');
+
+  const STAGE_W=1920, STAGE_H=1080;
+  const DURATION=10;
+  const SQRT_2PI=Math.sqrt(2*Math.PI);
+
+  // Key values
+  const Z_CRIT = 1.96;     // α=0.05 two-tailed critical value
+  const Z_OBS  = 2.15;     // observed test statistic
+  const P_VAL  = 0.0316;   // two-tailed p-value
+
+  let time=0, playing=true, lastTick=null;
+
+  function normalPDF(x,mu=0,sigma=1){
+    const z=(x-mu)/sigma;
+    return Math.exp(-0.5*z*z)/(sigma*SQRT_2PI);
+  }
+
+  function expoOut(t){return t<=0?0:t>=1?1:1-Math.pow(2,-10*t)}
+  function clamp01(x){return Math.max(0,Math.min(1,x))}
+  function lerp(a,b,t){return a+(b-a)*t}
+
+  function resize(){
+    const vw=window.innerWidth, vh=window.innerHeight-56;
+    const scale=Math.min(vw/STAGE_W,vh/STAGE_H);
+    canvas.width=STAGE_W; canvas.height=STAGE_H;
+    canvas.style.width=Math.round(STAGE_W*scale)+'px';
+    canvas.style.height=Math.round(STAGE_H*scale)+'px';
+    stageWrap.style.width=canvas.style.width;
+    stageWrap.style.height=canvas.style.height;
+    titleOverlay.style.transform=`translate(-50%,-50%) scale(${scale})`;
+    watermark.style.transform=`scale(${scale})`;
+    watermark.style.transformOrigin='bottom right';
+  }
+  resize(); window.addEventListener('resize',resize);
+
+  // ═══════════════════════════════════════════════════════
+  // DRAW
+  // ═══════════════════════════════════════════════════════
+  function draw(t){
+    const W=STAGE_W, H=STAGE_H;
+    ctx.clearRect(0,0,W,H);
+    ctx.fillStyle='#1a1d20'; ctx.fillRect(0,0,W,H);
+
+    // ── Plot layout ──
+    const margin={left:300,right:300,top:190,bottom:320};
+    const pw=W-margin.left-margin.right;
+    const ph=H-margin.top-margin.bottom;
+    const xMin=-4.5, xMax=4.5;
+    const yMax=0.46;
+
+    function xToPx(x){return margin.left+((x-xMin)/(xMax-xMin))*pw}
+    function yToPx(y){return margin.top+ph-(y/yMax)*ph}
+
+    // ── Helpers ──
+    function fillRightTail(zStart,color,alpha){
+      ctx.save(); ctx.globalAlpha=alpha;
+      ctx.fillStyle=color; ctx.beginPath();
+      const N=200;
+      for(let i=0;i<=N;i++){
+        const x=zStart+(xMax-zStart)*(i/N);
+        if(i===0) ctx.moveTo(xToPx(x),yToPx(normalPDF(x)));
+        else ctx.lineTo(xToPx(x),yToPx(normalPDF(x)));
+      }
+      ctx.lineTo(xToPx(xMax),yToPx(0));
+      ctx.lineTo(xToPx(zStart),yToPx(0));
+      ctx.closePath(); ctx.fill();
+      ctx.restore();
+    }
+
+    function fillLeftTail(zEnd,color,alpha){
+      ctx.save(); ctx.globalAlpha=alpha;
+      ctx.fillStyle=color; ctx.beginPath();
+      const N=200;
+      for(let i=0;i<=N;i++){
+        const x=xMin+(zEnd-xMin)*(i/N);
+        if(i===0) ctx.moveTo(xToPx(x),yToPx(normalPDF(x)));
+        else ctx.lineTo(xToPx(x),yToPx(normalPDF(x)));
+      }
+      ctx.lineTo(xToPx(zEnd),yToPx(0));
+      ctx.lineTo(xToPx(xMin),yToPx(0));
+      ctx.closePath(); ctx.fill();
+      ctx.restore();
+    }
+
+    function drawDashedLine(x,yTop,color,width){
+      ctx.save();
+      ctx.setLineDash([10,6]);
+      ctx.strokeStyle=color; ctx.lineWidth=width;
+      const px=xToPx(x);
+      ctx.beginPath();
+      ctx.moveTo(px,yToPx(0)+6);
+      ctx.lineTo(px,yTop?yToPx(normalPDF(x)):yToPx(normalPDF(Math.abs(x))));
+      ctx.stroke();
+      ctx.setLineDash([]);
+      ctx.restore();
+    }
+
+    function dotOnCurve(x,color,r){
+      ctx.beginPath();
+      ctx.arc(xToPx(x),yToPx(normalPDF(x)),r,0,Math.PI*2);
+      ctx.fillStyle=color; ctx.fill();
+    }
+
+    // ═══════════ Phase 1: Axes + Curve (0.8-2.8s) ═══════
+    if(t>=0.8){
+      const ap=expoOut(clamp01((t-0.8)/1.6));
+      ctx.save(); ctx.globalAlpha=ap;
+
+      // X-axis
+      ctx.strokeStyle='#556677'; ctx.lineWidth=1.5;
+      const x0_=xToPx(xMin), x1_=xToPx(xMax), yAxis=yToPx(0);
+      ctx.beginPath(); ctx.moveTo(x0_,yAxis); ctx.lineTo(x1_,yAxis); ctx.stroke();
+
+      // X ticks
+      ctx.fillStyle='#8899aa'; ctx.textAlign='center'; ctx.textBaseline='top';
+      ctx.font='19px "Georgia","Times New Roman",serif';
+      [-3,-2,-1,0,1,2,3].forEach(xi=>{
+        const px=xToPx(xi);
+        ctx.beginPath(); ctx.moveTo(px,yAxis); ctx.lineTo(px,yAxis+7); ctx.stroke();
+        ctx.fillText(String(xi),px,yAxis+14);
+      });
+
+      // X label
+      ctx.font='16px "Microsoft YaHei","PingFang SC",sans-serif';
+      ctx.fillStyle='#667788';
+      ctx.fillText('z 值',xToPx(0),yAxis+48);
+
+      // Y label
+      ctx.save();
+      ctx.translate(margin.left-75,margin.top+ph/2);
+      ctx.rotate(-Math.PI/2);
+      ctx.font='16px "Microsoft YaHei","PingFang SC",sans-serif';
+      ctx.fillStyle='#667788'; ctx.textAlign='center';
+      ctx.fillText('概率密度',0,0);
+      ctx.restore();
+
+      ctx.restore();
+    }
+
+    // Bell curve
+    if(t>=1.0){
+      const cp=expoOut(clamp01((t-1.0)/1.5));
+      const N=600, drawTo=Math.floor(cp*N);
+      ctx.save();
+      ctx.strokeStyle='#d0d8e0'; ctx.lineWidth=2.8; ctx.lineCap='round'; ctx.lineJoin='round';
+      ctx.beginPath();
+      let started=false;
+      for(let i=0;i<=drawTo;i++){
+        const x=xMin+(xMax-xMin)*(i/N), y=normalPDF(x);
+        if(!started){ctx.moveTo(xToPx(x),yToPx(y));started=true}
+        else ctx.lineTo(xToPx(x),yToPx(y));
+      }
+      ctx.stroke();
+      ctx.restore();
+    }
+
+    // H₀ label
+    if(t>=2.2){
+      const hp=expoOut(clamp01((t-2.2)/0.7));
+      ctx.save(); ctx.globalAlpha=hp;
+      ctx.font='italic 20px "Georgia","Times New Roman",serif';
+      ctx.fillStyle='#8899aa'; ctx.textAlign='center'; ctx.textBaseline='bottom';
+      ctx.fillText('H₀: μ = 0',xToPx(0),yToPx(normalPDF(0))-14);
+      ctx.restore();
+    }
+
+    // ═══════════ Phase 2: α critical regions (2.8-4.5s) ═══════
+    if(t>=2.8){
+      const ap2=expoOut(clamp01((t-2.8)/1.2));
+      const alphaColor='rgba(91,155,213,0.18)';
+      const alphaLine='#5b9bd5';
+
+      // Fill both tails (α/2 each)
+      fillRightTail(Z_CRIT, alphaColor, ap2);
+      fillLeftTail(-Z_CRIT, alphaColor, ap2);
+
+      // Dashed lines at ±Z_CRIT
+      ctx.save(); ctx.globalAlpha=ap2;
+      drawDashedLine(Z_CRIT, true, alphaLine, 1.8);
+      drawDashedLine(-Z_CRIT, true, alphaLine, 1.8);
+
+      // ±1.96 labels
+      ctx.font='bold 18px "Georgia","Times New Roman",serif';
+      ctx.fillStyle='#7db5e0'; ctx.textAlign='center'; ctx.textBaseline='bottom';
+      ctx.fillText('+1.96',xToPx(Z_CRIT),yToPx(normalPDF(Z_CRIT))-10);
+      ctx.fillText('−1.96',xToPx(-Z_CRIT),yToPx(normalPDF(Z_CRIT))-10);
+
+      // α/2 labels below axis
+      ctx.font='16px "Georgia","Times New Roman",serif';
+      ctx.fillStyle='rgba(125,181,224,0.8)'; ctx.textBaseline='top';
+      ctx.fillText('α/2 = 0.025',xToPx(2.8),yToPx(0)+80);
+      ctx.fillText('α/2 = 0.025',xToPx(-2.8),yToPx(0)+80);
+
+      ctx.restore();
+    }
+
+    // ═══════════ Phase 3: Observed z (4.2-5.8s) ═══════
+    if(t>=4.2){
+      const op=expoOut(clamp01((t-4.2)/1.0));
+      ctx.save(); ctx.globalAlpha=op;
+
+      // Bold line at z_obs
+      ctx.setLineDash([]);
+      ctx.strokeStyle='#e07b5a'; ctx.lineWidth=2.5;
+      const zx=xToPx(Z_OBS);
+      ctx.beginPath();
+      ctx.moveTo(zx,yToPx(0)+8);
+      ctx.lineTo(zx,yToPx(normalPDF(Z_OBS)));
+      ctx.stroke();
+
+      // Dot on curve
+      dotOnCurve(Z_OBS,'#e07b5a',7);
+
+      // "z = 2.15" label
+      ctx.font='bold 24px "Georgia","Times New Roman",serif';
+      ctx.fillStyle='#e07b5a'; ctx.textAlign='center'; ctx.textBaseline='bottom';
+      ctx.fillText('z = 2.15',zx,yToPx(normalPDF(Z_OBS))-20);
+
+      // "观测值" annotation
+      ctx.font='italic 19px "Microsoft YaHei","PingFang SC",sans-serif';
+      ctx.fillStyle='#c09080';
+      ctx.fillText('观测值',zx,yToPx(normalPDF(Z_OBS))-50);
+
+      ctx.restore();
+    }
+
+    // ═══════════ Phase 4: p-value regions (5.5-7.8s) ═══════
+    if(t>=5.5){
+      const pp=expoOut(clamp01((t-5.5)/1.5));
+      const pColor='rgba(224,123,90,0.28)';
+
+      // P-value tails (beyond ±Z_OBS) — warmer, more prominent, on top of α
+      fillRightTail(Z_OBS, pColor, pp);
+      fillLeftTail(-Z_OBS, pColor, pp);
+
+      // Left mirror label
+      ctx.save(); ctx.globalAlpha=pp;
+      ctx.font='bold 18px "Georgia","Times New Roman",serif';
+      ctx.fillStyle='rgba(224,123,90,0.7)'; ctx.textAlign='center'; ctx.textBaseline='bottom';
+      ctx.fillText('−2.15',xToPx(-Z_OBS),yToPx(normalPDF(Z_OBS))-10);
+
+      // p-value annotation — pill badge
+      const px=xToPx(0);
+      const py=yToPx(0)+155;
+      const bw=210, bh=50;
+
+      ctx.fillStyle='rgba(224,123,90,0.22)';
+      ctx.beginPath();
+      ctx.roundRect(px-bw/2,py-bh/2,bw,bh,12);
+      ctx.fill();
+
+      ctx.font='bold 40px "Georgia","Times New Roman",serif';
+      ctx.fillStyle='#f0d0c0'; ctx.textAlign='center'; ctx.textBaseline='middle';
+      ctx.fillText('p = 0.0316',px,py);
+
+      ctx.restore();
+    }
+
+    // ═══════════ Phase 5: Comparison verdict (7.5-9.2s) ═══════
+    if(t>=7.5){
+      const vp=expoOut(clamp01((t-7.5)/1.2));
+      ctx.save(); ctx.globalAlpha=vp;
+
+      // Bottom verdict bar
+      const by=H-75;
+      const barW=620, barH=48;
+
+      ctx.fillStyle='rgba(224,123,90,0.15)';
+      ctx.beginPath();
+      ctx.roundRect(W/2-barW/2,by-barH/2,barW,barH,10);
+      ctx.fill();
+
+      ctx.font='bold 22px "Georgia","Times New Roman",serif';
+      ctx.fillStyle='#e0c0b0'; ctx.textAlign='center'; ctx.textBaseline='middle';
+      ctx.fillText('p = 0.0316  <  α = 0.05   →   拒绝 H₀',W/2,by-10);
+
+      // Smaller explanation
+      ctx.font='17px "Microsoft YaHei","PingFang SC",sans-serif';
+      ctx.fillStyle='#998880';
+      ctx.fillText('观测结果落在拒绝域内，有统计学显著性',W/2,by+24);
+
+      ctx.restore();
+    }
+  }
+
+  // ═══════════════════════════════════════════════════════
+  // TITLE OVERLAY
+  // ═══════════════════════════════════════════════════════
+  function updateOverlay(t){
+    if(t<0.8){
+      const p=expoOut(clamp01(t/0.55));
+      titleOverlay.style.opacity=lerp(0,1,p);
+      titleOverlay.style.marginTop=lerp(36,0,p)+'px';
+    }else if(t<1.3){
+      titleOverlay.style.opacity=lerp(1,0,clamp01((t-0.8)/0.5));
+    }else{titleOverlay.style.opacity='0'}
+
+    watermark.style.opacity=t>8.5?clamp01((t-8.5)/0.7):'0';
+  }
+
+  function updateControls(t){
+    timeDisplay.textContent=`${t.toFixed(1)}s / ${DURATION.toFixed(0)}s`;
+    scrubFill.style.width=(t/DURATION*100).toFixed(2)+'%';
+  }
+
+  // ═══════════════════════════════════════════════════════
+  // TICK
+  // ═══════════════════════════════════════════════════════
+  function tick(now){
+    if(lastTick===null){lastTick=now;window.__ready=true;draw(0);updateOverlay(0);requestAnimationFrame(tick);return}
+    const dt=(now-lastTick)/1000; lastTick=now;
+    if(playing){
+      let nt=time+dt;
+      if(nt>=DURATION) nt=window.__recording?DURATION-0.001:0;
+      time=nt; draw(time); updateOverlay(time); updateControls(time);
+    }
+    requestAnimationFrame(tick);
+  }
+
+  // ═══════════════════════════════════════════════════════
+  // CONTROLS
+  // ═══════════════════════════════════════════════════════
+  btnPlay.onclick=()=>{playing=!playing;btnPlay.textContent=playing?'⏸ 暂停':'▶ 播放';if(playing)lastTick=null}
+  btnReplay.onclick=()=>{time=0;playing=true;lastTick=null;btnPlay.textContent='⏸ 暂停';draw(0);updateOverlay(0);updateControls(0)}
+  scrubber.onclick=e=>{
+    const r=scrubber.getBoundingClientRect();
+    time=clamp01((e.clientX-r.left)/r.width)*DURATION;
+    playing=false;lastTick=null;btnPlay.textContent='▶ 播放';
+    draw(time);updateOverlay(time);updateControls(time);
+  }
+  document.onkeydown=e=>{
+    if(e.code==='Space'){e.preventDefault();btnPlay.click()}
+    else if(e.code==='KeyR'){btnReplay.click()}
+    else if(e.code==='ArrowRight'){time=Math.min(DURATION,time+0.3);draw(time);updateOverlay(time);updateControls(time)}
+    else if(e.code==='ArrowLeft'){time=Math.max(0,time-0.3);draw(time);updateOverlay(time);updateControls(time)}
+  }
+
+  draw(0); updateOverlay(0); updateControls(0);
+  document.fonts.ready.then(()=>requestAnimationFrame(tick));
+})();
+</script>
+</body>
+</html>
