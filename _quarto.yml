@@ -12,14 +12,12 @@ book:
   chapters:
     - index.qmd
     
-    # 第一篇：从保护问题进入统计
     - part: "第一篇：从保护问题进入统计"
       chapters:
         - chapters/01-role-of-statistics.qmd
         - chapters/02-variables-hypotheses.qmd
         - chapters/03-experimental-design.qmd
     
-    # 第二篇：看懂并整理保护数据
     - part: "第二篇：看懂并整理保护数据"
       chapters:
         - chapters/04-data-management.qmd
@@ -27,7 +25,6 @@ book:
         - chapters/06-sampling-error.qmd
         - chapters/07-data-visualization.qmd
     
-    # 第三篇：回答常见保护问题
     - part: "第三篇：回答常见保护问题"
       chapters:
         - chapters/08-two-group-comparison.qmd
@@ -36,7 +33,6 @@ book:
         - chapters/11-correlation-regression.qmd
         - chapters/12-glm-intro.qmd
     
-    # 第四篇：保护专业应用
     - part: "第四篇：保护专业应用"
       chapters:
         - chapters/13-forest-plant-protection.qmd
@@ -45,7 +41,6 @@ book:
         - chapters/16-treatment-evaluation.qmd
         - chapters/17-stats-to-action.qmd
     
-    # 第五篇：现代生态统计与继续学习
     - part: "第五篇：现代生态统计与继续学习"
       chapters:
         - chapters/18-mixed-models.qmd
@@ -54,7 +49,6 @@ book:
         - chapters/21-spatiotemporal.qmd
         - chapters/22-ai-assisted-learning.qmd
     
-    # 附录
     - part: "附录"
       chapters:
         - appendices/r-basics.qmd
@@ -82,11 +76,7 @@ format:
     toc: true
     number-sections: true
 
-execute:
-  engine: knitr
-  freeze: auto
-  eval: false
-  
-language:
-  ui:
-    chapter-title-block-preamble: ""
+# R 执行暂不启用。各章内容充实后，取消注释并本地渲染一次生成 _freeze 缓存
+# execute:
+#   engine: knitr
+#   freeze: auto
