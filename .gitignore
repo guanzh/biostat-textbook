@@ -1,0 +1,17 @@
+# Quarto
+/_site/
+/.quarto/
+*.html
+
+# R
+.Rproj.user/
+.Rhistory
+.RData
+.Ruserdata
+*.Rproj
+renv/library/
+renv/staging/
+
+# OS
+.DS_Store
+Thumbs.db
