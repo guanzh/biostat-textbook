@@ -66,15 +66,16 @@ format:
     theme: cosmo
     toc: true
     toc-depth: 3
-    number-sections: true
+    number-sections: false
     code-fold: true
     code-tools: true
     code-link: true
     code-copy: true
+    css: styles.css
   pdf:
     documentclass: scrbook
     toc: true
-    number-sections: true
+    number-sections: false
 
 # R 执行暂不启用。各章内容充实后，取消注释并本地渲染一次生成 _freeze 缓存
 # execute:
