@@ -1,0 +1,31 @@
+/* 教材全局样式 */
+body {
+  font-size: 17px;
+  line-height: 1.85;
+}
+
+h1 { font-size: 2rem; }
+h2 { font-size: 1.5rem; margin-top: 2rem; }
+h3 { font-size: 1.2rem; margin-top: 1.5rem; }
+
+p { margin-bottom: 1rem; }
+
+/* 代码块 */
+pre, code {
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+/* 表格 */
+table {
+  font-size: 0.95rem;
+}
+
+/* callout 框 */
+.callout {
+  font-size: 0.95rem;
+  line-height: 1.75;
+}
+
+/* 列表 */
+li { margin-bottom: 0.3rem; }

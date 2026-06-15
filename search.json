@@ -1,0 +1,22 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "从样地到结论：保护生物学数据实战",
+    "section": "",
+    "text": "欢迎\n本书是一本面向野生动物保护、森林保护、植物保护、林学与生物多样性专业学生的案例驱动统计教材。",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>从样地到结论：保护生物学数据实战</span>"
+    ]
+  },
+  {
+    "objectID": "index.html#欢迎",
+    "href": "index.html#欢迎",
+    "title": "从样地到结论：保护生物学数据实战",
+    "section": "",
+    "text": "这本书是什么\n\n保护问题先行：每章从一个真实的保护生物学问题出发\n统计判断为核心：重点不是背公式，而是”这个问题该用什么方法”\nR 语言实操：所有分析代码可运行、可复现\nAI 辅助但不依赖：教你用 AI 帮忙，同时教你检查 AI 的对错\n\n\n\n如何使用\n\n学生：按章节顺序阅读，完成每章练习和 AI 核查任务\n教师：根据课时需求选取章节，每个案例可独立教学\n保护工作者：按专业方向或问题类型查找所需方法",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>从样地到结论：保护生物学数据实战</span>"
+    ]
+  }
+]
