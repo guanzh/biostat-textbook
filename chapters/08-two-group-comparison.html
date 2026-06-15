@@ -417,13 +417,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#两组比较" id="toc-两组比较" class="nav-link active" data-scroll-target="#两组比较"><span class="header-section-number">10</span> 两组比较</a>
+  <li><a href="#两组比较" id="toc-两组比较" class="nav-link active" data-scroll-target="#两组比较">两组比较</a>
   <ul class="collapse">
-  <li><a href="#真实保护问题" id="toc-真实保护问题" class="nav-link" data-scroll-target="#真实保护问题"><span class="header-section-number">10.1</span> 真实保护问题</a></li>
-  <li><a href="#p-值统计推断的核心" id="toc-p-值统计推断的核心" class="nav-link" data-scroll-target="#p-值统计推断的核心"><span class="header-section-number">10.2</span> P 值：统计推断的核心</a></li>
-  <li><a href="#r-分析过程" id="toc-r-分析过程" class="nav-link" data-scroll-target="#r-分析过程"><span class="header-section-number">10.3</span> R 分析过程</a></li>
-  <li><a href="#常见错误" id="toc-常见错误" class="nav-link" data-scroll-target="#常见错误"><span class="header-section-number">10.4</span> 常见错误</a></li>
-  <li><a href="#练习" id="toc-练习" class="nav-link" data-scroll-target="#练习"><span class="header-section-number">10.5</span> 练习</a></li>
+  <li><a href="#真实保护问题" id="toc-真实保护问题" class="nav-link" data-scroll-target="#真实保护问题">真实保护问题</a></li>
+  <li><a href="#p-值统计推断的核心" id="toc-p-值统计推断的核心" class="nav-link" data-scroll-target="#p-值统计推断的核心">P 值：统计推断的核心</a></li>
+  <li><a href="#r-分析过程" id="toc-r-分析过程" class="nav-link" data-scroll-target="#r-分析过程">R 分析过程</a></li>
+  <li><a href="#常见错误" id="toc-常见错误" class="nav-link" data-scroll-target="#常见错误">常见错误</a></li>
+  <li><a href="#练习" id="toc-练习" class="nav-link" data-scroll-target="#练习">练习</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -462,18 +462,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <section id="真实保护问题" class="level2" data-number="10.1">
-<h2 data-number="10.1" class="anchored" data-anchor-id="真实保护问题"><span class="header-section-number">10.1</span> 真实保护问题</h2>
+<h2 data-number="10.1" class="anchored" data-anchor-id="真实保护问题">真实保护问题</h2>
 <p>施药处理后，害虫数量真的变少了吗？还是只是巧合？</p>
 </section>
 <section id="p-值统计推断的核心" class="level2" data-number="10.2">
-<h2 data-number="10.2" class="anchored" data-anchor-id="p-值统计推断的核心"><span class="header-section-number">10.2</span> P 值：统计推断的核心</h2>
+<h2 data-number="10.2" class="anchored" data-anchor-id="p-值统计推断的核心">P 值：统计推断的核心</h2>
 <!-- 嵌入P值演示动画 -->
 <iframe src="../animations/p-value.html" width="100%" height="600" style="border: none; border-radius: 8px;">
 </iframe>
 <p>11| 12|# P 值（P-value） 13| 14|## 定义 15| 16|P 值是<strong>在零假设为真的前提下，观察到当前数据（或更极端数据）的概率</strong>。 17| 18|- 它不是”零假设为真的概率” 19|- 它不是”处理无效的概率” 20|- 它不是”效应的大小” 21| 22|## 直观解释 23| 24|&gt; 如果只让学生记住一句话：<strong>P 值小，说明你看到的数据在”什么都没发生”的世界里不太可能出现——这让你怀疑”什么都没发生”可能不对。但 P 值不告诉你”到底发生了什么”、也不告诉你”效果有多大”。</strong> 25| 26|打个比方：你在森林里听到一声吼叫。如果假设”森林里没有老虎”，听到吼叫的 P 值就很小——你会怀疑这个假设。但 P 值不告诉你是一只老虎还是三只老虎，也不告诉你老虎离你多远。 27| 28|## 在生物保护中的例子 29| 30|<strong>病虫害防治试验</strong>：你在 20 块样地中随机选 10 块施药，10 块做对照。施药后处理组平均虫口密度 3.2 头/株，对照组 5.8 头/株。t 检验得到 P = 0.03。 31| 32|- ✅ P = 0.03 意味着：如果药物真的完全无效（零假设为真），观察到这么大差异的概率只有 3%。 33|- ❌ P = 0.03 <strong>不意味着</strong>药物有效的概率是 97%。 34|- ❌ P = 0.03 <strong>不意味着</strong>药物能减少 2.6 头/株（这是效应量的工作）。 35| 36|## 常见误解 37| 38|1. <strong>“P &lt; 0.05 就说明处理一定有效”</strong> → 错。P 值只是反对零假设的证据强度，不能证明备择假设为真。且 P = 0.049 和 P = 0.051 之间没有本质差异。 39|2. <strong>“P 值越小，效应越大”</strong> → 错。P 值受样本量影响极大。大样本下微小的效应也能得到很小的 P 值。 40|3. <strong>“P &gt; 0.05 就说明没有效应”</strong> → 错。可能是样本量太小（统计功效不足），而非真的没有效应。 41|4. <strong>“P 值是零假设为真的概率”</strong> → 错。这是最根本的误解。P 值是数据在零假设下出现的概率，不是零假设本身的概率。 42| 43|## 相关概念 44| 45|- <a href="significance-level.md">显著性水平</a> — α = 0.05 从哪来？ 46|- <a href="effect-size.md">效应量</a> — P 值不告诉你的东西 47|- <a href="statistical-power.md">统计功效</a> — 为什么 P &gt; 0.05 不等于无效 48|- <a href="../concepts/type-i-error.md">第一类错误</a> — P &lt; 0.05 仍然可能犯错 49|- <a href="../concepts/confidence-interval.md">置信区间</a> — 比 P 值更丰富的信息 50| 51|## 来源 52| 53|- 学生课堂反馈（2026-06-09）：P 值解释是高频误解来源 54|</p>
 </section>
 <section id="r-分析过程" class="level2" data-number="10.3">
-<h2 data-number="10.3" class="anchored" data-anchor-id="r-分析过程"><span class="header-section-number">10.3</span> R 分析过程</h2>
+<h2 data-number="10.3" class="anchored" data-anchor-id="r-分析过程">R 分析过程</h2>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
@@ -483,7 +483,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </section>
 <section id="常见错误" class="level2" data-number="10.4">
-<h2 data-number="10.4" class="anchored" data-anchor-id="常见错误"><span class="header-section-number">10.4</span> 常见错误</h2>
+<h2 data-number="10.4" class="anchored" data-anchor-id="常见错误">常见错误</h2>
 <ol type="1">
 <li>P &lt; 0.05 就说明处理一定有效</li>
 <li>P 值越小效应越大</li>
@@ -491,7 +491,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ol>
 </section>
 <section id="练习" class="level2" data-number="10.5">
-<h2 data-number="10.5" class="anchored" data-anchor-id="练习"><span class="header-section-number">10.5</span> 练习</h2>
+<h2 data-number="10.5" class="anchored" data-anchor-id="练习">练习</h2>
 <!-- 待补充 -->
 
 <!-- -->

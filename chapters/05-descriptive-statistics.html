@@ -417,12 +417,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#描述统计与分布" id="toc-描述统计与分布" class="nav-link active" data-scroll-target="#描述统计与分布"><span class="header-section-number">7</span> 描述统计与分布</a>
+  <li><a href="#描述统计与分布" id="toc-描述统计与分布" class="nav-link active" data-scroll-target="#描述统计与分布">描述统计与分布</a>
   <ul class="collapse">
-  <li><a href="#认识你的数据" id="toc-认识你的数据" class="nav-link" data-scroll-target="#认识你的数据"><span class="header-section-number">7.1</span> 认识你的数据</a></li>
-  <li><a href="#正态分布统计学最重要的分布" id="toc-正态分布统计学最重要的分布" class="nav-link" data-scroll-target="#正态分布统计学最重要的分布"><span class="header-section-number">7.2</span> 正态分布：统计学最重要的分布</a></li>
-  <li><a href="#r-分析过程" id="toc-r-分析过程" class="nav-link" data-scroll-target="#r-分析过程"><span class="header-section-number">7.3</span> R 分析过程</a></li>
-  <li><a href="#练习" id="toc-练习" class="nav-link" data-scroll-target="#练习"><span class="header-section-number">7.4</span> 练习</a></li>
+  <li><a href="#认识你的数据" id="toc-认识你的数据" class="nav-link" data-scroll-target="#认识你的数据">认识你的数据</a></li>
+  <li><a href="#正态分布统计学最重要的分布" id="toc-正态分布统计学最重要的分布" class="nav-link" data-scroll-target="#正态分布统计学最重要的分布">正态分布：统计学最重要的分布</a></li>
+  <li><a href="#r-分析过程" id="toc-r-分析过程" class="nav-link" data-scroll-target="#r-分析过程">R 分析过程</a></li>
+  <li><a href="#练习" id="toc-练习" class="nav-link" data-scroll-target="#练习">练习</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -461,17 +461,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <section id="认识你的数据" class="level2" data-number="7.1">
-<h2 data-number="7.1" class="anchored" data-anchor-id="认识你的数据"><span class="header-section-number">7.1</span> 认识你的数据</h2>
+<h2 data-number="7.1" class="anchored" data-anchor-id="认识你的数据">认识你的数据</h2>
 <p>拿到 50 个样地的虫口密度数据，你首先想知道什么？——平均多少？变异多大？有没有异常值？</p>
 </section>
 <section id="正态分布统计学最重要的分布" class="level2" data-number="7.2">
-<h2 data-number="7.2" class="anchored" data-anchor-id="正态分布统计学最重要的分布"><span class="header-section-number">7.2</span> 正态分布：统计学最重要的分布</h2>
+<h2 data-number="7.2" class="anchored" data-anchor-id="正态分布统计学最重要的分布">正态分布：统计学最重要的分布</h2>
 <iframe src="../animations/normal-distribution.html" width="100%" height="600" style="border: none; border-radius: 8px;">
 </iframe>
 <p>12| 13|# 正态分布（Normal Distribution） 14| 15|## 定义 16| 17|正态分布（又称高斯分布）是自然界中最常见、统计学中最重要的连续概率分布。由均值 μ 决定中心位置，由标准差 σ 决定离散程度。标准正态分布 μ=0, σ=1。 18| 19|## 直观解释 20| 21|如果你测量1000株同龄同种幼苗的高度，画成直方图——它会是一个中间高、两边低、左右对称的钟形。大多数值集中在均值附近，越远离均值的值越少见。 22| 23|### 68-95-99.7 法则 24| 25|- <strong>±1σ</strong>：约 68.27% 的数据落在这个范围 26|- <strong>±2σ</strong>：约 95.45% 的数据落在这个范围——这是 α=0.05 的基础 27|- <strong>±3σ</strong>：约 99.73% 的数据落在这个范围——超出即被视为异常值 28| 29|## 在生物保护中的例子 30| 31|- 同一树种在相似生境中的胸径通常近似正态分布 32|- 测量误差（如同一个人多次测量树高）通常服从正态分布 33|- 大样本下的样本均值近似正态分布（中心极限定理） 34| 35|## 为什么重要 36| 37|许多统计方法（t检验、ANOVA、回归）都假设数据（或残差）服从正态分布。理解正态分布是理解这些方法的前提。 38| 39|## 教学动画 40| 41|- <a href="../animation-scripts/normal-distribution-animation.md">正态分布演示动画</a> — 10秒Canvas动画 42|- <a href="../animation-scripts/normal-distribution-reference.md">正态分布参考页</a> — 滚动式教学页面 43| 44|## 相关概念 45| 46|- <a href="descriptive-statistics.md">描述性统计</a> 47|- <a href="p-value.md">P值</a> — P值是在正态（或t）分布下计算的面积 48|- <a href="significance-level.md">显著性水平</a> — α=0.05即正态分布双侧尾部各2.5% 49|</p>
 </section>
 <section id="r-分析过程" class="level2" data-number="7.3">
-<h2 data-number="7.3" class="anchored" data-anchor-id="r-分析过程"><span class="header-section-number">7.3</span> R 分析过程</h2>
+<h2 data-number="7.3" class="anchored" data-anchor-id="r-分析过程">R 分析过程</h2>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
@@ -481,7 +481,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </section>
 <section id="练习" class="level2" data-number="7.4">
-<h2 data-number="7.4" class="anchored" data-anchor-id="练习"><span class="header-section-number">7.4</span> 练习</h2>
+<h2 data-number="7.4" class="anchored" data-anchor-id="练习">练习</h2>
 <!-- 待补充 -->
 
 <!-- -->
