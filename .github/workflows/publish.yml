@@ -20,8 +20,13 @@ jobs:
         with:
           r-version: '4.5.3'
       
+      - name: Install R packages
+        run: |
+          install.packages(c("knitr", "rmarkdown"))
+        shell: Rscript {0}
+      
       - name: Render Quarto Book
-        run: quarto render
+        run: quarto render --no-clean
       
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
