@@ -22,122 +22,122 @@
   {
     "objectID": "chapters/05-descriptive-statistics.html",
     "href": "chapters/05-descriptive-statistics.html",
-    "title": "6  第5章 描述统计与分布",
+    "title": "6  描述统计与分布",
     "section": "",
-    "text": "7 第5章 描述统计与分布",
+    "text": "7 描述统计与分布",
     "crumbs": [
       "第二篇：看懂并整理保护数据",
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>第5章 描述统计与分布</span>"
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>描述统计与分布</span>"
     ]
   },
   {
     "objectID": "chapters/05-descriptive-statistics.html#认识你的数据",
     "href": "chapters/05-descriptive-statistics.html#认识你的数据",
-    "title": "6  第5章 描述统计与分布",
+    "title": "6  描述统计与分布",
     "section": "7.1 认识你的数据",
     "text": "7.1 认识你的数据\n拿到 50 个样地的虫口密度数据，你首先想知道什么？——平均多少？变异多大？有没有异常值？",
     "crumbs": [
       "第二篇：看懂并整理保护数据",
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>第5章 描述统计与分布</span>"
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>描述统计与分布</span>"
     ]
   },
   {
     "objectID": "chapters/05-descriptive-statistics.html#正态分布统计学最重要的分布",
     "href": "chapters/05-descriptive-statistics.html#正态分布统计学最重要的分布",
-    "title": "6  第5章 描述统计与分布",
+    "title": "6  描述统计与分布",
     "section": "7.2 正态分布：统计学最重要的分布",
     "text": "7.2 正态分布：统计学最重要的分布\n\n\n12| 13|# 正态分布（Normal Distribution） 14| 15|## 定义 16| 17|正态分布（又称高斯分布）是自然界中最常见、统计学中最重要的连续概率分布。由均值 μ 决定中心位置，由标准差 σ 决定离散程度。标准正态分布 μ=0, σ=1。 18| 19|## 直观解释 20| 21|如果你测量1000株同龄同种幼苗的高度，画成直方图——它会是一个中间高、两边低、左右对称的钟形。大多数值集中在均值附近，越远离均值的值越少见。 22| 23|### 68-95-99.7 法则 24| 25|- ±1σ：约 68.27% 的数据落在这个范围 26|- ±2σ：约 95.45% 的数据落在这个范围——这是 α=0.05 的基础 27|- ±3σ：约 99.73% 的数据落在这个范围——超出即被视为异常值 28| 29|## 在生物保护中的例子 30| 31|- 同一树种在相似生境中的胸径通常近似正态分布 32|- 测量误差（如同一个人多次测量树高）通常服从正态分布 33|- 大样本下的样本均值近似正态分布（中心极限定理） 34| 35|## 为什么重要 36| 37|许多统计方法（t检验、ANOVA、回归）都假设数据（或残差）服从正态分布。理解正态分布是理解这些方法的前提。 38| 39|## 教学动画 40| 41|- 正态分布演示动画 — 10秒Canvas动画 42|- 正态分布参考页 — 滚动式教学页面 43| 44|## 相关概念 45| 46|- 描述性统计 47|- P值 — P值是在正态（或t）分布下计算的面积 48|- 显著性水平 — α=0.05即正态分布双侧尾部各2.5% 49|",
     "crumbs": [
       "第二篇：看懂并整理保护数据",
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>第5章 描述统计与分布</span>"
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>描述统计与分布</span>"
     ]
   },
   {
     "objectID": "chapters/05-descriptive-statistics.html#r-分析过程",
     "href": "chapters/05-descriptive-statistics.html#r-分析过程",
-    "title": "6  第5章 描述统计与分布",
+    "title": "6  描述统计与分布",
     "section": "7.3 R 分析过程",
     "text": "7.3 R 分析过程\n\n\nCode\n# 描述性统计\n# 待补充：均值、中位数、标准差、直方图",
     "crumbs": [
       "第二篇：看懂并整理保护数据",
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>第5章 描述统计与分布</span>"
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>描述统计与分布</span>"
     ]
   },
   {
     "objectID": "chapters/05-descriptive-statistics.html#练习",
     "href": "chapters/05-descriptive-statistics.html#练习",
-    "title": "6  第5章 描述统计与分布",
+    "title": "6  描述统计与分布",
     "section": "7.4 练习",
     "text": "7.4 练习",
     "crumbs": [
       "第二篇：看懂并整理保护数据",
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>第5章 描述统计与分布</span>"
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>描述统计与分布</span>"
     ]
   },
   {
     "objectID": "chapters/08-two-group-comparison.html",
     "href": "chapters/08-two-group-comparison.html",
-    "title": "9  第8章 两组比较",
+    "title": "9  两组比较",
     "section": "",
-    "text": "10 第8章 两组比较",
+    "text": "10 两组比较",
     "crumbs": [
       "第三篇：回答常见保护问题",
-      "<span class='chapter-number'>9</span>  <span class='chapter-title'>第8章 两组比较</span>"
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>两组比较</span>"
     ]
   },
   {
     "objectID": "chapters/08-two-group-comparison.html#真实保护问题",
     "href": "chapters/08-two-group-comparison.html#真实保护问题",
-    "title": "9  第8章 两组比较",
+    "title": "9  两组比较",
     "section": "10.1 真实保护问题",
     "text": "10.1 真实保护问题\n施药处理后，害虫数量真的变少了吗？还是只是巧合？",
     "crumbs": [
       "第三篇：回答常见保护问题",
-      "<span class='chapter-number'>9</span>  <span class='chapter-title'>第8章 两组比较</span>"
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>两组比较</span>"
     ]
   },
   {
     "objectID": "chapters/08-two-group-comparison.html#p-值统计推断的核心",
     "href": "chapters/08-two-group-comparison.html#p-值统计推断的核心",
-    "title": "9  第8章 两组比较",
+    "title": "9  两组比较",
     "section": "10.2 P 值：统计推断的核心",
     "text": "10.2 P 值：统计推断的核心\n\n\n\n11| 12|# P 值（P-value） 13| 14|## 定义 15| 16|P 值是在零假设为真的前提下，观察到当前数据（或更极端数据）的概率。 17| 18|- 它不是”零假设为真的概率” 19|- 它不是”处理无效的概率” 20|- 它不是”效应的大小” 21| 22|## 直观解释 23| 24|&gt; 如果只让学生记住一句话：P 值小，说明你看到的数据在”什么都没发生”的世界里不太可能出现——这让你怀疑”什么都没发生”可能不对。但 P 值不告诉你”到底发生了什么”、也不告诉你”效果有多大”。 25| 26|打个比方：你在森林里听到一声吼叫。如果假设”森林里没有老虎”，听到吼叫的 P 值就很小——你会怀疑这个假设。但 P 值不告诉你是一只老虎还是三只老虎，也不告诉你老虎离你多远。 27| 28|## 在生物保护中的例子 29| 30|病虫害防治试验：你在 20 块样地中随机选 10 块施药，10 块做对照。施药后处理组平均虫口密度 3.2 头/株，对照组 5.8 头/株。t 检验得到 P = 0.03。 31| 32|- ✅ P = 0.03 意味着：如果药物真的完全无效（零假设为真），观察到这么大差异的概率只有 3%。 33|- ❌ P = 0.03 不意味着药物有效的概率是 97%。 34|- ❌ P = 0.03 不意味着药物能减少 2.6 头/株（这是效应量的工作）。 35| 36|## 常见误解 37| 38|1. “P &lt; 0.05 就说明处理一定有效” → 错。P 值只是反对零假设的证据强度，不能证明备择假设为真。且 P = 0.049 和 P = 0.051 之间没有本质差异。 39|2. “P 值越小，效应越大” → 错。P 值受样本量影响极大。大样本下微小的效应也能得到很小的 P 值。 40|3. “P &gt; 0.05 就说明没有效应” → 错。可能是样本量太小（统计功效不足），而非真的没有效应。 41|4. “P 值是零假设为真的概率” → 错。这是最根本的误解。P 值是数据在零假设下出现的概率，不是零假设本身的概率。 42| 43|## 相关概念 44| 45|- 显著性水平 — α = 0.05 从哪来？ 46|- 效应量 — P 值不告诉你的东西 47|- 统计功效 — 为什么 P &gt; 0.05 不等于无效 48|- 第一类错误 — P &lt; 0.05 仍然可能犯错 49|- 置信区间 — 比 P 值更丰富的信息 50| 51|## 来源 52| 53|- 学生课堂反馈（2026-06-09）：P 值解释是高频误解来源 54|",
     "crumbs": [
       "第三篇：回答常见保护问题",
-      "<span class='chapter-number'>9</span>  <span class='chapter-title'>第8章 两组比较</span>"
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>两组比较</span>"
     ]
   },
   {
     "objectID": "chapters/08-two-group-comparison.html#r-分析过程",
     "href": "chapters/08-two-group-comparison.html#r-分析过程",
-    "title": "9  第8章 两组比较",
+    "title": "9  两组比较",
     "section": "10.3 R 分析过程",
     "text": "10.3 R 分析过程\n\n\nCode\n# 独立样本 t 检验示例\n# 待补充：处理组 vs 对照组害虫数量数据",
     "crumbs": [
       "第三篇：回答常见保护问题",
-      "<span class='chapter-number'>9</span>  <span class='chapter-title'>第8章 两组比较</span>"
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>两组比较</span>"
     ]
   },
   {
     "objectID": "chapters/08-two-group-comparison.html#常见错误",
     "href": "chapters/08-two-group-comparison.html#常见错误",
-    "title": "9  第8章 两组比较",
+    "title": "9  两组比较",
     "section": "10.4 常见错误",
     "text": "10.4 常见错误\n\nP &lt; 0.05 就说明处理一定有效\nP 值越小效应越大\nP &gt; 0.05 就说明没有效应",
     "crumbs": [
       "第三篇：回答常见保护问题",
-      "<span class='chapter-number'>9</span>  <span class='chapter-title'>第8章 两组比较</span>"
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>两组比较</span>"
     ]
   },
   {
     "objectID": "chapters/08-two-group-comparison.html#练习",
     "href": "chapters/08-two-group-comparison.html#练习",
-    "title": "9  第8章 两组比较",
+    "title": "9  两组比较",
     "section": "10.5 练习",
     "text": "10.5 练习",
     "crumbs": [
       "第三篇：回答常见保护问题",
-      "<span class='chapter-number'>9</span>  <span class='chapter-title'>第8章 两组比较</span>"
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>两组比较</span>"
     ]
   }
 ]
