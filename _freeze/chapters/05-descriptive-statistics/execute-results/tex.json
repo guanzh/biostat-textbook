@@ -1,0 +1,21 @@
+{
+  "hash": "1060a8fb8dac32602452cc05e01d8337",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: \"第5章 描述统计与分布\"\nmaturity: sprout\nupdated: 2026-06-15\n---\n\n# 第5章 描述统计与分布\n\n::: {.callout-note}\n## 本章状态：sprout\n\n已有正态分布核心内容（来自课程 wiki），需要补充描述统计完整内容。\n:::\n\n## 认识你的数据\n\n拿到 50 个样地的虫口密度数据，你首先想知道什么？——平均多少？变异多大？有没有异常值？\n\n## 正态分布：统计学最重要的分布\n\n<iframe src=\"../animations/normal-distribution.html\" width=\"100%\" height=\"600\" style=\"border: none; border-radius: 8px;\"></iframe>\n\n12|\n13|# 正态分布（Normal Distribution）\n14|\n15|## 定义\n16|\n17|正态分布（又称高斯分布）是自然界中最常见、统计学中最重要的连续概率分布。由均值 μ 决定中心位置，由标准差 σ 决定离散程度。标准正态分布 μ=0, σ=1。\n18|\n19|## 直观解释\n20|\n21|如果你测量1000株同龄同种幼苗的高度，画成直方图——它会是一个中间高、两边低、左右对称的钟形。大多数值集中在均值附近，越远离均值的值越少见。\n22|\n23|### 68-95-99.7 法则\n24|\n25|- **±1σ**：约 68.27% 的数据落在这个范围\n26|- **±2σ**：约 95.45% 的数据落在这个范围——这是 α=0.05 的基础\n27|- **±3σ**：约 99.73% 的数据落在这个范围——超出即被视为异常值\n28|\n29|## 在生物保护中的例子\n30|\n31|- 同一树种在相似生境中的胸径通常近似正态分布\n32|- 测量误差（如同一个人多次测量树高）通常服从正态分布\n33|- 大样本下的样本均值近似正态分布（中心极限定理）\n34|\n35|## 为什么重要\n36|\n37|许多统计方法（t检验、ANOVA、回归）都假设数据（或残差）服从正态分布。理解正态分布是理解这些方法的前提。\n38|\n39|## 教学动画\n40|\n41|- [正态分布演示动画](../animation-scripts/normal-distribution-animation.md) — 10秒Canvas动画\n42|- [正态分布参考页](../animation-scripts/normal-distribution-reference.md) — 滚动式教学页面\n43|\n44|## 相关概念\n45|\n46|- [描述性统计](descriptive-statistics.md)\n47|- [P值](p-value.md) — P值是在正态（或t）分布下计算的面积\n48|- [显著性水平](significance-level.md) — α=0.05即正态分布双侧尾部各2.5%\n49|\n\n## R 分析过程\n\n\n::: {.cell}\n\n```{.r .cell-code}\n# 描述性统计\n# 待补充：均值、中位数、标准差、直方图\n```\n:::\n\n\n## 练习\n\n<!-- 待补充 -->\n",
+    "supporting": [
+      "05-descriptive-statistics_files"
+    ],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {
+      "knitr": [
+        "{\"type\":\"list\",\"attributes\":{},\"value\":[]}"
+      ]
+    },
+    "preserve": null,
+    "postProcess": false
+  }
+}

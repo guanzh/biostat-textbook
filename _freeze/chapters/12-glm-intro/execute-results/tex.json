@@ -1,0 +1,21 @@
+{
+  "hash": "2b9e68b43deb3b376210f236273cfbf6",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: \"第12章 从线性模型走向广义线性模型\"\nmaturity: seed\nupdated: 2026-06-15\n---\n\n# 第12章 从线性模型走向广义线性模型\n\n::: {{.callout-note}}\n## 本章状态：seed\n\n本章内容尚在建设中。以下为本章规划大纲，具体内容将随课程反馈和新案例持续补充。\n:::\n\n## 真实保护问题\n\n<!-- 以一个具体的保护生物学问题开篇 -->\n\n## 学习目标\n\n<!-- 学完本章后学生应能做到的 3-5 件事 -->\n\n## 为什么这个问题需要统计\n\n<!-- 动机段落 -->\n\n## 核心概念\n\n<!-- 本章关键概念的简要介绍 -->\n\n## R 分析过程\n\n\n::: {.cell}\n\n```{.r .cell-code}\n# 本章 R 代码示例（待补充）\n```\n:::\n\n\n## 结果解释\n\n<!-- 如何将统计结果转化为保护生物学语言 -->\n\n## 常见错误\n\n<!-- 学生在本章内容上最容易犯的错误 -->\n\n## AI 辅助任务\n\n<!-- 配套的 AI 提问与人工核查任务 -->\n\n## 练习\n\n<!-- 课堂练习和课后作业 -->\n\n## 继续学习\n\n<!-- 推荐阅读和下一章链接 -->\n",
+    "supporting": [
+      "12-glm-intro_files"
+    ],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {
+      "knitr": [
+        "{\"type\":\"list\",\"attributes\":{},\"value\":[]}"
+      ]
+    },
+    "preserve": null,
+    "postProcess": false
+  }
+}

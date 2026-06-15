@@ -1,0 +1,1405 @@
+% Options for packages loaded elsewhere
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+  letterpaper,
+]{scrbook}
+\usepackage{xcolor}
+\usepackage{amsmath,amssymb}
+\setcounter{secnumdepth}{5}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+% Make \paragraph and \subparagraph free-standing
+\makeatletter
+\ifx\paragraph\undefined\else
+  \let\oldparagraph\paragraph
+  \renewcommand{\paragraph}{
+    \@ifstar
+      \xxxParagraphStar
+      \xxxParagraphNoStar
+  }
+  \newcommand{\xxxParagraphStar}[1]{\oldparagraph*{#1}\mbox{}}
+  \newcommand{\xxxParagraphNoStar}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+  \let\oldsubparagraph\subparagraph
+  \renewcommand{\subparagraph}{
+    \@ifstar
+      \xxxSubParagraphStar
+      \xxxSubParagraphNoStar
+  }
+  \newcommand{\xxxSubParagraphStar}[1]{\oldsubparagraph*{#1}\mbox{}}
+  \newcommand{\xxxSubParagraphNoStar}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+\makeatother
+
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{241,243,245}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.40,0.45,0.13}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\BuiltInTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textit{#1}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textit{#1}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\ExtensionTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.28,0.35,0.67}{#1}}
+\newcommand{\ImportTok}[1]{\textcolor[rgb]{0.00,0.46,0.62}{#1}}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\RegionMarkerTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.07,0.07,0.07}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textit{#1}}}
+
+\usepackage{longtable,booktabs,array}
+\newcounter{none} % for unnumbered tables
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx}
+\makeatletter
+\newsavebox\pandoc@box
+\newcommand*\pandocbounded[1]{% scales image to fit in text height/width
+  \sbox\pandoc@box{#1}%
+  \Gscale@div\@tempa{\textheight}{\dimexpr\ht\pandoc@box+\dp\pandoc@box\relax}%
+  \Gscale@div\@tempb{\linewidth}{\wd\pandoc@box}%
+  \ifdim\@tempb\p@<\@tempa\p@\let\@tempa\@tempb\fi% select the smaller of both
+  \ifdim\@tempa\p@<\p@\scalebox{\@tempa}{\usebox\pandoc@box}%
+  \else\usebox{\pandoc@box}%
+  \fi%
+}
+% Set default figure placement to htbp
+\def\fps@figure{htbp}
+\makeatother
+
+
+
+
+
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+
+
+
+ 
+
+
+\makeatletter
+\@ifpackageloaded{tcolorbox}{}{\usepackage[skins,breakable]{tcolorbox}}
+\@ifpackageloaded{fontawesome5}{}{\usepackage{fontawesome5}}
+\definecolor{quarto-callout-color}{HTML}{909090}
+\definecolor{quarto-callout-note-color}{HTML}{0758E5}
+\definecolor{quarto-callout-important-color}{HTML}{CC1914}
+\definecolor{quarto-callout-warning-color}{HTML}{EB9113}
+\definecolor{quarto-callout-tip-color}{HTML}{00A047}
+\definecolor{quarto-callout-caution-color}{HTML}{FC5300}
+\definecolor{quarto-callout-color-frame}{HTML}{acacac}
+\definecolor{quarto-callout-note-color-frame}{HTML}{4582ec}
+\definecolor{quarto-callout-important-color-frame}{HTML}{d9534f}
+\definecolor{quarto-callout-warning-color-frame}{HTML}{f0ad4e}
+\definecolor{quarto-callout-tip-color-frame}{HTML}{02b875}
+\definecolor{quarto-callout-caution-color-frame}{HTML}{fd7e14}
+\makeatother
+\makeatletter
+\@ifpackageloaded{bookmark}{}{\usepackage{bookmark}}
+\makeatother
+\makeatletter
+\@ifpackageloaded{caption}{}{\usepackage{caption}}
+\AtBeginDocument{%
+\ifdefined\contentsname
+  \renewcommand*\contentsname{Table of contents}
+\else
+  \newcommand\contentsname{Table of contents}
+\fi
+\ifdefined\listfigurename
+  \renewcommand*\listfigurename{List of Figures}
+\else
+  \newcommand\listfigurename{List of Figures}
+\fi
+\ifdefined\listtablename
+  \renewcommand*\listtablename{List of Tables}
+\else
+  \newcommand\listtablename{List of Tables}
+\fi
+\ifdefined\figurename
+  \renewcommand*\figurename{Figure}
+\else
+  \newcommand\figurename{Figure}
+\fi
+\ifdefined\tablename
+  \renewcommand*\tablename{Table}
+\else
+  \newcommand\tablename{Table}
+\fi
+}
+\@ifpackageloaded{float}{}{\usepackage{float}}
+\floatstyle{ruled}
+\@ifundefined{c@chapter}{\newfloat{codelisting}{h}{lop}}{\newfloat{codelisting}{h}{lop}[chapter]}
+\floatname{codelisting}{Listing}
+\newcommand*\listoflistings{\listof{codelisting}{List of Listings}}
+\makeatother
+\makeatletter
+\makeatother
+\makeatletter
+\@ifpackageloaded{caption}{}{\usepackage{caption}}
+\@ifpackageloaded{subcaption}{}{\usepackage{subcaption}}
+\makeatother
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={从样地到结论：保护生物学数据实战},
+  pdfauthor={管振华},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+
+\title{从样地到结论：保护生物学数据实战}
+\usepackage{etoolbox}
+\makeatletter
+\providecommand{\subtitle}[1]{% add subtitle to \maketitle
+  \apptocmd{\@title}{\par {\large #1 \par}}{}{}
+}
+\makeatother
+\subtitle{基于 R 语言的生物实验设计与统计分析}
+\author{管振华}
+\date{2026-01-01}
+\begin{document}
+\frontmatter
+\maketitle
+
+\renewcommand*\contentsname{Table of contents}
+{
+\setcounter{tocdepth}{2}
+\tableofcontents
+}
+
+\mainmatter
+\bookmarksetup{startatroot}
+
+\chapter{从样地到结论：保护生物学数据实战}\label{ux4eceux6837ux5730ux5230ux7ed3ux8bbaux4fddux62a4ux751fux7269ux5b66ux6570ux636eux5b9eux6218}
+
+基于 R 语言的生物实验设计与统计分析
+
+\hfill\break
+
+\bookmarksetup{startatroot}
+
+\chapter{欢迎}\label{ux6b22ux8fce}
+
+本书是一本面向野生动物保护、森林保护、植物保护、林学与生物多样性专业学生的案例驱动统计教材。
+
+\section{这本书是什么}\label{ux8fd9ux672cux4e66ux662fux4ec0ux4e48}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{保护问题先行}：每章从一个真实的保护生物学问题出发
+\item
+  \textbf{统计判断为核心}：重点不是背公式，而是''这个问题该用什么方法''
+\item
+  \textbf{R 语言实操}：所有分析代码可运行、可复现
+\item
+  \textbf{AI 辅助但不依赖}：教你用 AI 帮忙，同时教你检查 AI 的对错
+\item
+  \textbf{持续生长}：教材内容随课程反馈和新案例持续更新
+\end{itemize}
+
+\section{这本书不是什么}\label{ux8fd9ux672cux4e66ux4e0dux662fux4ec0ux4e48}
+
+\begin{itemize}
+\tightlist
+\item
+  不是统计学百科全书
+\item
+  不是 R 语言手册
+\item
+  不是 AI 代你做分析的说明书
+\end{itemize}
+
+\section{如何使用}\label{ux5982ux4f55ux4f7fux7528}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{学生}：按章节顺序阅读，完成每章练习和 AI 核查任务
+\item
+  \textbf{教师}：根据课时需求从教材中选取章节，每个案例可独立教学
+\item
+  \textbf{保护工作者}：按专业方向或问题类型查找所需方法
+\end{itemize}
+
+\section{开始学习}\label{ux5f00ux59cbux5b66ux4e60}
+
+→ \href{chapters/01-role-of-statistics.qmd}{第 1
+章：统计学在保护中的角色}
+
+\part{第一篇：从保护问题进入统计}
+
+\chapter{第1章
+统计学在保护中的角色}\label{ux7b2c1ux7ae0-ux7edfux8ba1ux5b66ux5728ux4fddux62a4ux4e2dux7684ux89d2ux8272}
+
+\chapter{第1章
+统计学在保护中的角色}\label{ux7b2c1ux7ae0-ux7edfux8ba1ux5b66ux5728ux4fddux62a4ux4e2dux7684ux89d2ux8272-1}
+
+\section{真实保护问题}\label{ux771fux5b9eux4fddux62a4ux95eeux9898}
+
+你管理着一片保护区，想知道： - 今年的病虫害是否比去年严重？ -
+新采用的防治措施是否真的有效？ -
+红外相机拍到的动物次数能代表真实种群数量吗？
+
+这些问题都离不开一个工具：\textbf{统计学}。
+
+\section{学习目标}\label{ux5b66ux4e60ux76eeux6807}
+
+学完本章后，你应能够： 1. 区分描述、推断、预测和因果四种统计目标 2.
+判断一个保护类问题是否需要统计分析 3. 理解统计学、R 和 AI 各自的责任边界
+4. 建立''保护问题→数据→证据→行动''的思维框架
+
+\section{为什么保护工作需要统计}\label{ux4e3aux4ec0ux4e48ux4fddux62a4ux5de5ux4f5cux9700ux8981ux7edfux8ba1}
+
+7\textbar{} 8\textbar\# 课程总览：《生物实验设计与统计分析》 9\textbar{}
+10\textbar\#\# 课程基本信息 11\textbar{} 12\textbar-
+\textbf{课程名称}：生物实验设计与统计分析 13\textbar-
+\textbf{课程定位}：基础统计入门 + AI辅助学习训练 14\textbar-
+\textbf{适用专业}：森林保护、植物保护、野生动物保护 15\textbar-
+\textbf{总课时}：32 课时（16 个教学单元，每单元 2 课时） 16\textbar-
+\textbf{目标学生}：本科生（非统计专业背景） 17\textbar{} 18\textbar\#\#
+课程目标（聚焦三件事） 19\textbar{} 20\textbar1.
+\textbf{看懂数据}：读懂保护类研究中的常见数据和图表 21\textbar2.
+\textbf{选对方法}：根据研究问题选择合适的基础统计方法并解释结果
+22\textbar3.
+\textbf{会用AI}：用AI辅助学习、分析和检查结果，形成持续学习能力
+23\textbar{} 24\textbar\#\# 课程主线 25\textbar{}
+26\textbar{}\texttt{27\textbar{}提出问题\ →\ 设计调查/实验\ →\ 整理数据\ →\ 选择方法\ 28\textbar{}\ \ \ \ →\ 用软件分析\ →\ 借助AI检查\ →\ 解释结果\ →\ 写出报告\ 29\textbar{}}
+30\textbar{} 31\textbar\#\# 课程地图（32 课时 / 16 周） 32\textbar{}
+33\textbar\textbar{} 单元 \textbar{} 周次 \textbar{} 主题 \textbar{}
+核心内容 \textbar{} 状态 \textbar{}
+34\textbar\textbar------\textbar------\textbar------\textbar----------\textbar------\textbar{}
+35\textbar\textbar{} 1 \textbar{} 1 \textbar{} 为什么保护类专业要学统计
+\textbar{} 课程导入、统计问题判断、AI初体验 \textbar{} active \textbar{}
+36\textbar\textbar{} 2 \textbar{} 2 \textbar{} 研究问题、变量和假设
+\textbar{} 四要素拆解、变量类型（连续/计数/分类/比例） \textbar{} active
+\textbar{} 37\textbar\textbar{} 3 \textbar{} 3 \textbar{} 实验设计基础
+\textbar{} 对照/重复/随机、实验单位、伪重复判断 \textbar{} active
+\textbar{} 38\textbar\textbar{} 4 \textbar{} 4 \textbar{}
+常见保护类研究设计 \textbar{} 药剂防治、林分比较、样线法、红外相机
+\textbar{} active \textbar{} 39\textbar\textbar{} 5 \textbar{} 5
+\textbar{} 数据整理基础 \textbar{} 数据表规范、缺失值、异常值、数据清洗
+\textbar{} active \textbar{} 40\textbar\textbar{} 6 \textbar{} 6
+\textbar{} 描述性统计 \textbar{} 均值/中位数/标准差/标准误/百分比
+\textbar{} active \textbar{} 41\textbar\textbar{} 7 \textbar{} 7
+\textbar{} 图表表达 \textbar{} 柱状图/箱线图/散点图、图表选择 \textbar{}
+active \textbar{} 42\textbar\textbar{} 8 \textbar{} 8 \textbar{}
+两组比较------t检验 \textbar{} t检验适用场景、P值、显著差异解读
+\textbar{} active \textbar{} 43\textbar\textbar{} 9 \textbar{} 9
+\textbar{} 多组比较------方差分析 \textbar{} ANOVA、总体差异、两两比较
+\textbar{} active \textbar{} 44\textbar\textbar{} 10 \textbar{} 10
+\textbar{} 比例和分类数据分析 \textbar{}
+卡方检验、Fisher精确检验、列联表 \textbar{} active \textbar{}
+45\textbar\textbar{} 11 \textbar{} 11 \textbar{} 相关分析 \textbar{}
+相关系数、相关≠因果 \textbar{} active \textbar{} 46\textbar\textbar{} 12
+\textbar{} 12 \textbar{} 简单回归分析 \textbar{}
+回归系数、R²、预测vs解释 \textbar{} active \textbar{}
+47\textbar\textbar{} 13 \textbar{} 13 \textbar{} 生物多样性和监测数据
+\textbar{} 丰富度/Shannon指数/均匀度、红外相机数据 \textbar{} active
+\textbar{} 48\textbar\textbar{} 14 \textbar{} 14 \textbar{}
+AI辅助统计学习专题 \textbar{} 八要素提问模板、五点核查法 \textbar{}
+active \textbar{} 49\textbar\textbar{} 15 \textbar{} 15 \textbar{}
+综合案例训练 \textbar{} 全流程演示、小组项目辅导 \textbar{} active
+\textbar{} 50\textbar\textbar{} 16 \textbar{} 16 \textbar{}
+项目展示和课程总结 \textbar{} 学生展示、六步后续学习路线 \textbar{}
+active \textbar{} 51\textbar{} 52\textbar\#\# 每周课堂结构 53\textbar{}
+54\textbar\textbar{} 时段 \textbar{} 环节 \textbar{} 时长 \textbar{}
+55\textbar\textbar------\textbar------\textbar------\textbar{}
+56\textbar\textbar{} 第一部分 \textbar{} 概念讲解 \textbar{}
+\textasciitilde35min \textbar{} 57\textbar\textbar{} 第二部分 \textbar{}
+专业案例 \textbar{} \textasciitilde25min \textbar{} 58\textbar\textbar{}
+第三部分 \textbar{} 软件或AI演示 \textbar{} \textasciitilde25min
+\textbar{} 59\textbar\textbar{} 第四部分 \textbar{} 学生练习和讨论
+\textbar{} \textasciitilde15min \textbar{} 60\textbar{} 61\textbar\#\#
+AI训练贯穿全课 62\textbar{} 63\textbar- 从第2周起每周安排AI任务
+64\textbar- 学生使用\textbf{八要素提问模板} 65\textbar-
+学生使用\textbf{五点核查法} 66\textbar- 每次AI使用后写''人工核查结果''
+67\textbar{} 68\textbar\#\# 考核方式 69\textbar{} 70\textbar\textbar{}
+项目 \textbar{} 占比 \textbar{}
+71\textbar\textbar------\textbar------\textbar{} 72\textbar\textbar{}
+平时练习（数据整理、图表、基础分析） \textbar{} 30\% \textbar{}
+73\textbar\textbar{} AI辅助学习记录（提示词+AI建议+核查理由） \textbar{}
+20\% \textbar{} 74\textbar\textbar{} 期中案例分析 \textbar{} 20\%
+\textbar{} 75\textbar\textbar{} 期末小项目（小组完整案例） \textbar{}
+30\% \textbar{} 76\textbar{} 77\textbar\#\# 教材章节规划 78\textbar{}
+79\textbar\textbar{} 章节 \textbar{} 内容 \textbar{} 成熟度 \textbar{}
+80\textbar\textbar------\textbar------\textbar--------\textbar{}
+81\textbar\textbar{} 第1章 \textbar{} 导论：统计学在保护中的角色
+\textbar{} seed \textbar{} 82\textbar\textbar{} 第2章 \textbar{}
+变量、假设与实验设计 \textbar{} seed \textbar{} 83\textbar\textbar{} 第
+
+\section{统计学能帮我们回答什么问题}\label{ux7edfux8ba1ux5b66ux80fdux5e2eux6211ux4eecux56deux7b54ux4ec0ux4e48ux95eeux9898}
+
+以下问题中，哪些需要统计分析？
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  某药剂是否降低害虫数量？ → \textbf{需要}（比较处理vs对照）
+\item
+  不同林型中鸟类数量是否不同？ → \textbf{需要}（多组比较）
+\item
+  湿度是否影响植物病害发生率？ → \textbf{需要}（相关/回归分析）
+\item
+  红外相机拍到的次数能否代表动物活动强度？ →
+  \textbf{需要}（检测概率建模）
+\end{enumerate}
+
+结论：保护生物学中几乎所有经验性问题都需要统计分析。
+
+\section{统计、R 与 AI
+的责任边界}\label{ux7edfux8ba1r-ux4e0e-ai-ux7684ux8d23ux4efbux8fb9ux754c}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}lll@{}}
+\toprule\noalign{}
+工具 & 能做什么 & 不能做什么 \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+统计方法 & 量化不确定性，提供证据强度 & 代替你判断''效果够不够大'' \\
+R 语言 & 高效计算、可重复分析 & 替你选择正确的统计方法 \\
+AI 助手 & 解释概念、推荐方法、生成代码 & 保证方法正确------你需要核查 \\
+\end{longtable}
+}
+
+\section{从''是否显著''走向''下一步做什么''}\label{ux4eceux662fux5426ux663eux8457ux8d70ux5411ux4e0bux4e00ux6b65ux505aux4ec0ux4e48}
+
+本书的核心信念：
+
+\begin{quote}
+统计不是终点，是通往保护行动的桥梁。
+\end{quote}
+
+\begin{itemize}
+\tightlist
+\item
+  P \textless{} 0.05
+  不是结论------你还需要知道效应有多大、在管理上意味着什么
+\item
+  P \textgreater{} 0.05
+  不是失败------它告诉你当前数据不足以区分信号和噪声，可能需要更多数据或调整监测方案
+\end{itemize}
+
+\section{R 分析预览}\label{r-ux5206ux6790ux9884ux89c8}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# 这是你在本书中学到的第一个 R 命令}
+\CommentTok{\# 后面每章都会有可运行的代码}
+
+\CommentTok{\# 查看 R 版本}
+\NormalTok{R.version.string}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] "R version 4.6.0 (2026-04-24 ucrt)"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# 一个简单的计算}
+\NormalTok{treatment }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\FloatTok{3.2}\NormalTok{, }\FloatTok{2.8}\NormalTok{, }\FloatTok{3.5}\NormalTok{, }\FloatTok{2.9}\NormalTok{, }\FloatTok{3.1}\NormalTok{)  }\CommentTok{\# 处理组虫口密度}
+\NormalTok{control  }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\FloatTok{5.8}\NormalTok{, }\FloatTok{6.1}\NormalTok{, }\FloatTok{5.5}\NormalTok{, }\FloatTok{6.3}\NormalTok{, }\FloatTok{5.7}\NormalTok{)  }\CommentTok{\# 对照组虫口密度}
+
+\FunctionTok{mean}\NormalTok{(treatment)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] 3.1
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{mean}\NormalTok{(control)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] 5.88
+\end{verbatim}
+
+\section{AI 辅助任务}\label{ai-ux8f85ux52a9ux4efbux52a1}
+
+\textbf{提问模板}：向 AI 提问''统计学在植物保护中有什么用？``然后------
+
+\begin{itemize}
+\tightlist
+\item
+  检查 AI 的回答中哪些说法太笼统
+\item
+  找出 AI 没有提到但你学过的内容
+\item
+  写一句''人工核查结果''
+\end{itemize}
+
+\section{继续学习}\label{ux7ee7ux7eedux5b66ux4e60}
+
+→ \href{02-variables-hypotheses.qmd}{第 2 章：研究问题、变量与假设}
+
+\chapter{第2章
+研究问题、变量与假设}\label{ux7b2c2ux7ae0-ux7814ux7a76ux95eeux9898ux53d8ux91cfux4e0eux5047ux8bbe}
+
+\chapter{第2章
+研究问题、变量与假设}\label{ux7b2c2ux7ae0-ux7814ux7a76ux95eeux9898ux53d8ux91cfux4e0eux5047ux8bbe-1}
+
+\section{本章状态：seed}\label{ux672cux7ae0ux72b6ux6001seed}
+
+本章内容尚在建设中。以下为本章规划大纲，具体内容将随课程反馈和新案例持续补充。
+
+\section{真实保护问题}\label{ux771fux5b9eux4fddux62a4ux95eeux9898-1}
+
+\section{学习目标}\label{ux5b66ux4e60ux76eeux6807-1}
+
+\section{为什么这个问题需要统计}\label{ux4e3aux4ec0ux4e48ux8fd9ux4e2aux95eeux9898ux9700ux8981ux7edfux8ba1}
+
+\section{核心概念}\label{ux6838ux5fc3ux6982ux5ff5}
+
+\section{R 分析过程}\label{r-ux5206ux6790ux8fc7ux7a0b}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# 本章 R 代码示例（待补充）}
+\end{Highlighting}
+\end{Shaded}
+
+\section{结果解释}\label{ux7ed3ux679cux89e3ux91ca}
+
+\section{常见错误}\label{ux5e38ux89c1ux9519ux8bef}
+
+\section{AI 辅助任务}\label{ai-ux8f85ux52a9ux4efbux52a1-1}
+
+\section{练习}\label{ux7ec3ux4e60}
+
+\section{继续学习}\label{ux7ee7ux7eedux5b66ux4e60-1}
+
+\chapter{第3章
+调查与实验设计}\label{ux7b2c3ux7ae0-ux8c03ux67e5ux4e0eux5b9eux9a8cux8bbeux8ba1}
+
+\chapter{第3章
+调查与实验设计}\label{ux7b2c3ux7ae0-ux8c03ux67e5ux4e0eux5b9eux9a8cux8bbeux8ba1-1}
+
+\section{本章状态：seed}\label{ux672cux7ae0ux72b6ux6001seed-1}
+
+本章内容尚在建设中。以下为本章规划大纲，具体内容将随课程反馈和新案例持续补充。
+
+\section{真实保护问题}\label{ux771fux5b9eux4fddux62a4ux95eeux9898-2}
+
+\section{学习目标}\label{ux5b66ux4e60ux76eeux6807-2}
+
+\section{为什么这个问题需要统计}\label{ux4e3aux4ec0ux4e48ux8fd9ux4e2aux95eeux9898ux9700ux8981ux7edfux8ba1-1}
+
+\section{核心概念}\label{ux6838ux5fc3ux6982ux5ff5-1}
+
+\section{R 分析过程}\label{r-ux5206ux6790ux8fc7ux7a0b-1}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# 本章 R 代码示例（待补充）}
+\end{Highlighting}
+\end{Shaded}
+
+\section{结果解释}\label{ux7ed3ux679cux89e3ux91ca-1}
+
+\section{常见错误}\label{ux5e38ux89c1ux9519ux8bef-1}
+
+\section{AI 辅助任务}\label{ai-ux8f85ux52a9ux4efbux52a1-2}
+
+\section{练习}\label{ux7ec3ux4e60-1}
+
+\section{继续学习}\label{ux7ee7ux7eedux5b66ux4e60-2}
+
+\part{第二篇：看懂并整理保护数据}
+
+\chapter{第4章
+数据管理与可重复分析}\label{ux7b2c4ux7ae0-ux6570ux636eux7ba1ux7406ux4e0eux53efux91cdux590dux5206ux6790}
+
+\chapter{第4章
+数据管理与可重复分析}\label{ux7b2c4ux7ae0-ux6570ux636eux7ba1ux7406ux4e0eux53efux91cdux590dux5206ux6790-1}
+
+\section{本章状态：seed}\label{ux672cux7ae0ux72b6ux6001seed-2}
+
+本章内容尚在建设中。以下为本章规划大纲，具体内容将随课程反馈和新案例持续补充。
+
+\section{真实保护问题}\label{ux771fux5b9eux4fddux62a4ux95eeux9898-3}
+
+\section{学习目标}\label{ux5b66ux4e60ux76eeux6807-3}
+
+\section{为什么这个问题需要统计}\label{ux4e3aux4ec0ux4e48ux8fd9ux4e2aux95eeux9898ux9700ux8981ux7edfux8ba1-2}
+
+\section{核心概念}\label{ux6838ux5fc3ux6982ux5ff5-2}
+
+\section{R 分析过程}\label{r-ux5206ux6790ux8fc7ux7a0b-2}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# 本章 R 代码示例（待补充）}
+\end{Highlighting}
+\end{Shaded}
+
+\section{结果解释}\label{ux7ed3ux679cux89e3ux91ca-2}
+
+\section{常见错误}\label{ux5e38ux89c1ux9519ux8bef-2}
+
+\section{AI 辅助任务}\label{ai-ux8f85ux52a9ux4efbux52a1-3}
+
+\section{练习}\label{ux7ec3ux4e60-2}
+
+\section{继续学习}\label{ux7ee7ux7eedux5b66ux4e60-3}
+
+\chapter{第5章
+描述统计与分布}\label{ux7b2c5ux7ae0-ux63cfux8ff0ux7edfux8ba1ux4e0eux5206ux5e03}
+
+\chapter{第5章
+描述统计与分布}\label{ux7b2c5ux7ae0-ux63cfux8ff0ux7edfux8ba1ux4e0eux5206ux5e03-1}
+
+\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, bottomrule=.15mm, bottomtitle=1mm, breakable, colback=white, colbacktitle=quarto-callout-note-color!10!white, colframe=quarto-callout-note-color-frame, coltitle=black, left=2mm, leftrule=.75mm, opacityback=0, opacitybacktitle=0.6, rightrule=.15mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{本章状态：sprout}, titlerule=0mm, toprule=.15mm, toptitle=1mm]
+
+已有正态分布核心内容（来自课程 wiki），需要补充描述统计完整内容。
+
+\end{tcolorbox}
+
+\section{认识你的数据}\label{ux8ba4ux8bc6ux4f60ux7684ux6570ux636e}
+
+拿到 50
+个样地的虫口密度数据，你首先想知道什么？------平均多少？变异多大？有没有异常值？
+
+\section{正态分布：统计学最重要的分布}\label{ux6b63ux6001ux5206ux5e03ux7edfux8ba1ux5b66ux6700ux91cdux8981ux7684ux5206ux5e03}
+
+12\textbar{} 13\textbar\# 正态分布（Normal Distribution） 14\textbar{}
+15\textbar\#\# 定义 16\textbar{}
+17\textbar 正态分布（又称高斯分布）是自然界中最常见、统计学中最重要的连续概率分布。由均值
+μ 决定中心位置，由标准差 σ 决定离散程度。标准正态分布 μ=0, σ=1。
+18\textbar{} 19\textbar\#\# 直观解释 20\textbar{}
+21\textbar 如果你测量1000株同龄同种幼苗的高度，画成直方图------它会是一个中间高、两边低、左右对称的钟形。大多数值集中在均值附近，越远离均值的值越少见。
+22\textbar{} 23\textbar\#\#\# 68-95-99.7 法则 24\textbar{} 25\textbar-
+\textbf{±1σ}：约 68.27\% 的数据落在这个范围 26\textbar- \textbf{±2σ}：约
+95.45\% 的数据落在这个范围------这是 α=0.05 的基础 27\textbar-
+\textbf{±3σ}：约 99.73\% 的数据落在这个范围------超出即被视为异常值
+28\textbar{} 29\textbar\#\# 在生物保护中的例子 30\textbar{} 31\textbar-
+同一树种在相似生境中的胸径通常近似正态分布 32\textbar-
+测量误差（如同一个人多次测量树高）通常服从正态分布 33\textbar-
+大样本下的样本均值近似正态分布（中心极限定理） 34\textbar{}
+35\textbar\#\# 为什么重要 36\textbar{}
+37\textbar 许多统计方法（t检验、ANOVA、回归）都假设数据（或残差）服从正态分布。理解正态分布是理解这些方法的前提。
+38\textbar{} 39\textbar\#\# 教学动画 40\textbar{} 41\textbar-
+\href{../animation-scripts/normal-distribution-animation.md}{正态分布演示动画}
+--- 10秒Canvas动画 42\textbar-
+\href{../animation-scripts/normal-distribution-reference.md}{正态分布参考页}
+--- 滚动式教学页面 43\textbar{} 44\textbar\#\# 相关概念 45\textbar{}
+46\textbar- \href{descriptive-statistics.md}{描述性统计} 47\textbar-
+\href{p-value.md}{P值} --- P值是在正态（或t）分布下计算的面积
+48\textbar- \href{significance-level.md}{显著性水平} ---
+α=0.05即正态分布双侧尾部各2.5\% 49\textbar{}
+
+\section{R 分析过程}\label{r-ux5206ux6790ux8fc7ux7a0b-3}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# 描述性统计}
+\CommentTok{\# 待补充：均值、中位数、标准差、直方图}
+\end{Highlighting}
+\end{Shaded}
+
+\section{练习}\label{ux7ec3ux4e60-3}
+
+\chapter{第6章
+样本、误差与不确定性}\label{ux7b2c6ux7ae0-ux6837ux672cux8befux5deeux4e0eux4e0dux786eux5b9aux6027}
+
+\chapter{第6章
+样本、误差与不确定性}\label{ux7b2c6ux7ae0-ux6837ux672cux8befux5deeux4e0eux4e0dux786eux5b9aux6027-1}
+
+\section{本章状态：seed}\label{ux672cux7ae0ux72b6ux6001seed-3}
+
+本章内容尚在建设中。以下为本章规划大纲，具体内容将随课程反馈和新案例持续补充。
+
+\section{真实保护问题}\label{ux771fux5b9eux4fddux62a4ux95eeux9898-4}
+
+\section{学习目标}\label{ux5b66ux4e60ux76eeux6807-4}
+
+\section{为什么这个问题需要统计}\label{ux4e3aux4ec0ux4e48ux8fd9ux4e2aux95eeux9898ux9700ux8981ux7edfux8ba1-3}
+
+\section{核心概念}\label{ux6838ux5fc3ux6982ux5ff5-3}
+
+\section{R 分析过程}\label{r-ux5206ux6790ux8fc7ux7a0b-4}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# 本章 R 代码示例（待补充）}
+\end{Highlighting}
+\end{Shaded}
+
+\section{结果解释}\label{ux7ed3ux679cux89e3ux91ca-3}
+
+\section{常见错误}\label{ux5e38ux89c1ux9519ux8bef-3}
+
+\section{AI 辅助任务}\label{ai-ux8f85ux52a9ux4efbux52a1-4}
+
+\section{练习}\label{ux7ec3ux4e60-4}
+
+\section{继续学习}\label{ux7ee7ux7eedux5b66ux4e60-4}
+
+\chapter{第7章
+数据可视化}\label{ux7b2c7ux7ae0-ux6570ux636eux53efux89c6ux5316}
+
+\chapter{第7章
+数据可视化}\label{ux7b2c7ux7ae0-ux6570ux636eux53efux89c6ux5316-1}
+
+\section{本章状态：seed}\label{ux672cux7ae0ux72b6ux6001seed-4}
+
+本章内容尚在建设中。以下为本章规划大纲，具体内容将随课程反馈和新案例持续补充。
+
+\section{真实保护问题}\label{ux771fux5b9eux4fddux62a4ux95eeux9898-5}
+
+\section{学习目标}\label{ux5b66ux4e60ux76eeux6807-5}
+
+\section{为什么这个问题需要统计}\label{ux4e3aux4ec0ux4e48ux8fd9ux4e2aux95eeux9898ux9700ux8981ux7edfux8ba1-4}
+
+\section{核心概念}\label{ux6838ux5fc3ux6982ux5ff5-4}
+
+\section{R 分析过程}\label{r-ux5206ux6790ux8fc7ux7a0b-5}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# 本章 R 代码示例（待补充）}
+\end{Highlighting}
+\end{Shaded}
+
+\section{结果解释}\label{ux7ed3ux679cux89e3ux91ca-4}
+
+\section{常见错误}\label{ux5e38ux89c1ux9519ux8bef-4}
+
+\section{AI 辅助任务}\label{ai-ux8f85ux52a9ux4efbux52a1-5}
+
+\section{练习}\label{ux7ec3ux4e60-5}
+
+\section{继续学习}\label{ux7ee7ux7eedux5b66ux4e60-5}
+
+\part{第三篇：回答常见保护问题}
+
+\chapter{第8章 两组比较}\label{ux7b2c8ux7ae0-ux4e24ux7ec4ux6bd4ux8f83}
+
+\chapter{第8章 两组比较}\label{ux7b2c8ux7ae0-ux4e24ux7ec4ux6bd4ux8f83-1}
+
+\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, bottomrule=.15mm, bottomtitle=1mm, breakable, colback=white, colbacktitle=quarto-callout-note-color!10!white, colframe=quarto-callout-note-color-frame, coltitle=black, left=2mm, leftrule=.75mm, opacityback=0, opacitybacktitle=0.6, rightrule=.15mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{本章状态：sprout}, titlerule=0mm, toprule=.15mm, toptitle=1mm]
+
+已有 P 值核心内容（来自课程 wiki），需要补充 t 检验完整流程和 R 代码。
+
+\end{tcolorbox}
+
+\section{真实保护问题}\label{ux771fux5b9eux4fddux62a4ux95eeux9898-6}
+
+施药处理后，害虫数量真的变少了吗？还是只是巧合？
+
+\section{P
+值：统计推断的核心}\label{p-ux503cux7edfux8ba1ux63a8ux65adux7684ux6838ux5fc3}
+
+11\textbar{} 12\textbar\# P 值（P-value） 13\textbar{} 14\textbar\#\#
+定义 15\textbar{} 16\textbar P
+值是\textbf{在零假设为真的前提下，观察到当前数据（或更极端数据）的概率}。
+17\textbar{} 18\textbar- 它不是''零假设为真的概率'' 19\textbar-
+它不是''处理无效的概率'' 20\textbar- 它不是''效应的大小'' 21\textbar{}
+22\textbar\#\# 直观解释 23\textbar{} 24\textbar\textgreater{}
+如果只让学生记住一句话：\textbf{P
+值小，说明你看到的数据在''什么都没发生''的世界里不太可能出现------这让你怀疑''什么都没发生''可能不对。但
+P 值不告诉你''到底发生了什么''、也不告诉你''效果有多大''。} 25\textbar{}
+26\textbar 打个比方：你在森林里听到一声吼叫。如果假设''森林里没有老虎''，听到吼叫的
+P 值就很小------你会怀疑这个假设。但 P
+值不告诉你是一只老虎还是三只老虎，也不告诉你老虎离你多远。 27\textbar{}
+28\textbar\#\# 在生物保护中的例子 29\textbar{}
+30\textbar{}\textbf{病虫害防治试验}：你在 20 块样地中随机选 10
+块施药，10 块做对照。施药后处理组平均虫口密度 3.2 头/株，对照组 5.8
+头/株。t 检验得到 P = 0.03。 31\textbar{} 32\textbar- ✅ P = 0.03
+意味着：如果药物真的完全无效（零假设为真），观察到这么大差异的概率只有
+3\%。 33\textbar- ❌ P = 0.03 \textbf{不意味着}药物有效的概率是 97\%。
+34\textbar- ❌ P = 0.03 \textbf{不意味着}药物能减少 2.6
+头/株（这是效应量的工作）。 35\textbar{} 36\textbar\#\# 常见误解
+37\textbar{} 38\textbar1. \textbf{``P \textless{} 0.05
+就说明处理一定有效''} → 错。P
+值只是反对零假设的证据强度，不能证明备择假设为真。且 P = 0.049 和 P =
+0.051 之间没有本质差异。 39\textbar2. \textbf{``P 值越小，效应越大''} →
+错。P 值受样本量影响极大。大样本下微小的效应也能得到很小的 P 值。
+40\textbar3. \textbf{``P \textgreater{} 0.05 就说明没有效应''} →
+错。可能是样本量太小（统计功效不足），而非真的没有效应。 41\textbar4.
+\textbf{``P 值是零假设为真的概率''} → 错。这是最根本的误解。P
+值是数据在零假设下出现的概率，不是零假设本身的概率。 42\textbar{}
+43\textbar\#\# 相关概念 44\textbar{} 45\textbar-
+\href{significance-level.md}{显著性水平} --- α = 0.05 从哪来？
+46\textbar- \href{effect-size.md}{效应量} --- P 值不告诉你的东西
+47\textbar- \href{statistical-power.md}{统计功效} --- 为什么 P
+\textgreater{} 0.05 不等于无效 48\textbar-
+\href{../concepts/type-i-error.md}{第一类错误} --- P \textless{} 0.05
+仍然可能犯错 49\textbar-
+\href{../concepts/confidence-interval.md}{置信区间} --- 比 P
+值更丰富的信息 50\textbar{} 51\textbar\#\# 来源 52\textbar{} 53\textbar-
+学生课堂反馈（2026-06-09）：P 值解释是高频误解来源 54\textbar{}
+
+\section{R 分析过程}\label{r-ux5206ux6790ux8fc7ux7a0b-6}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# 独立样本 t 检验示例}
+\CommentTok{\# 待补充：处理组 vs 对照组害虫数量数据}
+\end{Highlighting}
+\end{Shaded}
+
+\section{常见错误}\label{ux5e38ux89c1ux9519ux8bef-5}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  P \textless{} 0.05 就说明处理一定有效
+\item
+  P 值越小效应越大
+\item
+  P \textgreater{} 0.05 就说明没有效应
+\end{enumerate}
+
+\section{练习}\label{ux7ec3ux4e60-6}
+
+\chapter{第9章
+多组比较与方差分析}\label{ux7b2c9ux7ae0-ux591aux7ec4ux6bd4ux8f83ux4e0eux65b9ux5deeux5206ux6790}
+
+\chapter{第9章
+多组比较与方差分析}\label{ux7b2c9ux7ae0-ux591aux7ec4ux6bd4ux8f83ux4e0eux65b9ux5deeux5206ux6790-1}
+
+\section{本章状态：seed}\label{ux672cux7ae0ux72b6ux6001seed-5}
+
+本章内容尚在建设中。以下为本章规划大纲，具体内容将随课程反馈和新案例持续补充。
+
+\section{真实保护问题}\label{ux771fux5b9eux4fddux62a4ux95eeux9898-7}
+
+\section{学习目标}\label{ux5b66ux4e60ux76eeux6807-6}
+
+\section{为什么这个问题需要统计}\label{ux4e3aux4ec0ux4e48ux8fd9ux4e2aux95eeux9898ux9700ux8981ux7edfux8ba1-5}
+
+\section{核心概念}\label{ux6838ux5fc3ux6982ux5ff5-5}
+
+\section{R 分析过程}\label{r-ux5206ux6790ux8fc7ux7a0b-7}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# 本章 R 代码示例（待补充）}
+\end{Highlighting}
+\end{Shaded}
+
+\section{结果解释}\label{ux7ed3ux679cux89e3ux91ca-5}
+
+\section{常见错误}\label{ux5e38ux89c1ux9519ux8bef-6}
+
+\section{AI 辅助任务}\label{ai-ux8f85ux52a9ux4efbux52a1-6}
+
+\section{练习}\label{ux7ec3ux4e60-7}
+
+\section{继续学习}\label{ux7ee7ux7eedux5b66ux4e60-6}
+
+\chapter{第10章
+分类与比例数据}\label{ux7b2c10ux7ae0-ux5206ux7c7bux4e0eux6bd4ux4f8bux6570ux636e}
+
+\chapter{第10章
+分类与比例数据}\label{ux7b2c10ux7ae0-ux5206ux7c7bux4e0eux6bd4ux4f8bux6570ux636e-1}
+
+\section{本章状态：seed}\label{ux672cux7ae0ux72b6ux6001seed-6}
+
+本章内容尚在建设中。以下为本章规划大纲，具体内容将随课程反馈和新案例持续补充。
+
+\section{真实保护问题}\label{ux771fux5b9eux4fddux62a4ux95eeux9898-8}
+
+\section{学习目标}\label{ux5b66ux4e60ux76eeux6807-7}
+
+\section{为什么这个问题需要统计}\label{ux4e3aux4ec0ux4e48ux8fd9ux4e2aux95eeux9898ux9700ux8981ux7edfux8ba1-6}
+
+\section{核心概念}\label{ux6838ux5fc3ux6982ux5ff5-6}
+
+\section{R 分析过程}\label{r-ux5206ux6790ux8fc7ux7a0b-8}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# 本章 R 代码示例（待补充）}
+\end{Highlighting}
+\end{Shaded}
+
+\section{结果解释}\label{ux7ed3ux679cux89e3ux91ca-6}
+
+\section{常见错误}\label{ux5e38ux89c1ux9519ux8bef-7}
+
+\section{AI 辅助任务}\label{ai-ux8f85ux52a9ux4efbux52a1-7}
+
+\section{练习}\label{ux7ec3ux4e60-8}
+
+\section{继续学习}\label{ux7ee7ux7eedux5b66ux4e60-7}
+
+\chapter{第11章
+相关与线性回归}\label{ux7b2c11ux7ae0-ux76f8ux5173ux4e0eux7ebfux6027ux56deux5f52}
+
+\chapter{第11章
+相关与线性回归}\label{ux7b2c11ux7ae0-ux76f8ux5173ux4e0eux7ebfux6027ux56deux5f52-1}
+
+\section{本章状态：seed}\label{ux672cux7ae0ux72b6ux6001seed-7}
+
+本章内容尚在建设中。以下为本章规划大纲，具体内容将随课程反馈和新案例持续补充。
+
+\section{真实保护问题}\label{ux771fux5b9eux4fddux62a4ux95eeux9898-9}
+
+\section{学习目标}\label{ux5b66ux4e60ux76eeux6807-8}
+
+\section{为什么这个问题需要统计}\label{ux4e3aux4ec0ux4e48ux8fd9ux4e2aux95eeux9898ux9700ux8981ux7edfux8ba1-7}
+
+\section{核心概念}\label{ux6838ux5fc3ux6982ux5ff5-7}
+
+\section{R 分析过程}\label{r-ux5206ux6790ux8fc7ux7a0b-9}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# 本章 R 代码示例（待补充）}
+\end{Highlighting}
+\end{Shaded}
+
+\section{结果解释}\label{ux7ed3ux679cux89e3ux91ca-7}
+
+\section{常见错误}\label{ux5e38ux89c1ux9519ux8bef-8}
+
+\section{AI 辅助任务}\label{ai-ux8f85ux52a9ux4efbux52a1-8}
+
+\section{练习}\label{ux7ec3ux4e60-9}
+
+\section{继续学习}\label{ux7ee7ux7eedux5b66ux4e60-8}
+
+\chapter{第12章
+从线性模型走向广义线性模型}\label{ux7b2c12ux7ae0-ux4eceux7ebfux6027ux6a21ux578bux8d70ux5411ux5e7fux4e49ux7ebfux6027ux6a21ux578b}
+
+\chapter{第12章
+从线性模型走向广义线性模型}\label{ux7b2c12ux7ae0-ux4eceux7ebfux6027ux6a21ux578bux8d70ux5411ux5e7fux4e49ux7ebfux6027ux6a21ux578b-1}
+
+\section{本章状态：seed}\label{ux672cux7ae0ux72b6ux6001seed-8}
+
+本章内容尚在建设中。以下为本章规划大纲，具体内容将随课程反馈和新案例持续补充。
+
+\section{真实保护问题}\label{ux771fux5b9eux4fddux62a4ux95eeux9898-10}
+
+\section{学习目标}\label{ux5b66ux4e60ux76eeux6807-9}
+
+\section{为什么这个问题需要统计}\label{ux4e3aux4ec0ux4e48ux8fd9ux4e2aux95eeux9898ux9700ux8981ux7edfux8ba1-8}
+
+\section{核心概念}\label{ux6838ux5fc3ux6982ux5ff5-8}
+
+\section{R 分析过程}\label{r-ux5206ux6790ux8fc7ux7a0b-10}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# 本章 R 代码示例（待补充）}
+\end{Highlighting}
+\end{Shaded}
+
+\section{结果解释}\label{ux7ed3ux679cux89e3ux91ca-8}
+
+\section{常见错误}\label{ux5e38ux89c1ux9519ux8bef-9}
+
+\section{AI 辅助任务}\label{ai-ux8f85ux52a9ux4efbux52a1-9}
+
+\section{练习}\label{ux7ec3ux4e60-10}
+
+\section{继续学习}\label{ux7ee7ux7eedux5b66ux4e60-9}
+
+\part{第四篇：保护专业应用}
+
+\chapter{第13章
+森林与植物保护研究}\label{ux7b2c13ux7ae0-ux68eeux6797ux4e0eux690dux7269ux4fddux62a4ux7814ux7a76}
+
+\chapter{第13章
+森林与植物保护研究}\label{ux7b2c13ux7ae0-ux68eeux6797ux4e0eux690dux7269ux4fddux62a4ux7814ux7a76-1}
+
+\section{本章状态：seed}\label{ux672cux7ae0ux72b6ux6001seed-9}
+
+本章内容尚在建设中。以下为本章规划大纲，具体内容将随课程反馈和新案例持续补充。
+
+\section{真实保护问题}\label{ux771fux5b9eux4fddux62a4ux95eeux9898-11}
+
+\section{学习目标}\label{ux5b66ux4e60ux76eeux6807-10}
+
+\section{为什么这个问题需要统计}\label{ux4e3aux4ec0ux4e48ux8fd9ux4e2aux95eeux9898ux9700ux8981ux7edfux8ba1-9}
+
+\section{核心概念}\label{ux6838ux5fc3ux6982ux5ff5-9}
+
+\section{R 分析过程}\label{r-ux5206ux6790ux8fc7ux7a0b-11}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# 本章 R 代码示例（待补充）}
+\end{Highlighting}
+\end{Shaded}
+
+\section{结果解释}\label{ux7ed3ux679cux89e3ux91ca-9}
+
+\section{常见错误}\label{ux5e38ux89c1ux9519ux8bef-10}
+
+\section{AI 辅助任务}\label{ai-ux8f85ux52a9ux4efbux52a1-10}
+
+\section{练习}\label{ux7ec3ux4e60-11}
+
+\section{继续学习}\label{ux7ee7ux7eedux5b66ux4e60-10}
+
+\chapter{第14章
+野生动物调查与监测}\label{ux7b2c14ux7ae0-ux91ceux751fux52a8ux7269ux8c03ux67e5ux4e0eux76d1ux6d4b}
+
+\chapter{第14章
+野生动物调查与监测}\label{ux7b2c14ux7ae0-ux91ceux751fux52a8ux7269ux8c03ux67e5ux4e0eux76d1ux6d4b-1}
+
+\section{本章状态：seed}\label{ux672cux7ae0ux72b6ux6001seed-10}
+
+本章内容尚在建设中。以下为本章规划大纲，具体内容将随课程反馈和新案例持续补充。
+
+\section{真实保护问题}\label{ux771fux5b9eux4fddux62a4ux95eeux9898-12}
+
+\section{学习目标}\label{ux5b66ux4e60ux76eeux6807-11}
+
+\section{为什么这个问题需要统计}\label{ux4e3aux4ec0ux4e48ux8fd9ux4e2aux95eeux9898ux9700ux8981ux7edfux8ba1-10}
+
+\section{核心概念}\label{ux6838ux5fc3ux6982ux5ff5-10}
+
+\section{R 分析过程}\label{r-ux5206ux6790ux8fc7ux7a0b-12}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# 本章 R 代码示例（待补充）}
+\end{Highlighting}
+\end{Shaded}
+
+\section{结果解释}\label{ux7ed3ux679cux89e3ux91ca-10}
+
+\section{常见错误}\label{ux5e38ux89c1ux9519ux8bef-11}
+
+\section{AI 辅助任务}\label{ai-ux8f85ux52a9ux4efbux52a1-11}
+
+\section{练习}\label{ux7ec3ux4e60-12}
+
+\section{继续学习}\label{ux7ee7ux7eedux5b66ux4e60-11}
+
+\chapter{第15章
+生物多样性与群落数据}\label{ux7b2c15ux7ae0-ux751fux7269ux591aux6837ux6027ux4e0eux7fa4ux843dux6570ux636e}
+
+\chapter{第15章
+生物多样性与群落数据}\label{ux7b2c15ux7ae0-ux751fux7269ux591aux6837ux6027ux4e0eux7fa4ux843dux6570ux636e-1}
+
+\section{本章状态：seed}\label{ux672cux7ae0ux72b6ux6001seed-11}
+
+本章内容尚在建设中。以下为本章规划大纲，具体内容将随课程反馈和新案例持续补充。
+
+\section{真实保护问题}\label{ux771fux5b9eux4fddux62a4ux95eeux9898-13}
+
+\section{学习目标}\label{ux5b66ux4e60ux76eeux6807-12}
+
+\section{为什么这个问题需要统计}\label{ux4e3aux4ec0ux4e48ux8fd9ux4e2aux95eeux9898ux9700ux8981ux7edfux8ba1-11}
+
+\section{核心概念}\label{ux6838ux5fc3ux6982ux5ff5-11}
+
+\section{R 分析过程}\label{r-ux5206ux6790ux8fc7ux7a0b-13}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# 本章 R 代码示例（待补充）}
+\end{Highlighting}
+\end{Shaded}
+
+\section{结果解释}\label{ux7ed3ux679cux89e3ux91ca-11}
+
+\section{常见错误}\label{ux5e38ux89c1ux9519ux8bef-12}
+
+\section{AI 辅助任务}\label{ai-ux8f85ux52a9ux4efbux52a1-12}
+
+\section{练习}\label{ux7ec3ux4e60-13}
+
+\section{继续学习}\label{ux7ee7ux7eedux5b66ux4e60-12}
+
+\chapter{第16章
+措施效果与保护评估}\label{ux7b2c16ux7ae0-ux63aaux65bdux6548ux679cux4e0eux4fddux62a4ux8bc4ux4f30}
+
+\chapter{第16章
+措施效果与保护评估}\label{ux7b2c16ux7ae0-ux63aaux65bdux6548ux679cux4e0eux4fddux62a4ux8bc4ux4f30-1}
+
+\section{本章状态：seed}\label{ux672cux7ae0ux72b6ux6001seed-12}
+
+本章内容尚在建设中。以下为本章规划大纲，具体内容将随课程反馈和新案例持续补充。
+
+\section{真实保护问题}\label{ux771fux5b9eux4fddux62a4ux95eeux9898-14}
+
+\section{学习目标}\label{ux5b66ux4e60ux76eeux6807-13}
+
+\section{为什么这个问题需要统计}\label{ux4e3aux4ec0ux4e48ux8fd9ux4e2aux95eeux9898ux9700ux8981ux7edfux8ba1-12}
+
+\section{核心概念}\label{ux6838ux5fc3ux6982ux5ff5-12}
+
+\section{R 分析过程}\label{r-ux5206ux6790ux8fc7ux7a0b-14}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# 本章 R 代码示例（待补充）}
+\end{Highlighting}
+\end{Shaded}
+
+\section{结果解释}\label{ux7ed3ux679cux89e3ux91ca-12}
+
+\section{常见错误}\label{ux5e38ux89c1ux9519ux8bef-13}
+
+\section{AI 辅助任务}\label{ai-ux8f85ux52a9ux4efbux52a1-13}
+
+\section{练习}\label{ux7ec3ux4e60-14}
+
+\section{继续学习}\label{ux7ee7ux7eedux5b66ux4e60-13}
+
+\chapter{第17章
+从统计结果到保护行动}\label{ux7b2c17ux7ae0-ux4eceux7edfux8ba1ux7ed3ux679cux5230ux4fddux62a4ux884cux52a8}
+
+\chapter{第17章
+从统计结果到保护行动}\label{ux7b2c17ux7ae0-ux4eceux7edfux8ba1ux7ed3ux679cux5230ux4fddux62a4ux884cux52a8-1}
+
+\section{本章状态：seed}\label{ux672cux7ae0ux72b6ux6001seed-13}
+
+本章内容尚在建设中。以下为本章规划大纲，具体内容将随课程反馈和新案例持续补充。
+
+\section{真实保护问题}\label{ux771fux5b9eux4fddux62a4ux95eeux9898-15}
+
+\section{学习目标}\label{ux5b66ux4e60ux76eeux6807-14}
+
+\section{为什么这个问题需要统计}\label{ux4e3aux4ec0ux4e48ux8fd9ux4e2aux95eeux9898ux9700ux8981ux7edfux8ba1-13}
+
+\section{核心概念}\label{ux6838ux5fc3ux6982ux5ff5-13}
+
+\section{R 分析过程}\label{r-ux5206ux6790ux8fc7ux7a0b-15}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# 本章 R 代码示例（待补充）}
+\end{Highlighting}
+\end{Shaded}
+
+\section{结果解释}\label{ux7ed3ux679cux89e3ux91ca-13}
+
+\section{常见错误}\label{ux5e38ux89c1ux9519ux8bef-14}
+
+\section{AI 辅助任务}\label{ai-ux8f85ux52a9ux4efbux52a1-14}
+
+\section{练习}\label{ux7ec3ux4e60-15}
+
+\section{继续学习}\label{ux7ee7ux7eedux5b66ux4e60-14}
+
+\part{第五篇：现代生态统计与继续学习}
+
+\chapter{第18章
+层级结构与混合模型}\label{ux7b2c18ux7ae0-ux5c42ux7ea7ux7ed3ux6784ux4e0eux6df7ux5408ux6a21ux578b}
+
+\chapter{第18章
+层级结构与混合模型}\label{ux7b2c18ux7ae0-ux5c42ux7ea7ux7ed3ux6784ux4e0eux6df7ux5408ux6a21ux578b-1}
+
+\section{本章状态：seed}\label{ux672cux7ae0ux72b6ux6001seed-14}
+
+本章内容尚在建设中。以下为本章规划大纲，具体内容将随课程反馈和新案例持续补充。
+
+\section{真实保护问题}\label{ux771fux5b9eux4fddux62a4ux95eeux9898-16}
+
+\section{学习目标}\label{ux5b66ux4e60ux76eeux6807-15}
+
+\section{为什么这个问题需要统计}\label{ux4e3aux4ec0ux4e48ux8fd9ux4e2aux95eeux9898ux9700ux8981ux7edfux8ba1-14}
+
+\section{核心概念}\label{ux6838ux5fc3ux6982ux5ff5-14}
+
+\section{R 分析过程}\label{r-ux5206ux6790ux8fc7ux7a0b-16}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# 本章 R 代码示例（待补充）}
+\end{Highlighting}
+\end{Shaded}
+
+\section{结果解释}\label{ux7ed3ux679cux89e3ux91ca-14}
+
+\section{常见错误}\label{ux5e38ux89c1ux9519ux8bef-15}
+
+\section{AI 辅助任务}\label{ai-ux8f85ux52a9ux4efbux52a1-15}
+
+\section{练习}\label{ux7ec3ux4e60-16}
+
+\section{继续学习}\label{ux7ee7ux7eedux5b66ux4e60-15}
+
+\chapter{第19章
+生态过程与观测过程}\label{ux7b2c19ux7ae0-ux751fux6001ux8fc7ux7a0bux4e0eux89c2ux6d4bux8fc7ux7a0b}
+
+\chapter{第19章
+生态过程与观测过程}\label{ux7b2c19ux7ae0-ux751fux6001ux8fc7ux7a0bux4e0eux89c2ux6d4bux8fc7ux7a0b-1}
+
+\section{本章状态：seed}\label{ux672cux7ae0ux72b6ux6001seed-15}
+
+本章内容尚在建设中。以下为本章规划大纲，具体内容将随课程反馈和新案例持续补充。
+
+\section{真实保护问题}\label{ux771fux5b9eux4fddux62a4ux95eeux9898-17}
+
+\section{学习目标}\label{ux5b66ux4e60ux76eeux6807-16}
+
+\section{为什么这个问题需要统计}\label{ux4e3aux4ec0ux4e48ux8fd9ux4e2aux95eeux9898ux9700ux8981ux7edfux8ba1-15}
+
+\section{核心概念}\label{ux6838ux5fc3ux6982ux5ff5-15}
+
+\section{R 分析过程}\label{r-ux5206ux6790ux8fc7ux7a0b-17}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# 本章 R 代码示例（待补充）}
+\end{Highlighting}
+\end{Shaded}
+
+\section{结果解释}\label{ux7ed3ux679cux89e3ux91ca-15}
+
+\section{常见错误}\label{ux5e38ux89c1ux9519ux8bef-16}
+
+\section{AI 辅助任务}\label{ai-ux8f85ux52a9ux4efbux52a1-16}
+
+\section{练习}\label{ux7ec3ux4e60-17}
+
+\section{继续学习}\label{ux7ee7ux7eedux5b66ux4e60-16}
+
+\chapter{第20章
+贝叶斯统计与模型诊断}\label{ux7b2c20ux7ae0-ux8d1dux53f6ux65afux7edfux8ba1ux4e0eux6a21ux578bux8bcaux65ad}
+
+\chapter{第20章
+贝叶斯统计与模型诊断}\label{ux7b2c20ux7ae0-ux8d1dux53f6ux65afux7edfux8ba1ux4e0eux6a21ux578bux8bcaux65ad-1}
+
+\section{本章状态：seed}\label{ux672cux7ae0ux72b6ux6001seed-16}
+
+本章内容尚在建设中。以下为本章规划大纲，具体内容将随课程反馈和新案例持续补充。
+
+\section{真实保护问题}\label{ux771fux5b9eux4fddux62a4ux95eeux9898-18}
+
+\section{学习目标}\label{ux5b66ux4e60ux76eeux6807-17}
+
+\section{为什么这个问题需要统计}\label{ux4e3aux4ec0ux4e48ux8fd9ux4e2aux95eeux9898ux9700ux8981ux7edfux8ba1-16}
+
+\section{核心概念}\label{ux6838ux5fc3ux6982ux5ff5-16}
+
+\section{R 分析过程}\label{r-ux5206ux6790ux8fc7ux7a0b-18}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# 本章 R 代码示例（待补充）}
+\end{Highlighting}
+\end{Shaded}
+
+\section{结果解释}\label{ux7ed3ux679cux89e3ux91ca-16}
+
+\section{常见错误}\label{ux5e38ux89c1ux9519ux8bef-17}
+
+\section{AI 辅助任务}\label{ai-ux8f85ux52a9ux4efbux52a1-17}
+
+\section{练习}\label{ux7ec3ux4e60-18}
+
+\section{继续学习}\label{ux7ee7ux7eedux5b66ux4e60-17}
+
+\chapter{第21章
+时间、空间与随机过程}\label{ux7b2c21ux7ae0-ux65f6ux95f4ux7a7aux95f4ux4e0eux968fux673aux8fc7ux7a0b}
+
+\chapter{第21章
+时间、空间与随机过程}\label{ux7b2c21ux7ae0-ux65f6ux95f4ux7a7aux95f4ux4e0eux968fux673aux8fc7ux7a0b-1}
+
+\section{本章状态：seed}\label{ux672cux7ae0ux72b6ux6001seed-17}
+
+本章内容尚在建设中。以下为本章规划大纲，具体内容将随课程反馈和新案例持续补充。
+
+\section{真实保护问题}\label{ux771fux5b9eux4fddux62a4ux95eeux9898-19}
+
+\section{学习目标}\label{ux5b66ux4e60ux76eeux6807-18}
+
+\section{为什么这个问题需要统计}\label{ux4e3aux4ec0ux4e48ux8fd9ux4e2aux95eeux9898ux9700ux8981ux7edfux8ba1-17}
+
+\section{核心概念}\label{ux6838ux5fc3ux6982ux5ff5-17}
+
+\section{R 分析过程}\label{r-ux5206ux6790ux8fc7ux7a0b-19}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# 本章 R 代码示例（待补充）}
+\end{Highlighting}
+\end{Shaded}
+
+\section{结果解释}\label{ux7ed3ux679cux89e3ux91ca-17}
+
+\section{常见错误}\label{ux5e38ux89c1ux9519ux8bef-18}
+
+\section{AI 辅助任务}\label{ai-ux8f85ux52a9ux4efbux52a1-18}
+
+\section{练习}\label{ux7ec3ux4e60-19}
+
+\section{继续学习}\label{ux7ee7ux7eedux5b66ux4e60-18}
+
+\chapter{第22章 AI
+辅助统计学习与分析}\label{ux7b2c22ux7ae0-ai-ux8f85ux52a9ux7edfux8ba1ux5b66ux4e60ux4e0eux5206ux6790}
+
+\chapter{第22章 AI
+辅助统计学习与分析}\label{ux7b2c22ux7ae0-ai-ux8f85ux52a9ux7edfux8ba1ux5b66ux4e60ux4e0eux5206ux6790-1}
+
+\section{本章状态：seed}\label{ux672cux7ae0ux72b6ux6001seed-18}
+
+本章内容尚在建设中。以下为本章规划大纲，具体内容将随课程反馈和新案例持续补充。
+
+\section{真实保护问题}\label{ux771fux5b9eux4fddux62a4ux95eeux9898-20}
+
+\section{学习目标}\label{ux5b66ux4e60ux76eeux6807-19}
+
+\section{为什么这个问题需要统计}\label{ux4e3aux4ec0ux4e48ux8fd9ux4e2aux95eeux9898ux9700ux8981ux7edfux8ba1-18}
+
+\section{核心概念}\label{ux6838ux5fc3ux6982ux5ff5-18}
+
+\section{R 分析过程}\label{r-ux5206ux6790ux8fc7ux7a0b-20}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# 本章 R 代码示例（待补充）}
+\end{Highlighting}
+\end{Shaded}
+
+\section{结果解释}\label{ux7ed3ux679cux89e3ux91ca-18}
+
+\section{常见错误}\label{ux5e38ux89c1ux9519ux8bef-19}
+
+\section{AI 辅助任务}\label{ai-ux8f85ux52a9ux4efbux52a1-19}
+
+\section{练习}\label{ux7ec3ux4e60-20}
+
+\section{继续学习}\label{ux7ee7ux7eedux5b66ux4e60-19}
+
+\part{附录}
+
+\chapter{R 基础速查}\label{r-ux57faux7840ux901fux67e5}
+
+\chapter{R 基础速查}\label{r-ux57faux7840ux901fux67e5-1}
+
+\section{本附录状态：seed}\label{ux672cux9644ux5f55ux72b6ux6001seed}
+
+内容尚在建设中。
+
+\chapter{常用统计方法选择地图}\label{ux5e38ux7528ux7edfux8ba1ux65b9ux6cd5ux9009ux62e9ux5730ux56fe}
+
+\chapter{常用统计方法选择地图}\label{ux5e38ux7528ux7edfux8ba1ux65b9ux6cd5ux9009ux62e9ux5730ux56fe-1}
+
+\section{本附录状态：seed}\label{ux672cux9644ux5f55ux72b6ux6001seed-1}
+
+内容尚在建设中。
+
+\chapter{统计术语中英文对照}\label{ux7edfux8ba1ux672fux8bedux4e2dux82f1ux6587ux5bf9ux7167}
+
+\chapter{统计术语中英文对照}\label{ux7edfux8ba1ux672fux8bedux4e2dux82f1ux6587ux5bf9ux7167-1}
+
+\section{本附录状态：seed}\label{ux672cux9644ux5f55ux72b6ux6001seed-2}
+
+内容尚在建设中。
+
+\chapter{可重复分析项目模板}\label{ux53efux91cdux590dux5206ux6790ux9879ux76eeux6a21ux677f}
+
+\chapter{可重复分析项目模板}\label{ux53efux91cdux590dux5206ux6790ux9879ux76eeux6a21ux677f-1}
+
+\section{本附录状态：seed}\label{ux672cux9644ux5f55ux72b6ux6001seed-3}
+
+内容尚在建设中。
+
+\chapter{数据伦理与敏感信息处理}\label{ux6570ux636eux4f26ux7406ux4e0eux654fux611fux4fe1ux606fux5904ux7406}
+
+\chapter{数据伦理与敏感信息处理}\label{ux6570ux636eux4f26ux7406ux4e0eux654fux611fux4fe1ux606fux5904ux7406-1}
+
+\section{本附录状态：seed}\label{ux672cux9644ux5f55ux72b6ux6001seed-4}
+
+内容尚在建设中。
+
+\chapter{AI
+提问模板与核查清单}\label{ai-ux63d0ux95eeux6a21ux677fux4e0eux6838ux67e5ux6e05ux5355}
+
+\chapter{AI
+提问模板与核查清单}\label{ai-ux63d0ux95eeux6a21ux677fux4e0eux6838ux67e5ux6e05ux5355-1}
+
+\section{本附录状态：seed}\label{ux672cux9644ux5f55ux72b6ux6001seed-5}
+
+内容尚在建设中。
+
+\chapter{从基础统计到现代生态统计的学习路线}\label{ux4eceux57faux7840ux7edfux8ba1ux5230ux73b0ux4ee3ux751fux6001ux7edfux8ba1ux7684ux5b66ux4e60ux8defux7ebf}
+
+\chapter{从基础统计到现代生态统计的学习路线}\label{ux4eceux57faux7840ux7edfux8ba1ux5230ux73b0ux4ee3ux751fux6001ux7edfux8ba1ux7684ux5b66ux4e60ux8defux7ebf-1}
+
+\section{本附录状态：seed}\label{ux672cux9644ux5f55ux72b6ux6001seed-6}
+
+内容尚在建设中。
+
+
+\backmatter
+
+
+\end{document}
