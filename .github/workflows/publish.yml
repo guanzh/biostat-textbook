@@ -16,6 +16,10 @@ jobs:
         with:
           r-version: 'release'
       
+      - name: Install R packages
+        run: install.packages(c("knitr", "rmarkdown"))
+        shell: Rscript {0}
+      
       - uses: quarto-dev/quarto-actions/setup@v2
         with:
           version: '1.9.37'
