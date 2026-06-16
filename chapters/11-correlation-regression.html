@@ -6,7 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<title>相关与线性回归 – 从样地到结论：保护生物学数据实战</title>
+
+<title>第11章 相关与线性回归 – 从样地到结论：保护生物学数据实战</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -59,6 +60,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }
 </style>
 
+
 <script src="../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../site_libs/quarto-nav/headroom.min.js"></script>
 <script src="../site_libs/clipboard/clipboard.min.js"></script>
@@ -77,7 +79,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-832e3d7b6b94ddcc90a000f8fabe51a9.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-aafe154f14b83768199b70e6209de778.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -106,6 +108,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script>
 
+
+<link rel="stylesheet" href="../styles.css">
 </head>
 
 <body class="nav-sidebar floating quarto-light">
@@ -117,7 +121,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/08-two-group-comparison.html">第三篇：回答常见保护问题</a></li><li class="breadcrumb-item"><a href="../chapters/11-correlation-regression.html"><span class="chapter-title">相关与线性回归</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/08-two-group-comparison.html">第三篇：回答常见保护问题</a></li><li class="breadcrumb-item"><a href="../chapters/11-correlation-regression.html"><span class="chapter-title">第11章 相关与线性回归</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -163,8 +167,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-title">从样地到结论：保护生物学数据实战</span></span></a>
+  <a href="../index.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">从样地到结论：保护生物学数据实战</span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
@@ -178,20 +181,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../chapters/01-role-of-statistics.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-title">统计学在保护中的角色</span></span></a>
+  <a href="../chapters/01-role-of-statistics.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">统计学在保护中的角色</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../chapters/02-variables-hypotheses.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-title">研究问题、变量与假设</span></span></a>
+  <a href="../chapters/02-variables-hypotheses.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">第2章 研究问题、变量与假设</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../chapters/03-experimental-design.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-title">调查与实验设计</span></span></a>
+  <a href="../chapters/03-experimental-design.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">第3章 调查与实验设计</span></a>
   </div>
 </li>
       </ul>
@@ -207,26 +207,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../chapters/04-data-management.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-title">数据管理与可重复分析</span></span></a>
+  <a href="../chapters/04-data-management.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">第4章 数据管理与可重复分析</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../chapters/05-descriptive-statistics.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-title">描述统计与分布</span></span></a>
+  <a href="../chapters/05-descriptive-statistics.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">第5章 描述统计与分布</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../chapters/06-sampling-error.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-title">样本、误差与不确定性</span></span></a>
+  <a href="../chapters/06-sampling-error.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">第6章 样本、误差与不确定性</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../chapters/07-data-visualization.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-title">数据可视化</span></span></a>
+  <a href="../chapters/07-data-visualization.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">第7章 数据可视化</span></a>
   </div>
 </li>
       </ul>
@@ -242,32 +238,27 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../chapters/08-two-group-comparison.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-title">两组比较</span></span></a>
+  <a href="../chapters/08-two-group-comparison.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">第8章 两组比较</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../chapters/09-anova.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-title">多组比较与方差分析</span></span></a>
+  <a href="../chapters/09-anova.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">第9章 多组比较与方差分析</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../chapters/10-categorical-data.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-title">分类与比例数据</span></span></a>
+  <a href="../chapters/10-categorical-data.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">第10章 分类与比例数据</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../chapters/11-correlation-regression.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-title">相关与线性回归</span></span></a>
+  <a href="../chapters/11-correlation-regression.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">第11章 相关与线性回归</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../chapters/12-glm-intro.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-title">从线性模型走向广义线性模型</span></span></a>
+  <a href="../chapters/12-glm-intro.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">第12章 从线性模型走向广义线性模型</span></a>
   </div>
 </li>
       </ul>
@@ -283,32 +274,27 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../chapters/13-forest-plant-protection.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-title">森林与植物保护研究</span></span></a>
+  <a href="../chapters/13-forest-plant-protection.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">第13章 森林与植物保护研究</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../chapters/14-wildlife-survey.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-title">野生动物调查与监测</span></span></a>
+  <a href="../chapters/14-wildlife-survey.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">第14章 野生动物调查与监测</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../chapters/15-biodiversity-data.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-title">生物多样性与群落数据</span></span></a>
+  <a href="../chapters/15-biodiversity-data.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">第15章 生物多样性与群落数据</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../chapters/16-treatment-evaluation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-title">措施效果与保护评估</span></span></a>
+  <a href="../chapters/16-treatment-evaluation.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">第16章 措施效果与保护评估</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../chapters/17-stats-to-action.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-title">从统计结果到保护行动</span></span></a>
+  <a href="../chapters/17-stats-to-action.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">第17章 从统计结果到保护行动</span></a>
   </div>
 </li>
       </ul>
@@ -324,32 +310,27 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../chapters/18-mixed-models.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-title">层级结构与混合模型</span></span></a>
+  <a href="../chapters/18-mixed-models.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">第18章 层级结构与混合模型</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../chapters/19-ecological-processes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-title">生态过程与观测过程</span></span></a>
+  <a href="../chapters/19-ecological-processes.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">第19章 生态过程与观测过程</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../chapters/20-bayesian-intro.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-title">贝叶斯统计与模型诊断</span></span></a>
+  <a href="../chapters/20-bayesian-intro.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">第20章 贝叶斯统计与模型诊断</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../chapters/21-spatiotemporal.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-title">时间、空间与随机过程</span></span></a>
+  <a href="../chapters/21-spatiotemporal.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">第21章 时间、空间与随机过程</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../chapters/22-ai-assisted-learning.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-title">AI 辅助统计学习与分析</span></span></a>
+  <a href="../chapters/22-ai-assisted-learning.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">第22章 AI 辅助统计学习与分析</span></a>
   </div>
 </li>
       </ul>
@@ -365,44 +346,37 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../appendices/r-basics.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-title">R 基础速查</span></span></a>
+  <a href="../appendices/r-basics.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">R 基础速查</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../appendices/method-map.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-title">常用统计方法选择地图</span></span></a>
+  <a href="../appendices/method-map.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">常用统计方法选择地图</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../appendices/glossary.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-title">统计术语中英文对照</span></span></a>
+  <a href="../appendices/glossary.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">统计术语中英文对照</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../appendices/reproducible-template.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-title">可重复分析项目模板</span></span></a>
+  <a href="../appendices/reproducible-template.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">可重复分析项目模板</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../appendices/data-ethics.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-title">数据伦理与敏感信息处理</span></span></a>
+  <a href="../appendices/data-ethics.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">数据伦理与敏感信息处理</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../appendices/ai-checklist.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-title">AI 提问模板与核查清单</span></span></a>
+  <a href="../appendices/ai-checklist.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">AI 提问模板与核查清单</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../appendices/learning-pathway.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-title">从基础统计到现代生态统计的学习路线</span></span></a>
+  <a href="../appendices/learning-pathway.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">从基础统计到现代生态统计的学习路线</span></a>
   </div>
 </li>
       </ul>
@@ -417,19 +391,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#相关与线性回归" id="toc-相关与线性回归" class="nav-link active" data-scroll-target="#相关与线性回归">相关与线性回归</a>
+  <li><a href="#第11章-相关与线性回归" id="toc-第11章-相关与线性回归" class="nav-link active" data-scroll-target="#第11章-相关与线性回归">第11章 相关与线性回归</a>
   <ul class="collapse">
-  <li><a href="#本章状态seed" id="toc-本章状态seed" class="nav-link" data-scroll-target="#本章状态seed">本章状态：seed</a></li>
-  <li><a href="#真实保护问题" id="toc-真实保护问题" class="nav-link" data-scroll-target="#真实保护问题">真实保护问题</a></li>
-  <li><a href="#学习目标" id="toc-学习目标" class="nav-link" data-scroll-target="#学习目标">学习目标</a></li>
-  <li><a href="#为什么这个问题需要统计" id="toc-为什么这个问题需要统计" class="nav-link" data-scroll-target="#为什么这个问题需要统计">为什么这个问题需要统计</a></li>
-  <li><a href="#核心概念" id="toc-核心概念" class="nav-link" data-scroll-target="#核心概念">核心概念</a></li>
-  <li><a href="#r-分析过程" id="toc-r-分析过程" class="nav-link" data-scroll-target="#r-分析过程">R 分析过程</a></li>
-  <li><a href="#结果解释" id="toc-结果解释" class="nav-link" data-scroll-target="#结果解释">结果解释</a></li>
+  <li><a href="#相关分析" id="toc-相关分析" class="nav-link" data-scroll-target="#相关分析">相关分析</a>
+  <ul class="collapse">
+  <li><a href="#相关系数" id="toc-相关系数" class="nav-link" data-scroll-target="#相关系数">相关系数</a></li>
+  <li><a href="#相关-因果" id="toc-相关-因果" class="nav-link" data-scroll-target="#相关-因果">相关 ≠ 因果</a></li>
+  </ul></li>
+  <li><a href="#简单线性回归" id="toc-简单线性回归" class="nav-link" data-scroll-target="#简单线性回归">简单线性回归</a></li>
+  <li><a href="#两种方法的区别" id="toc-两种方法的区别" class="nav-link" data-scroll-target="#两种方法的区别">两种方法的区别</a></li>
   <li><a href="#常见错误" id="toc-常见错误" class="nav-link" data-scroll-target="#常见错误">常见错误</a></li>
-  <li><a href="#ai-辅助任务" id="toc-ai-辅助任务" class="nav-link" data-scroll-target="#ai-辅助任务">AI 辅助任务</a></li>
   <li><a href="#练习" id="toc-练习" class="nav-link" data-scroll-target="#练习">练习</a></li>
-  <li><a href="#继续学习" id="toc-继续学习" class="nav-link" data-scroll-target="#继续学习">继续学习</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -437,10 +409,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/08-two-group-comparison.html">第三篇：回答常见保护问题</a></li><li class="breadcrumb-item"><a href="../chapters/11-correlation-regression.html"><span class="chapter-title">相关与线性回归</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/08-two-group-comparison.html">第三篇：回答常见保护问题</a></li><li class="breadcrumb-item"><a href="../chapters/11-correlation-regression.html"><span class="chapter-title">第11章 相关与线性回归</span></a></li></ol></nav>
 <div class="quarto-title">
-<div class="quarto-title-block"><div><h1 class="title"><span class="chapter-title">相关与线性回归</span></h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button">View Source</a></li></ul></div></div>
+<div class="quarto-title-block"><div><h1 class="title"><span class="chapter-title">第11章 相关与线性回归</span></h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
 </div>
+
+
 
 <div class="quarto-title-meta">
 
@@ -450,58 +424,89 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </div>
   
 
+
 </header>
 
-<section id="相关与线性回归" class="level1" data-number="13">
 
-<section id="本章状态seed" class="level2 {{.callout-note}}" data-number="13.1">
-<h2 data-number="13.1" class="anchored" data-anchor-id="本章状态seed">本章状态：seed</h2>
-<p>本章内容尚在建设中。以下为本章规划大纲，具体内容将随课程反馈和新案例持续补充。</p>
+<section id="第11章-相关与线性回归" class="level1">
+<h1>第11章 相关与线性回归</h1>
+<section id="相关分析" class="level2">
+<h2 class="anchored" data-anchor-id="相关分析">相关分析</h2>
+<section id="相关系数" class="level3">
+<h3 class="anchored" data-anchor-id="相关系数">相关系数</h3>
+<p>Pearson相关系数 r 衡量两个连续变量之间线性关系的强度和方向。r ∈ [-1, 1]。</p>
+<ul>
+<li>r &gt; 0：正相关（X增大，Y也增大）</li>
+<li>r &lt; 0：负相关（X增大，Y减小）</li>
+<li>r ≈ 0：无线性相关</li>
+</ul>
 </section>
-<section id="真实保护问题" class="level2" data-number="13.2">
-<h2 data-number="13.2" class="anchored" data-anchor-id="真实保护问题">真实保护问题</h2>
-<!-- 以一个具体的保护生物学问题开篇 -->
-</section>
-<section id="学习目标" class="level2" data-number="13.3">
-<h2 data-number="13.3" class="anchored" data-anchor-id="学习目标">学习目标</h2>
-<!-- 学完本章后学生应能做到的 3-5 件事 -->
-</section>
-<section id="为什么这个问题需要统计" class="level2" data-number="13.4">
-<h2 data-number="13.4" class="anchored" data-anchor-id="为什么这个问题需要统计">为什么这个问题需要统计</h2>
-<!-- 动机段落 -->
-</section>
-<section id="核心概念" class="level2" data-number="13.5">
-<h2 data-number="13.5" class="anchored" data-anchor-id="核心概念">核心概念</h2>
-<!-- 本章关键概念的简要介绍 -->
-</section>
-<section id="r-分析过程" class="level2" data-number="13.6">
-<h2 data-number="13.6" class="anchored" data-anchor-id="r-分析过程">R 分析过程</h2>
-<div class="cell">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 本章 R 代码示例（待补充）</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
+<section id="相关-因果" class="level3">
+<h3 class="anchored" data-anchor-id="相关-因果">相关 ≠ 因果</h3>
+<p>这是统计学最核心的教训之一。两个变量高度相关，不代表一个导致了另一个。</p>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
 </div>
+<div class="callout-title-container flex-fill">
+Warning
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>经典反例</strong>：冰激凌销量与溺水人数高度正相关。但吃冰激凌不会导致溺水——真正的原因是”夏季气温高”同时导致了冰激凌销量增加和更多人游泳。</p>
+</div>
+</div>
+<p><strong>在保护生物学中的陷阱</strong>：发现游客数量与野生动物出现频次呈负相关→不能直接说”游客吓跑了动物”——也可能是游客多的季节恰好是动物繁殖期。</p>
 </section>
-<section id="结果解释" class="level2" data-number="13.7">
-<h2 data-number="13.7" class="anchored" data-anchor-id="结果解释">结果解释</h2>
-<!-- 如何将统计结果转化为保护生物学语言 -->
 </section>
-<section id="常见错误" class="level2" data-number="13.8">
-<h2 data-number="13.8" class="anchored" data-anchor-id="常见错误">常见错误</h2>
-<!-- 学生在本章内容上最容易犯的错误 -->
+<section id="简单线性回归" class="level2">
+<h2 class="anchored" data-anchor-id="简单线性回归">简单线性回归</h2>
+<p>回归分析用一个变量（自变量X）解释或预测另一个变量（因变量Y）的变化。</p>
+<p><strong>回归系数β</strong>：X每增加1个单位，Y平均变化β个单位。</p>
+<p><strong>R²</strong>：模型解释的变异比例。R²=0.7表示模型解释了Y的70%变异。</p>
 </section>
-<section id="ai-辅助任务" class="level2" data-number="13.9">
-<h2 data-number="13.9" class="anchored" data-anchor-id="ai-辅助任务">AI 辅助任务</h2>
-<!-- 配套的 AI 提问与人工核查任务 -->
+<section id="两种方法的区别" class="level2">
+<h2 class="anchored" data-anchor-id="两种方法的区别">两种方法的区别</h2>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th></th>
+<th>相关分析</th>
+<th>回归分析</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>目的</td>
+<td>衡量关系强度</td>
+<td>解释/预测</td>
+</tr>
+<tr class="even">
+<td>方向</td>
+<td>对称（X和Y地位相同）</td>
+<td>不对称（Y是被解释变量）</td>
+</tr>
+<tr class="odd">
+<td>输出</td>
+<td>r</td>
+<td>β, R², P值</td>
+</tr>
+</tbody>
+</table>
 </section>
-<section id="练习" class="level2" data-number="13.10">
-<h2 data-number="13.10" class="anchored" data-anchor-id="练习">练习</h2>
-<!-- 课堂练习和课后作业 -->
+<section id="常见错误" class="level2">
+<h2 class="anchored" data-anchor-id="常见错误">常见错误</h2>
+<ol type="1">
+<li>相关显著就声称因果</li>
+<li>回归显著但R²极低（&lt;0.1）仍声称”有重要影响”</li>
+<li>不检查残差就报告回归结果</li>
+</ol>
 </section>
-<section id="继续学习" class="level2" data-number="13.11">
-<h2 data-number="13.11" class="anchored" data-anchor-id="继续学习">继续学习</h2>
-<!-- 推荐阅读和下一章链接 -->
+<section id="练习" class="level2">
+<h2 class="anchored" data-anchor-id="练习">练习</h2>
+<p>分析温度与虫口密度的关系。画出散点图，计算相关系数和回归线。</p>
+
 
 <!-- -->
 
@@ -962,73 +967,73 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../chapters/10-categorical-data.html" class="pagination-link" aria-label="分类与比例数据">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">分类与比例数据</span></span>
+      <a href="../chapters/10-categorical-data.html" class="pagination-link" aria-label="第10章 分类与比例数据">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">第10章 分类与比例数据</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../chapters/12-glm-intro.html" class="pagination-link" aria-label="从线性模型走向广义线性模型">
-        <span class="nav-page-text"><span class="chapter-title">从线性模型走向广义线性模型</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../chapters/12-glm-intro.html" class="pagination-link" aria-label="第12章 从线性模型走向广义线性模型">
+        <span class="nav-page-text"><span class="chapter-title">第12章 从线性模型走向广义线性模型</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "相关与线性回归"</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="an">maturity:</span><span class="co"> seed</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="an">updated:</span><span class="co"> 2026-06-15</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="fu"># 相关与线性回归</span></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>::: {{.callout-note}}</span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="fu">## 本章状态：seed</span></span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>本章内容尚在建设中。以下为本章规划大纲，具体内容将随课程反馈和新案例持续补充。</span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="fu">## 真实保护问题</span></span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- 以一个具体的保护生物学问题开篇 --&gt;</span></span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="fu">## 学习目标</span></span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- 学完本章后学生应能做到的 3-5 件事 --&gt;</span></span>
-<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a><span class="fu">## 为什么这个问题需要统计</span></span>
-<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- 动机段落 --&gt;</span></span>
-<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a><span class="fu">## 核心概念</span></span>
-<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- 本章关键概念的简要介绍 --&gt;</span></span>
-<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a><span class="fu">## R 分析过程</span></span>
-<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a><span class="co"># 本章 R 代码示例（待补充）</span></span>
-<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a><span class="fu">## 结果解释</span></span>
-<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- 如何将统计结果转化为保护生物学语言 --&gt;</span></span>
-<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a><span class="fu">## 常见错误</span></span>
-<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- 学生在本章内容上最容易犯的错误 --&gt;</span></span>
-<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a><span class="fu">## AI 辅助任务</span></span>
-<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- 配套的 AI 提问与人工核查任务 --&gt;</span></span>
-<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a><span class="fu">## 练习</span></span>
-<span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-53"><a href="#cb2-53" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- 课堂练习和课后作业 --&gt;</span></span>
-<span id="cb2-54"><a href="#cb2-54" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-55"><a href="#cb2-55" aria-hidden="true" tabindex="-1"></a><span class="fu">## 继续学习</span></span>
-<span id="cb2-56"><a href="#cb2-56" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-57"><a href="#cb2-57" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- 推荐阅读和下一章链接 --&gt;</span></span>
-</code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "第11章 相关与线性回归"</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="an">maturity:</span><span class="co"> sprout</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="an">updated:</span><span class="co"> 2026-06-15</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu"># 第11章 相关与线性回归</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">## 相关分析</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="fu">### 相关系数</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>Pearson相关系数 r 衡量两个连续变量之间线性关系的强度和方向。r ∈ <span class="co">[</span><span class="ot">-1, 1</span><span class="co">]</span>。</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>r &gt; 0：正相关（X增大，Y也增大）</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>r &lt; 0：负相关（X增大，Y减小）</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>r ≈ 0：无线性相关</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="fu">### 相关 ≠ 因果</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>这是统计学最核心的教训之一。两个变量高度相关，不代表一个导致了另一个。</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>::: {.callout-warning}</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>**经典反例**：冰激凌销量与溺水人数高度正相关。但吃冰激凌不会导致溺水——真正的原因是"夏季气温高"同时导致了冰激凌销量增加和更多人游泳。</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>**在保护生物学中的陷阱**：发现游客数量与野生动物出现频次呈负相关→不能直接说"游客吓跑了动物"——也可能是游客多的季节恰好是动物繁殖期。</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a><span class="fu">## 简单线性回归</span></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>回归分析用一个变量（自变量X）解释或预测另一个变量（因变量Y）的变化。</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>**回归系数β**：X每增加1个单位，Y平均变化β个单位。</span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>**R²**：模型解释的变异比例。R²=0.7表示模型解释了Y的70%变异。</span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a><span class="fu">## 两种方法的区别</span></span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="pp">|</span> 相关分析 <span class="pp">|</span> 回归分析 <span class="pp">|</span></span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a><span class="pp">|------|---------|---------|</span></span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 目的 <span class="pp">|</span> 衡量关系强度 <span class="pp">|</span> 解释/预测 <span class="pp">|</span></span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 方向 <span class="pp">|</span> 对称（X和Y地位相同） <span class="pp">|</span> 不对称（Y是被解释变量） <span class="pp">|</span></span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 输出 <span class="pp">|</span> r <span class="pp">|</span> β, R², P值 <span class="pp">|</span></span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a><span class="fu">## 常见错误</span></span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>相关显著就声称因果</span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>回归显著但R²极低（&lt;0.1）仍声称"有重要影响"</span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>不检查残差就报告回归结果</span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a><span class="fu">## 练习</span></span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a>分析温度与虫口密度的关系。画出散点图，计算相关系数和回归线。</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
+
+
+
 
 </body></html>

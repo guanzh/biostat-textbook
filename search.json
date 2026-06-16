@@ -20,124 +20,2478 @@
     ]
   },
   {
-    "objectID": "chapters/05-descriptive-statistics.html",
-    "href": "chapters/05-descriptive-statistics.html",
-    "title": "6  描述统计与分布",
+    "objectID": "chapters/01-role-of-statistics.html",
+    "href": "chapters/01-role-of-statistics.html",
+    "title": "统计学在保护中的角色",
     "section": "",
-    "text": "7 描述统计与分布",
+    "text": "真实保护问题\n某自然保护区连续两年监测一种濒危草本植物。工作人员在固定样地中记录开花个体数量：去年 10 个样地平均每样地 23 株开花，今年同样的样地、同样的方法，平均只有 17 株。\n保护站开会时，大家意见不一。\n“今年肯定少了，”老巡护员说，“我天天在山里走，明显感觉花没去年多。”\n“但我看东边那片开得挺好的，”另一位同事反驳，“说不定只是样地刚好落在了差的地方。”\n“去年春天雨水多，今年偏旱，会不会只是天气波动？”新来的技术员问。\n站长最后问了一个核心问题：我们真的有证据说这个物种种群在下降吗？如果没有，我们该不该现在就改变保护措施？\n这个问题，就是统计学要回答的。",
+    "crumbs": [
+      "第一篇：从保护问题进入统计",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>统计学在保护中的角色</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/01-role-of-statistics.html#学习目标",
+    "href": "chapters/01-role-of-statistics.html#学习目标",
+    "title": "统计学在保护中的角色",
+    "section": "学习目标",
+    "text": "学习目标\n学完本节后，你应能够：\n\n理解为什么保护工作天然需要统计分析——从”我感觉”走向”我有证据”\n区分描述、比较、推断和支持行动四种统计任务的保护场景\n识别保护数据中不确定性的常见来源\n建立”统计结论是证据而非自动决策”的判断意识",
+    "crumbs": [
+      "第一篇：从保护问题进入统计",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>统计学在保护中的角色</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/01-role-of-statistics.html#为什么保护工作需要统计学",
+    "href": "chapters/01-role-of-statistics.html#为什么保护工作需要统计学",
+    "title": "统计学在保护中的角色",
+    "section": "为什么保护工作需要统计学",
+    "text": "为什么保护工作需要统计学\n\n1. 从一个真实保护场景开始\n回到开头的濒危植物监测。把站长的困惑拆开，其实是三个层层递进的问题：\n\n今年真的比去年少了吗？ —— 下降 6 株是真实趋势还是随机波动？如果我们明年再测，会不会又回到 20 株以上？\n少多少才算值得关注？ —— 如果只是从 23 降到 22，可能不值得紧张。但如果连续三年每年下降超过 30%，就该拉响警报了。那么这个阈值在哪里？\n我们是否应该改变保护措施？ —— 要不要增加人工繁育？要不要扩大保护区？这些行动都需要成本，我们必须先确认问题是否真实存在。\n\n这三个问题恰好对应了统计学的三层任务：检验差异是否真实、量化效应大小、支持管理决策。\n\n\n\n\n\n\nTip先有场景，再有方法\n\n\n\n本书每一章都从一个具体的保护场景出发。不要把统计方法当作需要记忆的公式清单——把它当作你面对保护问题时的一套”诊断工具”。就像医生不会先决定用什么检查再问病人哪里不舒服，我们在保护工作中也应该是：先有保护问题 → 再选择统计工具。\n\n\n\n\n2. 保护工作不是只看现象，而是做判断\n保护生物学中有太多需要做判断的时刻。以下是你在实际工作中经常会遇到的问题：\n\n\n\n\n\n\n\n场景\n你要判断的问题\n\n\n\n\n某保护区连续多年监测鸟类\n种群数量是否在下降？下降的速度有多快？\n\n\n新发现一种蛀干害虫在人工林中扩散\n扩散范围有多大？哪些林分风险更高？\n\n\n试用一种生物防治措施两年了\n防治措施是否真的有效？效果有多大？\n\n\n比较人工林和天然林的生物多样性\n两边的物种组成是否不同？差别有多大？\n\n\n红外相机拍到某种动物的次数增加了\n是数量真的多了，还是只是活动范围变了？\n\n\n\n每一个问题的背后都藏着一个相同的结构：我们观察到了某种现象，但需要判断这个现象是否真实、是否重要、是否需要行动。\n而统计学的价值恰恰就在这里。它不是把数据变复杂，而是帮助我们在不确定中做更可靠的判断。\n\n统计学不是把数据变复杂，而是帮助我们在不确定中做更可靠的判断。\n\n\n\n3. 数据不会自己说话\n初学统计的人常常有一种错觉：只要把数据收集好，画个图，结论就会自己跳出来。但现实是——数据永远是”吵”的。\n什么是”吵”？就是同一种测量在不同时间、不同地点、不同条件下，天然就有波动。保护生物学面对的是自然界，不确定性来源特别多：\n自然变异。同样是 50 年的云南松，胸径可以从 18 cm 到 45 cm。同一物种在不同坡位、不同土壤上，密度就是不一样。这不是测量错误，而是自然界本来就有的差异。\n观察误差。你数样方里的幼苗，今天阳光好可能数出 35 株，明天下雨视线差可能只数出 28 株。不同调查员的仔细程度、经验水平也不一样。\n时间波动。病虫害有大小年，植物开花受积温和降水影响，动物活动有昼夜和季节节律。一次调查只是整个时间序列上的一个”快照”。\n样本有限。你不可能调查保护区的每一棵树、每一只鸟。你只能从样地、样线、样点中获取样本，然后用样本去推测整体。样本越小，推测的不确定性就越大。\n偶然性。即使所有条件都一样，一些差异也可能只是偶然出现的——就像掷硬币，连续出现五个正面不代表硬币有问题。\n把这些来源放在一起，你就会理解一个关键事实：\n\n\n\n\n\n\nImportant没有统计，我们很容易把偶然波动误认为真实规律。\n\n\n\n保护工作中最危险的情况之一是：看到数字变了就去追原因、改方案，结果追的只是噪声。统计学的核心任务就是帮我们把”信号”和”噪声”分开。\n\n\n\n\n4. 统计学在保护中的四个作用\n当你面对保护数据和保护问题时，统计学可以帮你做四件事。这四件事层层递进，构成了从数据到行动的完整逻辑链。\n\n描述：现在是什么状态？\n拿到数据后的第一步永远是”看清楚”。描述统计回答的是：这个保护对象现在是什么状况？\n\n某林区云南松的平均虫口密度是多少？不同样地之间差异有多大？\n某保护区今年记录到多少种鸟类？每种的出现频率如何？\n红外相机监测中，某种动物的独立拍摄次数是多少？\n\n描述不是”随便求个平均数”。你需要选对指标：数据有极端值时，中位数可能比均值更有代表性；需要表达离散程度时，标准差和四分位距告诉你的信息不同。这些内容将在第 5 章详细展开。\n\n\n比较：不同对象是否有差异？\n保护工作中最常见的问题之一就是”比较”——两个地方、两个时间点、两种处理之间，有没有可辨识的差别？\n\n人工林和天然林中的鸟类物种数是否不同？\n施用 A 药剂和 B 药剂后，害虫死亡率是否有差异？\n保护区建立前后，旗舰物种的出现频率是否发生了变化？\n\n比较的关键在于：你看到的差异究竟是处理造成的，还是本来就存在的波动？这就是推断统计要回答的问题。\n\n\n推断：观察到的差异是否可信？\n假设你做了药效试验：处理组的害虫死亡率是 72%，对照组是 58%。差了 14 个百分点。但这个差异是药剂真的有效，还是因为这几组虫刚好体质差一些？\n统计推断回答的就是这个问题：在只考虑随机波动的情况下，我们看到这个差异（或更极端的差异）的概率有多大？ 这个概率就是后面会学到的 P 值。\n\n\n\n\n\n\nNote一点提前说明\n\n\n\n很多学生对 P 值既好奇又困惑。这里先给一个直觉：P 值越小，说明”纯靠运气出现这个差异”的可能性越低，也就意味着证据越倾向于”差异是真实存在的”。但 P 值不是”差异有多大”的衡量——那需要效应量（effect size）。我们会在第 6 章和第 8 章系统学习推断统计。\n\n\n\n\n支持行动：下一步该怎么做？\n统计分析的终点不是得到一个 P 值，而是回答”基于这些证据，我们应该做什么”。\n\n害虫密度连续三年超过防治阈值 → 启动防治方案\n监测数据显示某物种种群稳定 → 维持现有保护措施\n不同栖息地类型的物种多样性差异显著 → 在保护规划中优先考虑高多样性区域\n药剂效果虽然在统计上显著但效应量很小 → 不一定值得推广\n\n这四步——描述、比较、推断、支持行动——不是一次性走完的线性流程，而是在保护实践中反复循环的判断过程。\n\n\n\n5. 从”是否显著”到”是否有保护意义”\n这可能是本书最重要的一节开头提醒，值得你学到后面章节时再回来读一遍。\n统计学给出的是一个概率判断：数据是否支持”存在某种效应”的结论。但统计学不会替你回答”这个效应是否重要”——那需要保护生物学的专业判断。\n显著 ≠ 重要。一个防治措施使虫口密度降低了 3%，统计上可能显著（因为样本量足够大，波动足够小），但 3% 的降低在实际防治中可能没有管理价值。你还需要问：降低 3% 值得投入这些成本吗？\n不显著 ≠ 没有效果。如果样本量太小、测量误差太大、或者效应本身较小但没有足够检测能力，统计检验可能”不显著”，但这不代表处理完全无效。它可能只是告诉你——现有数据还不足以做出可靠判断，需要更多或更好的数据。\n证据不是决策。保护决策还要考虑成本（防治措施买得起吗？）、风险（干预会不会有副作用？）、伦理（是否涉及濒危物种？）、管理目标（保护区的优先级是什么？）等多方面因素。统计数据提供的是决策所需的证据，但它本身不做决策。\n\n统计分析回答的是”证据有多强”，保护决策还要回答”行动是否值得”。\n\n这个区分在后面的学习中会反复出现。当你在第 8 章学会 t 检验、在第 12 章学会回归分析后，很容易产生一种感觉——“P &lt; 0.05 就万事大吉了”。请从一开始就记住：P 值是证据链条中的一环，不是终点。\n\n\n6. 本节小结\n用三句话结束这一节：\n\n保护工作面对的是复杂、变化和不确定的自然系统。 观察到的变化可能来自真实趋势，也可能来自自然波动、测量误差或偶然——我们需要一套方法来区分它们。\n统计学帮助我们把观察结果转化为可检验的证据。 它不创造确定性（自然界没有绝对的确定性），但它让我们知道：现有数据支持下，某个结论的可信度有多高。\n本书学习统计，不是为了背公式，而是为了更好地提出问题、分析数据和支持保护行动。 公式是工具，判断是核心。后面的章节中，每学一个方法，都请回到这个出发点来理解它为什么被需要。",
+    "crumbs": [
+      "第一篇：从保护问题进入统计",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>统计学在保护中的角色</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/01-role-of-statistics.html#课堂思考-小练习",
+    "href": "chapters/01-role-of-statistics.html#课堂思考-小练习",
+    "title": "统计学在保护中的角色",
+    "section": "课堂思考 / 小练习",
+    "text": "课堂思考 / 小练习\n\n举一个你熟悉的保护问题。 在你自己的专业方向或实习经历中，找一个需要数据支撑的保护判断。它属于描述、比较、推断还是行动决策？你为什么觉得它需要统计分析？\n判断下面的问题类型。 “某保护区今年红外相机拍到的豹猫次数比去年少了 20 次。”——这个陈述目前处于哪个阶段？如果要把它变成一个可以用统计回答的问题，你还需要哪些信息？（提示：想一想”信号 vs 噪声”的框架）\n一个思考题。 假设有一种新型生物农药，田间试验结果显示：处理组比对照组的虫口密度降低了 5%，统计检验 P = 0.03。你认为这个农药一定值得推广吗？说出至少两个需要考虑的额外因素。\n预习任务。 翻到第 2 章，看看”研究问题、变量与假设”的标题。想一个你自己感兴趣的保护问题，下节课我们来把它拆解成研究对象、处理因素、观测指标和研究假设。",
+    "crumbs": [
+      "第一篇：从保护问题进入统计",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>统计学在保护中的角色</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/01-role-of-statistics.html#继续学习",
+    "href": "chapters/01-role-of-statistics.html#继续学习",
+    "title": "统计学在保护中的角色",
+    "section": "继续学习",
+    "text": "继续学习\n→ 第2章：研究问题、变量与假设",
+    "crumbs": [
+      "第一篇：从保护问题进入统计",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>统计学在保护中的角色</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/02-variables-hypotheses.html",
+    "href": "chapters/02-variables-hypotheses.html",
+    "title": "第2章 研究问题、变量与假设",
+    "section": "",
+    "text": "第2章 研究问题、变量与假设",
+    "crumbs": [
+      "第一篇：从保护问题进入统计",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>第2章 研究问题、变量与假设</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/02-variables-hypotheses.html#真实保护问题",
+    "href": "chapters/02-variables-hypotheses.html#真实保护问题",
+    "title": "第2章 研究问题、变量与假设",
+    "section": "真实保护问题",
+    "text": "真实保护问题\n你在评估三种药剂对森林害虫的防治效果。选了什么树？测了什么指标？怎么知道差异是药效还是碰巧？\n在碰统计软件之前，你必须先回答三个问题：研究对象是谁？变量是什么类型？你的假设是什么？",
+    "crumbs": [
+      "第一篇：从保护问题进入统计",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>第2章 研究问题、变量与假设</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/02-variables-hypotheses.html#学习目标",
+    "href": "chapters/02-variables-hypotheses.html#学习目标",
+    "title": "第2章 研究问题、变量与假设",
+    "section": "学习目标",
+    "text": "学习目标\n\n将保护问题拆解为研究对象、处理因素、观测指标和研究假设\n识别连续型、计数型、分类变量和比例变量\n理解变量类型决定后续统计方法选择",
+    "crumbs": [
+      "第一篇：从保护问题进入统计",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>第2章 研究问题、变量与假设</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/02-variables-hypotheses.html#从保护问题到统计问题",
+    "href": "chapters/02-variables-hypotheses.html#从保护问题到统计问题",
+    "title": "第2章 研究问题、变量与假设",
+    "section": "从保护问题到统计问题",
+    "text": "从保护问题到统计问题\n任何一个保护类研究问题都可以拆成四个要素：\n\n\n\n要素\n含义\n例子\n\n\n\n\n研究对象\n你研究的是谁\n某森林样地中的云南松\n\n\n处理因素\n你改变或比较的是什么\n三种不同药剂 + 对照组\n\n\n观测指标\n你测量的是什么\n施药后7天的害虫死亡率\n\n\n研究假设\n你预期什么结果\n不同药剂的害虫死亡率存在差异\n\n\n\n\n\n\n\n\n\nTip课堂技巧\n\n\n\n拿到一段研究描述后，先用这四要素框架拆解，再考虑统计方法。很多学生跳过了这一步，直接跑t检验，结果发现变量类型根本不支持。",
+    "crumbs": [
+      "第一篇：从保护问题进入统计",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>第2章 研究问题、变量与假设</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/02-variables-hypotheses.html#变量类型",
+    "href": "chapters/02-variables-hypotheses.html#变量类型",
+    "title": "第2章 研究问题、变量与假设",
+    "section": "变量类型",
+    "text": "变量类型\n变量类型决定了你能用什么统计方法。生物统计中主要分四类：\n\n\n\n\n\n\n\n\n\n类型\n定义\n保护类例子\n适用方法\n\n\n\n\n连续型\n可取任意数值\n树高(m)、胸径(cm)、虫口密度\nt检验、ANOVA、回归\n\n\n计数型\n非负整数\n红外相机拍摄次数、叶片数\nPoisson回归、负二项\n\n\n分类变量\n有限类别\n栖息地类型、处理组别\n卡方检验、ANOVA\n\n\n比例变量\n0-1之间或%\n发病率、死亡率、存活率\n卡方检验、二项回归\n\n\n\n\n\n\n\n\n\nWarning关键区分\n\n\n\n计数型 ≠ 连续型。虫口密度如果是”每株树上的虫数”，那是计数型；如果是”每株树上的虫体重量(g)“，那是连续型。\n变量类型由数据生成过程决定，不由你的测量工具决定。",
+    "crumbs": [
+      "第一篇：从保护问题进入统计",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>第2章 研究问题、变量与假设</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/02-variables-hypotheses.html#研究假设",
+    "href": "chapters/02-variables-hypotheses.html#研究假设",
+    "title": "第2章 研究问题、变量与假设",
+    "section": "研究假设",
+    "text": "研究假设\n研究假设是将专业问题转化为统计问题的桥梁。\n例子：“三种药剂对害虫死亡率的影响”\n\n零假设 H₀：三种药剂的害虫死亡率没有差异\n备择假设 H₁：至少有一种药剂的死亡率不同于其他\n\n\n\n\n\n\n\nImportant牢记\n\n\n\n假设必须在查看数据之前确定。先看数据再编假设，是严重的学术不端（HARKing：Hypothesizing After Results are Known）。",
+    "crumbs": [
+      "第一篇：从保护问题进入统计",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>第2章 研究问题、变量与假设</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/02-variables-hypotheses.html#常见错误",
+    "href": "chapters/02-variables-hypotheses.html#常见错误",
+    "title": "第2章 研究问题、变量与假设",
+    "section": "常见错误",
+    "text": "常见错误\n\n变量类型判断错误——把计数型当连续型，用t检验代替Poisson回归\n假设不清晰就开始分析——不知道想回答什么问题就收集数据\n混淆自变量和因变量——“湿度影响病害”中，湿度是自变量，病害是因变量",
+    "crumbs": [
+      "第一篇：从保护问题进入统计",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>第2章 研究问题、变量与假设</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/02-variables-hypotheses.html#练习",
+    "href": "chapters/02-variables-hypotheses.html#练习",
+    "title": "第2章 研究问题、变量与假设",
+    "section": "练习",
+    "text": "练习\n\n判断以下变量的类型：树高、昆虫数量、栖息地类型、发病率\n将”不同林型中鸟类数量是否不同”拆解为四要素\n写出”湿度是否影响植物病害发生率”的零假设和备择假设",
+    "crumbs": [
+      "第一篇：从保护问题进入统计",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>第2章 研究问题、变量与假设</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/03-experimental-design.html",
+    "href": "chapters/03-experimental-design.html",
+    "title": "第3章 调查与实验设计",
+    "section": "",
+    "text": "第3章 调查与实验设计",
+    "crumbs": [
+      "第一篇：从保护问题进入统计",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>第3章 调查与实验设计</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/03-experimental-design.html#真实保护问题",
+    "href": "chapters/03-experimental-design.html#真实保护问题",
+    "title": "第3章 调查与实验设计",
+    "section": "真实保护问题",
+    "text": "真实保护问题\n你在评估一种新型生物农药对松材线虫病的效果。选了10棵树喷药，10棵不喷。两个月后，处理组平均病情指数2.1，对照组5.8。能说药有效吗？\n不一定。 如果你把10棵最健康的树分到了处理组，把10棵已经病重的树分到了对照组——那差异是药效还是你分组不公平？\n这就是实验设计要解决的问题。",
+    "crumbs": [
+      "第一篇：从保护问题进入统计",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>第3章 调查与实验设计</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/03-experimental-design.html#学习目标",
+    "href": "chapters/03-experimental-design.html#学习目标",
+    "title": "第3章 调查与实验设计",
+    "section": "学习目标",
+    "text": "学习目标\n\n理解对照、重复、随机三个实验设计基本原则\n能区分生物学重复和技术重复，识别伪重复\n了解完全随机设计、随机区组设计和常见保护类调查设计",
+    "crumbs": [
+      "第一篇：从保护问题进入统计",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>第3章 调查与实验设计</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/03-experimental-design.html#三个基本原则",
+    "href": "chapters/03-experimental-design.html#三个基本原则",
+    "title": "第3章 调查与实验设计",
+    "section": "三个基本原则",
+    "text": "三个基本原则\n\n1. 对照（Control）\n设置未处理的参照组，排除时间、环境等无关因素的影响。\n\n如果没有对照组，你不知道害虫是药死的还是自然死的。\n\n\n\n2. 重复（Replication）\n每个处理设置多个独立实验单位，用于估计误差。\n\n\n3. 随机（Randomization）\n随机分配处理到实验单位，消除系统性偏差。\n\n不能把靠路边的样地全分给处理组，把深山里的全分给对照组。",
+    "crumbs": [
+      "第一篇：从保护问题进入统计",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>第3章 调查与实验设计</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/03-experimental-design.html#生物学重复-vs-技术重复",
+    "href": "chapters/03-experimental-design.html#生物学重复-vs-技术重复",
+    "title": "第3章 调查与实验设计",
+    "section": "生物学重复 vs 技术重复",
+    "text": "生物学重复 vs 技术重复\n这是生态学中最常见的统计错误来源：\n\n\n\n场景\n类型\n为什么\n\n\n\n\n同一株植物测5片叶子\n技术重复\n5片叶子属于同一株，不是独立样本\n\n\n5株植物各测1片叶子\n生物学重复\n5株植物是独立个体\n\n\n同一个样方连续数5次昆虫\n技术重复\n同一个样方\n\n\n5个样方各调查一次昆虫\n生物学重复\n5个独立样方\n\n\n\n\n\n\n\n\n\nWarning伪重复（Pseudoreplication）\n\n\n\n把非独立的测量当作独立重复，是生态学论文被拒稿的最常见统计原因之一。Hurlbert (1984) 的经典论文专门讨论这个问题。",
+    "crumbs": [
+      "第一篇：从保护问题进入统计",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>第3章 调查与实验设计</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/03-experimental-design.html#常见保护类研究设计",
+    "href": "chapters/03-experimental-design.html#常见保护类研究设计",
+    "title": "第3章 调查与实验设计",
+    "section": "常见保护类研究设计",
+    "text": "常见保护类研究设计\n\n完全随机设计（CRD）\n所有实验单位随机分配到各处理组。适用于同质性较高的实验材料。例如：温室中同一批次的幼苗随机分配三种药剂处理。\n\n\n随机区组设计（RCBD）\n当实验单位存在已知的系统性差异时（如坡位、土壤类型），先按差异因素分区组，再在区组内随机分配处理。\n\n\n野生动物调查设计\n\n\n\n方法\n适用场景\n关键参数\n\n\n\n\n样线法\n较大尺度的动物调查\n样线长度、宽度、调查努力量\n\n\n样点法\n鸟类调查\n样点间距、观察时间、重复次数\n\n\n红外相机\n野生动物监测\n相机密度、工作时长、独立照片判定",
+    "crumbs": [
+      "第一篇：从保护问题进入统计",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>第3章 调查与实验设计</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/03-experimental-design.html#常见错误",
+    "href": "chapters/03-experimental-design.html#常见错误",
+    "title": "第3章 调查与实验设计",
+    "section": "常见错误",
+    "text": "常见错误\n\n只有1个对照样地却声称有对照\n伪重复——把同一株的多片叶子当独立样本\n把调查设计当实验设计做因果推断",
+    "crumbs": [
+      "第一篇：从保护问题进入统计",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>第3章 调查与实验设计</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/03-experimental-design.html#练习",
+    "href": "chapters/03-experimental-design.html#练习",
+    "title": "第3章 调查与实验设计",
+    "section": "练习",
+    "text": "练习\n\n判断以下哪个是真正的重复：\n\nA. 同一株植物测5片叶子\nB. 5株植物各测1片叶子\nC. 同一个样方连续数5次昆虫\n\nD. 5个样方各调查一次\n\n设计一个”比较三种林型中鸟类丰富度”的调查方案，标注对照、重复和随机化方式",
+    "crumbs": [
+      "第一篇：从保护问题进入统计",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>第3章 调查与实验设计</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/04-data-management.html",
+    "href": "chapters/04-data-management.html",
+    "title": "第4章 数据管理与可重复分析",
+    "section": "",
+    "text": "第4章 数据管理与可重复分析",
     "crumbs": [
       "第二篇：看懂并整理保护数据",
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>描述统计与分布</span>"
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>第4章 数据管理与可重复分析</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/04-data-management.html#本章状态seed",
+    "href": "chapters/04-data-management.html#本章状态seed",
+    "title": "第4章 数据管理与可重复分析",
+    "section": "本章状态：seed",
+    "text": "本章状态：seed\n本章内容尚在建设中。以下为本章规划大纲，具体内容将随课程反馈和新案例持续补充。",
+    "crumbs": [
+      "第二篇：看懂并整理保护数据",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>第4章 数据管理与可重复分析</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/04-data-management.html#真实保护问题",
+    "href": "chapters/04-data-management.html#真实保护问题",
+    "title": "第4章 数据管理与可重复分析",
+    "section": "真实保护问题",
+    "text": "真实保护问题",
+    "crumbs": [
+      "第二篇：看懂并整理保护数据",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>第4章 数据管理与可重复分析</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/04-data-management.html#学习目标",
+    "href": "chapters/04-data-management.html#学习目标",
+    "title": "第4章 数据管理与可重复分析",
+    "section": "学习目标",
+    "text": "学习目标",
+    "crumbs": [
+      "第二篇：看懂并整理保护数据",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>第4章 数据管理与可重复分析</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/04-data-management.html#为什么这个问题需要统计",
+    "href": "chapters/04-data-management.html#为什么这个问题需要统计",
+    "title": "第4章 数据管理与可重复分析",
+    "section": "为什么这个问题需要统计",
+    "text": "为什么这个问题需要统计",
+    "crumbs": [
+      "第二篇：看懂并整理保护数据",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>第4章 数据管理与可重复分析</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/04-data-management.html#核心概念",
+    "href": "chapters/04-data-management.html#核心概念",
+    "title": "第4章 数据管理与可重复分析",
+    "section": "核心概念",
+    "text": "核心概念",
+    "crumbs": [
+      "第二篇：看懂并整理保护数据",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>第4章 数据管理与可重复分析</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/04-data-management.html#r-分析过程",
+    "href": "chapters/04-data-management.html#r-分析过程",
+    "title": "第4章 数据管理与可重复分析",
+    "section": "R 分析过程",
+    "text": "R 分析过程\n\n\nCode\n# 本章 R 代码示例（待补充）",
+    "crumbs": [
+      "第二篇：看懂并整理保护数据",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>第4章 数据管理与可重复分析</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/04-data-management.html#结果解释",
+    "href": "chapters/04-data-management.html#结果解释",
+    "title": "第4章 数据管理与可重复分析",
+    "section": "结果解释",
+    "text": "结果解释",
+    "crumbs": [
+      "第二篇：看懂并整理保护数据",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>第4章 数据管理与可重复分析</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/04-data-management.html#常见错误",
+    "href": "chapters/04-data-management.html#常见错误",
+    "title": "第4章 数据管理与可重复分析",
+    "section": "常见错误",
+    "text": "常见错误",
+    "crumbs": [
+      "第二篇：看懂并整理保护数据",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>第4章 数据管理与可重复分析</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/04-data-management.html#ai-辅助任务",
+    "href": "chapters/04-data-management.html#ai-辅助任务",
+    "title": "第4章 数据管理与可重复分析",
+    "section": "AI 辅助任务",
+    "text": "AI 辅助任务",
+    "crumbs": [
+      "第二篇：看懂并整理保护数据",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>第4章 数据管理与可重复分析</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/04-data-management.html#练习",
+    "href": "chapters/04-data-management.html#练习",
+    "title": "第4章 数据管理与可重复分析",
+    "section": "练习",
+    "text": "练习",
+    "crumbs": [
+      "第二篇：看懂并整理保护数据",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>第4章 数据管理与可重复分析</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/04-data-management.html#继续学习",
+    "href": "chapters/04-data-management.html#继续学习",
+    "title": "第4章 数据管理与可重复分析",
+    "section": "继续学习",
+    "text": "继续学习",
+    "crumbs": [
+      "第二篇：看懂并整理保护数据",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>第4章 数据管理与可重复分析</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/05-descriptive-statistics.html",
+    "href": "chapters/05-descriptive-statistics.html",
+    "title": "第5章 描述统计与分布",
+    "section": "",
+    "text": "第5章 描述统计与分布",
+    "crumbs": [
+      "第二篇：看懂并整理保护数据",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>第5章 描述统计与分布</span>"
     ]
   },
   {
     "objectID": "chapters/05-descriptive-statistics.html#认识你的数据",
     "href": "chapters/05-descriptive-statistics.html#认识你的数据",
-    "title": "6  描述统计与分布",
-    "section": "7.1 认识你的数据",
-    "text": "7.1 认识你的数据\n拿到 50 个样地的虫口密度数据，你首先想知道什么？——平均多少？变异多大？有没有异常值？",
+    "title": "第5章 描述统计与分布",
+    "section": "认识你的数据",
+    "text": "认识你的数据\n拿到 50 个样地的虫口密度数据，你首先想知道什么？——平均多少？变异多大？有没有异常值？",
     "crumbs": [
       "第二篇：看懂并整理保护数据",
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>描述统计与分布</span>"
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>第5章 描述统计与分布</span>"
     ]
   },
   {
     "objectID": "chapters/05-descriptive-statistics.html#正态分布统计学最重要的分布",
     "href": "chapters/05-descriptive-statistics.html#正态分布统计学最重要的分布",
-    "title": "6  描述统计与分布",
-    "section": "7.2 正态分布：统计学最重要的分布",
-    "text": "7.2 正态分布：统计学最重要的分布\n\n\n12| 13|# 正态分布（Normal Distribution） 14| 15|## 定义 16| 17|正态分布（又称高斯分布）是自然界中最常见、统计学中最重要的连续概率分布。由均值 μ 决定中心位置，由标准差 σ 决定离散程度。标准正态分布 μ=0, σ=1。 18| 19|## 直观解释 20| 21|如果你测量1000株同龄同种幼苗的高度，画成直方图——它会是一个中间高、两边低、左右对称的钟形。大多数值集中在均值附近，越远离均值的值越少见。 22| 23|### 68-95-99.7 法则 24| 25|- ±1σ：约 68.27% 的数据落在这个范围 26|- ±2σ：约 95.45% 的数据落在这个范围——这是 α=0.05 的基础 27|- ±3σ：约 99.73% 的数据落在这个范围——超出即被视为异常值 28| 29|## 在生物保护中的例子 30| 31|- 同一树种在相似生境中的胸径通常近似正态分布 32|- 测量误差（如同一个人多次测量树高）通常服从正态分布 33|- 大样本下的样本均值近似正态分布（中心极限定理） 34| 35|## 为什么重要 36| 37|许多统计方法（t检验、ANOVA、回归）都假设数据（或残差）服从正态分布。理解正态分布是理解这些方法的前提。 38| 39|## 教学动画 40| 41|- 正态分布演示动画 — 10秒Canvas动画 42|- 正态分布参考页 — 滚动式教学页面 43| 44|## 相关概念 45| 46|- 描述性统计 47|- P值 — P值是在正态（或t）分布下计算的面积 48|- 显著性水平 — α=0.05即正态分布双侧尾部各2.5% 49|",
+    "title": "第5章 描述统计与分布",
+    "section": "正态分布：统计学最重要的分布",
+    "text": "正态分布：统计学最重要的分布\n\n\n12| 13|# 正态分布（Normal Distribution） 14| 15|## 定义 16| 17|正态分布（又称高斯分布）是自然界中最常见、统计学中最重要的连续概率分布。由均值 μ 决定中心位置，由标准差 σ 决定离散程度。标准正态分布 μ=0, σ=1。 18| 19|## 直观解释 20| 21|如果你测量1000株同龄同种幼苗的高度，画成直方图——它会是一个中间高、两边低、左右对称的钟形。大多数值集中在均值附近，越远离均值的值越少见。 22| 23|### 68-95-99.7 法则 24| 25|- ±1σ：约 68.27% 的数据落在这个范围 26|- ±2σ：约 95.45% 的数据落在这个范围——这是 α=0.05 的基础 27|- ±3σ：约 99.73% 的数据落在这个范围——超出即被视为异常值 28| 29|## 在生物保护中的例子 30| 31|- 同一树种在相似生境中的胸径通常近似正态分布 32|- 测量误差（如同一个人多次测量树高）通常服从正态分布 33|- 大样本下的样本均值近似正态分布（中心极限定理） 34| 35|## 为什么重要 36| 37|许多统计方法（t检验、ANOVA、回归）都假设数据（或残差）服从正态分布。理解正态分布是理解这些方法的前提。 38| 39|## 教学动画 40| 41|- 正态分布演示动画 — 10秒Canvas动画 42|- 正态分布参考页 — 滚动式教学页面 43| 44|## 相关概念 45| 46|- 描述性统计 47|- P值 — P值是在正态（或t）分布下计算的面积 48|- 显著性水平 — α=0.05即正态分布双侧尾部各2.5% 49|",
     "crumbs": [
       "第二篇：看懂并整理保护数据",
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>描述统计与分布</span>"
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>第5章 描述统计与分布</span>"
     ]
   },
   {
     "objectID": "chapters/05-descriptive-statistics.html#r-分析过程",
     "href": "chapters/05-descriptive-statistics.html#r-分析过程",
-    "title": "6  描述统计与分布",
-    "section": "7.3 R 分析过程",
-    "text": "7.3 R 分析过程\n\n\nCode\n# 描述性统计\n# 待补充：均值、中位数、标准差、直方图",
+    "title": "第5章 描述统计与分布",
+    "section": "R 分析过程",
+    "text": "R 分析过程\n\n\nCode\n# 描述性统计\n# 待补充：均值、中位数、标准差、直方图",
     "crumbs": [
       "第二篇：看懂并整理保护数据",
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>描述统计与分布</span>"
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>第5章 描述统计与分布</span>"
     ]
   },
   {
     "objectID": "chapters/05-descriptive-statistics.html#练习",
     "href": "chapters/05-descriptive-statistics.html#练习",
-    "title": "6  描述统计与分布",
-    "section": "7.4 练习",
-    "text": "7.4 练习",
+    "title": "第5章 描述统计与分布",
+    "section": "练习",
+    "text": "练习",
     "crumbs": [
       "第二篇：看懂并整理保护数据",
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>描述统计与分布</span>"
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>第5章 描述统计与分布</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/06-sampling-error.html",
+    "href": "chapters/06-sampling-error.html",
+    "title": "第6章 样本、误差与不确定性",
+    "section": "",
+    "text": "第6章 样本、误差与不确定性",
+    "crumbs": [
+      "第二篇：看懂并整理保护数据",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>第6章 样本、误差与不确定性</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/06-sampling-error.html#本章状态seed",
+    "href": "chapters/06-sampling-error.html#本章状态seed",
+    "title": "第6章 样本、误差与不确定性",
+    "section": "本章状态：seed",
+    "text": "本章状态：seed\n本章内容尚在建设中。以下为本章规划大纲，具体内容将随课程反馈和新案例持续补充。",
+    "crumbs": [
+      "第二篇：看懂并整理保护数据",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>第6章 样本、误差与不确定性</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/06-sampling-error.html#真实保护问题",
+    "href": "chapters/06-sampling-error.html#真实保护问题",
+    "title": "第6章 样本、误差与不确定性",
+    "section": "真实保护问题",
+    "text": "真实保护问题",
+    "crumbs": [
+      "第二篇：看懂并整理保护数据",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>第6章 样本、误差与不确定性</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/06-sampling-error.html#学习目标",
+    "href": "chapters/06-sampling-error.html#学习目标",
+    "title": "第6章 样本、误差与不确定性",
+    "section": "学习目标",
+    "text": "学习目标",
+    "crumbs": [
+      "第二篇：看懂并整理保护数据",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>第6章 样本、误差与不确定性</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/06-sampling-error.html#为什么这个问题需要统计",
+    "href": "chapters/06-sampling-error.html#为什么这个问题需要统计",
+    "title": "第6章 样本、误差与不确定性",
+    "section": "为什么这个问题需要统计",
+    "text": "为什么这个问题需要统计",
+    "crumbs": [
+      "第二篇：看懂并整理保护数据",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>第6章 样本、误差与不确定性</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/06-sampling-error.html#核心概念",
+    "href": "chapters/06-sampling-error.html#核心概念",
+    "title": "第6章 样本、误差与不确定性",
+    "section": "核心概念",
+    "text": "核心概念",
+    "crumbs": [
+      "第二篇：看懂并整理保护数据",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>第6章 样本、误差与不确定性</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/06-sampling-error.html#r-分析过程",
+    "href": "chapters/06-sampling-error.html#r-分析过程",
+    "title": "第6章 样本、误差与不确定性",
+    "section": "R 分析过程",
+    "text": "R 分析过程\n\n\nCode\n# 本章 R 代码示例（待补充）",
+    "crumbs": [
+      "第二篇：看懂并整理保护数据",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>第6章 样本、误差与不确定性</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/06-sampling-error.html#结果解释",
+    "href": "chapters/06-sampling-error.html#结果解释",
+    "title": "第6章 样本、误差与不确定性",
+    "section": "结果解释",
+    "text": "结果解释",
+    "crumbs": [
+      "第二篇：看懂并整理保护数据",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>第6章 样本、误差与不确定性</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/06-sampling-error.html#常见错误",
+    "href": "chapters/06-sampling-error.html#常见错误",
+    "title": "第6章 样本、误差与不确定性",
+    "section": "常见错误",
+    "text": "常见错误",
+    "crumbs": [
+      "第二篇：看懂并整理保护数据",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>第6章 样本、误差与不确定性</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/06-sampling-error.html#ai-辅助任务",
+    "href": "chapters/06-sampling-error.html#ai-辅助任务",
+    "title": "第6章 样本、误差与不确定性",
+    "section": "AI 辅助任务",
+    "text": "AI 辅助任务",
+    "crumbs": [
+      "第二篇：看懂并整理保护数据",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>第6章 样本、误差与不确定性</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/06-sampling-error.html#练习",
+    "href": "chapters/06-sampling-error.html#练习",
+    "title": "第6章 样本、误差与不确定性",
+    "section": "练习",
+    "text": "练习",
+    "crumbs": [
+      "第二篇：看懂并整理保护数据",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>第6章 样本、误差与不确定性</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/06-sampling-error.html#继续学习",
+    "href": "chapters/06-sampling-error.html#继续学习",
+    "title": "第6章 样本、误差与不确定性",
+    "section": "继续学习",
+    "text": "继续学习",
+    "crumbs": [
+      "第二篇：看懂并整理保护数据",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>第6章 样本、误差与不确定性</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/07-data-visualization.html",
+    "href": "chapters/07-data-visualization.html",
+    "title": "第7章 数据可视化",
+    "section": "",
+    "text": "第7章 数据可视化",
+    "crumbs": [
+      "第二篇：看懂并整理保护数据",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>第7章 数据可视化</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/07-data-visualization.html#图表选择指南",
+    "href": "chapters/07-data-visualization.html#图表选择指南",
+    "title": "第7章 数据可视化",
+    "section": "图表选择指南",
+    "text": "图表选择指南\n\n\n\n想展示什么\n推荐图表\n例子\n\n\n\n\n各组均值比较\n柱状图+误差线\n三种药剂的平均害虫数\n\n\n随时间变化趋势\n折线图\n连续5周的虫口密度\n\n\n数据分布形态\n箱线图\n不同林型的树高分布\n\n\n两个连续变量的关系\n散点图\n湿度与病害指数",
+    "crumbs": [
+      "第二篇：看懂并整理保护数据",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>第7章 数据可视化</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/07-data-visualization.html#箱线图怎么读",
+    "href": "chapters/07-data-visualization.html#箱线图怎么读",
+    "title": "第7章 数据可视化",
+    "section": "箱线图怎么读",
+    "text": "箱线图怎么读\n箱线图展示了数据的五数概括：最小值、第一四分位数、中位数、第三四分位数、最大值。中间的粗线是中位数，箱子范围是中间50%的数据。\n\n\n\n\n\n\nTip\n\n\n\n为什么很多期刊不推荐柱状图？ 柱状图只展示均值（一个数字），丢失了数据分布的所有信息。相同的均值可能来自完全不同的数据分布。箱线图或散点图能让你看到数据的”形状”。",
+    "crumbs": [
+      "第二篇：看懂并整理保护数据",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>第7章 数据可视化</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/07-data-visualization.html#图表规范",
+    "href": "chapters/07-data-visualization.html#图表规范",
+    "title": "第7章 数据可视化",
+    "section": "图表规范",
+    "text": "图表规范\n\n图题放在图的下方，编号+描述\n坐标轴必须标注变量名和单位\n误差线必须说明是标准差(SD)还是标准误(SE)",
+    "crumbs": [
+      "第二篇：看懂并整理保护数据",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>第7章 数据可视化</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/07-data-visualization.html#常见错误",
+    "href": "chapters/07-data-visualization.html#常见错误",
+    "title": "第7章 数据可视化",
+    "section": "常见错误",
+    "text": "常见错误\n\n柱状图展示一切——分布形态应该用箱线图\n误差线不标注含义——SD还是SE？\n用3D图表——增加了视觉误导且难以精确读数",
+    "crumbs": [
+      "第二篇：看懂并整理保护数据",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>第7章 数据可视化</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/07-data-visualization.html#练习",
+    "href": "chapters/07-data-visualization.html#练习",
+    "title": "第7章 数据可视化",
+    "section": "练习",
+    "text": "练习\n同一组数据分别画柱状图、箱线图和散点图，比较哪种表达最合适。",
+    "crumbs": [
+      "第二篇：看懂并整理保护数据",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>第7章 数据可视化</span>"
     ]
   },
   {
     "objectID": "chapters/08-two-group-comparison.html",
     "href": "chapters/08-two-group-comparison.html",
-    "title": "9  两组比较",
+    "title": "第8章 两组比较",
     "section": "",
-    "text": "10 两组比较",
+    "text": "第8章 两组比较",
     "crumbs": [
       "第三篇：回答常见保护问题",
-      "<span class='chapter-number'>9</span>  <span class='chapter-title'>两组比较</span>"
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>第8章 两组比较</span>"
     ]
   },
   {
     "objectID": "chapters/08-two-group-comparison.html#真实保护问题",
     "href": "chapters/08-two-group-comparison.html#真实保护问题",
-    "title": "9  两组比较",
-    "section": "10.1 真实保护问题",
-    "text": "10.1 真实保护问题\n施药处理后，害虫数量真的变少了吗？还是只是巧合？",
+    "title": "第8章 两组比较",
+    "section": "真实保护问题",
+    "text": "真实保护问题\n施药处理后，害虫数量真的变少了吗？还是只是巧合？",
     "crumbs": [
       "第三篇：回答常见保护问题",
-      "<span class='chapter-number'>9</span>  <span class='chapter-title'>两组比较</span>"
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>第8章 两组比较</span>"
     ]
   },
   {
     "objectID": "chapters/08-two-group-comparison.html#p-值统计推断的核心",
     "href": "chapters/08-two-group-comparison.html#p-值统计推断的核心",
-    "title": "9  两组比较",
-    "section": "10.2 P 值：统计推断的核心",
-    "text": "10.2 P 值：统计推断的核心\n\n\n\n11| 12|# P 值（P-value） 13| 14|## 定义 15| 16|P 值是在零假设为真的前提下，观察到当前数据（或更极端数据）的概率。 17| 18|- 它不是”零假设为真的概率” 19|- 它不是”处理无效的概率” 20|- 它不是”效应的大小” 21| 22|## 直观解释 23| 24|&gt; 如果只让学生记住一句话：P 值小，说明你看到的数据在”什么都没发生”的世界里不太可能出现——这让你怀疑”什么都没发生”可能不对。但 P 值不告诉你”到底发生了什么”、也不告诉你”效果有多大”。 25| 26|打个比方：你在森林里听到一声吼叫。如果假设”森林里没有老虎”，听到吼叫的 P 值就很小——你会怀疑这个假设。但 P 值不告诉你是一只老虎还是三只老虎，也不告诉你老虎离你多远。 27| 28|## 在生物保护中的例子 29| 30|病虫害防治试验：你在 20 块样地中随机选 10 块施药，10 块做对照。施药后处理组平均虫口密度 3.2 头/株，对照组 5.8 头/株。t 检验得到 P = 0.03。 31| 32|- ✅ P = 0.03 意味着：如果药物真的完全无效（零假设为真），观察到这么大差异的概率只有 3%。 33|- ❌ P = 0.03 不意味着药物有效的概率是 97%。 34|- ❌ P = 0.03 不意味着药物能减少 2.6 头/株（这是效应量的工作）。 35| 36|## 常见误解 37| 38|1. “P &lt; 0.05 就说明处理一定有效” → 错。P 值只是反对零假设的证据强度，不能证明备择假设为真。且 P = 0.049 和 P = 0.051 之间没有本质差异。 39|2. “P 值越小，效应越大” → 错。P 值受样本量影响极大。大样本下微小的效应也能得到很小的 P 值。 40|3. “P &gt; 0.05 就说明没有效应” → 错。可能是样本量太小（统计功效不足），而非真的没有效应。 41|4. “P 值是零假设为真的概率” → 错。这是最根本的误解。P 值是数据在零假设下出现的概率，不是零假设本身的概率。 42| 43|## 相关概念 44| 45|- 显著性水平 — α = 0.05 从哪来？ 46|- 效应量 — P 值不告诉你的东西 47|- 统计功效 — 为什么 P &gt; 0.05 不等于无效 48|- 第一类错误 — P &lt; 0.05 仍然可能犯错 49|- 置信区间 — 比 P 值更丰富的信息 50| 51|## 来源 52| 53|- 学生课堂反馈（2026-06-09）：P 值解释是高频误解来源 54|",
+    "title": "第8章 两组比较",
+    "section": "P 值：统计推断的核心",
+    "text": "P 值：统计推断的核心\n\n\n\n11| 12|# P 值（P-value） 13| 14|## 定义 15| 16|P 值是在零假设为真的前提下，观察到当前数据（或更极端数据）的概率。 17| 18|- 它不是”零假设为真的概率” 19|- 它不是”处理无效的概率” 20|- 它不是”效应的大小” 21| 22|## 直观解释 23| 24|&gt; 如果只让学生记住一句话：P 值小，说明你看到的数据在”什么都没发生”的世界里不太可能出现——这让你怀疑”什么都没发生”可能不对。但 P 值不告诉你”到底发生了什么”、也不告诉你”效果有多大”。 25| 26|打个比方：你在森林里听到一声吼叫。如果假设”森林里没有老虎”，听到吼叫的 P 值就很小——你会怀疑这个假设。但 P 值不告诉你是一只老虎还是三只老虎，也不告诉你老虎离你多远。 27| 28|## 在生物保护中的例子 29| 30|病虫害防治试验：你在 20 块样地中随机选 10 块施药，10 块做对照。施药后处理组平均虫口密度 3.2 头/株，对照组 5.8 头/株。t 检验得到 P = 0.03。 31| 32|- ✅ P = 0.03 意味着：如果药物真的完全无效（零假设为真），观察到这么大差异的概率只有 3%。 33|- ❌ P = 0.03 不意味着药物有效的概率是 97%。 34|- ❌ P = 0.03 不意味着药物能减少 2.6 头/株（这是效应量的工作）。 35| 36|## 常见误解 37| 38|1. “P &lt; 0.05 就说明处理一定有效” → 错。P 值只是反对零假设的证据强度，不能证明备择假设为真。且 P = 0.049 和 P = 0.051 之间没有本质差异。 39|2. “P 值越小，效应越大” → 错。P 值受样本量影响极大。大样本下微小的效应也能得到很小的 P 值。 40|3. “P &gt; 0.05 就说明没有效应” → 错。可能是样本量太小（统计功效不足），而非真的没有效应。 41|4. “P 值是零假设为真的概率” → 错。这是最根本的误解。P 值是数据在零假设下出现的概率，不是零假设本身的概率。 42| 43|## 相关概念 44| 45|- 显著性水平 — α = 0.05 从哪来？ 46|- 效应量 — P 值不告诉你的东西 47|- 统计功效 — 为什么 P &gt; 0.05 不等于无效 48|- 第一类错误 — P &lt; 0.05 仍然可能犯错 49|- 置信区间 — 比 P 值更丰富的信息 50| 51|## 来源 52| 53|- 学生课堂反馈（2026-06-09）：P 值解释是高频误解来源 54|",
     "crumbs": [
       "第三篇：回答常见保护问题",
-      "<span class='chapter-number'>9</span>  <span class='chapter-title'>两组比较</span>"
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>第8章 两组比较</span>"
     ]
   },
   {
     "objectID": "chapters/08-two-group-comparison.html#r-分析过程",
     "href": "chapters/08-two-group-comparison.html#r-分析过程",
-    "title": "9  两组比较",
-    "section": "10.3 R 分析过程",
-    "text": "10.3 R 分析过程\n\n\nCode\n# 独立样本 t 检验示例\n# 待补充：处理组 vs 对照组害虫数量数据",
+    "title": "第8章 两组比较",
+    "section": "R 分析过程",
+    "text": "R 分析过程\n\n\nCode\n# 独立样本 t 检验示例\n# 待补充：处理组 vs 对照组害虫数量数据",
     "crumbs": [
       "第三篇：回答常见保护问题",
-      "<span class='chapter-number'>9</span>  <span class='chapter-title'>两组比较</span>"
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>第8章 两组比较</span>"
     ]
   },
   {
     "objectID": "chapters/08-two-group-comparison.html#常见错误",
     "href": "chapters/08-two-group-comparison.html#常见错误",
-    "title": "9  两组比较",
-    "section": "10.4 常见错误",
-    "text": "10.4 常见错误\n\nP &lt; 0.05 就说明处理一定有效\nP 值越小效应越大\nP &gt; 0.05 就说明没有效应",
+    "title": "第8章 两组比较",
+    "section": "常见错误",
+    "text": "常见错误\n\nP &lt; 0.05 就说明处理一定有效\nP 值越小效应越大\nP &gt; 0.05 就说明没有效应",
     "crumbs": [
       "第三篇：回答常见保护问题",
-      "<span class='chapter-number'>9</span>  <span class='chapter-title'>两组比较</span>"
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>第8章 两组比较</span>"
     ]
   },
   {
     "objectID": "chapters/08-two-group-comparison.html#练习",
     "href": "chapters/08-two-group-comparison.html#练习",
-    "title": "9  两组比较",
-    "section": "10.5 练习",
-    "text": "10.5 练习",
+    "title": "第8章 两组比较",
+    "section": "练习",
+    "text": "练习",
     "crumbs": [
       "第三篇：回答常见保护问题",
-      "<span class='chapter-number'>9</span>  <span class='chapter-title'>两组比较</span>"
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>第8章 两组比较</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/09-anova.html",
+    "href": "chapters/09-anova.html",
+    "title": "第9章 多组比较与方差分析",
+    "section": "",
+    "text": "第9章 多组比较与方差分析",
+    "crumbs": [
+      "第三篇：回答常见保护问题",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>第9章 多组比较与方差分析</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/09-anova.html#真实保护问题",
+    "href": "chapters/09-anova.html#真实保护问题",
+    "title": "第9章 多组比较与方差分析",
+    "section": "真实保护问题",
+    "text": "真实保护问题\n你测试了三种药剂对病害指数的影响，每种药剂处理30株苗。药剂A平均病害指数2.1，药剂B为3.5，药剂C为4.8。三组之间有差异吗？哪种最好？",
+    "crumbs": [
+      "第三篇：回答常见保护问题",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>第9章 多组比较与方差分析</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/09-anova.html#为什么不能做三次t检验",
+    "href": "chapters/09-anova.html#为什么不能做三次t检验",
+    "title": "第9章 多组比较与方差分析",
+    "section": "为什么不能做三次t检验？",
+    "text": "为什么不能做三次t检验？\n如果你做三次t检验（A vs B, B vs C, A vs C），每次用α=0.05，三次都不犯第一类错误的概率是 0.95³ = 0.857。也就是说，你有14.3%的概率至少犯一次第一类错误——远高于你以为的5%。\n方差分析（ANOVA）用一个F检验同时比较所有组，把第一类错误率控制在α水平。",
+    "crumbs": [
+      "第三篇：回答常见保护问题",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>第9章 多组比较与方差分析</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/09-anova.html#方差分析的基本思路",
+    "href": "chapters/09-anova.html#方差分析的基本思路",
+    "title": "第9章 多组比较与方差分析",
+    "section": "方差分析的基本思路",
+    "text": "方差分析的基本思路\nANOVA将总变异分解为两部分：\n\n组间变异：处理之间的差异\n组内变异：同一处理组内部的个体差异\n\nF = 组间变异 / 组内变异。如果F很大，说明组间差异远大于随机误差，处理效应可能存在。",
+    "crumbs": [
+      "第三篇：回答常见保护问题",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>第9章 多组比较与方差分析</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/09-anova.html#总体差异-vs-两两比较",
+    "href": "chapters/09-anova.html#总体差异-vs-两两比较",
+    "title": "第9章 多组比较与方差分析",
+    "section": "总体差异 vs 两两比较",
+    "text": "总体差异 vs 两两比较\nANOVA的F检验只告诉你”至少有一组不同”，不告诉你是谁和谁不同。需要事后检验（Post-hoc test，如Tukey HSD）来做两两比较。\n\n\n\n\n\n\nImportant\n\n\n\n分析顺序：先看F检验（总体差异是否显著）→ 如果显著，再做两两比较。如果F不显著，不要做两两比较。",
+    "crumbs": [
+      "第三篇：回答常见保护问题",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>第9章 多组比较与方差分析</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/09-anova.html#前提假设",
+    "href": "chapters/09-anova.html#前提假设",
+    "title": "第9章 多组比较与方差分析",
+    "section": "前提假设",
+    "text": "前提假设\n\n各组数据独立\n各组数据近似正态分布\n各组方差齐性（Levene检验）",
+    "crumbs": [
+      "第三篇：回答常见保护问题",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>第9章 多组比较与方差分析</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/09-anova.html#常见错误",
+    "href": "chapters/09-anova.html#常见错误",
+    "title": "第9章 多组比较与方差分析",
+    "section": "常见错误",
+    "text": "常见错误\n\n多组比较做多次t检验\nF显著就不看效应量\n忽略方差齐性假设",
+    "crumbs": [
+      "第三篇：回答常见保护问题",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>第9章 多组比较与方差分析</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/09-anova.html#练习",
+    "href": "chapters/09-anova.html#练习",
+    "title": "第9章 多组比较与方差分析",
+    "section": "练习",
+    "text": "练习\n比较三种防治方法对病害指数的影响。数据中有4组（含对照组），每组25个观测值。应该用什么方法？写出分析步骤。",
+    "crumbs": [
+      "第三篇：回答常见保护问题",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>第9章 多组比较与方差分析</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/10-categorical-data.html",
+    "href": "chapters/10-categorical-data.html",
+    "title": "第10章 分类与比例数据",
+    "section": "",
+    "text": "第10章 分类与比例数据",
+    "crumbs": [
+      "第三篇：回答常见保护问题",
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>第10章 分类与比例数据</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/10-categorical-data.html#真实保护问题",
+    "href": "chapters/10-categorical-data.html#真实保护问题",
+    "title": "第10章 分类与比例数据",
+    "section": "真实保护问题",
+    "text": "真实保护问题\n两种杀菌剂处理后，药剂A的幼苗存活率85%，药剂B为78%。差异是真的还是碰巧？\n这是比例数据的比较问题——不能用t检验。",
+    "crumbs": [
+      "第三篇：回答常见保护问题",
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>第10章 分类与比例数据</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/10-categorical-data.html#为什么比例数据不能当连续数据分析",
+    "href": "chapters/10-categorical-data.html#为什么比例数据不能当连续数据分析",
+    "title": "第10章 分类与比例数据",
+    "section": "为什么比例数据不能当连续数据分析",
+    "text": "为什么比例数据不能当连续数据分析\n比例数据的三个特点： 1. 值域有界（0-1或0%-100%） 2. 方差依赖于均值（接近0%或100%时方差趋近于0） 3. 数据是”成功/失败”的计数，不是连续测量",
+    "crumbs": [
+      "第三篇：回答常见保护问题",
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>第10章 分类与比例数据</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/10-categorical-data.html#卡方检验",
+    "href": "chapters/10-categorical-data.html#卡方检验",
+    "title": "第10章 分类与比例数据",
+    "section": "卡方检验",
+    "text": "卡方检验\n卡方检验比较观测频数和期望频数。适用于分类变量之间的关联分析。\n适用条件：期望频数小于5的格子不超过20%。",
+    "crumbs": [
+      "第三篇：回答常见保护问题",
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>第10章 分类与比例数据</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/10-categorical-data.html#fisher精确检验",
+    "href": "chapters/10-categorical-data.html#fisher精确检验",
+    "title": "第10章 分类与比例数据",
+    "section": "Fisher精确检验",
+    "text": "Fisher精确检验\n当样本量小、期望频数不满足卡方条件时使用。不依赖大样本近似，直接计算精确概率。",
+    "crumbs": [
+      "第三篇：回答常见保护问题",
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>第10章 分类与比例数据</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/10-categorical-data.html#列联表",
+    "href": "chapters/10-categorical-data.html#列联表",
+    "title": "第10章 分类与比例数据",
+    "section": "列联表",
+    "text": "列联表\n\n\n\n处理\n存活\n死亡\n合计\n存活率\n\n\n\n\n药剂A\n85\n15\n100\n85%\n\n\n药剂B\n78\n22\n100\n78%\n\n\n合计\n163\n37\n200\n81.5%",
+    "crumbs": [
+      "第三篇：回答常见保护问题",
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>第10章 分类与比例数据</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/10-categorical-data.html#效应量优势比和相对风险",
+    "href": "chapters/10-categorical-data.html#效应量优势比和相对风险",
+    "title": "第10章 分类与比例数据",
+    "section": "效应量：优势比和相对风险",
+    "text": "效应量：优势比和相对风险\n\n优势比(OR)：药剂A的存活优势是B的多少倍\n相对风险(RR)：药剂A相对于B的存活率比值",
+    "crumbs": [
+      "第三篇：回答常见保护问题",
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>第10章 分类与比例数据</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/10-categorical-data.html#常见错误",
+    "href": "chapters/10-categorical-data.html#常见错误",
+    "title": "第10章 分类与比例数据",
+    "section": "常见错误",
+    "text": "常见错误\n\n把比例数据当连续数据，用t检验\n忽略期望频数条件\n卡方显著但不知道差异方向（要回到列联表看百分比）",
+    "crumbs": [
+      "第三篇：回答常见保护问题",
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>第10章 分类与比例数据</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/10-categorical-data.html#练习",
+    "href": "chapters/10-categorical-data.html#练习",
+    "title": "第10章 分类与比例数据",
+    "section": "练习",
+    "text": "练习\n不同处理下植物发病率的比较——选择合适的方法并解释结果。",
+    "crumbs": [
+      "第三篇：回答常见保护问题",
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>第10章 分类与比例数据</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/11-correlation-regression.html",
+    "href": "chapters/11-correlation-regression.html",
+    "title": "第11章 相关与线性回归",
+    "section": "",
+    "text": "第11章 相关与线性回归",
+    "crumbs": [
+      "第三篇：回答常见保护问题",
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>第11章 相关与线性回归</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/11-correlation-regression.html#相关分析",
+    "href": "chapters/11-correlation-regression.html#相关分析",
+    "title": "第11章 相关与线性回归",
+    "section": "相关分析",
+    "text": "相关分析\n\n相关系数\nPearson相关系数 r 衡量两个连续变量之间线性关系的强度和方向。r ∈ [-1, 1]。\n\nr &gt; 0：正相关（X增大，Y也增大）\nr &lt; 0：负相关（X增大，Y减小）\nr ≈ 0：无线性相关\n\n\n\n相关 ≠ 因果\n这是统计学最核心的教训之一。两个变量高度相关，不代表一个导致了另一个。\n\n\n\n\n\n\nWarning\n\n\n\n经典反例：冰激凌销量与溺水人数高度正相关。但吃冰激凌不会导致溺水——真正的原因是”夏季气温高”同时导致了冰激凌销量增加和更多人游泳。\n\n\n在保护生物学中的陷阱：发现游客数量与野生动物出现频次呈负相关→不能直接说”游客吓跑了动物”——也可能是游客多的季节恰好是动物繁殖期。",
+    "crumbs": [
+      "第三篇：回答常见保护问题",
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>第11章 相关与线性回归</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/11-correlation-regression.html#简单线性回归",
+    "href": "chapters/11-correlation-regression.html#简单线性回归",
+    "title": "第11章 相关与线性回归",
+    "section": "简单线性回归",
+    "text": "简单线性回归\n回归分析用一个变量（自变量X）解释或预测另一个变量（因变量Y）的变化。\n回归系数β：X每增加1个单位，Y平均变化β个单位。\nR²：模型解释的变异比例。R²=0.7表示模型解释了Y的70%变异。",
+    "crumbs": [
+      "第三篇：回答常见保护问题",
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>第11章 相关与线性回归</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/11-correlation-regression.html#两种方法的区别",
+    "href": "chapters/11-correlation-regression.html#两种方法的区别",
+    "title": "第11章 相关与线性回归",
+    "section": "两种方法的区别",
+    "text": "两种方法的区别\n\n\n\n\n相关分析\n回归分析\n\n\n\n\n目的\n衡量关系强度\n解释/预测\n\n\n方向\n对称（X和Y地位相同）\n不对称（Y是被解释变量）\n\n\n输出\nr\nβ, R², P值",
+    "crumbs": [
+      "第三篇：回答常见保护问题",
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>第11章 相关与线性回归</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/11-correlation-regression.html#常见错误",
+    "href": "chapters/11-correlation-regression.html#常见错误",
+    "title": "第11章 相关与线性回归",
+    "section": "常见错误",
+    "text": "常见错误\n\n相关显著就声称因果\n回归显著但R²极低（&lt;0.1）仍声称”有重要影响”\n不检查残差就报告回归结果",
+    "crumbs": [
+      "第三篇：回答常见保护问题",
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>第11章 相关与线性回归</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/11-correlation-regression.html#练习",
+    "href": "chapters/11-correlation-regression.html#练习",
+    "title": "第11章 相关与线性回归",
+    "section": "练习",
+    "text": "练习\n分析温度与虫口密度的关系。画出散点图，计算相关系数和回归线。",
+    "crumbs": [
+      "第三篇：回答常见保护问题",
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>第11章 相关与线性回归</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/12-glm-intro.html",
+    "href": "chapters/12-glm-intro.html",
+    "title": "第12章 从线性模型走向广义线性模型",
+    "section": "",
+    "text": "第12章 从线性模型走向广义线性模型",
+    "crumbs": [
+      "第三篇：回答常见保护问题",
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>第12章 从线性模型走向广义线性模型</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/12-glm-intro.html#本章状态seed",
+    "href": "chapters/12-glm-intro.html#本章状态seed",
+    "title": "第12章 从线性模型走向广义线性模型",
+    "section": "本章状态：seed",
+    "text": "本章状态：seed\n本章内容尚在建设中。以下为本章规划大纲，具体内容将随课程反馈和新案例持续补充。",
+    "crumbs": [
+      "第三篇：回答常见保护问题",
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>第12章 从线性模型走向广义线性模型</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/12-glm-intro.html#真实保护问题",
+    "href": "chapters/12-glm-intro.html#真实保护问题",
+    "title": "第12章 从线性模型走向广义线性模型",
+    "section": "真实保护问题",
+    "text": "真实保护问题",
+    "crumbs": [
+      "第三篇：回答常见保护问题",
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>第12章 从线性模型走向广义线性模型</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/12-glm-intro.html#学习目标",
+    "href": "chapters/12-glm-intro.html#学习目标",
+    "title": "第12章 从线性模型走向广义线性模型",
+    "section": "学习目标",
+    "text": "学习目标",
+    "crumbs": [
+      "第三篇：回答常见保护问题",
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>第12章 从线性模型走向广义线性模型</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/12-glm-intro.html#为什么这个问题需要统计",
+    "href": "chapters/12-glm-intro.html#为什么这个问题需要统计",
+    "title": "第12章 从线性模型走向广义线性模型",
+    "section": "为什么这个问题需要统计",
+    "text": "为什么这个问题需要统计",
+    "crumbs": [
+      "第三篇：回答常见保护问题",
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>第12章 从线性模型走向广义线性模型</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/12-glm-intro.html#核心概念",
+    "href": "chapters/12-glm-intro.html#核心概念",
+    "title": "第12章 从线性模型走向广义线性模型",
+    "section": "核心概念",
+    "text": "核心概念",
+    "crumbs": [
+      "第三篇：回答常见保护问题",
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>第12章 从线性模型走向广义线性模型</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/12-glm-intro.html#r-分析过程",
+    "href": "chapters/12-glm-intro.html#r-分析过程",
+    "title": "第12章 从线性模型走向广义线性模型",
+    "section": "R 分析过程",
+    "text": "R 分析过程\n\n\nCode\n# 本章 R 代码示例（待补充）",
+    "crumbs": [
+      "第三篇：回答常见保护问题",
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>第12章 从线性模型走向广义线性模型</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/12-glm-intro.html#结果解释",
+    "href": "chapters/12-glm-intro.html#结果解释",
+    "title": "第12章 从线性模型走向广义线性模型",
+    "section": "结果解释",
+    "text": "结果解释",
+    "crumbs": [
+      "第三篇：回答常见保护问题",
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>第12章 从线性模型走向广义线性模型</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/12-glm-intro.html#常见错误",
+    "href": "chapters/12-glm-intro.html#常见错误",
+    "title": "第12章 从线性模型走向广义线性模型",
+    "section": "常见错误",
+    "text": "常见错误",
+    "crumbs": [
+      "第三篇：回答常见保护问题",
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>第12章 从线性模型走向广义线性模型</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/12-glm-intro.html#ai-辅助任务",
+    "href": "chapters/12-glm-intro.html#ai-辅助任务",
+    "title": "第12章 从线性模型走向广义线性模型",
+    "section": "AI 辅助任务",
+    "text": "AI 辅助任务",
+    "crumbs": [
+      "第三篇：回答常见保护问题",
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>第12章 从线性模型走向广义线性模型</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/12-glm-intro.html#练习",
+    "href": "chapters/12-glm-intro.html#练习",
+    "title": "第12章 从线性模型走向广义线性模型",
+    "section": "练习",
+    "text": "练习",
+    "crumbs": [
+      "第三篇：回答常见保护问题",
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>第12章 从线性模型走向广义线性模型</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/12-glm-intro.html#继续学习",
+    "href": "chapters/12-glm-intro.html#继续学习",
+    "title": "第12章 从线性模型走向广义线性模型",
+    "section": "继续学习",
+    "text": "继续学习",
+    "crumbs": [
+      "第三篇：回答常见保护问题",
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>第12章 从线性模型走向广义线性模型</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/13-forest-plant-protection.html",
+    "href": "chapters/13-forest-plant-protection.html",
+    "title": "第13章 森林与植物保护研究",
+    "section": "",
+    "text": "第13章 森林与植物保护研究",
+    "crumbs": [
+      "第四篇：保护专业应用",
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>第13章 森林与植物保护研究</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/13-forest-plant-protection.html#本章状态seed",
+    "href": "chapters/13-forest-plant-protection.html#本章状态seed",
+    "title": "第13章 森林与植物保护研究",
+    "section": "本章状态：seed",
+    "text": "本章状态：seed\n本章内容尚在建设中。以下为本章规划大纲，具体内容将随课程反馈和新案例持续补充。",
+    "crumbs": [
+      "第四篇：保护专业应用",
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>第13章 森林与植物保护研究</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/13-forest-plant-protection.html#真实保护问题",
+    "href": "chapters/13-forest-plant-protection.html#真实保护问题",
+    "title": "第13章 森林与植物保护研究",
+    "section": "真实保护问题",
+    "text": "真实保护问题",
+    "crumbs": [
+      "第四篇：保护专业应用",
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>第13章 森林与植物保护研究</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/13-forest-plant-protection.html#学习目标",
+    "href": "chapters/13-forest-plant-protection.html#学习目标",
+    "title": "第13章 森林与植物保护研究",
+    "section": "学习目标",
+    "text": "学习目标",
+    "crumbs": [
+      "第四篇：保护专业应用",
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>第13章 森林与植物保护研究</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/13-forest-plant-protection.html#为什么这个问题需要统计",
+    "href": "chapters/13-forest-plant-protection.html#为什么这个问题需要统计",
+    "title": "第13章 森林与植物保护研究",
+    "section": "为什么这个问题需要统计",
+    "text": "为什么这个问题需要统计",
+    "crumbs": [
+      "第四篇：保护专业应用",
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>第13章 森林与植物保护研究</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/13-forest-plant-protection.html#核心概念",
+    "href": "chapters/13-forest-plant-protection.html#核心概念",
+    "title": "第13章 森林与植物保护研究",
+    "section": "核心概念",
+    "text": "核心概念",
+    "crumbs": [
+      "第四篇：保护专业应用",
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>第13章 森林与植物保护研究</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/13-forest-plant-protection.html#r-分析过程",
+    "href": "chapters/13-forest-plant-protection.html#r-分析过程",
+    "title": "第13章 森林与植物保护研究",
+    "section": "R 分析过程",
+    "text": "R 分析过程\n\n\nCode\n# 本章 R 代码示例（待补充）",
+    "crumbs": [
+      "第四篇：保护专业应用",
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>第13章 森林与植物保护研究</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/13-forest-plant-protection.html#结果解释",
+    "href": "chapters/13-forest-plant-protection.html#结果解释",
+    "title": "第13章 森林与植物保护研究",
+    "section": "结果解释",
+    "text": "结果解释",
+    "crumbs": [
+      "第四篇：保护专业应用",
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>第13章 森林与植物保护研究</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/13-forest-plant-protection.html#常见错误",
+    "href": "chapters/13-forest-plant-protection.html#常见错误",
+    "title": "第13章 森林与植物保护研究",
+    "section": "常见错误",
+    "text": "常见错误",
+    "crumbs": [
+      "第四篇：保护专业应用",
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>第13章 森林与植物保护研究</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/13-forest-plant-protection.html#ai-辅助任务",
+    "href": "chapters/13-forest-plant-protection.html#ai-辅助任务",
+    "title": "第13章 森林与植物保护研究",
+    "section": "AI 辅助任务",
+    "text": "AI 辅助任务",
+    "crumbs": [
+      "第四篇：保护专业应用",
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>第13章 森林与植物保护研究</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/13-forest-plant-protection.html#练习",
+    "href": "chapters/13-forest-plant-protection.html#练习",
+    "title": "第13章 森林与植物保护研究",
+    "section": "练习",
+    "text": "练习",
+    "crumbs": [
+      "第四篇：保护专业应用",
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>第13章 森林与植物保护研究</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/13-forest-plant-protection.html#继续学习",
+    "href": "chapters/13-forest-plant-protection.html#继续学习",
+    "title": "第13章 森林与植物保护研究",
+    "section": "继续学习",
+    "text": "继续学习",
+    "crumbs": [
+      "第四篇：保护专业应用",
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>第13章 森林与植物保护研究</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/14-wildlife-survey.html",
+    "href": "chapters/14-wildlife-survey.html",
+    "title": "第14章 野生动物调查与监测",
+    "section": "",
+    "text": "第14章 野生动物调查与监测",
+    "crumbs": [
+      "第四篇：保护专业应用",
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>第14章 野生动物调查与监测</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/14-wildlife-survey.html#本章状态seed",
+    "href": "chapters/14-wildlife-survey.html#本章状态seed",
+    "title": "第14章 野生动物调查与监测",
+    "section": "本章状态：seed",
+    "text": "本章状态：seed\n本章内容尚在建设中。以下为本章规划大纲，具体内容将随课程反馈和新案例持续补充。",
+    "crumbs": [
+      "第四篇：保护专业应用",
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>第14章 野生动物调查与监测</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/14-wildlife-survey.html#真实保护问题",
+    "href": "chapters/14-wildlife-survey.html#真实保护问题",
+    "title": "第14章 野生动物调查与监测",
+    "section": "真实保护问题",
+    "text": "真实保护问题",
+    "crumbs": [
+      "第四篇：保护专业应用",
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>第14章 野生动物调查与监测</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/14-wildlife-survey.html#学习目标",
+    "href": "chapters/14-wildlife-survey.html#学习目标",
+    "title": "第14章 野生动物调查与监测",
+    "section": "学习目标",
+    "text": "学习目标",
+    "crumbs": [
+      "第四篇：保护专业应用",
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>第14章 野生动物调查与监测</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/14-wildlife-survey.html#为什么这个问题需要统计",
+    "href": "chapters/14-wildlife-survey.html#为什么这个问题需要统计",
+    "title": "第14章 野生动物调查与监测",
+    "section": "为什么这个问题需要统计",
+    "text": "为什么这个问题需要统计",
+    "crumbs": [
+      "第四篇：保护专业应用",
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>第14章 野生动物调查与监测</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/14-wildlife-survey.html#核心概念",
+    "href": "chapters/14-wildlife-survey.html#核心概念",
+    "title": "第14章 野生动物调查与监测",
+    "section": "核心概念",
+    "text": "核心概念",
+    "crumbs": [
+      "第四篇：保护专业应用",
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>第14章 野生动物调查与监测</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/14-wildlife-survey.html#r-分析过程",
+    "href": "chapters/14-wildlife-survey.html#r-分析过程",
+    "title": "第14章 野生动物调查与监测",
+    "section": "R 分析过程",
+    "text": "R 分析过程\n\n\nCode\n# 本章 R 代码示例（待补充）",
+    "crumbs": [
+      "第四篇：保护专业应用",
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>第14章 野生动物调查与监测</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/14-wildlife-survey.html#结果解释",
+    "href": "chapters/14-wildlife-survey.html#结果解释",
+    "title": "第14章 野生动物调查与监测",
+    "section": "结果解释",
+    "text": "结果解释",
+    "crumbs": [
+      "第四篇：保护专业应用",
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>第14章 野生动物调查与监测</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/14-wildlife-survey.html#常见错误",
+    "href": "chapters/14-wildlife-survey.html#常见错误",
+    "title": "第14章 野生动物调查与监测",
+    "section": "常见错误",
+    "text": "常见错误",
+    "crumbs": [
+      "第四篇：保护专业应用",
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>第14章 野生动物调查与监测</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/14-wildlife-survey.html#ai-辅助任务",
+    "href": "chapters/14-wildlife-survey.html#ai-辅助任务",
+    "title": "第14章 野生动物调查与监测",
+    "section": "AI 辅助任务",
+    "text": "AI 辅助任务",
+    "crumbs": [
+      "第四篇：保护专业应用",
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>第14章 野生动物调查与监测</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/14-wildlife-survey.html#练习",
+    "href": "chapters/14-wildlife-survey.html#练习",
+    "title": "第14章 野生动物调查与监测",
+    "section": "练习",
+    "text": "练习",
+    "crumbs": [
+      "第四篇：保护专业应用",
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>第14章 野生动物调查与监测</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/14-wildlife-survey.html#继续学习",
+    "href": "chapters/14-wildlife-survey.html#继续学习",
+    "title": "第14章 野生动物调查与监测",
+    "section": "继续学习",
+    "text": "继续学习",
+    "crumbs": [
+      "第四篇：保护专业应用",
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>第14章 野生动物调查与监测</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/15-biodiversity-data.html",
+    "href": "chapters/15-biodiversity-data.html",
+    "title": "第15章 生物多样性与群落数据",
+    "section": "",
+    "text": "第15章 生物多样性与群落数据",
+    "crumbs": [
+      "第四篇：保护专业应用",
+      "<span class='chapter-number'>16</span>  <span class='chapter-title'>第15章 生物多样性与群落数据</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/15-biodiversity-data.html#真实保护问题",
+    "href": "chapters/15-biodiversity-data.html#真实保护问题",
+    "title": "第15章 生物多样性与群落数据",
+    "section": "真实保护问题",
+    "text": "真实保护问题\n你调查了两个样地的鸟类群落。样地A有12种鸟共240只，样地B也有12种鸟共240只。两个样地的多样性一样吗？\n不一定。 如果样地A每种约20只（均匀分布），样地B有1种210只、其余11种共30只（极不均匀），那么样地A的多样性远高于样地B。",
+    "crumbs": [
+      "第四篇：保护专业应用",
+      "<span class='chapter-number'>16</span>  <span class='chapter-title'>第15章 生物多样性与群落数据</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/15-biodiversity-data.html#核心指标",
+    "href": "chapters/15-biodiversity-data.html#核心指标",
+    "title": "第15章 生物多样性与群落数据",
+    "section": "核心指标",
+    "text": "核心指标\n\n物种丰富度（Species Richness, S）\n样地中的物种数量。简单直观，但完全忽略了均匀度。\n\n\nShannon指数（Shannon Index, H’）\n同时考虑物种数和均匀度。H’越高，多样性越高。\n\n\n均匀度（Evenness, J）\n个体数量在各物种间的分布均匀程度。J=1表示完全均匀。",
+    "crumbs": [
+      "第四篇：保护专业应用",
+      "<span class='chapter-number'>16</span>  <span class='chapter-title'>第15章 生物多样性与群落数据</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/15-biodiversity-data.html#关键注意事项",
+    "href": "chapters/15-biodiversity-data.html#关键注意事项",
+    "title": "第15章 生物多样性与群落数据",
+    "section": "关键注意事项",
+    "text": "关键注意事项\n\n调查努力量\n不同样地的调查努力量不同（如红外相机工作天数不同、样线长度不同），直接比较物种数会得出错误结论。需要使用稀疏曲线（Rarefaction Curve）标准化。\n\n\n没有记录 ≠ 不存在\n一次调查没有发现某个物种，不代表该物种不存在——可能只是未被检测到。这引出了检测概率（Detection Probability）的概念。",
+    "crumbs": [
+      "第四篇：保护专业应用",
+      "<span class='chapter-number'>16</span>  <span class='chapter-title'>第15章 生物多样性与群落数据</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/15-biodiversity-data.html#常见错误",
+    "href": "chapters/15-biodiversity-data.html#常见错误",
+    "title": "第15章 生物多样性与群落数据",
+    "section": "常见错误",
+    "text": "常见错误\n\n只看丰富度不看均匀度\n调查努力量不同的样地直接比较\n拿一次调查的物种数当绝对数字",
+    "crumbs": [
+      "第四篇：保护专业应用",
+      "<span class='chapter-number'>16</span>  <span class='chapter-title'>第15章 生物多样性与群落数据</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/15-biodiversity-data.html#练习",
+    "href": "chapters/15-biodiversity-data.html#练习",
+    "title": "第15章 生物多样性与群落数据",
+    "section": "练习",
+    "text": "练习\n比较两个样地的鸟类多样性数据。计算丰富度、Shannon指数和均匀度。如果调查努力量不同，如何修正？",
+    "crumbs": [
+      "第四篇：保护专业应用",
+      "<span class='chapter-number'>16</span>  <span class='chapter-title'>第15章 生物多样性与群落数据</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/16-treatment-evaluation.html",
+    "href": "chapters/16-treatment-evaluation.html",
+    "title": "第16章 措施效果与保护评估",
+    "section": "",
+    "text": "第16章 措施效果与保护评估",
+    "crumbs": [
+      "第四篇：保护专业应用",
+      "<span class='chapter-number'>17</span>  <span class='chapter-title'>第16章 措施效果与保护评估</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/16-treatment-evaluation.html#本章状态seed",
+    "href": "chapters/16-treatment-evaluation.html#本章状态seed",
+    "title": "第16章 措施效果与保护评估",
+    "section": "本章状态：seed",
+    "text": "本章状态：seed\n本章内容尚在建设中。以下为本章规划大纲，具体内容将随课程反馈和新案例持续补充。",
+    "crumbs": [
+      "第四篇：保护专业应用",
+      "<span class='chapter-number'>17</span>  <span class='chapter-title'>第16章 措施效果与保护评估</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/16-treatment-evaluation.html#真实保护问题",
+    "href": "chapters/16-treatment-evaluation.html#真实保护问题",
+    "title": "第16章 措施效果与保护评估",
+    "section": "真实保护问题",
+    "text": "真实保护问题",
+    "crumbs": [
+      "第四篇：保护专业应用",
+      "<span class='chapter-number'>17</span>  <span class='chapter-title'>第16章 措施效果与保护评估</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/16-treatment-evaluation.html#学习目标",
+    "href": "chapters/16-treatment-evaluation.html#学习目标",
+    "title": "第16章 措施效果与保护评估",
+    "section": "学习目标",
+    "text": "学习目标",
+    "crumbs": [
+      "第四篇：保护专业应用",
+      "<span class='chapter-number'>17</span>  <span class='chapter-title'>第16章 措施效果与保护评估</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/16-treatment-evaluation.html#为什么这个问题需要统计",
+    "href": "chapters/16-treatment-evaluation.html#为什么这个问题需要统计",
+    "title": "第16章 措施效果与保护评估",
+    "section": "为什么这个问题需要统计",
+    "text": "为什么这个问题需要统计",
+    "crumbs": [
+      "第四篇：保护专业应用",
+      "<span class='chapter-number'>17</span>  <span class='chapter-title'>第16章 措施效果与保护评估</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/16-treatment-evaluation.html#核心概念",
+    "href": "chapters/16-treatment-evaluation.html#核心概念",
+    "title": "第16章 措施效果与保护评估",
+    "section": "核心概念",
+    "text": "核心概念",
+    "crumbs": [
+      "第四篇：保护专业应用",
+      "<span class='chapter-number'>17</span>  <span class='chapter-title'>第16章 措施效果与保护评估</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/16-treatment-evaluation.html#r-分析过程",
+    "href": "chapters/16-treatment-evaluation.html#r-分析过程",
+    "title": "第16章 措施效果与保护评估",
+    "section": "R 分析过程",
+    "text": "R 分析过程\n\n\nCode\n# 本章 R 代码示例（待补充）",
+    "crumbs": [
+      "第四篇：保护专业应用",
+      "<span class='chapter-number'>17</span>  <span class='chapter-title'>第16章 措施效果与保护评估</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/16-treatment-evaluation.html#结果解释",
+    "href": "chapters/16-treatment-evaluation.html#结果解释",
+    "title": "第16章 措施效果与保护评估",
+    "section": "结果解释",
+    "text": "结果解释",
+    "crumbs": [
+      "第四篇：保护专业应用",
+      "<span class='chapter-number'>17</span>  <span class='chapter-title'>第16章 措施效果与保护评估</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/16-treatment-evaluation.html#常见错误",
+    "href": "chapters/16-treatment-evaluation.html#常见错误",
+    "title": "第16章 措施效果与保护评估",
+    "section": "常见错误",
+    "text": "常见错误",
+    "crumbs": [
+      "第四篇：保护专业应用",
+      "<span class='chapter-number'>17</span>  <span class='chapter-title'>第16章 措施效果与保护评估</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/16-treatment-evaluation.html#ai-辅助任务",
+    "href": "chapters/16-treatment-evaluation.html#ai-辅助任务",
+    "title": "第16章 措施效果与保护评估",
+    "section": "AI 辅助任务",
+    "text": "AI 辅助任务",
+    "crumbs": [
+      "第四篇：保护专业应用",
+      "<span class='chapter-number'>17</span>  <span class='chapter-title'>第16章 措施效果与保护评估</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/16-treatment-evaluation.html#练习",
+    "href": "chapters/16-treatment-evaluation.html#练习",
+    "title": "第16章 措施效果与保护评估",
+    "section": "练习",
+    "text": "练习",
+    "crumbs": [
+      "第四篇：保护专业应用",
+      "<span class='chapter-number'>17</span>  <span class='chapter-title'>第16章 措施效果与保护评估</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/16-treatment-evaluation.html#继续学习",
+    "href": "chapters/16-treatment-evaluation.html#继续学习",
+    "title": "第16章 措施效果与保护评估",
+    "section": "继续学习",
+    "text": "继续学习",
+    "crumbs": [
+      "第四篇：保护专业应用",
+      "<span class='chapter-number'>17</span>  <span class='chapter-title'>第16章 措施效果与保护评估</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/17-stats-to-action.html",
+    "href": "chapters/17-stats-to-action.html",
+    "title": "第17章 从统计结果到保护行动",
+    "section": "",
+    "text": "第17章 从统计结果到保护行动",
+    "crumbs": [
+      "第四篇：保护专业应用",
+      "<span class='chapter-number'>18</span>  <span class='chapter-title'>第17章 从统计结果到保护行动</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/17-stats-to-action.html#本章状态seed",
+    "href": "chapters/17-stats-to-action.html#本章状态seed",
+    "title": "第17章 从统计结果到保护行动",
+    "section": "本章状态：seed",
+    "text": "本章状态：seed\n本章内容尚在建设中。以下为本章规划大纲，具体内容将随课程反馈和新案例持续补充。",
+    "crumbs": [
+      "第四篇：保护专业应用",
+      "<span class='chapter-number'>18</span>  <span class='chapter-title'>第17章 从统计结果到保护行动</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/17-stats-to-action.html#真实保护问题",
+    "href": "chapters/17-stats-to-action.html#真实保护问题",
+    "title": "第17章 从统计结果到保护行动",
+    "section": "真实保护问题",
+    "text": "真实保护问题",
+    "crumbs": [
+      "第四篇：保护专业应用",
+      "<span class='chapter-number'>18</span>  <span class='chapter-title'>第17章 从统计结果到保护行动</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/17-stats-to-action.html#学习目标",
+    "href": "chapters/17-stats-to-action.html#学习目标",
+    "title": "第17章 从统计结果到保护行动",
+    "section": "学习目标",
+    "text": "学习目标",
+    "crumbs": [
+      "第四篇：保护专业应用",
+      "<span class='chapter-number'>18</span>  <span class='chapter-title'>第17章 从统计结果到保护行动</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/17-stats-to-action.html#为什么这个问题需要统计",
+    "href": "chapters/17-stats-to-action.html#为什么这个问题需要统计",
+    "title": "第17章 从统计结果到保护行动",
+    "section": "为什么这个问题需要统计",
+    "text": "为什么这个问题需要统计",
+    "crumbs": [
+      "第四篇：保护专业应用",
+      "<span class='chapter-number'>18</span>  <span class='chapter-title'>第17章 从统计结果到保护行动</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/17-stats-to-action.html#核心概念",
+    "href": "chapters/17-stats-to-action.html#核心概念",
+    "title": "第17章 从统计结果到保护行动",
+    "section": "核心概念",
+    "text": "核心概念",
+    "crumbs": [
+      "第四篇：保护专业应用",
+      "<span class='chapter-number'>18</span>  <span class='chapter-title'>第17章 从统计结果到保护行动</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/17-stats-to-action.html#r-分析过程",
+    "href": "chapters/17-stats-to-action.html#r-分析过程",
+    "title": "第17章 从统计结果到保护行动",
+    "section": "R 分析过程",
+    "text": "R 分析过程\n\n\nCode\n# 本章 R 代码示例（待补充）",
+    "crumbs": [
+      "第四篇：保护专业应用",
+      "<span class='chapter-number'>18</span>  <span class='chapter-title'>第17章 从统计结果到保护行动</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/17-stats-to-action.html#结果解释",
+    "href": "chapters/17-stats-to-action.html#结果解释",
+    "title": "第17章 从统计结果到保护行动",
+    "section": "结果解释",
+    "text": "结果解释",
+    "crumbs": [
+      "第四篇：保护专业应用",
+      "<span class='chapter-number'>18</span>  <span class='chapter-title'>第17章 从统计结果到保护行动</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/17-stats-to-action.html#常见错误",
+    "href": "chapters/17-stats-to-action.html#常见错误",
+    "title": "第17章 从统计结果到保护行动",
+    "section": "常见错误",
+    "text": "常见错误",
+    "crumbs": [
+      "第四篇：保护专业应用",
+      "<span class='chapter-number'>18</span>  <span class='chapter-title'>第17章 从统计结果到保护行动</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/17-stats-to-action.html#ai-辅助任务",
+    "href": "chapters/17-stats-to-action.html#ai-辅助任务",
+    "title": "第17章 从统计结果到保护行动",
+    "section": "AI 辅助任务",
+    "text": "AI 辅助任务",
+    "crumbs": [
+      "第四篇：保护专业应用",
+      "<span class='chapter-number'>18</span>  <span class='chapter-title'>第17章 从统计结果到保护行动</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/17-stats-to-action.html#练习",
+    "href": "chapters/17-stats-to-action.html#练习",
+    "title": "第17章 从统计结果到保护行动",
+    "section": "练习",
+    "text": "练习",
+    "crumbs": [
+      "第四篇：保护专业应用",
+      "<span class='chapter-number'>18</span>  <span class='chapter-title'>第17章 从统计结果到保护行动</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/17-stats-to-action.html#继续学习",
+    "href": "chapters/17-stats-to-action.html#继续学习",
+    "title": "第17章 从统计结果到保护行动",
+    "section": "继续学习",
+    "text": "继续学习",
+    "crumbs": [
+      "第四篇：保护专业应用",
+      "<span class='chapter-number'>18</span>  <span class='chapter-title'>第17章 从统计结果到保护行动</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/18-mixed-models.html",
+    "href": "chapters/18-mixed-models.html",
+    "title": "第18章 层级结构与混合模型",
+    "section": "",
+    "text": "第18章 层级结构与混合模型",
+    "crumbs": [
+      "第五篇：现代生态统计与继续学习",
+      "<span class='chapter-number'>19</span>  <span class='chapter-title'>第18章 层级结构与混合模型</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/18-mixed-models.html#本章状态seed",
+    "href": "chapters/18-mixed-models.html#本章状态seed",
+    "title": "第18章 层级结构与混合模型",
+    "section": "本章状态：seed",
+    "text": "本章状态：seed\n本章内容尚在建设中。以下为本章规划大纲，具体内容将随课程反馈和新案例持续补充。",
+    "crumbs": [
+      "第五篇：现代生态统计与继续学习",
+      "<span class='chapter-number'>19</span>  <span class='chapter-title'>第18章 层级结构与混合模型</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/18-mixed-models.html#真实保护问题",
+    "href": "chapters/18-mixed-models.html#真实保护问题",
+    "title": "第18章 层级结构与混合模型",
+    "section": "真实保护问题",
+    "text": "真实保护问题",
+    "crumbs": [
+      "第五篇：现代生态统计与继续学习",
+      "<span class='chapter-number'>19</span>  <span class='chapter-title'>第18章 层级结构与混合模型</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/18-mixed-models.html#学习目标",
+    "href": "chapters/18-mixed-models.html#学习目标",
+    "title": "第18章 层级结构与混合模型",
+    "section": "学习目标",
+    "text": "学习目标",
+    "crumbs": [
+      "第五篇：现代生态统计与继续学习",
+      "<span class='chapter-number'>19</span>  <span class='chapter-title'>第18章 层级结构与混合模型</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/18-mixed-models.html#为什么这个问题需要统计",
+    "href": "chapters/18-mixed-models.html#为什么这个问题需要统计",
+    "title": "第18章 层级结构与混合模型",
+    "section": "为什么这个问题需要统计",
+    "text": "为什么这个问题需要统计",
+    "crumbs": [
+      "第五篇：现代生态统计与继续学习",
+      "<span class='chapter-number'>19</span>  <span class='chapter-title'>第18章 层级结构与混合模型</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/18-mixed-models.html#核心概念",
+    "href": "chapters/18-mixed-models.html#核心概念",
+    "title": "第18章 层级结构与混合模型",
+    "section": "核心概念",
+    "text": "核心概念",
+    "crumbs": [
+      "第五篇：现代生态统计与继续学习",
+      "<span class='chapter-number'>19</span>  <span class='chapter-title'>第18章 层级结构与混合模型</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/18-mixed-models.html#r-分析过程",
+    "href": "chapters/18-mixed-models.html#r-分析过程",
+    "title": "第18章 层级结构与混合模型",
+    "section": "R 分析过程",
+    "text": "R 分析过程\n\n\nCode\n# 本章 R 代码示例（待补充）",
+    "crumbs": [
+      "第五篇：现代生态统计与继续学习",
+      "<span class='chapter-number'>19</span>  <span class='chapter-title'>第18章 层级结构与混合模型</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/18-mixed-models.html#结果解释",
+    "href": "chapters/18-mixed-models.html#结果解释",
+    "title": "第18章 层级结构与混合模型",
+    "section": "结果解释",
+    "text": "结果解释",
+    "crumbs": [
+      "第五篇：现代生态统计与继续学习",
+      "<span class='chapter-number'>19</span>  <span class='chapter-title'>第18章 层级结构与混合模型</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/18-mixed-models.html#常见错误",
+    "href": "chapters/18-mixed-models.html#常见错误",
+    "title": "第18章 层级结构与混合模型",
+    "section": "常见错误",
+    "text": "常见错误",
+    "crumbs": [
+      "第五篇：现代生态统计与继续学习",
+      "<span class='chapter-number'>19</span>  <span class='chapter-title'>第18章 层级结构与混合模型</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/18-mixed-models.html#ai-辅助任务",
+    "href": "chapters/18-mixed-models.html#ai-辅助任务",
+    "title": "第18章 层级结构与混合模型",
+    "section": "AI 辅助任务",
+    "text": "AI 辅助任务",
+    "crumbs": [
+      "第五篇：现代生态统计与继续学习",
+      "<span class='chapter-number'>19</span>  <span class='chapter-title'>第18章 层级结构与混合模型</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/18-mixed-models.html#练习",
+    "href": "chapters/18-mixed-models.html#练习",
+    "title": "第18章 层级结构与混合模型",
+    "section": "练习",
+    "text": "练习",
+    "crumbs": [
+      "第五篇：现代生态统计与继续学习",
+      "<span class='chapter-number'>19</span>  <span class='chapter-title'>第18章 层级结构与混合模型</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/18-mixed-models.html#继续学习",
+    "href": "chapters/18-mixed-models.html#继续学习",
+    "title": "第18章 层级结构与混合模型",
+    "section": "继续学习",
+    "text": "继续学习",
+    "crumbs": [
+      "第五篇：现代生态统计与继续学习",
+      "<span class='chapter-number'>19</span>  <span class='chapter-title'>第18章 层级结构与混合模型</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/19-ecological-processes.html",
+    "href": "chapters/19-ecological-processes.html",
+    "title": "第19章 生态过程与观测过程",
+    "section": "",
+    "text": "第19章 生态过程与观测过程",
+    "crumbs": [
+      "第五篇：现代生态统计与继续学习",
+      "<span class='chapter-number'>20</span>  <span class='chapter-title'>第19章 生态过程与观测过程</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/19-ecological-processes.html#本章状态seed",
+    "href": "chapters/19-ecological-processes.html#本章状态seed",
+    "title": "第19章 生态过程与观测过程",
+    "section": "本章状态：seed",
+    "text": "本章状态：seed\n本章内容尚在建设中。以下为本章规划大纲，具体内容将随课程反馈和新案例持续补充。",
+    "crumbs": [
+      "第五篇：现代生态统计与继续学习",
+      "<span class='chapter-number'>20</span>  <span class='chapter-title'>第19章 生态过程与观测过程</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/19-ecological-processes.html#真实保护问题",
+    "href": "chapters/19-ecological-processes.html#真实保护问题",
+    "title": "第19章 生态过程与观测过程",
+    "section": "真实保护问题",
+    "text": "真实保护问题",
+    "crumbs": [
+      "第五篇：现代生态统计与继续学习",
+      "<span class='chapter-number'>20</span>  <span class='chapter-title'>第19章 生态过程与观测过程</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/19-ecological-processes.html#学习目标",
+    "href": "chapters/19-ecological-processes.html#学习目标",
+    "title": "第19章 生态过程与观测过程",
+    "section": "学习目标",
+    "text": "学习目标",
+    "crumbs": [
+      "第五篇：现代生态统计与继续学习",
+      "<span class='chapter-number'>20</span>  <span class='chapter-title'>第19章 生态过程与观测过程</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/19-ecological-processes.html#为什么这个问题需要统计",
+    "href": "chapters/19-ecological-processes.html#为什么这个问题需要统计",
+    "title": "第19章 生态过程与观测过程",
+    "section": "为什么这个问题需要统计",
+    "text": "为什么这个问题需要统计",
+    "crumbs": [
+      "第五篇：现代生态统计与继续学习",
+      "<span class='chapter-number'>20</span>  <span class='chapter-title'>第19章 生态过程与观测过程</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/19-ecological-processes.html#核心概念",
+    "href": "chapters/19-ecological-processes.html#核心概念",
+    "title": "第19章 生态过程与观测过程",
+    "section": "核心概念",
+    "text": "核心概念",
+    "crumbs": [
+      "第五篇：现代生态统计与继续学习",
+      "<span class='chapter-number'>20</span>  <span class='chapter-title'>第19章 生态过程与观测过程</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/19-ecological-processes.html#r-分析过程",
+    "href": "chapters/19-ecological-processes.html#r-分析过程",
+    "title": "第19章 生态过程与观测过程",
+    "section": "R 分析过程",
+    "text": "R 分析过程\n\n\nCode\n# 本章 R 代码示例（待补充）",
+    "crumbs": [
+      "第五篇：现代生态统计与继续学习",
+      "<span class='chapter-number'>20</span>  <span class='chapter-title'>第19章 生态过程与观测过程</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/19-ecological-processes.html#结果解释",
+    "href": "chapters/19-ecological-processes.html#结果解释",
+    "title": "第19章 生态过程与观测过程",
+    "section": "结果解释",
+    "text": "结果解释",
+    "crumbs": [
+      "第五篇：现代生态统计与继续学习",
+      "<span class='chapter-number'>20</span>  <span class='chapter-title'>第19章 生态过程与观测过程</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/19-ecological-processes.html#常见错误",
+    "href": "chapters/19-ecological-processes.html#常见错误",
+    "title": "第19章 生态过程与观测过程",
+    "section": "常见错误",
+    "text": "常见错误",
+    "crumbs": [
+      "第五篇：现代生态统计与继续学习",
+      "<span class='chapter-number'>20</span>  <span class='chapter-title'>第19章 生态过程与观测过程</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/19-ecological-processes.html#ai-辅助任务",
+    "href": "chapters/19-ecological-processes.html#ai-辅助任务",
+    "title": "第19章 生态过程与观测过程",
+    "section": "AI 辅助任务",
+    "text": "AI 辅助任务",
+    "crumbs": [
+      "第五篇：现代生态统计与继续学习",
+      "<span class='chapter-number'>20</span>  <span class='chapter-title'>第19章 生态过程与观测过程</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/19-ecological-processes.html#练习",
+    "href": "chapters/19-ecological-processes.html#练习",
+    "title": "第19章 生态过程与观测过程",
+    "section": "练习",
+    "text": "练习",
+    "crumbs": [
+      "第五篇：现代生态统计与继续学习",
+      "<span class='chapter-number'>20</span>  <span class='chapter-title'>第19章 生态过程与观测过程</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/19-ecological-processes.html#继续学习",
+    "href": "chapters/19-ecological-processes.html#继续学习",
+    "title": "第19章 生态过程与观测过程",
+    "section": "继续学习",
+    "text": "继续学习",
+    "crumbs": [
+      "第五篇：现代生态统计与继续学习",
+      "<span class='chapter-number'>20</span>  <span class='chapter-title'>第19章 生态过程与观测过程</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/20-bayesian-intro.html",
+    "href": "chapters/20-bayesian-intro.html",
+    "title": "第20章 贝叶斯统计与模型诊断",
+    "section": "",
+    "text": "第20章 贝叶斯统计与模型诊断",
+    "crumbs": [
+      "第五篇：现代生态统计与继续学习",
+      "<span class='chapter-number'>21</span>  <span class='chapter-title'>第20章 贝叶斯统计与模型诊断</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/20-bayesian-intro.html#本章状态seed",
+    "href": "chapters/20-bayesian-intro.html#本章状态seed",
+    "title": "第20章 贝叶斯统计与模型诊断",
+    "section": "本章状态：seed",
+    "text": "本章状态：seed\n本章内容尚在建设中。以下为本章规划大纲，具体内容将随课程反馈和新案例持续补充。",
+    "crumbs": [
+      "第五篇：现代生态统计与继续学习",
+      "<span class='chapter-number'>21</span>  <span class='chapter-title'>第20章 贝叶斯统计与模型诊断</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/20-bayesian-intro.html#真实保护问题",
+    "href": "chapters/20-bayesian-intro.html#真实保护问题",
+    "title": "第20章 贝叶斯统计与模型诊断",
+    "section": "真实保护问题",
+    "text": "真实保护问题",
+    "crumbs": [
+      "第五篇：现代生态统计与继续学习",
+      "<span class='chapter-number'>21</span>  <span class='chapter-title'>第20章 贝叶斯统计与模型诊断</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/20-bayesian-intro.html#学习目标",
+    "href": "chapters/20-bayesian-intro.html#学习目标",
+    "title": "第20章 贝叶斯统计与模型诊断",
+    "section": "学习目标",
+    "text": "学习目标",
+    "crumbs": [
+      "第五篇：现代生态统计与继续学习",
+      "<span class='chapter-number'>21</span>  <span class='chapter-title'>第20章 贝叶斯统计与模型诊断</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/20-bayesian-intro.html#为什么这个问题需要统计",
+    "href": "chapters/20-bayesian-intro.html#为什么这个问题需要统计",
+    "title": "第20章 贝叶斯统计与模型诊断",
+    "section": "为什么这个问题需要统计",
+    "text": "为什么这个问题需要统计",
+    "crumbs": [
+      "第五篇：现代生态统计与继续学习",
+      "<span class='chapter-number'>21</span>  <span class='chapter-title'>第20章 贝叶斯统计与模型诊断</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/20-bayesian-intro.html#核心概念",
+    "href": "chapters/20-bayesian-intro.html#核心概念",
+    "title": "第20章 贝叶斯统计与模型诊断",
+    "section": "核心概念",
+    "text": "核心概念",
+    "crumbs": [
+      "第五篇：现代生态统计与继续学习",
+      "<span class='chapter-number'>21</span>  <span class='chapter-title'>第20章 贝叶斯统计与模型诊断</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/20-bayesian-intro.html#r-分析过程",
+    "href": "chapters/20-bayesian-intro.html#r-分析过程",
+    "title": "第20章 贝叶斯统计与模型诊断",
+    "section": "R 分析过程",
+    "text": "R 分析过程\n\n\nCode\n# 本章 R 代码示例（待补充）",
+    "crumbs": [
+      "第五篇：现代生态统计与继续学习",
+      "<span class='chapter-number'>21</span>  <span class='chapter-title'>第20章 贝叶斯统计与模型诊断</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/20-bayesian-intro.html#结果解释",
+    "href": "chapters/20-bayesian-intro.html#结果解释",
+    "title": "第20章 贝叶斯统计与模型诊断",
+    "section": "结果解释",
+    "text": "结果解释",
+    "crumbs": [
+      "第五篇：现代生态统计与继续学习",
+      "<span class='chapter-number'>21</span>  <span class='chapter-title'>第20章 贝叶斯统计与模型诊断</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/20-bayesian-intro.html#常见错误",
+    "href": "chapters/20-bayesian-intro.html#常见错误",
+    "title": "第20章 贝叶斯统计与模型诊断",
+    "section": "常见错误",
+    "text": "常见错误",
+    "crumbs": [
+      "第五篇：现代生态统计与继续学习",
+      "<span class='chapter-number'>21</span>  <span class='chapter-title'>第20章 贝叶斯统计与模型诊断</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/20-bayesian-intro.html#ai-辅助任务",
+    "href": "chapters/20-bayesian-intro.html#ai-辅助任务",
+    "title": "第20章 贝叶斯统计与模型诊断",
+    "section": "AI 辅助任务",
+    "text": "AI 辅助任务",
+    "crumbs": [
+      "第五篇：现代生态统计与继续学习",
+      "<span class='chapter-number'>21</span>  <span class='chapter-title'>第20章 贝叶斯统计与模型诊断</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/20-bayesian-intro.html#练习",
+    "href": "chapters/20-bayesian-intro.html#练习",
+    "title": "第20章 贝叶斯统计与模型诊断",
+    "section": "练习",
+    "text": "练习",
+    "crumbs": [
+      "第五篇：现代生态统计与继续学习",
+      "<span class='chapter-number'>21</span>  <span class='chapter-title'>第20章 贝叶斯统计与模型诊断</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/20-bayesian-intro.html#继续学习",
+    "href": "chapters/20-bayesian-intro.html#继续学习",
+    "title": "第20章 贝叶斯统计与模型诊断",
+    "section": "继续学习",
+    "text": "继续学习",
+    "crumbs": [
+      "第五篇：现代生态统计与继续学习",
+      "<span class='chapter-number'>21</span>  <span class='chapter-title'>第20章 贝叶斯统计与模型诊断</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/21-spatiotemporal.html",
+    "href": "chapters/21-spatiotemporal.html",
+    "title": "第21章 时间、空间与随机过程",
+    "section": "",
+    "text": "第21章 时间、空间与随机过程",
+    "crumbs": [
+      "第五篇：现代生态统计与继续学习",
+      "<span class='chapter-number'>22</span>  <span class='chapter-title'>第21章 时间、空间与随机过程</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/21-spatiotemporal.html#本章状态seed",
+    "href": "chapters/21-spatiotemporal.html#本章状态seed",
+    "title": "第21章 时间、空间与随机过程",
+    "section": "本章状态：seed",
+    "text": "本章状态：seed\n本章内容尚在建设中。以下为本章规划大纲，具体内容将随课程反馈和新案例持续补充。",
+    "crumbs": [
+      "第五篇：现代生态统计与继续学习",
+      "<span class='chapter-number'>22</span>  <span class='chapter-title'>第21章 时间、空间与随机过程</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/21-spatiotemporal.html#真实保护问题",
+    "href": "chapters/21-spatiotemporal.html#真实保护问题",
+    "title": "第21章 时间、空间与随机过程",
+    "section": "真实保护问题",
+    "text": "真实保护问题",
+    "crumbs": [
+      "第五篇：现代生态统计与继续学习",
+      "<span class='chapter-number'>22</span>  <span class='chapter-title'>第21章 时间、空间与随机过程</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/21-spatiotemporal.html#学习目标",
+    "href": "chapters/21-spatiotemporal.html#学习目标",
+    "title": "第21章 时间、空间与随机过程",
+    "section": "学习目标",
+    "text": "学习目标",
+    "crumbs": [
+      "第五篇：现代生态统计与继续学习",
+      "<span class='chapter-number'>22</span>  <span class='chapter-title'>第21章 时间、空间与随机过程</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/21-spatiotemporal.html#为什么这个问题需要统计",
+    "href": "chapters/21-spatiotemporal.html#为什么这个问题需要统计",
+    "title": "第21章 时间、空间与随机过程",
+    "section": "为什么这个问题需要统计",
+    "text": "为什么这个问题需要统计",
+    "crumbs": [
+      "第五篇：现代生态统计与继续学习",
+      "<span class='chapter-number'>22</span>  <span class='chapter-title'>第21章 时间、空间与随机过程</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/21-spatiotemporal.html#核心概念",
+    "href": "chapters/21-spatiotemporal.html#核心概念",
+    "title": "第21章 时间、空间与随机过程",
+    "section": "核心概念",
+    "text": "核心概念",
+    "crumbs": [
+      "第五篇：现代生态统计与继续学习",
+      "<span class='chapter-number'>22</span>  <span class='chapter-title'>第21章 时间、空间与随机过程</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/21-spatiotemporal.html#r-分析过程",
+    "href": "chapters/21-spatiotemporal.html#r-分析过程",
+    "title": "第21章 时间、空间与随机过程",
+    "section": "R 分析过程",
+    "text": "R 分析过程\n\n\nCode\n# 本章 R 代码示例（待补充）",
+    "crumbs": [
+      "第五篇：现代生态统计与继续学习",
+      "<span class='chapter-number'>22</span>  <span class='chapter-title'>第21章 时间、空间与随机过程</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/21-spatiotemporal.html#结果解释",
+    "href": "chapters/21-spatiotemporal.html#结果解释",
+    "title": "第21章 时间、空间与随机过程",
+    "section": "结果解释",
+    "text": "结果解释",
+    "crumbs": [
+      "第五篇：现代生态统计与继续学习",
+      "<span class='chapter-number'>22</span>  <span class='chapter-title'>第21章 时间、空间与随机过程</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/21-spatiotemporal.html#常见错误",
+    "href": "chapters/21-spatiotemporal.html#常见错误",
+    "title": "第21章 时间、空间与随机过程",
+    "section": "常见错误",
+    "text": "常见错误",
+    "crumbs": [
+      "第五篇：现代生态统计与继续学习",
+      "<span class='chapter-number'>22</span>  <span class='chapter-title'>第21章 时间、空间与随机过程</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/21-spatiotemporal.html#ai-辅助任务",
+    "href": "chapters/21-spatiotemporal.html#ai-辅助任务",
+    "title": "第21章 时间、空间与随机过程",
+    "section": "AI 辅助任务",
+    "text": "AI 辅助任务",
+    "crumbs": [
+      "第五篇：现代生态统计与继续学习",
+      "<span class='chapter-number'>22</span>  <span class='chapter-title'>第21章 时间、空间与随机过程</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/21-spatiotemporal.html#练习",
+    "href": "chapters/21-spatiotemporal.html#练习",
+    "title": "第21章 时间、空间与随机过程",
+    "section": "练习",
+    "text": "练习",
+    "crumbs": [
+      "第五篇：现代生态统计与继续学习",
+      "<span class='chapter-number'>22</span>  <span class='chapter-title'>第21章 时间、空间与随机过程</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/21-spatiotemporal.html#继续学习",
+    "href": "chapters/21-spatiotemporal.html#继续学习",
+    "title": "第21章 时间、空间与随机过程",
+    "section": "继续学习",
+    "text": "继续学习",
+    "crumbs": [
+      "第五篇：现代生态统计与继续学习",
+      "<span class='chapter-number'>22</span>  <span class='chapter-title'>第21章 时间、空间与随机过程</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/22-ai-assisted-learning.html",
+    "href": "chapters/22-ai-assisted-learning.html",
+    "title": "第22章 AI 辅助统计学习与分析",
+    "section": "",
+    "text": "第22章 AI 辅助统计学习与分析",
+    "crumbs": [
+      "第五篇：现代生态统计与继续学习",
+      "<span class='chapter-number'>23</span>  <span class='chapter-title'>第22章 AI 辅助统计学习与分析</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/22-ai-assisted-learning.html#ai能做什么不能做什么",
+    "href": "chapters/22-ai-assisted-learning.html#ai能做什么不能做什么",
+    "title": "第22章 AI 辅助统计学习与分析",
+    "section": "AI能做什么，不能做什么",
+    "text": "AI能做什么，不能做什么\n\n\n\n能做什么\n不能做什么\n\n\n\n\n解释统计概念\n判断方法是否适合你的具体数据\n\n\n推荐分析方法\n替你承担分析错误的责任\n\n\n生成R/Python代码\n保证代码可复现且正确\n\n\n解读输出结果\n判断效应在管理上是否足够大\n\n\n\n\n核心信念：AI是工具，判断力是核心。",
+    "crumbs": [
+      "第五篇：现代生态统计与继续学习",
+      "<span class='chapter-number'>23</span>  <span class='chapter-title'>第22章 AI 辅助统计学习与分析</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/22-ai-assisted-learning.html#八要素提问模板",
+    "href": "chapters/22-ai-assisted-learning.html#八要素提问模板",
+    "title": "第22章 AI 辅助统计学习与分析",
+    "section": "八要素提问模板",
+    "text": "八要素提问模板\n向AI提问统计问题时，提供以下信息：\n\n我的研究问题是什么\n我的研究对象是什么\n我的变量有哪些\n每个变量是什么类型\n样本量是多少\n分组情况是什么\n我想比较差异、分析关系还是做预测\n请给出适合的统计方法、理由和注意事项\n\n\n\n\n\n\n\nTip\n\n\n\n对比实验：只给AI说”帮我分析这组数据”vs用八要素模板提问——得到的答案质量天差地别。",
+    "crumbs": [
+      "第五篇：现代生态统计与继续学习",
+      "<span class='chapter-number'>23</span>  <span class='chapter-title'>第22章 AI 辅助统计学习与分析</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/22-ai-assisted-learning.html#五点核查法",
+    "href": "chapters/22-ai-assisted-learning.html#五点核查法",
+    "title": "第22章 AI 辅助统计学习与分析",
+    "section": "五点核查法",
+    "text": "五点核查法\n拿到AI回答后，必须检查：\n\n\n\n#\n核查项\n问题\n\n\n\n\n1\n数据类型\nAI正确识别了连续/计数/分类/比例吗？\n\n\n2\n实验单位\nAI考虑了伪重复问题吗？\n\n\n3\n方法选择\nAI推荐的方法适合你的设计和数据吗？\n\n\n4\n代码可运行\nAI给的代码能在你的环境中运行吗？\n\n\n5\n结论合理\nAI是否过度解释了结果？是否暗示了因果？",
+    "crumbs": [
+      "第五篇：现代生态统计与继续学习",
+      "<span class='chapter-number'>23</span>  <span class='chapter-title'>第22章 AI 辅助统计学习与分析</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/22-ai-assisted-learning.html#每次必须写一句人工核查",
+    "href": "chapters/22-ai-assisted-learning.html#每次必须写一句人工核查",
+    "title": "第22章 AI 辅助统计学习与分析",
+    "section": "每次必须写一句人工核查",
+    "text": "每次必须写一句人工核查\n格式：“AI建议XXX，但经核查，XXX，因此我决定XXX。”\n\n示例：AI建议使用t检验，但本数据有三组处理，因此应改用方差分析。",
+    "crumbs": [
+      "第五篇：现代生态统计与继续学习",
+      "<span class='chapter-number'>23</span>  <span class='chapter-title'>第22章 AI 辅助统计学习与分析</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/22-ai-assisted-learning.html#ai常见错误类型",
+    "href": "chapters/22-ai-assisted-learning.html#ai常见错误类型",
+    "title": "第22章 AI 辅助统计学习与分析",
+    "section": "AI常见错误类型",
+    "text": "AI常见错误类型\n\n数据类型误判：把计数型当连续型\n伪重复忽略：不检查实验单位独立性\n过度因果解释：从相关直接推断因果\n方法推荐不当：对非正态数据仍推荐t检验\n忽视前提假设：跳过正态性和方差齐性检验",
+    "crumbs": [
+      "第五篇：现代生态统计与继续学习",
+      "<span class='chapter-number'>23</span>  <span class='chapter-title'>第22章 AI 辅助统计学习与分析</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/22-ai-assisted-learning.html#练习",
+    "href": "chapters/22-ai-assisted-learning.html#练习",
+    "title": "第22章 AI 辅助统计学习与分析",
+    "section": "练习",
+    "text": "练习\n给你一组保护类数据，用八要素模板向AI提问，用五点核查法检查AI输出，写人工核查记录。",
+    "crumbs": [
+      "第五篇：现代生态统计与继续学习",
+      "<span class='chapter-number'>23</span>  <span class='chapter-title'>第22章 AI 辅助统计学习与分析</span>"
+    ]
+  },
+  {
+    "objectID": "appendices/r-basics.html",
+    "href": "appendices/r-basics.html",
+    "title": "R 基础速查",
+    "section": "",
+    "text": "R 基础速查",
+    "crumbs": [
+      "附录",
+      "<span class='chapter-number'>24</span>  <span class='chapter-title'>R 基础速查</span>"
+    ]
+  },
+  {
+    "objectID": "appendices/r-basics.html#本附录状态seed",
+    "href": "appendices/r-basics.html#本附录状态seed",
+    "title": "R 基础速查",
+    "section": "本附录状态：seed",
+    "text": "本附录状态：seed\n内容尚在建设中。",
+    "crumbs": [
+      "附录",
+      "<span class='chapter-number'>24</span>  <span class='chapter-title'>R 基础速查</span>"
+    ]
+  },
+  {
+    "objectID": "appendices/method-map.html",
+    "href": "appendices/method-map.html",
+    "title": "常用统计方法选择地图",
+    "section": "",
+    "text": "常用统计方法选择地图",
+    "crumbs": [
+      "附录",
+      "<span class='chapter-number'>25</span>  <span class='chapter-title'>常用统计方法选择地图</span>"
+    ]
+  },
+  {
+    "objectID": "appendices/method-map.html#按研究目的选择",
+    "href": "appendices/method-map.html#按研究目的选择",
+    "title": "常用统计方法选择地图",
+    "section": "按研究目的选择",
+    "text": "按研究目的选择\n\n\n\n研究目的\n因变量类型\n自变量/分组\n推荐方法\n\n\n\n\n比较两组均值\n连续型\n两组\n独立样本t检验\n\n\n比较多组均值\n连续型\n三组及以上\n单因素方差分析(ANOVA)\n\n\n比较比例\n分类/比例\n分组\n卡方检验\n\n\n小样本比例\n分类\n分组\nFisher精确检验\n\n\n分析两个连续变量的关系\n连续型\n连续型\nPearson相关 / 线性回归\n\n\n计数型因变量\n计数\n分组/连续\nPoisson回归\n\n\n二分类因变量\n0/1\n分组/连续\nLogistic回归",
+    "crumbs": [
+      "附录",
+      "<span class='chapter-number'>25</span>  <span class='chapter-title'>常用统计方法选择地图</span>"
+    ]
+  },
+  {
+    "objectID": "appendices/method-map.html#按数据类型选择",
+    "href": "appendices/method-map.html#按数据类型选择",
+    "title": "常用统计方法选择地图",
+    "section": "按数据类型选择",
+    "text": "按数据类型选择\n你的因变量是什么类型？\n├── 连续型 → 自变量是什么类型？\n│   ├── 两组分类 → t检验\n│   ├── 多组分类 → ANOVA\n│   └── 连续型 → 线性回归\n├── 计数型 → Poisson回归 / 负二项回归\n├── 分类/比例 → 自变量是什么类型？\n│   ├── 分类 → 卡方检验 / Fisher精确检验\n│   └── 连续型 → Logistic回归\n└── 0/1 → Logistic回归",
+    "crumbs": [
+      "附录",
+      "<span class='chapter-number'>25</span>  <span class='chapter-title'>常用统计方法选择地图</span>"
+    ]
+  },
+  {
+    "objectID": "appendices/method-map.html#按研究设计选择",
+    "href": "appendices/method-map.html#按研究设计选择",
+    "title": "常用统计方法选择地图",
+    "section": "按研究设计选择",
+    "text": "按研究设计选择\n\n\n\n设计类型\n推荐分析方法\n\n\n\n\n完全随机设计(CRD)\nt检验 / 单因素ANOVA\n\n\n随机区组设计(RCBD)\n双因素ANOVA / 线性混合模型\n\n\n前后对照\n配对t检验\n\n\n重复测量\n重复测量ANOVA / 线性混合模型\n\n\n样线/样点调查\n根据变量类型选择，注意调查努力量标准化",
+    "crumbs": [
+      "附录",
+      "<span class='chapter-number'>25</span>  <span class='chapter-title'>常用统计方法选择地图</span>"
+    ]
+  },
+  {
+    "objectID": "appendices/method-map.html#常用非参数替代方法",
+    "href": "appendices/method-map.html#常用非参数替代方法",
+    "title": "常用统计方法选择地图",
+    "section": "常用非参数替代方法",
+    "text": "常用非参数替代方法\n\n\n\n参数方法\n非参数替代\n适用场景\n\n\n\n\n独立t检验\nMann-Whitney U检验\n数据严重偏态\n\n\n配对t检验\nWilcoxon符号秩检验\n配对数据不满足正态\n\n\n单因素ANOVA\nKruskal-Wallis检验\n多组非正态\n\n\nPearson相关\nSpearman秩相关\n非线性单调关系",
+    "crumbs": [
+      "附录",
+      "<span class='chapter-number'>25</span>  <span class='chapter-title'>常用统计方法选择地图</span>"
+    ]
+  },
+  {
+    "objectID": "appendices/glossary.html",
+    "href": "appendices/glossary.html",
+    "title": "统计术语中英文对照",
+    "section": "",
+    "text": "统计术语中英文对照",
+    "crumbs": [
+      "附录",
+      "<span class='chapter-number'>26</span>  <span class='chapter-title'>统计术语中英文对照</span>"
+    ]
+  },
+  {
+    "objectID": "appendices/glossary.html#本附录状态seed",
+    "href": "appendices/glossary.html#本附录状态seed",
+    "title": "统计术语中英文对照",
+    "section": "本附录状态：seed",
+    "text": "本附录状态：seed\n内容尚在建设中。",
+    "crumbs": [
+      "附录",
+      "<span class='chapter-number'>26</span>  <span class='chapter-title'>统计术语中英文对照</span>"
+    ]
+  },
+  {
+    "objectID": "appendices/reproducible-template.html",
+    "href": "appendices/reproducible-template.html",
+    "title": "可重复分析项目模板",
+    "section": "",
+    "text": "可重复分析项目模板",
+    "crumbs": [
+      "附录",
+      "<span class='chapter-number'>27</span>  <span class='chapter-title'>可重复分析项目模板</span>"
+    ]
+  },
+  {
+    "objectID": "appendices/reproducible-template.html#本附录状态seed",
+    "href": "appendices/reproducible-template.html#本附录状态seed",
+    "title": "可重复分析项目模板",
+    "section": "本附录状态：seed",
+    "text": "本附录状态：seed\n内容尚在建设中。",
+    "crumbs": [
+      "附录",
+      "<span class='chapter-number'>27</span>  <span class='chapter-title'>可重复分析项目模板</span>"
+    ]
+  },
+  {
+    "objectID": "appendices/data-ethics.html",
+    "href": "appendices/data-ethics.html",
+    "title": "数据伦理与敏感信息处理",
+    "section": "",
+    "text": "数据伦理与敏感信息处理",
+    "crumbs": [
+      "附录",
+      "<span class='chapter-number'>28</span>  <span class='chapter-title'>数据伦理与敏感信息处理</span>"
+    ]
+  },
+  {
+    "objectID": "appendices/data-ethics.html#本附录状态seed",
+    "href": "appendices/data-ethics.html#本附录状态seed",
+    "title": "数据伦理与敏感信息处理",
+    "section": "本附录状态：seed",
+    "text": "本附录状态：seed\n内容尚在建设中。",
+    "crumbs": [
+      "附录",
+      "<span class='chapter-number'>28</span>  <span class='chapter-title'>数据伦理与敏感信息处理</span>"
+    ]
+  },
+  {
+    "objectID": "appendices/ai-checklist.html",
+    "href": "appendices/ai-checklist.html",
+    "title": "AI 提问模板与核查清单",
+    "section": "",
+    "text": "AI 提问模板与核查清单",
+    "crumbs": [
+      "附录",
+      "<span class='chapter-number'>29</span>  <span class='chapter-title'>AI 提问模板与核查清单</span>"
+    ]
+  },
+  {
+    "objectID": "appendices/ai-checklist.html#八要素完整模板",
+    "href": "appendices/ai-checklist.html#八要素完整模板",
+    "title": "AI 提问模板与核查清单",
+    "section": "八要素完整模板",
+    "text": "八要素完整模板\n我的研究问题：[一句话描述]\n研究对象：[物种/样地/处理]\n变量列表：\n  - [变量名]：[类型：连续/计数/分类/比例]，[角色：因变量/自变量]\n  - ...\n样本量：[每组/总体]\n分组情况：[几组？每组多少？什么处理？]\n分析目标：[比较差异 / 分析关系 / 做预测]\n请给出：适合的统计方法、选择理由、前提假设和注意事项",
+    "crumbs": [
+      "附录",
+      "<span class='chapter-number'>29</span>  <span class='chapter-title'>AI 提问模板与核查清单</span>"
+    ]
+  },
+  {
+    "objectID": "appendices/ai-checklist.html#五点核查清单",
+    "href": "appendices/ai-checklist.html#五点核查清单",
+    "title": "AI 提问模板与核查清单",
+    "section": "五点核查清单",
+    "text": "五点核查清单\n\n\n\n#\n核查项\n✓/✗\n备注\n\n\n\n\n1\nAI正确识别了数据类型吗？\n\n\n\n\n2\nAI考虑了实验单位和伪重复吗？\n\n\n\n\n3\nAI推荐的方法适合数据和研究设计吗？\n\n\n\n\n4\nAI给出的代码能运行吗？\n\n\n\n\n5\nAI是否过度解释了结果（暗示因果）？",
+    "crumbs": [
+      "附录",
+      "<span class='chapter-number'>29</span>  <span class='chapter-title'>AI 提问模板与核查清单</span>"
+    ]
+  },
+  {
+    "objectID": "appendices/ai-checklist.html#人工核查记录模板",
+    "href": "appendices/ai-checklist.html#人工核查记录模板",
+    "title": "AI 提问模板与核查清单",
+    "section": "人工核查记录模板",
+    "text": "人工核查记录模板\n日期：\n提问内容：[八要素]\nAI回答摘要：\n核查结果：\n - 数据类型：[✓/✗] [说明]\n - 实验单位：[✓/✗] [说明]\n - 方法选择：[✓/✗] [说明]\n - 代码：[✓/✗] [说明]\n - 结论：[✓/✗] [说明]\n最终判断：[采用 / 修改后采用 / 不采用]\n理由：",
+    "crumbs": [
+      "附录",
+      "<span class='chapter-number'>29</span>  <span class='chapter-title'>AI 提问模板与核查清单</span>"
+    ]
+  },
+  {
+    "objectID": "appendices/learning-pathway.html",
+    "href": "appendices/learning-pathway.html",
+    "title": "从基础统计到现代生态统计的学习路线",
+    "section": "",
+    "text": "从基础统计到现代生态统计的学习路线",
+    "crumbs": [
+      "附录",
+      "<span class='chapter-number'>30</span>  <span class='chapter-title'>从基础统计到现代生态统计的学习路线</span>"
+    ]
+  },
+  {
+    "objectID": "appendices/learning-pathway.html#本附录状态seed",
+    "href": "appendices/learning-pathway.html#本附录状态seed",
+    "title": "从基础统计到现代生态统计的学习路线",
+    "section": "本附录状态：seed",
+    "text": "本附录状态：seed\n内容尚在建设中。",
+    "crumbs": [
+      "附录",
+      "<span class='chapter-number'>30</span>  <span class='chapter-title'>从基础统计到现代生态统计的学习路线</span>"
     ]
   }
 ]
