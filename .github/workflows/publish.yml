@@ -25,7 +25,7 @@ jobs:
           version: '1.9.37'
       
       - name: Render Quarto Book
-        run: quarto render --no-execute
+        run: quarto render --no-execute --to html
         timeout-minutes: 10
       
       - name: Deploy to GitHub Pages
