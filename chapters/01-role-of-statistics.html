@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>统计学在保护中的角色 – 从样地到结论：保护生物学数据实战</title>
+<title>第 1 章 统计学在保护中的角色 – 从样地到结论：保护生物学数据实战</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -121,7 +121,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/01-role-of-statistics.html">第一篇：从保护问题进入统计</a></li><li class="breadcrumb-item"><a href="../chapters/01-role-of-statistics.html"><span class="chapter-title">统计学在保护中的角色</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/01-role-of-statistics.html">第一篇：从保护问题进入统计</a></li><li class="breadcrumb-item"><a href="../chapters/01-role-of-statistics.html"><span class="chapter-title">第 1 章 统计学在保护中的角色</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -181,7 +181,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../chapters/01-role-of-statistics.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">统计学在保护中的角色</span></a>
+  <a href="../chapters/01-role-of-statistics.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">第 1 章 统计学在保护中的角色</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -410,9 +410,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/01-role-of-statistics.html">第一篇：从保护问题进入统计</a></li><li class="breadcrumb-item"><a href="../chapters/01-role-of-statistics.html"><span class="chapter-title">统计学在保护中的角色</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/01-role-of-statistics.html">第一篇：从保护问题进入统计</a></li><li class="breadcrumb-item"><a href="../chapters/01-role-of-statistics.html"><span class="chapter-title">第 1 章 统计学在保护中的角色</span></a></li></ol></nav>
 <div class="quarto-title">
-<div class="quarto-title-block"><div><h1 class="title"><span class="chapter-title">统计学在保护中的角色</span></h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
+<div class="quarto-title-block"><div><h1 class="title"><span class="chapter-title">第 1 章 统计学在保护中的角色</span></h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
 </div>
 
 
@@ -429,6 +429,186 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
+<style>
+.ch1-fig {
+  background: #fff;
+  border: 2px solid #1a1a1a;
+  border-radius: 16px 6px 16px 6px;
+  box-shadow: 5px 5px 0 #1a1a1a;
+  padding: 1.4rem 1.2rem 1.6rem;
+  margin: 0 0 2.5rem 0;
+}
+.ch1-section { margin: 1rem 0; }
+.ch1-section-h {
+  font-family: "Gochi Hand", "Caveat", "楷体", cursive;
+  font-size: 1.2rem; font-weight: 700; color: #1a1a1a;
+  text-align: center; margin-bottom: 0.5rem;
+  letter-spacing: 0.1em;
+}
+.ch1-noise-row {
+  display: flex; align-items: center; justify-content: center;
+  gap: 0.8rem; flex-wrap: wrap;
+}
+.ch1-noise-row .ch1-mascot { width: 70px; height: 70px; flex-shrink: 0; }
+.ch1-noises {
+  display: flex; gap: 0.4rem; flex-wrap: wrap; justify-content: center;
+}
+/* 不确定性段：统一红色 */
+.ch1-noises .tag {
+  background: #ffebee; border: 2.5px solid #ef5350;
+  border-radius: 12px 4px 12px 4px;
+  padding: 0.35rem 0.8rem; font-size: 0.95rem; font-weight: 700;
+  color: #c62828; box-shadow: 3px 3px 0 #1a1a1a;
+  font-family: "Gochi Hand", "Caveat", "楷体", cursive;
+  letter-spacing: 0.05em;
+}
+.ch1-noises .tag:nth-child(1) { transform: rotate(-2deg); }
+.ch1-noises .tag:nth-child(2) { transform: rotate(2.5deg); }
+.ch1-noises .tag:nth-child(3) { transform: rotate(-2.5deg); }
+.ch1-noises .tag:nth-child(4) { transform: rotate(2deg); }
+.ch1-noises .tag:nth-child(5) { transform: rotate(-3deg); }
+
+.ch1-divider {
+  text-align: center;
+  font-family: "Gochi Hand", "Caveat", "楷体", cursive;
+  font-size: 1.25rem; font-weight: 700; color: #1a1a1a;
+  margin: 0.9rem 0;
+  letter-spacing: 0.05em;
+}
+.ch1-divider .arrow {
+  display: inline-block; transform: scale(2) rotate(-5deg);
+  margin: 0 0.5rem; color: #1a1a1a;
+}
+
+.ch1-pipeline-row {
+  display: flex; align-items: center; justify-content: center;
+  gap: 0.6rem; flex-wrap: wrap;
+}
+.ch1-pipeline-row .ch1-mascot { width: 80px; height: 80px; flex-shrink: 0; }
+.ch1-pipeline {
+  display: flex; align-items: center; gap: 0.3rem; flex-wrap: wrap;
+  justify-content: center;
+}
+/* 流水线段：统一蓝色 */
+.ch1-step {
+  background: #e1f5fe; border: 2.5px solid #4fc3f7;
+  border-radius: 12px 4px 12px 4px;
+  padding: 0.55rem 0.75rem; min-width: 95px; text-align: center;
+  box-shadow: 3px 3px 0 #1a1a1a;
+}
+.ch1-step.s1 { transform: rotate(-2deg); }
+.ch1-step.s2 { transform: rotate(1.5deg); }
+.ch1-step.s3 { transform: rotate(-1.5deg); }
+.ch1-step.s4 { transform: rotate(2deg); }
+.ch1-step .num {
+  display: inline-block;
+  font-family: "Gochi Hand", "Caveat", cursive;
+  font-size: 1.7rem; font-weight: 700;
+  color: #0277bd;
+  line-height: 1; margin-bottom: 0.15rem;
+  transform: rotate(-4deg);
+}
+.ch1-step .name { font-family: "Gochi Hand", "Caveat", "楷体", cursive;
+  font-weight: 800; font-size: 1.1rem; color: #0277bd;
+  letter-spacing: 0.05em; }
+.ch1-step .q { font-size: 0.72rem; color: #555; line-height: 1.35; margin-top: 0.2rem;
+  font-family: "楷体", "STKaiti", cursive; }
+.ch1-step-arrow {
+  font-family: "Gochi Hand", "Caveat", cursive;
+  font-size: 1.8rem; font-weight: 700; color: #1a1a1a;
+  transform: rotate(-5deg);
+  display: inline-block;
+}
+
+.ch1-final-row {
+  display: flex; align-items: center; justify-content: center;
+  gap: 1rem; flex-wrap: wrap; margin-top: 0.4rem;
+}
+.ch1-final-row .ch1-mascot { width: 75px; height: 75px; flex-shrink: 0; }
+/* 决策段：统一黄色 */
+.ch1-final {
+  background: #ffd54f; border: 2.5px solid #1a1a1a;
+  border-radius: 14px 4px 14px 4px;
+  padding: 0.7rem 1.4rem;
+  font-family: "Gochi Hand", "Caveat", "楷体", cursive;
+  font-weight: 800; font-size: 1.4rem; color: #1a1a1a;
+  box-shadow: 4px 4px 0 #1a1a1a;
+  letter-spacing: 0.06em;
+  transform: rotate(-1.5deg);
+}
+.ch1-caveat {
+  margin-top: 1rem; padding: 0.7rem 1rem;
+  background: #fff8e1; border: 2.5px dashed #ffb300;
+  border-radius: 8px;
+  font-size: 0.85rem; color: #444; line-height: 1.7;
+  font-family: "楷体", "STKaiti", "Microsoft YaHei", cursive;
+}
+.ch1-caveat b { color: #ef6c00;
+  font-family: "Gochi Hand", "Caveat", "楷体", cursive;
+  font-size: 1.1rem; letter-spacing: 0.05em; }
+</style>
+
+<div class="ch1-fig sketch">
+  <div class="ch1-section">
+    <div class="ch1-section-h">① 保护数据中的不确定性</div>
+    <div class="ch1-noise-row">
+      <img src="../images/mascot/cat-think.svg" alt="黑豹思考" class="ch1-mascot">
+      <div class="ch1-noises">
+        <span class="tag">自然变异</span>
+        <span class="tag">观察误差</span>
+        <span class="tag">时间波动</span>
+        <span class="tag">样本有限</span>
+        <span class="tag">偶然性</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="ch1-divider"><span class="arrow">↓</span></div>
+
+  <div class="ch1-section">
+    <div class="ch1-section-h">② 统计学在保护中的四个作用</div>
+    <div class="ch1-pipeline-row">
+      <img src="../images/mascot/cat-point.svg" alt="黑豹指引" class="ch1-mascot">
+      <div class="ch1-pipeline">
+        <div class="ch1-step s1">
+          <div class="num">1</div>
+          <div class="name">描述</div>
+          <div class="q">现在是<br>什么状态？</div>
+        </div>
+        <span class="ch1-step-arrow">→</span>
+        <div class="ch1-step s2">
+          <div class="num">2</div>
+          <div class="name">比较</div>
+          <div class="q">不同对象<br>有差异吗？</div>
+        </div>
+        <span class="ch1-step-arrow">→</span>
+        <div class="ch1-step s3">
+          <div class="num">3</div>
+          <div class="name">推断</div>
+          <div class="q">差异<br>可信吗？</div>
+        </div>
+        <span class="ch1-step-arrow">→</span>
+        <div class="ch1-step s4">
+          <div class="num">4</div>
+          <div class="name">支持行动</div>
+          <div class="q">下一步<br>怎么做？</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ch1-divider"><span class="arrow">↓</span></div>
+
+  <div class="ch1-final-row">
+    <img src="../images/mascot/cat-flag.svg" alt="黑豹举旗" class="ch1-mascot">
+    <div class="ch1-final">🛡️ 保护决策</div>
+  </div>
+
+  <div class="ch1-caveat">
+    <b>黑豹提醒：</b>显著 ≠ 重要 ｜ 不显著 ≠ 没效果 ｜ 证据 ≠ 决策<br>
+    统计回答"证据有多强"，保护决策还要回答"行动是否值得"。
+  </div>
+</div>
 <section id="真实保护问题" class="level2">
 <h2 class="anchored" data-anchor-id="真实保护问题">真实保护问题</h2>
 <p>某自然保护区连续两年监测一种濒危草本植物。工作人员在固定样地中记录开花个体数量：去年 10 个样地平均每样地 23 株开花，今年同样的样地、同样的方法，平均只有 17 株。</p>
@@ -1099,182 +1279,365 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </div>
 </nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "统计学在保护中的角色"</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "第 1 章 统计学在保护中的角色"</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="an">maturity:</span><span class="co"> budding</span></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="an">updated:</span><span class="co"> 2026-06-16</span></span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">## 真实保护问题</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>某自然保护区连续两年监测一种濒危草本植物。工作人员在固定样地中记录开花个体数量：去年 10 个样地平均每样地 23 株开花，今年同样的样地、同样的方法，平均只有 17 株。</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>保护站开会时，大家意见不一。</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>"今年肯定少了，"老巡护员说，"我天天在山里走，明显感觉花没去年多。"</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>"但我看东边那片开得挺好的，"另一位同事反驳，"说不定只是样地刚好落在了差的地方。"</span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>"去年春天雨水多，今年偏旱，会不会只是天气波动？"新来的技术员问。</span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>站长最后问了一个核心问题：**我们真的有证据说这个物种种群在下降吗？如果没有，我们该不该现在就改变保护措施？**</span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>这个问题，就是统计学要回答的。</span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="fu">## 学习目标</span></span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>学完本节后，你应能够：</span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>理解为什么保护工作天然需要统计分析——从"我感觉"走向"我有证据"</span>
-<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>区分描述、比较、推断和支持行动四种统计任务的保护场景</span>
-<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>识别保护数据中不确定性的常见来源</span>
-<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>建立"统计结论是证据而非自动决策"的判断意识</span>
-<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a><span class="fu">## 为什么保护工作需要统计学</span></span>
-<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a><span class="fu">### 1. 从一个真实保护场景开始</span></span>
-<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>回到开头的濒危植物监测。把站长的困惑拆开，其实是三个层层递进的问题：</span>
-<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**今年真的比去年少了吗？** —— 下降 6 株是真实趋势还是随机波动？如果我们明年再测，会不会又回到 20 株以上？</span>
-<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**少多少才算值得关注？** —— 如果只是从 23 降到 22，可能不值得紧张。但如果连续三年每年下降超过 30%，就该拉响警报了。那么这个阈值在哪里？</span>
-<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**我们是否应该改变保护措施？** —— 要不要增加人工繁育？要不要扩大保护区？这些行动都需要成本，我们必须先确认问题是否真实存在。</span>
-<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>这三个问题恰好对应了统计学的三层任务：**检验差异是否真实**、**量化效应大小**、**支持管理决策**。</span>
-<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>::: {.callout-tip}</span>
-<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a><span class="fu">## 先有场景，再有方法</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="in">```{=html}</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="in">&lt;style&gt;</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="in">.ch1-fig {</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="in">  background: #fff;</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="in">  border: 2px solid #1a1a1a;</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="in">  border-radius: 16px 6px 16px 6px;</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="in">  box-shadow: 5px 5px 0 #1a1a1a;</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="in">  padding: 1.4rem 1.2rem 1.6rem;</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="in">  margin: 0 0 2.5rem 0;</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="in">}</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="in">.ch1-section { margin: 1rem 0; }</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="in">.ch1-section-h {</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="in">  font-family: "Gochi Hand", "Caveat", "楷体", cursive;</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="in">  font-size: 1.2rem; font-weight: 700; color: #1a1a1a;</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="in">  text-align: center; margin-bottom: 0.5rem;</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="in">  letter-spacing: 0.1em;</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="in">}</span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="in">.ch1-noise-row {</span></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="in">  display: flex; align-items: center; justify-content: center;</span></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="in">  gap: 0.8rem; flex-wrap: wrap;</span></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a><span class="in">}</span></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a><span class="in">.ch1-noise-row .ch1-mascot { width: 70px; height: 70px; flex-shrink: 0; }</span></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a><span class="in">.ch1-noises {</span></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a><span class="in">  display: flex; gap: 0.4rem; flex-wrap: wrap; justify-content: center;</span></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a><span class="in">}</span></span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a><span class="in">/* 不确定性段：统一红色 */</span></span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a><span class="in">.ch1-noises .tag {</span></span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a><span class="in">  background: #ffebee; border: 2.5px solid #ef5350;</span></span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a><span class="in">  border-radius: 12px 4px 12px 4px;</span></span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a><span class="in">  padding: 0.35rem 0.8rem; font-size: 0.95rem; font-weight: 700;</span></span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a><span class="in">  color: #c62828; box-shadow: 3px 3px 0 #1a1a1a;</span></span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a><span class="in">  font-family: "Gochi Hand", "Caveat", "楷体", cursive;</span></span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a><span class="in">  letter-spacing: 0.05em;</span></span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a><span class="in">}</span></span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a><span class="in">.ch1-noises .tag:nth-child(1) { transform: rotate(-2deg); }</span></span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a><span class="in">.ch1-noises .tag:nth-child(2) { transform: rotate(2.5deg); }</span></span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a><span class="in">.ch1-noises .tag:nth-child(3) { transform: rotate(-2.5deg); }</span></span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a><span class="in">.ch1-noises .tag:nth-child(4) { transform: rotate(2deg); }</span></span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a><span class="in">.ch1-noises .tag:nth-child(5) { transform: rotate(-3deg); }</span></span>
 <span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a>本书每一章都从一个具体的保护场景出发。不要把统计方法当作需要记忆的公式清单——把它当作你面对保护问题时的一套"诊断工具"。就像医生不会先决定用什么检查再问病人哪里不舒服，我们在保护工作中也应该是：先有保护问题 → 再选择统计工具。</span>
-<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a><span class="fu">### 2. 保护工作不是只看现象，而是做判断</span></span>
-<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a>保护生物学中有太多需要做判断的时刻。以下是你在实际工作中经常会遇到的问题：</span>
-<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 场景 <span class="pp">|</span> 你要判断的问题 <span class="pp">|</span></span>
-<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a><span class="pp">|------|---------------|</span></span>
-<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 某保护区连续多年监测鸟类 <span class="pp">|</span> 种群数量是否在下降？下降的速度有多快？ <span class="pp">|</span></span>
-<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 新发现一种蛀干害虫在人工林中扩散 <span class="pp">|</span> 扩散范围有多大？哪些林分风险更高？ <span class="pp">|</span></span>
-<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 试用一种生物防治措施两年了 <span class="pp">|</span> 防治措施是否真的有效？效果有多大？ <span class="pp">|</span></span>
-<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 比较人工林和天然林的生物多样性 <span class="pp">|</span> 两边的物种组成是否不同？差别有多大？ <span class="pp">|</span></span>
-<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 红外相机拍到某种动物的次数增加了 <span class="pp">|</span> 是数量真的多了，还是只是活动范围变了？ <span class="pp">|</span></span>
-<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a>每一个问题的背后都藏着一个相同的结构：**我们观察到了某种现象，但需要判断这个现象是否真实、是否重要、是否需要行动。**</span>
-<span id="cb1-63"><a href="#cb1-63" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-64"><a href="#cb1-64" aria-hidden="true" tabindex="-1"></a>而统计学的价值恰恰就在这里。它不是把数据变复杂，而是帮助我们在不确定中做更可靠的判断。</span>
-<span id="cb1-65"><a href="#cb1-65" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-66"><a href="#cb1-66" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; **统计学不是把数据变复杂，而是帮助我们在不确定中做更可靠的判断。**</span></span>
-<span id="cb1-67"><a href="#cb1-67" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-68"><a href="#cb1-68" aria-hidden="true" tabindex="-1"></a><span class="fu">### 3. 数据不会自己说话</span></span>
-<span id="cb1-69"><a href="#cb1-69" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-70"><a href="#cb1-70" aria-hidden="true" tabindex="-1"></a>初学统计的人常常有一种错觉：只要把数据收集好，画个图，结论就会自己跳出来。但现实是——数据永远是"吵"的。</span>
-<span id="cb1-71"><a href="#cb1-71" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-72"><a href="#cb1-72" aria-hidden="true" tabindex="-1"></a>什么是"吵"？就是同一种测量在不同时间、不同地点、不同条件下，天然就有波动。保护生物学面对的是自然界，不确定性来源特别多：</span>
-<span id="cb1-73"><a href="#cb1-73" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-74"><a href="#cb1-74" aria-hidden="true" tabindex="-1"></a>**自然变异**。同样是 50 年的云南松，胸径可以从 18 cm 到 45 cm。同一物种在不同坡位、不同土壤上，密度就是不一样。这不是测量错误，而是自然界本来就有的差异。</span>
-<span id="cb1-75"><a href="#cb1-75" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-76"><a href="#cb1-76" aria-hidden="true" tabindex="-1"></a>**观察误差**。你数样方里的幼苗，今天阳光好可能数出 35 株，明天下雨视线差可能只数出 28 株。不同调查员的仔细程度、经验水平也不一样。</span>
-<span id="cb1-77"><a href="#cb1-77" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-78"><a href="#cb1-78" aria-hidden="true" tabindex="-1"></a>**时间波动**。病虫害有大小年，植物开花受积温和降水影响，动物活动有昼夜和季节节律。一次调查只是整个时间序列上的一个"快照"。</span>
-<span id="cb1-79"><a href="#cb1-79" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-80"><a href="#cb1-80" aria-hidden="true" tabindex="-1"></a>**样本有限**。你不可能调查保护区的每一棵树、每一只鸟。你只能从样地、样线、样点中获取样本，然后用样本去推测整体。样本越小，推测的不确定性就越大。</span>
-<span id="cb1-81"><a href="#cb1-81" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-82"><a href="#cb1-82" aria-hidden="true" tabindex="-1"></a>**偶然性**。即使所有条件都一样，一些差异也可能只是偶然出现的——就像掷硬币，连续出现五个正面不代表硬币有问题。</span>
-<span id="cb1-83"><a href="#cb1-83" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-84"><a href="#cb1-84" aria-hidden="true" tabindex="-1"></a>把这些来源放在一起，你就会理解一个关键事实：</span>
-<span id="cb1-85"><a href="#cb1-85" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-86"><a href="#cb1-86" aria-hidden="true" tabindex="-1"></a>::: {.callout-important}</span>
-<span id="cb1-87"><a href="#cb1-87" aria-hidden="true" tabindex="-1"></a><span class="fu">## 没有统计，我们很容易把偶然波动误认为真实规律。</span></span>
-<span id="cb1-88"><a href="#cb1-88" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-89"><a href="#cb1-89" aria-hidden="true" tabindex="-1"></a>保护工作中最危险的情况之一是：看到数字变了就去追原因、改方案，结果追的只是噪声。统计学的核心任务就是帮我们把"信号"和"噪声"分开。</span>
-<span id="cb1-90"><a href="#cb1-90" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb1-91"><a href="#cb1-91" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-92"><a href="#cb1-92" aria-hidden="true" tabindex="-1"></a><span class="fu">### 4. 统计学在保护中的四个作用</span></span>
-<span id="cb1-93"><a href="#cb1-93" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-94"><a href="#cb1-94" aria-hidden="true" tabindex="-1"></a>当你面对保护数据和保护问题时，统计学可以帮你做四件事。这四件事层层递进，构成了从数据到行动的完整逻辑链。</span>
-<span id="cb1-95"><a href="#cb1-95" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-96"><a href="#cb1-96" aria-hidden="true" tabindex="-1"></a><span class="fu">#### 描述：现在是什么状态？</span></span>
-<span id="cb1-97"><a href="#cb1-97" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-98"><a href="#cb1-98" aria-hidden="true" tabindex="-1"></a>拿到数据后的第一步永远是"看清楚"。描述统计回答的是：这个保护对象现在是什么状况？</span>
-<span id="cb1-99"><a href="#cb1-99" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-100"><a href="#cb1-100" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>某林区云南松的平均虫口密度是多少？不同样地之间差异有多大？</span>
-<span id="cb1-101"><a href="#cb1-101" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>某保护区今年记录到多少种鸟类？每种的出现频率如何？</span>
-<span id="cb1-102"><a href="#cb1-102" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>红外相机监测中，某种动物的独立拍摄次数是多少？</span>
-<span id="cb1-103"><a href="#cb1-103" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-104"><a href="#cb1-104" aria-hidden="true" tabindex="-1"></a>描述不是"随便求个平均数"。你需要选对指标：数据有极端值时，中位数可能比均值更有代表性；需要表达离散程度时，标准差和四分位距告诉你的信息不同。这些内容将在第 5 章详细展开。</span>
-<span id="cb1-105"><a href="#cb1-105" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-106"><a href="#cb1-106" aria-hidden="true" tabindex="-1"></a><span class="fu">#### 比较：不同对象是否有差异？</span></span>
-<span id="cb1-107"><a href="#cb1-107" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-108"><a href="#cb1-108" aria-hidden="true" tabindex="-1"></a>保护工作中最常见的问题之一就是"比较"——两个地方、两个时间点、两种处理之间，有没有可辨识的差别？</span>
-<span id="cb1-109"><a href="#cb1-109" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-110"><a href="#cb1-110" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>人工林和天然林中的鸟类物种数是否不同？</span>
-<span id="cb1-111"><a href="#cb1-111" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>施用 A 药剂和 B 药剂后，害虫死亡率是否有差异？</span>
-<span id="cb1-112"><a href="#cb1-112" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>保护区建立前后，旗舰物种的出现频率是否发生了变化？</span>
-<span id="cb1-113"><a href="#cb1-113" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-114"><a href="#cb1-114" aria-hidden="true" tabindex="-1"></a>比较的关键在于：你看到的差异究竟是处理造成的，还是本来就存在的波动？这就是推断统计要回答的问题。</span>
-<span id="cb1-115"><a href="#cb1-115" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-116"><a href="#cb1-116" aria-hidden="true" tabindex="-1"></a><span class="fu">#### 推断：观察到的差异是否可信？</span></span>
-<span id="cb1-117"><a href="#cb1-117" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-118"><a href="#cb1-118" aria-hidden="true" tabindex="-1"></a>假设你做了药效试验：处理组的害虫死亡率是 72%，对照组是 58%。差了 14 个百分点。但这个差异是药剂真的有效，还是因为这几组虫刚好体质差一些？</span>
-<span id="cb1-119"><a href="#cb1-119" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-120"><a href="#cb1-120" aria-hidden="true" tabindex="-1"></a>统计推断回答的就是这个问题：**在只考虑随机波动的情况下，我们看到这个差异（或更极端的差异）的概率有多大？** 这个概率就是后面会学到的 P 值。</span>
-<span id="cb1-121"><a href="#cb1-121" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-122"><a href="#cb1-122" aria-hidden="true" tabindex="-1"></a>::: {.callout-note}</span>
-<span id="cb1-123"><a href="#cb1-123" aria-hidden="true" tabindex="-1"></a><span class="fu">## 一点提前说明</span></span>
-<span id="cb1-124"><a href="#cb1-124" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-125"><a href="#cb1-125" aria-hidden="true" tabindex="-1"></a>很多学生对 P 值既好奇又困惑。这里先给一个直觉：P 值越小，说明"纯靠运气出现这个差异"的可能性越低，也就意味着证据越倾向于"差异是真实存在的"。但 P 值不是"差异有多大"的衡量——那需要效应量（effect size）。我们会在第 6 章和第 8 章系统学习推断统计。</span>
-<span id="cb1-126"><a href="#cb1-126" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb1-127"><a href="#cb1-127" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-128"><a href="#cb1-128" aria-hidden="true" tabindex="-1"></a><span class="fu">#### 支持行动：下一步该怎么做？</span></span>
-<span id="cb1-129"><a href="#cb1-129" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-130"><a href="#cb1-130" aria-hidden="true" tabindex="-1"></a>统计分析的终点不是得到一个 P 值，而是回答"基于这些证据，我们应该做什么"。</span>
-<span id="cb1-131"><a href="#cb1-131" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-132"><a href="#cb1-132" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>害虫密度连续三年超过防治阈值 → 启动防治方案</span>
-<span id="cb1-133"><a href="#cb1-133" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>监测数据显示某物种种群稳定 → 维持现有保护措施</span>
-<span id="cb1-134"><a href="#cb1-134" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>不同栖息地类型的物种多样性差异显著 → 在保护规划中优先考虑高多样性区域</span>
-<span id="cb1-135"><a href="#cb1-135" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>药剂效果虽然在统计上显著但效应量很小 → 不一定值得推广</span>
-<span id="cb1-136"><a href="#cb1-136" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-137"><a href="#cb1-137" aria-hidden="true" tabindex="-1"></a>这四步——描述、比较、推断、支持行动——不是一次性走完的线性流程，而是在保护实践中反复循环的判断过程。</span>
-<span id="cb1-138"><a href="#cb1-138" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-139"><a href="#cb1-139" aria-hidden="true" tabindex="-1"></a><span class="fu">### 5. 从"是否显著"到"是否有保护意义"</span></span>
-<span id="cb1-140"><a href="#cb1-140" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-141"><a href="#cb1-141" aria-hidden="true" tabindex="-1"></a>这可能是本书最重要的一节开头提醒，值得你学到后面章节时再回来读一遍。</span>
-<span id="cb1-142"><a href="#cb1-142" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-143"><a href="#cb1-143" aria-hidden="true" tabindex="-1"></a>统计学给出的是一个概率判断：数据是否支持"存在某种效应"的结论。但统计学不会替你回答"这个效应是否重要"——那需要保护生物学的专业判断。</span>
-<span id="cb1-144"><a href="#cb1-144" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-145"><a href="#cb1-145" aria-hidden="true" tabindex="-1"></a>**显著 ≠ 重要**。一个防治措施使虫口密度降低了 3%，统计上可能显著（因为样本量足够大，波动足够小），但 3% 的降低在实际防治中可能没有管理价值。你还需要问：降低 3% 值得投入这些成本吗？</span>
-<span id="cb1-146"><a href="#cb1-146" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-147"><a href="#cb1-147" aria-hidden="true" tabindex="-1"></a>**不显著 ≠ 没有效果**。如果样本量太小、测量误差太大、或者效应本身较小但没有足够检测能力，统计检验可能"不显著"，但这不代表处理完全无效。它可能只是告诉你——现有数据还不足以做出可靠判断，需要更多或更好的数据。</span>
-<span id="cb1-148"><a href="#cb1-148" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-149"><a href="#cb1-149" aria-hidden="true" tabindex="-1"></a>**证据不是决策**。保护决策还要考虑成本（防治措施买得起吗？）、风险（干预会不会有副作用？）、伦理（是否涉及濒危物种？）、管理目标（保护区的优先级是什么？）等多方面因素。统计数据提供的是决策所需的证据，但它本身不做决策。</span>
-<span id="cb1-150"><a href="#cb1-150" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-151"><a href="#cb1-151" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; **统计分析回答的是"证据有多强"，保护决策还要回答"行动是否值得"。**</span></span>
-<span id="cb1-152"><a href="#cb1-152" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-153"><a href="#cb1-153" aria-hidden="true" tabindex="-1"></a>这个区分在后面的学习中会反复出现。当你在第 8 章学会 t 检验、在第 12 章学会回归分析后，很容易产生一种感觉——"P &lt; 0.05 就万事大吉了"。请从一开始就记住：P 值是证据链条中的一环，不是终点。</span>
-<span id="cb1-154"><a href="#cb1-154" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-155"><a href="#cb1-155" aria-hidden="true" tabindex="-1"></a><span class="fu">### 6. 本节小结</span></span>
-<span id="cb1-156"><a href="#cb1-156" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-157"><a href="#cb1-157" aria-hidden="true" tabindex="-1"></a>用三句话结束这一节：</span>
-<span id="cb1-158"><a href="#cb1-158" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-159"><a href="#cb1-159" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**保护工作面对的是复杂、变化和不确定的自然系统。** 观察到的变化可能来自真实趋势，也可能来自自然波动、测量误差或偶然——我们需要一套方法来区分它们。</span>
-<span id="cb1-160"><a href="#cb1-160" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-161"><a href="#cb1-161" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**统计学帮助我们把观察结果转化为可检验的证据。** 它不创造确定性（自然界没有绝对的确定性），但它让我们知道：现有数据支持下，某个结论的可信度有多高。</span>
-<span id="cb1-162"><a href="#cb1-162" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-163"><a href="#cb1-163" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**本书学习统计，不是为了背公式，而是为了更好地提出问题、分析数据和支持保护行动。** 公式是工具，判断是核心。后面的章节中，每学一个方法，都请回到这个出发点来理解它为什么被需要。</span>
-<span id="cb1-164"><a href="#cb1-164" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-165"><a href="#cb1-165" aria-hidden="true" tabindex="-1"></a><span class="fu">## 课堂思考 / 小练习</span></span>
-<span id="cb1-166"><a href="#cb1-166" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-167"><a href="#cb1-167" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>**举一个你熟悉的保护问题。** 在你自己的专业方向或实习经历中，找一个需要数据支撑的保护判断。它属于描述、比较、推断还是行动决策？你为什么觉得它需要统计分析？</span>
-<span id="cb1-168"><a href="#cb1-168" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-169"><a href="#cb1-169" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>**判断下面的问题类型。** "某保护区今年红外相机拍到的豹猫次数比去年少了 20 次。"——这个陈述目前处于哪个阶段？如果要把它变成一个可以用统计回答的问题，你还需要哪些信息？（提示：想一想"信号 vs 噪声"的框架）</span>
-<span id="cb1-170"><a href="#cb1-170" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-171"><a href="#cb1-171" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>**一个思考题。** 假设有一种新型生物农药，田间试验结果显示：处理组比对照组的虫口密度降低了 5%，统计检验 P = 0.03。你认为这个农药一定值得推广吗？说出至少两个需要考虑的额外因素。</span>
-<span id="cb1-172"><a href="#cb1-172" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-173"><a href="#cb1-173" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>**预习任务。** 翻到第 2 章，看看"研究问题、变量与假设"的标题。想一个你自己感兴趣的保护问题，下节课我们来把它拆解成研究对象、处理因素、观测指标和研究假设。</span>
-<span id="cb1-174"><a href="#cb1-174" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-175"><a href="#cb1-175" aria-hidden="true" tabindex="-1"></a><span class="fu">## 继续学习</span></span>
-<span id="cb1-176"><a href="#cb1-176" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-177"><a href="#cb1-177" aria-hidden="true" tabindex="-1"></a>→ <span class="co">[</span><span class="ot">第2章：研究问题、变量与假设</span><span class="co">](02-variables-hypotheses.qmd)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a><span class="in">.ch1-divider {</span></span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a><span class="in">  text-align: center;</span></span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a><span class="in">  font-family: "Gochi Hand", "Caveat", "楷体", cursive;</span></span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a><span class="in">  font-size: 1.25rem; font-weight: 700; color: #1a1a1a;</span></span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a><span class="in">  margin: 0.9rem 0;</span></span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a><span class="in">  letter-spacing: 0.05em;</span></span>
+<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a><span class="in">}</span></span>
+<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a><span class="in">.ch1-divider .arrow {</span></span>
+<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a><span class="in">  display: inline-block; transform: scale(2) rotate(-5deg);</span></span>
+<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a><span class="in">  margin: 0 0.5rem; color: #1a1a1a;</span></span>
+<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a><span class="in">}</span></span>
+<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a><span class="in">.ch1-pipeline-row {</span></span>
+<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a><span class="in">  display: flex; align-items: center; justify-content: center;</span></span>
+<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a><span class="in">  gap: 0.6rem; flex-wrap: wrap;</span></span>
+<span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a><span class="in">}</span></span>
+<span id="cb1-63"><a href="#cb1-63" aria-hidden="true" tabindex="-1"></a><span class="in">.ch1-pipeline-row .ch1-mascot { width: 80px; height: 80px; flex-shrink: 0; }</span></span>
+<span id="cb1-64"><a href="#cb1-64" aria-hidden="true" tabindex="-1"></a><span class="in">.ch1-pipeline {</span></span>
+<span id="cb1-65"><a href="#cb1-65" aria-hidden="true" tabindex="-1"></a><span class="in">  display: flex; align-items: center; gap: 0.3rem; flex-wrap: wrap;</span></span>
+<span id="cb1-66"><a href="#cb1-66" aria-hidden="true" tabindex="-1"></a><span class="in">  justify-content: center;</span></span>
+<span id="cb1-67"><a href="#cb1-67" aria-hidden="true" tabindex="-1"></a><span class="in">}</span></span>
+<span id="cb1-68"><a href="#cb1-68" aria-hidden="true" tabindex="-1"></a><span class="in">/* 流水线段：统一蓝色 */</span></span>
+<span id="cb1-69"><a href="#cb1-69" aria-hidden="true" tabindex="-1"></a><span class="in">.ch1-step {</span></span>
+<span id="cb1-70"><a href="#cb1-70" aria-hidden="true" tabindex="-1"></a><span class="in">  background: #e1f5fe; border: 2.5px solid #4fc3f7;</span></span>
+<span id="cb1-71"><a href="#cb1-71" aria-hidden="true" tabindex="-1"></a><span class="in">  border-radius: 12px 4px 12px 4px;</span></span>
+<span id="cb1-72"><a href="#cb1-72" aria-hidden="true" tabindex="-1"></a><span class="in">  padding: 0.55rem 0.75rem; min-width: 95px; text-align: center;</span></span>
+<span id="cb1-73"><a href="#cb1-73" aria-hidden="true" tabindex="-1"></a><span class="in">  box-shadow: 3px 3px 0 #1a1a1a;</span></span>
+<span id="cb1-74"><a href="#cb1-74" aria-hidden="true" tabindex="-1"></a><span class="in">}</span></span>
+<span id="cb1-75"><a href="#cb1-75" aria-hidden="true" tabindex="-1"></a><span class="in">.ch1-step.s1 { transform: rotate(-2deg); }</span></span>
+<span id="cb1-76"><a href="#cb1-76" aria-hidden="true" tabindex="-1"></a><span class="in">.ch1-step.s2 { transform: rotate(1.5deg); }</span></span>
+<span id="cb1-77"><a href="#cb1-77" aria-hidden="true" tabindex="-1"></a><span class="in">.ch1-step.s3 { transform: rotate(-1.5deg); }</span></span>
+<span id="cb1-78"><a href="#cb1-78" aria-hidden="true" tabindex="-1"></a><span class="in">.ch1-step.s4 { transform: rotate(2deg); }</span></span>
+<span id="cb1-79"><a href="#cb1-79" aria-hidden="true" tabindex="-1"></a><span class="in">.ch1-step .num {</span></span>
+<span id="cb1-80"><a href="#cb1-80" aria-hidden="true" tabindex="-1"></a><span class="in">  display: inline-block;</span></span>
+<span id="cb1-81"><a href="#cb1-81" aria-hidden="true" tabindex="-1"></a><span class="in">  font-family: "Gochi Hand", "Caveat", cursive;</span></span>
+<span id="cb1-82"><a href="#cb1-82" aria-hidden="true" tabindex="-1"></a><span class="in">  font-size: 1.7rem; font-weight: 700;</span></span>
+<span id="cb1-83"><a href="#cb1-83" aria-hidden="true" tabindex="-1"></a><span class="in">  color: #0277bd;</span></span>
+<span id="cb1-84"><a href="#cb1-84" aria-hidden="true" tabindex="-1"></a><span class="in">  line-height: 1; margin-bottom: 0.15rem;</span></span>
+<span id="cb1-85"><a href="#cb1-85" aria-hidden="true" tabindex="-1"></a><span class="in">  transform: rotate(-4deg);</span></span>
+<span id="cb1-86"><a href="#cb1-86" aria-hidden="true" tabindex="-1"></a><span class="in">}</span></span>
+<span id="cb1-87"><a href="#cb1-87" aria-hidden="true" tabindex="-1"></a><span class="in">.ch1-step .name { font-family: "Gochi Hand", "Caveat", "楷体", cursive;</span></span>
+<span id="cb1-88"><a href="#cb1-88" aria-hidden="true" tabindex="-1"></a><span class="in">  font-weight: 800; font-size: 1.1rem; color: #0277bd;</span></span>
+<span id="cb1-89"><a href="#cb1-89" aria-hidden="true" tabindex="-1"></a><span class="in">  letter-spacing: 0.05em; }</span></span>
+<span id="cb1-90"><a href="#cb1-90" aria-hidden="true" tabindex="-1"></a><span class="in">.ch1-step .q { font-size: 0.72rem; color: #555; line-height: 1.35; margin-top: 0.2rem;</span></span>
+<span id="cb1-91"><a href="#cb1-91" aria-hidden="true" tabindex="-1"></a><span class="in">  font-family: "楷体", "STKaiti", cursive; }</span></span>
+<span id="cb1-92"><a href="#cb1-92" aria-hidden="true" tabindex="-1"></a><span class="in">.ch1-step-arrow {</span></span>
+<span id="cb1-93"><a href="#cb1-93" aria-hidden="true" tabindex="-1"></a><span class="in">  font-family: "Gochi Hand", "Caveat", cursive;</span></span>
+<span id="cb1-94"><a href="#cb1-94" aria-hidden="true" tabindex="-1"></a><span class="in">  font-size: 1.8rem; font-weight: 700; color: #1a1a1a;</span></span>
+<span id="cb1-95"><a href="#cb1-95" aria-hidden="true" tabindex="-1"></a><span class="in">  transform: rotate(-5deg);</span></span>
+<span id="cb1-96"><a href="#cb1-96" aria-hidden="true" tabindex="-1"></a><span class="in">  display: inline-block;</span></span>
+<span id="cb1-97"><a href="#cb1-97" aria-hidden="true" tabindex="-1"></a><span class="in">}</span></span>
+<span id="cb1-98"><a href="#cb1-98" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-99"><a href="#cb1-99" aria-hidden="true" tabindex="-1"></a><span class="in">.ch1-final-row {</span></span>
+<span id="cb1-100"><a href="#cb1-100" aria-hidden="true" tabindex="-1"></a><span class="in">  display: flex; align-items: center; justify-content: center;</span></span>
+<span id="cb1-101"><a href="#cb1-101" aria-hidden="true" tabindex="-1"></a><span class="in">  gap: 1rem; flex-wrap: wrap; margin-top: 0.4rem;</span></span>
+<span id="cb1-102"><a href="#cb1-102" aria-hidden="true" tabindex="-1"></a><span class="in">}</span></span>
+<span id="cb1-103"><a href="#cb1-103" aria-hidden="true" tabindex="-1"></a><span class="in">.ch1-final-row .ch1-mascot { width: 75px; height: 75px; flex-shrink: 0; }</span></span>
+<span id="cb1-104"><a href="#cb1-104" aria-hidden="true" tabindex="-1"></a><span class="in">/* 决策段：统一黄色 */</span></span>
+<span id="cb1-105"><a href="#cb1-105" aria-hidden="true" tabindex="-1"></a><span class="in">.ch1-final {</span></span>
+<span id="cb1-106"><a href="#cb1-106" aria-hidden="true" tabindex="-1"></a><span class="in">  background: #ffd54f; border: 2.5px solid #1a1a1a;</span></span>
+<span id="cb1-107"><a href="#cb1-107" aria-hidden="true" tabindex="-1"></a><span class="in">  border-radius: 14px 4px 14px 4px;</span></span>
+<span id="cb1-108"><a href="#cb1-108" aria-hidden="true" tabindex="-1"></a><span class="in">  padding: 0.7rem 1.4rem;</span></span>
+<span id="cb1-109"><a href="#cb1-109" aria-hidden="true" tabindex="-1"></a><span class="in">  font-family: "Gochi Hand", "Caveat", "楷体", cursive;</span></span>
+<span id="cb1-110"><a href="#cb1-110" aria-hidden="true" tabindex="-1"></a><span class="in">  font-weight: 800; font-size: 1.4rem; color: #1a1a1a;</span></span>
+<span id="cb1-111"><a href="#cb1-111" aria-hidden="true" tabindex="-1"></a><span class="in">  box-shadow: 4px 4px 0 #1a1a1a;</span></span>
+<span id="cb1-112"><a href="#cb1-112" aria-hidden="true" tabindex="-1"></a><span class="in">  letter-spacing: 0.06em;</span></span>
+<span id="cb1-113"><a href="#cb1-113" aria-hidden="true" tabindex="-1"></a><span class="in">  transform: rotate(-1.5deg);</span></span>
+<span id="cb1-114"><a href="#cb1-114" aria-hidden="true" tabindex="-1"></a><span class="in">}</span></span>
+<span id="cb1-115"><a href="#cb1-115" aria-hidden="true" tabindex="-1"></a><span class="in">.ch1-caveat {</span></span>
+<span id="cb1-116"><a href="#cb1-116" aria-hidden="true" tabindex="-1"></a><span class="in">  margin-top: 1rem; padding: 0.7rem 1rem;</span></span>
+<span id="cb1-117"><a href="#cb1-117" aria-hidden="true" tabindex="-1"></a><span class="in">  background: #fff8e1; border: 2.5px dashed #ffb300;</span></span>
+<span id="cb1-118"><a href="#cb1-118" aria-hidden="true" tabindex="-1"></a><span class="in">  border-radius: 8px;</span></span>
+<span id="cb1-119"><a href="#cb1-119" aria-hidden="true" tabindex="-1"></a><span class="in">  font-size: 0.85rem; color: #444; line-height: 1.7;</span></span>
+<span id="cb1-120"><a href="#cb1-120" aria-hidden="true" tabindex="-1"></a><span class="in">  font-family: "楷体", "STKaiti", "Microsoft YaHei", cursive;</span></span>
+<span id="cb1-121"><a href="#cb1-121" aria-hidden="true" tabindex="-1"></a><span class="in">}</span></span>
+<span id="cb1-122"><a href="#cb1-122" aria-hidden="true" tabindex="-1"></a><span class="in">.ch1-caveat b { color: #ef6c00;</span></span>
+<span id="cb1-123"><a href="#cb1-123" aria-hidden="true" tabindex="-1"></a><span class="in">  font-family: "Gochi Hand", "Caveat", "楷体", cursive;</span></span>
+<span id="cb1-124"><a href="#cb1-124" aria-hidden="true" tabindex="-1"></a><span class="in">  font-size: 1.1rem; letter-spacing: 0.05em; }</span></span>
+<span id="cb1-125"><a href="#cb1-125" aria-hidden="true" tabindex="-1"></a><span class="in">&lt;/style&gt;</span></span>
+<span id="cb1-126"><a href="#cb1-126" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-127"><a href="#cb1-127" aria-hidden="true" tabindex="-1"></a><span class="in">&lt;div class="ch1-fig sketch"&gt;</span></span>
+<span id="cb1-128"><a href="#cb1-128" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;div class="ch1-section"&gt;</span></span>
+<span id="cb1-129"><a href="#cb1-129" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;div class="ch1-section-h"&gt;① 保护数据中的不确定性&lt;/div&gt;</span></span>
+<span id="cb1-130"><a href="#cb1-130" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;div class="ch1-noise-row"&gt;</span></span>
+<span id="cb1-131"><a href="#cb1-131" aria-hidden="true" tabindex="-1"></a><span class="in">      &lt;img src="../images/mascot/cat-think.svg" alt="黑豹思考" class="ch1-mascot"/&gt;</span></span>
+<span id="cb1-132"><a href="#cb1-132" aria-hidden="true" tabindex="-1"></a><span class="in">      &lt;div class="ch1-noises"&gt;</span></span>
+<span id="cb1-133"><a href="#cb1-133" aria-hidden="true" tabindex="-1"></a><span class="in">        &lt;span class="tag"&gt;自然变异&lt;/span&gt;</span></span>
+<span id="cb1-134"><a href="#cb1-134" aria-hidden="true" tabindex="-1"></a><span class="in">        &lt;span class="tag"&gt;观察误差&lt;/span&gt;</span></span>
+<span id="cb1-135"><a href="#cb1-135" aria-hidden="true" tabindex="-1"></a><span class="in">        &lt;span class="tag"&gt;时间波动&lt;/span&gt;</span></span>
+<span id="cb1-136"><a href="#cb1-136" aria-hidden="true" tabindex="-1"></a><span class="in">        &lt;span class="tag"&gt;样本有限&lt;/span&gt;</span></span>
+<span id="cb1-137"><a href="#cb1-137" aria-hidden="true" tabindex="-1"></a><span class="in">        &lt;span class="tag"&gt;偶然性&lt;/span&gt;</span></span>
+<span id="cb1-138"><a href="#cb1-138" aria-hidden="true" tabindex="-1"></a><span class="in">      &lt;/div&gt;</span></span>
+<span id="cb1-139"><a href="#cb1-139" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;/div&gt;</span></span>
+<span id="cb1-140"><a href="#cb1-140" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;/div&gt;</span></span>
+<span id="cb1-141"><a href="#cb1-141" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-142"><a href="#cb1-142" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;div class="ch1-divider"&gt;&lt;span class="arrow"&gt;↓&lt;/span&gt;&lt;/div&gt;</span></span>
+<span id="cb1-143"><a href="#cb1-143" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-144"><a href="#cb1-144" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;div class="ch1-section"&gt;</span></span>
+<span id="cb1-145"><a href="#cb1-145" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;div class="ch1-section-h"&gt;② 统计学在保护中的四个作用&lt;/div&gt;</span></span>
+<span id="cb1-146"><a href="#cb1-146" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;div class="ch1-pipeline-row"&gt;</span></span>
+<span id="cb1-147"><a href="#cb1-147" aria-hidden="true" tabindex="-1"></a><span class="in">      &lt;img src="../images/mascot/cat-point.svg" alt="黑豹指引" class="ch1-mascot"/&gt;</span></span>
+<span id="cb1-148"><a href="#cb1-148" aria-hidden="true" tabindex="-1"></a><span class="in">      &lt;div class="ch1-pipeline"&gt;</span></span>
+<span id="cb1-149"><a href="#cb1-149" aria-hidden="true" tabindex="-1"></a><span class="in">        &lt;div class="ch1-step s1"&gt;</span></span>
+<span id="cb1-150"><a href="#cb1-150" aria-hidden="true" tabindex="-1"></a><span class="in">          &lt;div class="num"&gt;1&lt;/div&gt;</span></span>
+<span id="cb1-151"><a href="#cb1-151" aria-hidden="true" tabindex="-1"></a><span class="in">          &lt;div class="name"&gt;描述&lt;/div&gt;</span></span>
+<span id="cb1-152"><a href="#cb1-152" aria-hidden="true" tabindex="-1"></a><span class="in">          &lt;div class="q"&gt;现在是&lt;br&gt;什么状态？&lt;/div&gt;</span></span>
+<span id="cb1-153"><a href="#cb1-153" aria-hidden="true" tabindex="-1"></a><span class="in">        &lt;/div&gt;</span></span>
+<span id="cb1-154"><a href="#cb1-154" aria-hidden="true" tabindex="-1"></a><span class="in">        &lt;span class="ch1-step-arrow"&gt;→&lt;/span&gt;</span></span>
+<span id="cb1-155"><a href="#cb1-155" aria-hidden="true" tabindex="-1"></a><span class="in">        &lt;div class="ch1-step s2"&gt;</span></span>
+<span id="cb1-156"><a href="#cb1-156" aria-hidden="true" tabindex="-1"></a><span class="in">          &lt;div class="num"&gt;2&lt;/div&gt;</span></span>
+<span id="cb1-157"><a href="#cb1-157" aria-hidden="true" tabindex="-1"></a><span class="in">          &lt;div class="name"&gt;比较&lt;/div&gt;</span></span>
+<span id="cb1-158"><a href="#cb1-158" aria-hidden="true" tabindex="-1"></a><span class="in">          &lt;div class="q"&gt;不同对象&lt;br&gt;有差异吗？&lt;/div&gt;</span></span>
+<span id="cb1-159"><a href="#cb1-159" aria-hidden="true" tabindex="-1"></a><span class="in">        &lt;/div&gt;</span></span>
+<span id="cb1-160"><a href="#cb1-160" aria-hidden="true" tabindex="-1"></a><span class="in">        &lt;span class="ch1-step-arrow"&gt;→&lt;/span&gt;</span></span>
+<span id="cb1-161"><a href="#cb1-161" aria-hidden="true" tabindex="-1"></a><span class="in">        &lt;div class="ch1-step s3"&gt;</span></span>
+<span id="cb1-162"><a href="#cb1-162" aria-hidden="true" tabindex="-1"></a><span class="in">          &lt;div class="num"&gt;3&lt;/div&gt;</span></span>
+<span id="cb1-163"><a href="#cb1-163" aria-hidden="true" tabindex="-1"></a><span class="in">          &lt;div class="name"&gt;推断&lt;/div&gt;</span></span>
+<span id="cb1-164"><a href="#cb1-164" aria-hidden="true" tabindex="-1"></a><span class="in">          &lt;div class="q"&gt;差异&lt;br&gt;可信吗？&lt;/div&gt;</span></span>
+<span id="cb1-165"><a href="#cb1-165" aria-hidden="true" tabindex="-1"></a><span class="in">        &lt;/div&gt;</span></span>
+<span id="cb1-166"><a href="#cb1-166" aria-hidden="true" tabindex="-1"></a><span class="in">        &lt;span class="ch1-step-arrow"&gt;→&lt;/span&gt;</span></span>
+<span id="cb1-167"><a href="#cb1-167" aria-hidden="true" tabindex="-1"></a><span class="in">        &lt;div class="ch1-step s4"&gt;</span></span>
+<span id="cb1-168"><a href="#cb1-168" aria-hidden="true" tabindex="-1"></a><span class="in">          &lt;div class="num"&gt;4&lt;/div&gt;</span></span>
+<span id="cb1-169"><a href="#cb1-169" aria-hidden="true" tabindex="-1"></a><span class="in">          &lt;div class="name"&gt;支持行动&lt;/div&gt;</span></span>
+<span id="cb1-170"><a href="#cb1-170" aria-hidden="true" tabindex="-1"></a><span class="in">          &lt;div class="q"&gt;下一步&lt;br&gt;怎么做？&lt;/div&gt;</span></span>
+<span id="cb1-171"><a href="#cb1-171" aria-hidden="true" tabindex="-1"></a><span class="in">        &lt;/div&gt;</span></span>
+<span id="cb1-172"><a href="#cb1-172" aria-hidden="true" tabindex="-1"></a><span class="in">      &lt;/div&gt;</span></span>
+<span id="cb1-173"><a href="#cb1-173" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;/div&gt;</span></span>
+<span id="cb1-174"><a href="#cb1-174" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;/div&gt;</span></span>
+<span id="cb1-175"><a href="#cb1-175" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-176"><a href="#cb1-176" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;div class="ch1-divider"&gt;&lt;span class="arrow"&gt;↓&lt;/span&gt;&lt;/div&gt;</span></span>
+<span id="cb1-177"><a href="#cb1-177" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-178"><a href="#cb1-178" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;div class="ch1-final-row"&gt;</span></span>
+<span id="cb1-179"><a href="#cb1-179" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;img src="../images/mascot/cat-flag.svg" alt="黑豹举旗" class="ch1-mascot"/&gt;</span></span>
+<span id="cb1-180"><a href="#cb1-180" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;div class="ch1-final"&gt;🛡️ 保护决策&lt;/div&gt;</span></span>
+<span id="cb1-181"><a href="#cb1-181" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;/div&gt;</span></span>
+<span id="cb1-182"><a href="#cb1-182" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-183"><a href="#cb1-183" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;div class="ch1-caveat"&gt;</span></span>
+<span id="cb1-184"><a href="#cb1-184" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;b&gt;黑豹提醒：&lt;/b&gt;显著 ≠ 重要 ｜ 不显著 ≠ 没效果 ｜ 证据 ≠ 决策&lt;br&gt;</span></span>
+<span id="cb1-185"><a href="#cb1-185" aria-hidden="true" tabindex="-1"></a><span class="in">    统计回答"证据有多强"，保护决策还要回答"行动是否值得"。</span></span>
+<span id="cb1-186"><a href="#cb1-186" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;/div&gt;</span></span>
+<span id="cb1-187"><a href="#cb1-187" aria-hidden="true" tabindex="-1"></a><span class="in">&lt;/div&gt;</span></span>
+<span id="cb1-188"><a href="#cb1-188" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb1-189"><a href="#cb1-189" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-190"><a href="#cb1-190" aria-hidden="true" tabindex="-1"></a><span class="fu">## 真实保护问题</span></span>
+<span id="cb1-191"><a href="#cb1-191" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-192"><a href="#cb1-192" aria-hidden="true" tabindex="-1"></a>某自然保护区连续两年监测一种濒危草本植物。工作人员在固定样地中记录开花个体数量：去年 10 个样地平均每样地 23 株开花，今年同样的样地、同样的方法，平均只有 17 株。</span>
+<span id="cb1-193"><a href="#cb1-193" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-194"><a href="#cb1-194" aria-hidden="true" tabindex="-1"></a>保护站开会时，大家意见不一。</span>
+<span id="cb1-195"><a href="#cb1-195" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-196"><a href="#cb1-196" aria-hidden="true" tabindex="-1"></a>"今年肯定少了，"老巡护员说，"我天天在山里走，明显感觉花没去年多。"</span>
+<span id="cb1-197"><a href="#cb1-197" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-198"><a href="#cb1-198" aria-hidden="true" tabindex="-1"></a>"但我看东边那片开得挺好的，"另一位同事反驳，"说不定只是样地刚好落在了差的地方。"</span>
+<span id="cb1-199"><a href="#cb1-199" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-200"><a href="#cb1-200" aria-hidden="true" tabindex="-1"></a>"去年春天雨水多，今年偏旱，会不会只是天气波动？"新来的技术员问。</span>
+<span id="cb1-201"><a href="#cb1-201" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-202"><a href="#cb1-202" aria-hidden="true" tabindex="-1"></a>站长最后问了一个核心问题：**我们真的有证据说这个物种种群在下降吗？如果没有，我们该不该现在就改变保护措施？**</span>
+<span id="cb1-203"><a href="#cb1-203" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-204"><a href="#cb1-204" aria-hidden="true" tabindex="-1"></a>这个问题，就是统计学要回答的。</span>
+<span id="cb1-205"><a href="#cb1-205" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-206"><a href="#cb1-206" aria-hidden="true" tabindex="-1"></a><span class="fu">## 学习目标</span></span>
+<span id="cb1-207"><a href="#cb1-207" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-208"><a href="#cb1-208" aria-hidden="true" tabindex="-1"></a>学完本节后，你应能够：</span>
+<span id="cb1-209"><a href="#cb1-209" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-210"><a href="#cb1-210" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>理解为什么保护工作天然需要统计分析——从"我感觉"走向"我有证据"</span>
+<span id="cb1-211"><a href="#cb1-211" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>区分描述、比较、推断和支持行动四种统计任务的保护场景</span>
+<span id="cb1-212"><a href="#cb1-212" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>识别保护数据中不确定性的常见来源</span>
+<span id="cb1-213"><a href="#cb1-213" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>建立"统计结论是证据而非自动决策"的判断意识</span>
+<span id="cb1-214"><a href="#cb1-214" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-215"><a href="#cb1-215" aria-hidden="true" tabindex="-1"></a><span class="fu">## 为什么保护工作需要统计学</span></span>
+<span id="cb1-216"><a href="#cb1-216" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-217"><a href="#cb1-217" aria-hidden="true" tabindex="-1"></a><span class="fu">### 1. 从一个真实保护场景开始</span></span>
+<span id="cb1-218"><a href="#cb1-218" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-219"><a href="#cb1-219" aria-hidden="true" tabindex="-1"></a>回到开头的濒危植物监测。把站长的困惑拆开，其实是三个层层递进的问题：</span>
+<span id="cb1-220"><a href="#cb1-220" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-221"><a href="#cb1-221" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**今年真的比去年少了吗？** —— 下降 6 株是真实趋势还是随机波动？如果我们明年再测，会不会又回到 20 株以上？</span>
+<span id="cb1-222"><a href="#cb1-222" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**少多少才算值得关注？** —— 如果只是从 23 降到 22，可能不值得紧张。但如果连续三年每年下降超过 30%，就该拉响警报了。那么这个阈值在哪里？</span>
+<span id="cb1-223"><a href="#cb1-223" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**我们是否应该改变保护措施？** —— 要不要增加人工繁育？要不要扩大保护区？这些行动都需要成本，我们必须先确认问题是否真实存在。</span>
+<span id="cb1-224"><a href="#cb1-224" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-225"><a href="#cb1-225" aria-hidden="true" tabindex="-1"></a>这三个问题恰好对应了统计学的三层任务：**检验差异是否真实**、**量化效应大小**、**支持管理决策**。</span>
+<span id="cb1-226"><a href="#cb1-226" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-227"><a href="#cb1-227" aria-hidden="true" tabindex="-1"></a>::: {.callout-tip}</span>
+<span id="cb1-228"><a href="#cb1-228" aria-hidden="true" tabindex="-1"></a><span class="fu">## 先有场景，再有方法</span></span>
+<span id="cb1-229"><a href="#cb1-229" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-230"><a href="#cb1-230" aria-hidden="true" tabindex="-1"></a>本书每一章都从一个具体的保护场景出发。不要把统计方法当作需要记忆的公式清单——把它当作你面对保护问题时的一套"诊断工具"。就像医生不会先决定用什么检查再问病人哪里不舒服，我们在保护工作中也应该是：先有保护问题 → 再选择统计工具。</span>
+<span id="cb1-231"><a href="#cb1-231" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb1-232"><a href="#cb1-232" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-233"><a href="#cb1-233" aria-hidden="true" tabindex="-1"></a><span class="fu">### 2. 保护工作不是只看现象，而是做判断</span></span>
+<span id="cb1-234"><a href="#cb1-234" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-235"><a href="#cb1-235" aria-hidden="true" tabindex="-1"></a>保护生物学中有太多需要做判断的时刻。以下是你在实际工作中经常会遇到的问题：</span>
+<span id="cb1-236"><a href="#cb1-236" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-237"><a href="#cb1-237" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 场景 <span class="pp">|</span> 你要判断的问题 <span class="pp">|</span></span>
+<span id="cb1-238"><a href="#cb1-238" aria-hidden="true" tabindex="-1"></a><span class="pp">|------|---------------|</span></span>
+<span id="cb1-239"><a href="#cb1-239" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 某保护区连续多年监测鸟类 <span class="pp">|</span> 种群数量是否在下降？下降的速度有多快？ <span class="pp">|</span></span>
+<span id="cb1-240"><a href="#cb1-240" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 新发现一种蛀干害虫在人工林中扩散 <span class="pp">|</span> 扩散范围有多大？哪些林分风险更高？ <span class="pp">|</span></span>
+<span id="cb1-241"><a href="#cb1-241" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 试用一种生物防治措施两年了 <span class="pp">|</span> 防治措施是否真的有效？效果有多大？ <span class="pp">|</span></span>
+<span id="cb1-242"><a href="#cb1-242" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 比较人工林和天然林的生物多样性 <span class="pp">|</span> 两边的物种组成是否不同？差别有多大？ <span class="pp">|</span></span>
+<span id="cb1-243"><a href="#cb1-243" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 红外相机拍到某种动物的次数增加了 <span class="pp">|</span> 是数量真的多了，还是只是活动范围变了？ <span class="pp">|</span></span>
+<span id="cb1-244"><a href="#cb1-244" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-245"><a href="#cb1-245" aria-hidden="true" tabindex="-1"></a>每一个问题的背后都藏着一个相同的结构：**我们观察到了某种现象，但需要判断这个现象是否真实、是否重要、是否需要行动。**</span>
+<span id="cb1-246"><a href="#cb1-246" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-247"><a href="#cb1-247" aria-hidden="true" tabindex="-1"></a>而统计学的价值恰恰就在这里。它不是把数据变复杂，而是帮助我们在不确定中做更可靠的判断。</span>
+<span id="cb1-248"><a href="#cb1-248" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-249"><a href="#cb1-249" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; **统计学不是把数据变复杂，而是帮助我们在不确定中做更可靠的判断。**</span></span>
+<span id="cb1-250"><a href="#cb1-250" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-251"><a href="#cb1-251" aria-hidden="true" tabindex="-1"></a><span class="fu">### 3. 数据不会自己说话</span></span>
+<span id="cb1-252"><a href="#cb1-252" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-253"><a href="#cb1-253" aria-hidden="true" tabindex="-1"></a>初学统计的人常常有一种错觉：只要把数据收集好，画个图，结论就会自己跳出来。但现实是——数据永远是"吵"的。</span>
+<span id="cb1-254"><a href="#cb1-254" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-255"><a href="#cb1-255" aria-hidden="true" tabindex="-1"></a>什么是"吵"？就是同一种测量在不同时间、不同地点、不同条件下，天然就有波动。保护生物学面对的是自然界，不确定性来源特别多：</span>
+<span id="cb1-256"><a href="#cb1-256" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-257"><a href="#cb1-257" aria-hidden="true" tabindex="-1"></a>**自然变异**。同样是 50 年的云南松，胸径可以从 18 cm 到 45 cm。同一物种在不同坡位、不同土壤上，密度就是不一样。这不是测量错误，而是自然界本来就有的差异。</span>
+<span id="cb1-258"><a href="#cb1-258" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-259"><a href="#cb1-259" aria-hidden="true" tabindex="-1"></a>**观察误差**。你数样方里的幼苗，今天阳光好可能数出 35 株，明天下雨视线差可能只数出 28 株。不同调查员的仔细程度、经验水平也不一样。</span>
+<span id="cb1-260"><a href="#cb1-260" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-261"><a href="#cb1-261" aria-hidden="true" tabindex="-1"></a>**时间波动**。病虫害有大小年，植物开花受积温和降水影响，动物活动有昼夜和季节节律。一次调查只是整个时间序列上的一个"快照"。</span>
+<span id="cb1-262"><a href="#cb1-262" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-263"><a href="#cb1-263" aria-hidden="true" tabindex="-1"></a>**样本有限**。你不可能调查保护区的每一棵树、每一只鸟。你只能从样地、样线、样点中获取样本，然后用样本去推测整体。样本越小，推测的不确定性就越大。</span>
+<span id="cb1-264"><a href="#cb1-264" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-265"><a href="#cb1-265" aria-hidden="true" tabindex="-1"></a>**偶然性**。即使所有条件都一样，一些差异也可能只是偶然出现的——就像掷硬币，连续出现五个正面不代表硬币有问题。</span>
+<span id="cb1-266"><a href="#cb1-266" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-267"><a href="#cb1-267" aria-hidden="true" tabindex="-1"></a>把这些来源放在一起，你就会理解一个关键事实：</span>
+<span id="cb1-268"><a href="#cb1-268" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-269"><a href="#cb1-269" aria-hidden="true" tabindex="-1"></a>::: {.callout-important}</span>
+<span id="cb1-270"><a href="#cb1-270" aria-hidden="true" tabindex="-1"></a><span class="fu">## 没有统计，我们很容易把偶然波动误认为真实规律。</span></span>
+<span id="cb1-271"><a href="#cb1-271" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-272"><a href="#cb1-272" aria-hidden="true" tabindex="-1"></a>保护工作中最危险的情况之一是：看到数字变了就去追原因、改方案，结果追的只是噪声。统计学的核心任务就是帮我们把"信号"和"噪声"分开。</span>
+<span id="cb1-273"><a href="#cb1-273" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb1-274"><a href="#cb1-274" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-275"><a href="#cb1-275" aria-hidden="true" tabindex="-1"></a><span class="fu">### 4. 统计学在保护中的四个作用</span></span>
+<span id="cb1-276"><a href="#cb1-276" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-277"><a href="#cb1-277" aria-hidden="true" tabindex="-1"></a>当你面对保护数据和保护问题时，统计学可以帮你做四件事。这四件事层层递进，构成了从数据到行动的完整逻辑链。</span>
+<span id="cb1-278"><a href="#cb1-278" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-279"><a href="#cb1-279" aria-hidden="true" tabindex="-1"></a><span class="fu">#### 描述：现在是什么状态？</span></span>
+<span id="cb1-280"><a href="#cb1-280" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-281"><a href="#cb1-281" aria-hidden="true" tabindex="-1"></a>拿到数据后的第一步永远是"看清楚"。描述统计回答的是：这个保护对象现在是什么状况？</span>
+<span id="cb1-282"><a href="#cb1-282" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-283"><a href="#cb1-283" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>某林区云南松的平均虫口密度是多少？不同样地之间差异有多大？</span>
+<span id="cb1-284"><a href="#cb1-284" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>某保护区今年记录到多少种鸟类？每种的出现频率如何？</span>
+<span id="cb1-285"><a href="#cb1-285" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>红外相机监测中，某种动物的独立拍摄次数是多少？</span>
+<span id="cb1-286"><a href="#cb1-286" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-287"><a href="#cb1-287" aria-hidden="true" tabindex="-1"></a>描述不是"随便求个平均数"。你需要选对指标：数据有极端值时，中位数可能比均值更有代表性；需要表达离散程度时，标准差和四分位距告诉你的信息不同。这些内容将在第 5 章详细展开。</span>
+<span id="cb1-288"><a href="#cb1-288" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-289"><a href="#cb1-289" aria-hidden="true" tabindex="-1"></a><span class="fu">#### 比较：不同对象是否有差异？</span></span>
+<span id="cb1-290"><a href="#cb1-290" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-291"><a href="#cb1-291" aria-hidden="true" tabindex="-1"></a>保护工作中最常见的问题之一就是"比较"——两个地方、两个时间点、两种处理之间，有没有可辨识的差别？</span>
+<span id="cb1-292"><a href="#cb1-292" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-293"><a href="#cb1-293" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>人工林和天然林中的鸟类物种数是否不同？</span>
+<span id="cb1-294"><a href="#cb1-294" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>施用 A 药剂和 B 药剂后，害虫死亡率是否有差异？</span>
+<span id="cb1-295"><a href="#cb1-295" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>保护区建立前后，旗舰物种的出现频率是否发生了变化？</span>
+<span id="cb1-296"><a href="#cb1-296" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-297"><a href="#cb1-297" aria-hidden="true" tabindex="-1"></a>比较的关键在于：你看到的差异究竟是处理造成的，还是本来就存在的波动？这就是推断统计要回答的问题。</span>
+<span id="cb1-298"><a href="#cb1-298" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-299"><a href="#cb1-299" aria-hidden="true" tabindex="-1"></a><span class="fu">#### 推断：观察到的差异是否可信？</span></span>
+<span id="cb1-300"><a href="#cb1-300" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-301"><a href="#cb1-301" aria-hidden="true" tabindex="-1"></a>假设你做了药效试验：处理组的害虫死亡率是 72%，对照组是 58%。差了 14 个百分点。但这个差异是药剂真的有效，还是因为这几组虫刚好体质差一些？</span>
+<span id="cb1-302"><a href="#cb1-302" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-303"><a href="#cb1-303" aria-hidden="true" tabindex="-1"></a>统计推断回答的就是这个问题：**在只考虑随机波动的情况下，我们看到这个差异（或更极端的差异）的概率有多大？** 这个概率就是后面会学到的 P 值。</span>
+<span id="cb1-304"><a href="#cb1-304" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-305"><a href="#cb1-305" aria-hidden="true" tabindex="-1"></a>::: {.callout-note}</span>
+<span id="cb1-306"><a href="#cb1-306" aria-hidden="true" tabindex="-1"></a><span class="fu">## 一点提前说明</span></span>
+<span id="cb1-307"><a href="#cb1-307" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-308"><a href="#cb1-308" aria-hidden="true" tabindex="-1"></a>很多学生对 P 值既好奇又困惑。这里先给一个直觉：P 值越小，说明"纯靠运气出现这个差异"的可能性越低，也就意味着证据越倾向于"差异是真实存在的"。但 P 值不是"差异有多大"的衡量——那需要效应量（effect size）。我们会在第 6 章和第 8 章系统学习推断统计。</span>
+<span id="cb1-309"><a href="#cb1-309" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb1-310"><a href="#cb1-310" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-311"><a href="#cb1-311" aria-hidden="true" tabindex="-1"></a><span class="fu">#### 支持行动：下一步该怎么做？</span></span>
+<span id="cb1-312"><a href="#cb1-312" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-313"><a href="#cb1-313" aria-hidden="true" tabindex="-1"></a>统计分析的终点不是得到一个 P 值，而是回答"基于这些证据，我们应该做什么"。</span>
+<span id="cb1-314"><a href="#cb1-314" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-315"><a href="#cb1-315" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>害虫密度连续三年超过防治阈值 → 启动防治方案</span>
+<span id="cb1-316"><a href="#cb1-316" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>监测数据显示某物种种群稳定 → 维持现有保护措施</span>
+<span id="cb1-317"><a href="#cb1-317" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>不同栖息地类型的物种多样性差异显著 → 在保护规划中优先考虑高多样性区域</span>
+<span id="cb1-318"><a href="#cb1-318" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>药剂效果虽然在统计上显著但效应量很小 → 不一定值得推广</span>
+<span id="cb1-319"><a href="#cb1-319" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-320"><a href="#cb1-320" aria-hidden="true" tabindex="-1"></a>这四步——描述、比较、推断、支持行动——不是一次性走完的线性流程，而是在保护实践中反复循环的判断过程。</span>
+<span id="cb1-321"><a href="#cb1-321" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-322"><a href="#cb1-322" aria-hidden="true" tabindex="-1"></a><span class="fu">### 5. 从"是否显著"到"是否有保护意义"</span></span>
+<span id="cb1-323"><a href="#cb1-323" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-324"><a href="#cb1-324" aria-hidden="true" tabindex="-1"></a>这可能是本书最重要的一节开头提醒，值得你学到后面章节时再回来读一遍。</span>
+<span id="cb1-325"><a href="#cb1-325" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-326"><a href="#cb1-326" aria-hidden="true" tabindex="-1"></a>统计学给出的是一个概率判断：数据是否支持"存在某种效应"的结论。但统计学不会替你回答"这个效应是否重要"——那需要保护生物学的专业判断。</span>
+<span id="cb1-327"><a href="#cb1-327" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-328"><a href="#cb1-328" aria-hidden="true" tabindex="-1"></a>**显著 ≠ 重要**。一个防治措施使虫口密度降低了 3%，统计上可能显著（因为样本量足够大，波动足够小），但 3% 的降低在实际防治中可能没有管理价值。你还需要问：降低 3% 值得投入这些成本吗？</span>
+<span id="cb1-329"><a href="#cb1-329" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-330"><a href="#cb1-330" aria-hidden="true" tabindex="-1"></a>**不显著 ≠ 没有效果**。如果样本量太小、测量误差太大、或者效应本身较小但没有足够检测能力，统计检验可能"不显著"，但这不代表处理完全无效。它可能只是告诉你——现有数据还不足以做出可靠判断，需要更多或更好的数据。</span>
+<span id="cb1-331"><a href="#cb1-331" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-332"><a href="#cb1-332" aria-hidden="true" tabindex="-1"></a>**证据不是决策**。保护决策还要考虑成本（防治措施买得起吗？）、风险（干预会不会有副作用？）、伦理（是否涉及濒危物种？）、管理目标（保护区的优先级是什么？）等多方面因素。统计数据提供的是决策所需的证据，但它本身不做决策。</span>
+<span id="cb1-333"><a href="#cb1-333" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-334"><a href="#cb1-334" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; **统计分析回答的是"证据有多强"，保护决策还要回答"行动是否值得"。**</span></span>
+<span id="cb1-335"><a href="#cb1-335" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-336"><a href="#cb1-336" aria-hidden="true" tabindex="-1"></a>这个区分在后面的学习中会反复出现。当你在第 8 章学会 t 检验、在第 12 章学会回归分析后，很容易产生一种感觉——"P &lt; 0.05 就万事大吉了"。请从一开始就记住：P 值是证据链条中的一环，不是终点。</span>
+<span id="cb1-337"><a href="#cb1-337" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-338"><a href="#cb1-338" aria-hidden="true" tabindex="-1"></a><span class="fu">### 6. 本节小结</span></span>
+<span id="cb1-339"><a href="#cb1-339" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-340"><a href="#cb1-340" aria-hidden="true" tabindex="-1"></a>用三句话结束这一节：</span>
+<span id="cb1-341"><a href="#cb1-341" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-342"><a href="#cb1-342" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**保护工作面对的是复杂、变化和不确定的自然系统。** 观察到的变化可能来自真实趋势，也可能来自自然波动、测量误差或偶然——我们需要一套方法来区分它们。</span>
+<span id="cb1-343"><a href="#cb1-343" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-344"><a href="#cb1-344" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**统计学帮助我们把观察结果转化为可检验的证据。** 它不创造确定性（自然界没有绝对的确定性），但它让我们知道：现有数据支持下，某个结论的可信度有多高。</span>
+<span id="cb1-345"><a href="#cb1-345" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-346"><a href="#cb1-346" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**本书学习统计，不是为了背公式，而是为了更好地提出问题、分析数据和支持保护行动。** 公式是工具，判断是核心。后面的章节中，每学一个方法，都请回到这个出发点来理解它为什么被需要。</span>
+<span id="cb1-347"><a href="#cb1-347" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-348"><a href="#cb1-348" aria-hidden="true" tabindex="-1"></a><span class="fu">## 课堂思考 / 小练习</span></span>
+<span id="cb1-349"><a href="#cb1-349" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-350"><a href="#cb1-350" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>**举一个你熟悉的保护问题。** 在你自己的专业方向或实习经历中，找一个需要数据支撑的保护判断。它属于描述、比较、推断还是行动决策？你为什么觉得它需要统计分析？</span>
+<span id="cb1-351"><a href="#cb1-351" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-352"><a href="#cb1-352" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>**判断下面的问题类型。** "某保护区今年红外相机拍到的豹猫次数比去年少了 20 次。"——这个陈述目前处于哪个阶段？如果要把它变成一个可以用统计回答的问题，你还需要哪些信息？（提示：想一想"信号 vs 噪声"的框架）</span>
+<span id="cb1-353"><a href="#cb1-353" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-354"><a href="#cb1-354" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>**一个思考题。** 假设有一种新型生物农药，田间试验结果显示：处理组比对照组的虫口密度降低了 5%，统计检验 P = 0.03。你认为这个农药一定值得推广吗？说出至少两个需要考虑的额外因素。</span>
+<span id="cb1-355"><a href="#cb1-355" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-356"><a href="#cb1-356" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>**预习任务。** 翻到第 2 章，看看"研究问题、变量与假设"的标题。想一个你自己感兴趣的保护问题，下节课我们来把它拆解成研究对象、处理因素、观测指标和研究假设。</span>
+<span id="cb1-357"><a href="#cb1-357" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-358"><a href="#cb1-358" aria-hidden="true" tabindex="-1"></a><span class="fu">## 继续学习</span></span>
+<span id="cb1-359"><a href="#cb1-359" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-360"><a href="#cb1-360" aria-hidden="true" tabindex="-1"></a>→ <span class="co">[</span><span class="ot">第2章：研究问题、变量与假设</span><span class="co">](02-variables-hypotheses.qmd)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 

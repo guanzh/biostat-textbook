@@ -29,3 +29,90 @@ table {
 
 /* 列表 */
 li { margin-bottom: 0.3rem; }
+
+/* === 草图风 / 吉祥物（v1，2026-06）=== */
+
+body { background: #ffffff; }
+
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Architects+Daughter&family=Patrick+Hand&family=Gochi+Hand&display=swap');
+
+/* 草图风手写字体栈：英文 Caveat / Gochi Hand，中文楷体 */
+.sketch h1, .sketch h2, .sketch .sketch-title {
+  font-family: "Gochi Hand", "Caveat", "楷体", "STKaiti", "KaiTi", cursive;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+/* 通用：所有 .sketch 内的手写文字（标题、按钮、数字、箭头） */
+.sketch .handwritten,
+.sketch .sketch-num,
+.sketch .sketch-arrow-text {
+  font-family: "Gochi Hand", "Caveat", "楷体", cursive;
+  font-weight: 700;
+}
+
+/* 草图数字（替代规整圆圈编号） */
+.sketch-num {
+  display: inline-block;
+  font-family: "Gochi Hand", "Caveat", cursive;
+  font-size: 1.6rem; font-weight: 700;
+  color: #1a1a1a;
+  line-height: 1; padding: 0;
+  transform: rotate(-4deg);
+  margin-bottom: 0.15rem;
+}
+.sketch-num.c1 { transform: rotate(-5deg); }
+.sketch-num.c2 { transform: rotate(3deg); }
+.sketch-num.c3 { transform: rotate(-3deg); }
+.sketch-num.c4 { transform: rotate(4deg); }
+
+/* 草图箭头（手写大箭头） */
+.sketch-arrow-text {
+  display: inline-block;
+  font-family: "Gochi Hand", "Caveat", cursive;
+  font-size: 1.8rem; font-weight: 700; color: #1a1a1a;
+  transform: rotate(-6deg) scale(1.1);
+  margin: 0 0.2rem;
+  line-height: 1;
+}
+
+.sketch-card {
+  background: #fff;
+  border: 2.5px solid #1a1a1a;
+  border-radius: 18px 8px 22px 6px;
+  padding: 0.7rem 1rem;
+  box-shadow: 4px 4px 0 #1a1a1a;
+  position: relative;
+}
+.sketch-card.tilt-l { transform: rotate(-1.5deg); }
+.sketch-card.tilt-r { transform: rotate(1.5deg); }
+
+.c-tomato   { background: #ffebee; border-color: #ef5350; color: #c62828; }
+.c-mustard  { background: #fff8e1; border-color: #ffd54f; color: #ef6c00; }
+.c-lake     { background: #e1f5fe; border-color: #4fc3f7; color: #0277bd; }
+.c-lavender { background: #f3e5f5; border-color: #ba68c8; color: #6a1b9a; }
+.c-mint     { background: #e8f5e9; border-color: #66bb6a; color: #2e7d32; }
+
+.mascot {
+  display: inline-block; vertical-align: middle;
+  width: 80px; height: 80px; object-fit: contain;
+}
+.mascot.sm { width: 48px; height: 48px; }
+.mascot.lg { width: 140px; height: 140px; }
+
+.sketch-arrow {
+  display: inline-block;
+  font-family: "Gochi Hand", "Caveat", cursive;
+  font-size: 1.8rem; font-weight: 700; color: #1a1a1a;
+  transform: rotate(-5deg);
+  margin: 0 0.3rem;
+}
+
+.sketch-note {
+  background: #fffde7; padding: 0.6rem 0.9rem;
+  border: 1.5px dashed #555;
+  border-radius: 4px;
+  box-shadow: 2px 2px 0 rgba(0,0,0,0.15);
+  font-family: "Gochi Hand", "Caveat", "楷体", cursive;
+  display: inline-block;
+}

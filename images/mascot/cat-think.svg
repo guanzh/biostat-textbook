@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <defs>
+    <filter id="wobble">
+      <feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="2" seed="7"/>
+      <feDisplacementMap in="SourceGraphic" scale="2.5"/>
+    </filter>
+  </defs>
+  <g filter="url(#wobble)" fill="none" stroke="#1a1a1a" stroke-width="3"
+     stroke-linecap="round" stroke-linejoin="round">
+    <!-- 身体 -->
+    <ellipse cx="100" cy="143" rx="40" ry="35" fill="#1a1a1a"/>
+    <!-- 头（向左微倾） -->
+    <g transform="rotate(-12 100 80)">
+      <circle cx="100" cy="80" r="38" fill="#1a1a1a"/>
+      <path d="M 70 55 L 65 30 L 88 50 Z" fill="#1a1a1a"/>
+      <path d="M 130 55 L 135 30 L 112 50 Z" fill="#1a1a1a"/>
+      <path d="M 72 50 L 70 38 L 82 48 Z" fill="#f8bbd0" stroke="none"/>
+      <path d="M 128 50 L 130 38 L 118 48 Z" fill="#f8bbd0" stroke="none"/>
+      <!-- 眯眼弧线 -->
+      <path d="M 80 78 Q 86 73 92 78" stroke="#ffd54f" stroke-width="3" fill="none"/>
+      <path d="M 108 78 Q 114 73 120 78" stroke="#ffd54f" stroke-width="3" fill="none"/>
+      <path d="M 97 92 L 100 96 L 103 92 Z" fill="#ef5350" stroke="none"/>
+      <line x1="65" y1="92" x2="50" y2="88"/>
+      <line x1="135" y1="92" x2="150" y2="98"/>
+    </g>
+    <!-- 托腮的爪子 -->
+    <ellipse cx="125" cy="115" rx="11" ry="14" fill="#1a1a1a"
+             transform="rotate(-30 125 115)"/>
+    <!-- 另一爪 -->
+    <ellipse cx="78" cy="162" rx="10" ry="13" fill="#1a1a1a"/>
+    <!-- 尾巴卷起 -->
+    <path d="M 138 153 Q 165 160 160 130 Q 155 110 140 120"
+          stroke="#1a1a1a" stroke-width="10" fill="none"/>
+  </g>
+  <!-- 思考泡泡 -->
+  <g stroke="#ba68c8" stroke-width="2" fill="#ffffff">
+    <circle cx="155" cy="55" r="4"/>
+    <circle cx="165" cy="42" r="6"/>
+    <circle cx="180" cy="25" r="13"/>
+  </g>
+  <text x="174" y="32" font-family="Caveat, cursive" font-size="18"
+        font-weight="bold" fill="#ba68c8">?</text>
+</svg>
