@@ -30,7 +30,10 @@ table {
 /* 列表 */
 li { margin-bottom: 0.3rem; }
 
-/* === 草图风 / 吉祥物（v1，2026-06）=== */
+/* === 草图风 / 吉祥物（v1，2026-06）===
+   注：v1 草图风仅用于尚未迁移的旧章节。
+   新章节按 docs/superpowers/specs/2026-06-18-textbook-page-style-design.md
+   使用 .chapter-opener / .chapter-route / .learning-goals 等组件。 */
 
 body { background: #ffffff; }
 
@@ -115,4 +118,241 @@ body { background: #ffffff; }
   box-shadow: 2px 2px 0 rgba(0,0,0,0.15);
   font-family: "Gochi Hand", "Caveat", "楷体", cursive;
   display: inline-block;
+}
+
+
+/* ============================================================
+   v2 设计系统：清爽自然手账（Clean Field Notebook）
+   依据 docs/superpowers/specs/2026-06-18-textbook-page-style-design.md
+   颜色语义固定：森林绿主线 / 芥末黄提示 / 湖水蓝数据 /
+                  珊瑚红风险 / 墨色正文。
+   ============================================================ */
+
+:root {
+  --ink: #243129;
+  --ink-muted: #59665e;
+  --forest: #315e46;
+  --moss: #6b906f;
+  --mustard: #d0a03a;
+  --lake: #4d8294;
+  --coral: #c86652;
+  --paper: #fcfdfc;
+  --paper-soft: #f7faf8;
+  --line: #d6ddd8;
+  --reading-width: 720px;
+}
+
+/* 正文行宽：让 1280px 桌面正文不超出 720px 阅读宽度 */
+#quarto-content, main.content, .page-columns {
+  max-width: var(--reading-width);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* 章首：双栏，桌面左右分栏，窄屏堆叠 */
+.chapter-opener {
+  display: grid;
+  grid-template-columns: 1.05fr 1fr;
+  gap: 2rem;
+  align-items: center;
+  margin: 1.5rem 0 1.8rem;
+  padding: 0;
+  background: transparent;
+  border: none;
+}
+.chapter-opener-copy { padding: 0; }
+.chapter-opener-art { padding: 0; }
+.chapter-opener-art img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 6px;
+  box-shadow: 0 1px 6px rgba(36, 49, 41, 0.08);
+  display: block;
+}
+.chapter-kicker {
+  display: block;
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
+  color: var(--ink-muted);
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+.chapter-opener-copy h1 {
+  font-size: 2.1rem;
+  margin: 0 0 0.6rem 0;
+  color: var(--ink);
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: 0;
+}
+.chapter-opener-copy p {
+  font-size: 1rem;
+  color: var(--ink-muted);
+  margin: 0;
+  line-height: 1.75;
+}
+
+/* 学习路线：5 步水平路线，靠语义色边线区分 */
+.chapter-route {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 0.5rem;
+  margin: 1.2rem 0 1.5rem;
+  padding: 0;
+  font-size: 0.88rem;
+  line-height: 1.55;
+  background: transparent;
+  border: none;
+}
+.chapter-route > * {
+  padding: 0.55rem 0.65rem;
+  border-left: 3px solid var(--line);
+  background: transparent;
+}
+.chapter-route > *:nth-child(1) { border-left-color: var(--forest); }
+.chapter-route > *:nth-child(2) { border-left-color: var(--mustard); }
+.chapter-route > *:nth-child(3) { border-left-color: var(--lake); }
+.chapter-route > *:nth-child(4) { border-left-color: var(--coral); }
+.chapter-route > *:nth-child(5) { border-left-color: var(--moss); }
+.chapter-route strong {
+  display: block;
+  color: var(--ink);
+  font-weight: 700;
+  margin-bottom: 0.15rem;
+  font-size: 0.92rem;
+}
+
+/* 学习目标：芥末黄软底 + 左侧边线 */
+.learning-goals {
+  margin: 1.4rem 0;
+  padding: 0.85rem 1.1rem 0.85rem 1.1rem;
+  background: #fff8e1;
+  border: none;
+  border-left: 3px solid var(--mustard);
+  border-radius: 0 6px 6px 0;
+  font-size: 0.95rem;
+  line-height: 1.75;
+  color: var(--ink);
+}
+.learning-goals > strong:first-child,
+.learning-goals > p:first-child {
+  display: block;
+  color: var(--ink);
+  margin-bottom: 0.4rem;
+  font-weight: 700;
+}
+.learning-goals ol, .learning-goals ul {
+  margin: 0.3rem 0 0 0;
+  padding-left: 1.3rem;
+}
+.learning-goals li { margin-bottom: 0.2rem; }
+
+/* 观察问题：近白底 + 芥末黄边线 */
+.observation-question {
+  margin: 1.4rem 0;
+  padding: 0.85rem 1.1rem;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--mustard);
+  border-radius: 0 6px 6px 0;
+  font-size: 0.98rem;
+  line-height: 1.75;
+  color: var(--ink);
+}
+.observation-question strong { color: var(--forest); }
+
+/* 教学图表：图注与正文等宽 */
+.evidence-figure {
+  margin: 1.4rem 0;
+  font-size: 0.92rem;
+  line-height: 1.7;
+}
+.evidence-figure img { max-width: 100%; height: auto; border-radius: 4px; display: block; }
+.evidence-figure .caption,
+.evidence-figure figcaption {
+  display: block;
+  margin-top: 0.45rem;
+  color: var(--ink-muted);
+  font-size: 0.88rem;
+  line-height: 1.6;
+}
+
+/* 黑豹提醒：左图标 + 珊瑚红边线 + 软底 */
+.mascot-note {
+  display: grid;
+  grid-template-columns: 56px 1fr;
+  gap: 0.9rem;
+  align-items: start;
+  margin: 1.4rem 0;
+  padding: 0.85rem 1.1rem;
+  background: var(--paper-soft);
+  border: none;
+  border-left: 3px solid var(--coral);
+  border-radius: 0 6px 6px 0;
+  font-size: 0.95rem;
+  line-height: 1.75;
+  color: var(--ink);
+}
+.mascot-note img.mascot {
+  width: 48px;
+  height: 48px;
+  margin: 0;
+}
+.mascot-note strong {
+  display: block;
+  color: var(--coral);
+  font-size: 0.98rem;
+  margin-bottom: 0.3rem;
+  font-weight: 700;
+}
+
+/* 关键判断：珊瑚红虚线边线，无背景，避免与黑豹提醒同时强调 */
+.key-judgment {
+  margin: 1.4rem 0;
+  padding: 0.7rem 1.1rem;
+  background: transparent;
+  border: none;
+  border-left: 3px dashed var(--coral);
+  font-size: 0.98rem;
+  line-height: 1.75;
+  color: var(--ink);
+}
+.key-judgment strong { color: var(--coral); }
+
+/* 练习块：无装饰，可与小结同列 */
+.practice-block {
+  margin: 1.4rem 0;
+  padding: 0;
+  background: transparent;
+  font-size: 0.98rem;
+  line-height: 1.75;
+  color: var(--ink);
+}
+.practice-block ol, .practice-block ul { padding-left: 1.5rem; }
+.practice-block li { margin-bottom: 0.45rem; }
+
+/* 章节导航（章末 → 下一章） */
+.chapter-next {
+  margin: 2rem 0 1rem;
+  padding: 0.8rem 0;
+  border-top: 1px solid var(--line);
+  font-size: 0.95rem;
+  color: var(--ink-muted);
+}
+.chapter-next a { color: var(--forest); text-decoration: none; }
+.chapter-next a:hover { text-decoration: underline; }
+
+/* 响应式：窄屏（390px 手机） */
+@media (max-width: 720px) {
+  .chapter-opener {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  .chapter-opener-copy h1 { font-size: 1.7rem; }
+  .chapter-route {
+    grid-template-columns: 1fr;
+    gap: 0.3rem;
+  }
+  .mascot-note { grid-template-columns: 48px 1fr; }
 }

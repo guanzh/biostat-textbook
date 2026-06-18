@@ -1,193 +1,41 @@
 ---
 title: "第 1 章 统计学在保护中的角色"
 maturity: budding
-updated: 2026-06-16
+updated: 2026-06-18
 ---
 
-```{=html}
-<style>
-.ch1-fig {
-  background: #fff;
-  border: 2px solid #1a1a1a;
-  border-radius: 16px 6px 16px 6px;
-  box-shadow: 5px 5px 0 #1a1a1a;
-  padding: 1.4rem 1.2rem 1.6rem;
-  margin: 0 0 2.5rem 0;
-}
-.ch1-section { margin: 1rem 0; }
-.ch1-section-h {
-  font-family: "Gochi Hand", "Caveat", "楷体", cursive;
-  font-size: 1.2rem; font-weight: 700; color: #1a1a1a;
-  text-align: center; margin-bottom: 0.5rem;
-  letter-spacing: 0.1em;
-}
-.ch1-noise-row {
-  display: flex; align-items: center; justify-content: center;
-  gap: 0.8rem; flex-wrap: wrap;
-}
-.ch1-noise-row .ch1-mascot { width: 70px; height: 70px; flex-shrink: 0; }
-.ch1-noises {
-  display: flex; gap: 0.4rem; flex-wrap: wrap; justify-content: center;
-}
-/* 不确定性段：统一红色 */
-.ch1-noises .tag {
-  background: #ffebee; border: 2.5px solid #ef5350;
-  border-radius: 12px 4px 12px 4px;
-  padding: 0.35rem 0.8rem; font-size: 0.95rem; font-weight: 700;
-  color: #c62828; box-shadow: 3px 3px 0 #1a1a1a;
-  font-family: "Gochi Hand", "Caveat", "楷体", cursive;
-  letter-spacing: 0.05em;
-}
-.ch1-noises .tag:nth-child(1) { transform: rotate(-2deg); }
-.ch1-noises .tag:nth-child(2) { transform: rotate(2.5deg); }
-.ch1-noises .tag:nth-child(3) { transform: rotate(-2.5deg); }
-.ch1-noises .tag:nth-child(4) { transform: rotate(2deg); }
-.ch1-noises .tag:nth-child(5) { transform: rotate(-3deg); }
+:::: {.chapter-opener}
+::: {.chapter-opener-copy}
+<span class="chapter-kicker">CHAPTER 01 · 第一篇 从保护问题进入统计</span>
 
-.ch1-divider {
-  text-align: center;
-  font-family: "Gochi Hand", "Caveat", "楷体", cursive;
-  font-size: 1.25rem; font-weight: 700; color: #1a1a1a;
-  margin: 0.9rem 0;
-  letter-spacing: 0.05em;
-}
-.ch1-divider .arrow {
-  display: inline-block; transform: scale(2) rotate(-5deg);
-  margin: 0 0.5rem; color: #1a1a1a;
-}
+# 统计学在保护中的角色
 
-.ch1-pipeline-row {
-  display: flex; align-items: center; justify-content: center;
-  gap: 0.6rem; flex-wrap: wrap;
-}
-.ch1-pipeline-row .ch1-mascot { width: 80px; height: 80px; flex-shrink: 0; }
-.ch1-pipeline {
-  display: flex; align-items: center; gap: 0.3rem; flex-wrap: wrap;
-  justify-content: center;
-}
-/* 流水线段：统一蓝色 */
-.ch1-step {
-  background: #e1f5fe; border: 2.5px solid #4fc3f7;
-  border-radius: 12px 4px 12px 4px;
-  padding: 0.55rem 0.75rem; min-width: 95px; text-align: center;
-  box-shadow: 3px 3px 0 #1a1a1a;
-}
-.ch1-step.s1 { transform: rotate(-2deg); }
-.ch1-step.s2 { transform: rotate(1.5deg); }
-.ch1-step.s3 { transform: rotate(-1.5deg); }
-.ch1-step.s4 { transform: rotate(2deg); }
-.ch1-step .num {
-  display: inline-block;
-  font-family: "Gochi Hand", "Caveat", cursive;
-  font-size: 1.7rem; font-weight: 700;
-  color: #0277bd;
-  line-height: 1; margin-bottom: 0.15rem;
-  transform: rotate(-4deg);
-}
-.ch1-step .name { font-family: "Gochi Hand", "Caveat", "楷体", cursive;
-  font-weight: 800; font-size: 1.1rem; color: #0277bd;
-  letter-spacing: 0.05em; }
-.ch1-step .q { font-size: 0.72rem; color: #555; line-height: 1.35; margin-top: 0.2rem;
-  font-family: "楷体", "STKaiti", cursive; }
-.ch1-step-arrow {
-  font-family: "Gochi Hand", "Caveat", cursive;
-  font-size: 1.8rem; font-weight: 700; color: #1a1a1a;
-  transform: rotate(-5deg);
-  display: inline-block;
-}
+从一片固定样地开始，到一个保护判断结束——中间那一段，就是统计学要做的事。
+:::
 
-.ch1-final-row {
-  display: flex; align-items: center; justify-content: center;
-  gap: 1rem; flex-wrap: wrap; margin-top: 0.4rem;
-}
-.ch1-final-row .ch1-mascot { width: 75px; height: 75px; flex-shrink: 0; }
-/* 决策段：统一黄色 */
-.ch1-final {
-  background: #ffd54f; border: 2.5px solid #1a1a1a;
-  border-radius: 14px 4px 14px 4px;
-  padding: 0.7rem 1.4rem;
-  font-family: "Gochi Hand", "Caveat", "楷体", cursive;
-  font-weight: 800; font-size: 1.4rem; color: #1a1a1a;
-  box-shadow: 4px 4px 0 #1a1a1a;
-  letter-spacing: 0.06em;
-  transform: rotate(-1.5deg);
-}
-.ch1-caveat {
-  margin-top: 1rem; padding: 0.7rem 1rem;
-  background: #fff8e1; border: 2.5px dashed #ffb300;
-  border-radius: 8px;
-  font-size: 0.85rem; color: #444; line-height: 1.7;
-  font-family: "楷体", "STKaiti", "Microsoft YaHei", cursive;
-}
-.ch1-caveat b { color: #ef6c00;
-  font-family: "Gochi Hand", "Caveat", "楷体", cursive;
-  font-size: 1.1rem; letter-spacing: 0.05em; }
-</style>
+::: {.chapter-opener-art}
+![保护样地、放大镜、数据卡与观察者黑豹，象征统计学在保护中的角色](../images/chapter-openers/ch01-statistics-in-conservation.svg)
+:::
+::::
 
-<div class="ch1-fig sketch">
-  <div class="ch1-section">
-    <div class="ch1-section-h">① 保护数据中的不确定性</div>
-    <div class="ch1-noise-row">
-      <img src="../images/mascot/cat-think.svg" alt="黑豹思考" class="ch1-mascot"/>
-      <div class="ch1-noises">
-        <span class="tag">自然变异</span>
-        <span class="tag">观察误差</span>
-        <span class="tag">时间波动</span>
-        <span class="tag">样本有限</span>
-        <span class="tag">偶然性</span>
-      </div>
-    </div>
-  </div>
+::: {.chapter-route}
+1. **观察问题**：从一个真实保护场景出发，把它说清楚
+2. **识别不确定性**：看到数据天然存在的 5 类波动
+3. **选择方法**：把问题分到描述、比较、推断、行动四类
+4. **形成证据**：用统计方法区分信号与噪声
+5. **支持行动**：在专业判断中把证据转化为决策
+:::
 
-  <div class="ch1-divider"><span class="arrow">↓</span></div>
+::: {.learning-goals}
+**学完本章后，你能够：**
 
-  <div class="ch1-section">
-    <div class="ch1-section-h">② 统计学在保护中的四个作用</div>
-    <div class="ch1-pipeline-row">
-      <img src="../images/mascot/cat-point.svg" alt="黑豹指引" class="ch1-mascot"/>
-      <div class="ch1-pipeline">
-        <div class="ch1-step s1">
-          <div class="num">1</div>
-          <div class="name">描述</div>
-          <div class="q">现在是<br>什么状态？</div>
-        </div>
-        <span class="ch1-step-arrow">→</span>
-        <div class="ch1-step s2">
-          <div class="num">2</div>
-          <div class="name">比较</div>
-          <div class="q">不同对象<br>有差异吗？</div>
-        </div>
-        <span class="ch1-step-arrow">→</span>
-        <div class="ch1-step s3">
-          <div class="num">3</div>
-          <div class="name">推断</div>
-          <div class="q">差异<br>可信吗？</div>
-        </div>
-        <span class="ch1-step-arrow">→</span>
-        <div class="ch1-step s4">
-          <div class="num">4</div>
-          <div class="name">支持行动</div>
-          <div class="q">下一步<br>怎么做？</div>
-        </div>
-      </div>
-    </div>
-  </div>
+1. 解释为什么保护工作需要统计分析——从"我感觉"走向"我有证据"。
+2. 区分描述、比较、推断和支持行动四类统计任务的保护场景。
+3. 识别保护数据中不确定性的常见来源（自然变异、观察误差、时间波动、样本有限、偶然性）。
+4. 评价"统计显著"与"保护意义"之间的差异。
+:::
 
-  <div class="ch1-divider"><span class="arrow">↓</span></div>
-
-  <div class="ch1-final-row">
-    <img src="../images/mascot/cat-flag.svg" alt="黑豹举旗" class="ch1-mascot"/>
-    <div class="ch1-final">🛡️ 保护决策</div>
-  </div>
-
-  <div class="ch1-caveat">
-    <b>黑豹提醒：</b>显著 ≠ 重要 ｜ 不显著 ≠ 没效果 ｜ 证据 ≠ 决策<br>
-    统计回答"证据有多强"，保护决策还要回答"行动是否值得"。
-  </div>
-</div>
-```
-
-## 真实保护问题
+## 从一个真实问题开始
 
 某自然保护区连续两年监测一种濒危草本植物。工作人员在固定样地中记录开花个体数量：去年 10 个样地平均每样地 23 株开花，今年同样的样地、同样的方法，平均只有 17 株。
 
@@ -203,34 +51,39 @@ updated: 2026-06-16
 
 这个问题，就是统计学要回答的。
 
-## 学习目标
+::: {.observation-question}
+**观察问题：** 在连续两年的样地监测中，濒危草本植物的开花个体数从平均 23 株下降到 17 株。这一下降是真实趋势，还是自然波动？我们是否需要据此改变保护措施？
+:::
 
-学完本节后，你应能够：
-
-1. 理解为什么保护工作天然需要统计分析——从"我感觉"走向"我有证据"
-2. 区分描述、比较、推断和支持行动四种统计任务的保护场景
-3. 识别保护数据中不确定性的常见来源
-4. 建立"统计结论是证据而非自动决策"的判断意识
-
-## 为什么保护工作需要统计学
-
-### 1. 从一个真实保护场景开始
+## 保护数据中的不确定性来源
 
 回到开头的濒危植物监测。把站长的困惑拆开，其实是三个层层递进的问题：
 
-- **今年真的比去年少了吗？** —— 下降 6 株是真实趋势还是随机波动？如果我们明年再测，会不会又回到 20 株以上？
-- **少多少才算值得关注？** —— 如果只是从 23 降到 22，可能不值得紧张。但如果连续三年每年下降超过 30%，就该拉响警报了。那么这个阈值在哪里？
-- **我们是否应该改变保护措施？** —— 要不要增加人工繁育？要不要扩大保护区？这些行动都需要成本，我们必须先确认问题是否真实存在。
+- **今年真的比去年少了吗？** 下降 6 株是真实趋势还是随机波动？如果我们明年再测，会不会又回到 20 株以上？
+- **少多少才算值得关注？** 如果只是从 23 降到 22，可能不值得紧张。但如果连续三年每年下降超过 30%，就该拉响警报了。那么这个阈值在哪里？
+- **我们是否应该改变保护措施？** 要不要增加人工繁育？要不要扩大保护区？这些行动都需要成本，我们必须先确认问题是否真实存在。
 
-这三个问题恰好对应了统计学的三层任务：**检验差异是否真实**、**量化效应大小**、**支持管理决策**。
+这三个问题恰好对应了统计学的三层任务：**检验差异是否真实、量化效应大小、支持管理决策。** 但在直接进入方法之前，先要理解一件事——数据永远是"吵"的。
 
-::: {.callout-tip}
-## 先有场景，再有方法
+什么是"吵"？就是同一种测量在不同时间、不同地点、不同条件下，天然就有波动。保护生物学面对的是自然界，不确定性来源特别多：
 
-本书每一章都从一个具体的保护场景出发。不要把统计方法当作需要记忆的公式清单——把它当作你面对保护问题时的一套"诊断工具"。就像医生不会先决定用什么检查再问病人哪里不舒服，我们在保护工作中也应该是：先有保护问题 → 再选择统计工具。
-:::
+**自然变异。** 同样是 50 年的云南松，胸径可以从 18 cm 到 45 cm。同一物种在不同坡位、不同土壤上，密度就是不一样。这不是测量错误，而是自然界本来就有的差异。
 
-### 2. 保护工作不是只看现象，而是做判断
+**观察误差。** 你数样方里的幼苗，今天阳光好可能数出 35 株，明天下雨视线差可能只数出 28 株。不同调查员的仔细程度、经验水平也不一样。
+
+**时间波动。** 病虫害有大小年，植物开花受积温和降水影响，动物活动有昼夜和季节节律。一次调查只是整个时间序列上的一个"快照"。
+
+**样本有限。** 你不可能调查保护区的每一棵树、每一只鸟。你只能从样地、样线、样点中获取样本，然后用样本去推测整体。样本越小，推测的不确定性就越大。
+
+**偶然性。** 即使所有条件都一样，一些差异也可能只是偶然出现的——就像掷硬币，连续出现五个正面不代表硬币有问题。
+
+把这些来源放在一起，你就会理解一个关键事实：
+
+> 没有统计，我们很容易把偶然波动误认为真实规律。
+>
+> 保护工作中最危险的情况之一是：看到数字变了就去追原因、改方案，结果追的只是噪声。统计学的核心任务就是帮我们把"信号"和"噪声"分开。
+
+## 保护工作不只是看现象，而是做判断
 
 保护生物学中有太多需要做判断的时刻。以下是你在实际工作中经常会遇到的问题：
 
@@ -246,37 +99,13 @@ updated: 2026-06-16
 
 而统计学的价值恰恰就在这里。它不是把数据变复杂，而是帮助我们在不确定中做更可靠的判断。
 
-> **统计学不是把数据变复杂，而是帮助我们在不确定中做更可靠的判断。**
+> 统计学不是把数据变复杂，而是帮助我们在不确定中做更可靠的判断。
 
-### 3. 数据不会自己说话
-
-初学统计的人常常有一种错觉：只要把数据收集好，画个图，结论就会自己跳出来。但现实是——数据永远是"吵"的。
-
-什么是"吵"？就是同一种测量在不同时间、不同地点、不同条件下，天然就有波动。保护生物学面对的是自然界，不确定性来源特别多：
-
-**自然变异**。同样是 50 年的云南松，胸径可以从 18 cm 到 45 cm。同一物种在不同坡位、不同土壤上，密度就是不一样。这不是测量错误，而是自然界本来就有的差异。
-
-**观察误差**。你数样方里的幼苗，今天阳光好可能数出 35 株，明天下雨视线差可能只数出 28 株。不同调查员的仔细程度、经验水平也不一样。
-
-**时间波动**。病虫害有大小年，植物开花受积温和降水影响，动物活动有昼夜和季节节律。一次调查只是整个时间序列上的一个"快照"。
-
-**样本有限**。你不可能调查保护区的每一棵树、每一只鸟。你只能从样地、样线、样点中获取样本，然后用样本去推测整体。样本越小，推测的不确定性就越大。
-
-**偶然性**。即使所有条件都一样，一些差异也可能只是偶然出现的——就像掷硬币，连续出现五个正面不代表硬币有问题。
-
-把这些来源放在一起，你就会理解一个关键事实：
-
-::: {.callout-important}
-## 没有统计，我们很容易把偶然波动误认为真实规律。
-
-保护工作中最危险的情况之一是：看到数字变了就去追原因、改方案，结果追的只是噪声。统计学的核心任务就是帮我们把"信号"和"噪声"分开。
-:::
-
-### 4. 统计学在保护中的四个作用
+## 统计学在保护中的四个作用
 
 当你面对保护数据和保护问题时，统计学可以帮你做四件事。这四件事层层递进，构成了从数据到行动的完整逻辑链。
 
-#### 描述：现在是什么状态？
+### 描述：现在是什么状态？
 
 拿到数据后的第一步永远是"看清楚"。描述统计回答的是：这个保护对象现在是什么状况？
 
@@ -286,7 +115,7 @@ updated: 2026-06-16
 
 描述不是"随便求个平均数"。你需要选对指标：数据有极端值时，中位数可能比均值更有代表性；需要表达离散程度时，标准差和四分位距告诉你的信息不同。这些内容将在第 5 章详细展开。
 
-#### 比较：不同对象是否有差异？
+### 比较：不同对象是否有差异？
 
 保护工作中最常见的问题之一就是"比较"——两个地方、两个时间点、两种处理之间，有没有可辨识的差别？
 
@@ -296,19 +125,15 @@ updated: 2026-06-16
 
 比较的关键在于：你看到的差异究竟是处理造成的，还是本来就存在的波动？这就是推断统计要回答的问题。
 
-#### 推断：观察到的差异是否可信？
+### 推断：观察到的差异是否可信？
 
 假设你做了药效试验：处理组的害虫死亡率是 72%，对照组是 58%。差了 14 个百分点。但这个差异是药剂真的有效，还是因为这几组虫刚好体质差一些？
 
 统计推断回答的就是这个问题：**在只考虑随机波动的情况下，我们看到这个差异（或更极端的差异）的概率有多大？** 这个概率就是后面会学到的 P 值。
 
-::: {.callout-note}
-## 一点提前说明
-
 很多学生对 P 值既好奇又困惑。这里先给一个直觉：P 值越小，说明"纯靠运气出现这个差异"的可能性越低，也就意味着证据越倾向于"差异是真实存在的"。但 P 值不是"差异有多大"的衡量——那需要效应量（effect size）。我们会在第 6 章和第 8 章系统学习推断统计。
-:::
 
-#### 支持行动：下一步该怎么做？
+### 支持行动：下一步该怎么做？
 
 统计分析的终点不是得到一个 P 值，而是回答"基于这些证据，我们应该做什么"。
 
@@ -319,42 +144,50 @@ updated: 2026-06-16
 
 这四步——描述、比较、推断、支持行动——不是一次性走完的线性流程，而是在保护实践中反复循环的判断过程。
 
-### 5. 从"是否显著"到"是否有保护意义"
+## 从"是否显著"到"是否有保护意义"
 
 这可能是本书最重要的一节开头提醒，值得你学到后面章节时再回来读一遍。
 
 统计学给出的是一个概率判断：数据是否支持"存在某种效应"的结论。但统计学不会替你回答"这个效应是否重要"——那需要保护生物学的专业判断。
 
-**显著 ≠ 重要**。一个防治措施使虫口密度降低了 3%，统计上可能显著（因为样本量足够大，波动足够小），但 3% 的降低在实际防治中可能没有管理价值。你还需要问：降低 3% 值得投入这些成本吗？
+::: {.key-judgment}
+**关键判断：** 统计分析回答的是"证据有多强"，保护决策还要回答"行动是否值得"——这两件事必须由不同角色共同完成，统计不能代替专业判断。
+:::
 
-**不显著 ≠ 没有效果**。如果样本量太小、测量误差太大、或者效应本身较小但没有足够检测能力，统计检验可能"不显著"，但这不代表处理完全无效。它可能只是告诉你——现有数据还不足以做出可靠判断，需要更多或更好的数据。
+**显著 ≠ 重要。** 一个防治措施使虫口密度降低了 3%，统计上可能显著（因为样本量足够大，波动足够小），但 3% 的降低在实际防治中可能没有管理价值。你还需要问：降低 3% 值得投入这些成本吗？
 
-**证据不是决策**。保护决策还要考虑成本（防治措施买得起吗？）、风险（干预会不会有副作用？）、伦理（是否涉及濒危物种？）、管理目标（保护区的优先级是什么？）等多方面因素。统计数据提供的是决策所需的证据，但它本身不做决策。
+**不显著 ≠ 没有效果。** 如果样本量太小、测量误差太大、或者效应本身较小但没有足够检测能力，统计检验可能"不显著"，但这不代表处理完全无效。它可能只是告诉你——现有数据还不足以做出可靠判断，需要更多或更好的数据。
 
-> **统计分析回答的是"证据有多强"，保护决策还要回答"行动是否值得"。**
+**证据不是决策。** 保护决策还要考虑成本（防治措施买得起吗？）、风险（干预会不会有副作用？）、伦理（是否涉及濒危物种？）、管理目标（保护区的优先级是什么？）等多方面因素。统计数据提供的是决策所需的证据，但它本身不做决策。
+
+::: {.mascot-note}
+![](../images/mascot/cat-point.svg){.mascot aria-hidden="true"}
+
+**黑豹提醒：不要把"显著"当成"重要"**
+
+P 值小、效应量大、样本充足，只能告诉你"差异真实存在"；至于这个差异值不值得采取行动，必须回到保护目标、成本与风险中再判断。
+:::
 
 这个区分在后面的学习中会反复出现。当你在第 8 章学会 t 检验、在第 12 章学会回归分析后，很容易产生一种感觉——"P < 0.05 就万事大吉了"。请从一开始就记住：P 值是证据链条中的一环，不是终点。
 
-### 6. 本节小结
-
-用三句话结束这一节：
+## 本章小结
 
 - **保护工作面对的是复杂、变化和不确定的自然系统。** 观察到的变化可能来自真实趋势，也可能来自自然波动、测量误差或偶然——我们需要一套方法来区分它们。
-
 - **统计学帮助我们把观察结果转化为可检验的证据。** 它不创造确定性（自然界没有绝对的确定性），但它让我们知道：现有数据支持下，某个结论的可信度有多高。
-
 - **本书学习统计，不是为了背公式，而是为了更好地提出问题、分析数据和支持保护行动。** 公式是工具，判断是核心。后面的章节中，每学一个方法，都请回到这个出发点来理解它为什么被需要。
 
-## 课堂思考 / 小练习
+## 练习
 
-1. **举一个你熟悉的保护问题。** 在你自己的专业方向或实习经历中，找一个需要数据支撑的保护判断。它属于描述、比较、推断还是行动决策？你为什么觉得它需要统计分析？
+1. **识别层。** 在你自己的专业方向或实习经历中，找一个需要数据支撑的保护判断。它属于描述、比较、推断还是行动决策？你为什么觉得它需要统计分析？
 
-2. **判断下面的问题类型。** "某保护区今年红外相机拍到的豹猫次数比去年少了 20 次。"——这个陈述目前处于哪个阶段？如果要把它变成一个可以用统计回答的问题，你还需要哪些信息？（提示：想一想"信号 vs 噪声"的框架）
+2. **解释层。** "某保护区今年红外相机拍到的豹猫次数比去年少了 20 次。"——这个陈述目前处于哪个阶段？如果要把它变成一个可以用统计回答的问题，你还需要哪些信息？（提示：想一想"信号 vs 噪声"的框架）
 
-3. **一个思考题。** 假设有一种新型生物农药，田间试验结果显示：处理组比对照组的虫口密度降低了 5%，统计检验 P = 0.03。你认为这个农药一定值得推广吗？说出至少两个需要考虑的额外因素。
+3. **应用层。** 假设有一种新型生物农药，田间试验结果显示：处理组比对照组的虫口密度降低了 5%，统计检验 P = 0.03。你认为这个农药一定值得推广吗？说出至少两个需要考虑的额外因素。
 
-4. **预习任务。** 翻到第 2 章，看看"研究问题、变量与假设"的标题。想一个你自己感兴趣的保护问题，下节课我们来把它拆解成研究对象、处理因素、观测指标和研究假设。
+4. **综合任务（用本章主案例）。** 回到开头的濒危草本植物监测场景。站长需要向上级汇报"是否应该调整保护措施"。请用本章的四个统计作用（描述 / 比较 / 推断 / 支持行动）为他拟出一份调研提纲：每一步需要什么数据、能回答什么问题、会有什么不确定性。
+
+5. **AI 核查（可选）。** 把练习 4 的提纲交给任意一个大语言模型，让它补充"可能被忽略的不确定性来源"。请用本章"5 类不确定性"框架核查它的回答，看它是否真的覆盖了自然变异、观察误差、时间波动、样本有限和偶然性这五类。
 
 ## 继续学习
 
-→ [第2章：研究问题、变量与假设](02-variables-hypotheses.qmd)
+→ [第 2 章：研究问题、变量与假设](02-variables-hypotheses.qmd)
