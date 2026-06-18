@@ -14,6 +14,7 @@ book:
     
     - part: "第一篇：从保护问题进入统计"
       chapters:
+        - chapters/01-role-of-statistics-cover.qmd
         - chapters/01-role-of-statistics.qmd
         - chapters/02-variables-hypotheses.qmd
         - chapters/03-experimental-design.qmd

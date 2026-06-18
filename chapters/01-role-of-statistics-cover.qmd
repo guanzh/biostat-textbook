@@ -1,0 +1,27 @@
+---
+title: "第 1 章 统计学在保护中的角色"
+maturity: budding
+updated: 2026-06-18
+toc: false
+page-layout: full
+---
+
+:::: {.chapter-cover}
+::: {.chapter-cover-media}
+<img class="chapter-cover-image" src="../images/chapter-openers/ch01-statistics-evidence.png" alt="保护区内的濒危草本植物固定样地监测场景，研究人员正在记录开花个体数">
+:::
+
+::: {.chapter-cover-copy}
+<span class="chapter-cover-kicker">第一篇 · 从保护问题进入统计</span>
+
+<h1>第 1 章<br>统计学在保护中的角色</h1>
+
+<p>从“我感觉花少了”，走向“我们有多强的证据”。</p>
+:::
+
+::: {.chapter-cover-foot}
+[开始本章 →](01-role-of-statistics.qmd){.chapter-cover-enter}
+
+<span>观察现象 · 识别不确定性 · 形成证据 · 支持行动</span>
+:::
+::::

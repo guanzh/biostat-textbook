@@ -37,8 +37,6 @@ li { margin-bottom: 0.3rem; }
 
 body { background: #ffffff; }
 
-@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Architects+Daughter&family=Patrick+Hand&family=Gochi+Hand&display=swap');
-
 /* 草图风手写字体栈：英文 Caveat / Gochi Hand，中文楷体 */
 .sketch h1, .sketch h2, .sketch .sketch-title {
   font-family: "Gochi Hand", "Caveat", "楷体", "STKaiti", "KaiTi", cursive;
@@ -143,10 +141,125 @@ body { background: #ffffff; }
 }
 
 /* 正文行宽：让 1280px 桌面正文不超出 720px 阅读宽度 */
-#quarto-content, main.content, .page-columns {
+main.content {
   max-width: var(--reading-width);
   margin-left: auto;
   margin-right: auto;
+}
+
+main.content h2 {
+  color: var(--ink);
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 0.35rem;
+}
+
+/* 第一章独立封面：使用生成插图作为全页场景，文字直接覆盖在留白区 */
+body:has(.chapter-cover) #title-block-header,
+body:has(.chapter-cover) #quarto-header,
+body:has(.chapter-cover) #quarto-sidebar,
+body:has(.chapter-cover) #quarto-margin-sidebar,
+body:has(.chapter-cover) .page-navigation {
+  display: none;
+}
+
+body:has(.chapter-cover) {
+  padding-top: 0 !important;
+  overflow-x: hidden;
+}
+
+body:has(.chapter-cover) #quarto-content,
+body:has(.chapter-cover) .page-columns,
+body:has(.chapter-cover) main.content {
+  display: block;
+  max-width: none;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.chapter-cover {
+  position: relative;
+  min-height: 100vh;
+  overflow: hidden;
+  background: var(--paper-soft);
+  color: var(--ink);
+}
+
+.chapter-cover-media,
+.chapter-cover-media p {
+  position: absolute;
+  inset: 0;
+  margin: 0;
+}
+
+.chapter-cover-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.chapter-cover-copy {
+  position: absolute;
+  z-index: 2;
+  left: clamp(2rem, 8vw, 7rem);
+  top: clamp(4rem, 16vh, 9rem);
+  width: min(680px, 55vw);
+}
+
+.chapter-cover-kicker {
+  display: block;
+  color: var(--forest);
+  font-size: 0.8rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.chapter-cover-copy h1 {
+  margin: 0;
+  color: var(--ink);
+  font-size: clamp(2.35rem, 4.2vw, 4.2rem);
+  line-height: 1.16;
+  letter-spacing: 0;
+}
+
+.chapter-cover-copy p {
+  margin-top: 1.2rem;
+  color: var(--ink-muted);
+  font-size: clamp(1rem, 1.35vw, 1.25rem);
+  line-height: 1.7;
+}
+
+.chapter-cover-foot {
+  position: absolute;
+  z-index: 2;
+  left: clamp(2rem, 8vw, 7rem);
+  right: clamp(2rem, 6vw, 5rem);
+  bottom: clamp(1.4rem, 5vh, 3rem);
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  color: var(--ink-muted);
+  font-size: 0.85rem;
+}
+
+.chapter-cover-foot p {
+  display: contents;
+}
+
+.chapter-cover-enter {
+  color: var(--forest);
+  font-size: 1rem;
+  font-weight: 700;
+  text-decoration: none;
+  border-bottom: 2px solid var(--mustard);
+  padding-bottom: 0.2rem;
+}
+
+.chapter-cover-enter:hover,
+.chapter-cover-enter:focus-visible {
+  color: var(--ink);
+  border-bottom-color: var(--coral);
 }
 
 /* 章首：双栏，桌面左右分栏，窄屏堆叠 */
@@ -343,8 +456,58 @@ body { background: #ffffff; }
 .chapter-next a { color: var(--forest); text-decoration: none; }
 .chapter-next a:hover { text-decoration: underline; }
 
+@media (min-width: 721px) and (max-width: 1099px) {
+  .chapter-route {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
 /* 响应式：窄屏（390px 手机） */
 @media (max-width: 720px) {
+  main.content {
+    width: auto !important;
+    max-width: 100%;
+  }
+
+  .chapter-cover {
+    min-height: auto;
+    display: flex;
+    flex-direction: column;
+  }
+  .chapter-cover-media,
+  .chapter-cover-media p {
+    position: relative;
+    inset: auto;
+  }
+  .chapter-cover-image {
+    height: 46vh;
+    min-height: 320px;
+    object-position: 68% center;
+  }
+  .chapter-cover-copy,
+  .chapter-cover-foot {
+    position: relative;
+    left: auto;
+    right: auto;
+    top: auto;
+    bottom: auto;
+    width: auto;
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+  }
+  .chapter-cover-copy {
+    padding-top: 1.5rem;
+  }
+  .chapter-cover-copy h1 {
+    font-size: 2rem;
+  }
+  .chapter-cover-foot {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 0.7rem;
+    padding-top: 1.3rem;
+    padding-bottom: 2rem;
+  }
   .chapter-opener {
     grid-template-columns: 1fr;
     gap: 1rem;
@@ -355,4 +518,14 @@ body { background: #ffffff; }
     gap: 0.3rem;
   }
   .mascot-note { grid-template-columns: 48px 1fr; }
+}
+
+@media (max-width: 420px) {
+  .mascot-note {
+    grid-template-columns: 1fr;
+  }
+  .mascot-note img.mascot {
+    width: 44px;
+    height: 44px;
+  }
 }
