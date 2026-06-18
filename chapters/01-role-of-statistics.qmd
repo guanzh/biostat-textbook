@@ -1,8 +1,191 @@
 ---
-title: "统计学在保护中的角色"
+title: "第 1 章 统计学在保护中的角色"
 maturity: budding
 updated: 2026-06-16
 ---
+
+```{=html}
+<style>
+.ch1-fig {
+  background: #fff;
+  border: 2px solid #1a1a1a;
+  border-radius: 16px 6px 16px 6px;
+  box-shadow: 5px 5px 0 #1a1a1a;
+  padding: 1.4rem 1.2rem 1.6rem;
+  margin: 0 0 2.5rem 0;
+}
+.ch1-section { margin: 1rem 0; }
+.ch1-section-h {
+  font-family: "Gochi Hand", "Caveat", "楷体", cursive;
+  font-size: 1.2rem; font-weight: 700; color: #1a1a1a;
+  text-align: center; margin-bottom: 0.5rem;
+  letter-spacing: 0.1em;
+}
+.ch1-noise-row {
+  display: flex; align-items: center; justify-content: center;
+  gap: 0.8rem; flex-wrap: wrap;
+}
+.ch1-noise-row .ch1-mascot { width: 70px; height: 70px; flex-shrink: 0; }
+.ch1-noises {
+  display: flex; gap: 0.4rem; flex-wrap: wrap; justify-content: center;
+}
+/* 不确定性段：统一红色 */
+.ch1-noises .tag {
+  background: #ffebee; border: 2.5px solid #ef5350;
+  border-radius: 12px 4px 12px 4px;
+  padding: 0.35rem 0.8rem; font-size: 0.95rem; font-weight: 700;
+  color: #c62828; box-shadow: 3px 3px 0 #1a1a1a;
+  font-family: "Gochi Hand", "Caveat", "楷体", cursive;
+  letter-spacing: 0.05em;
+}
+.ch1-noises .tag:nth-child(1) { transform: rotate(-2deg); }
+.ch1-noises .tag:nth-child(2) { transform: rotate(2.5deg); }
+.ch1-noises .tag:nth-child(3) { transform: rotate(-2.5deg); }
+.ch1-noises .tag:nth-child(4) { transform: rotate(2deg); }
+.ch1-noises .tag:nth-child(5) { transform: rotate(-3deg); }
+
+.ch1-divider {
+  text-align: center;
+  font-family: "Gochi Hand", "Caveat", "楷体", cursive;
+  font-size: 1.25rem; font-weight: 700; color: #1a1a1a;
+  margin: 0.9rem 0;
+  letter-spacing: 0.05em;
+}
+.ch1-divider .arrow {
+  display: inline-block; transform: scale(2) rotate(-5deg);
+  margin: 0 0.5rem; color: #1a1a1a;
+}
+
+.ch1-pipeline-row {
+  display: flex; align-items: center; justify-content: center;
+  gap: 0.6rem; flex-wrap: wrap;
+}
+.ch1-pipeline-row .ch1-mascot { width: 80px; height: 80px; flex-shrink: 0; }
+.ch1-pipeline {
+  display: flex; align-items: center; gap: 0.3rem; flex-wrap: wrap;
+  justify-content: center;
+}
+/* 流水线段：统一蓝色 */
+.ch1-step {
+  background: #e1f5fe; border: 2.5px solid #4fc3f7;
+  border-radius: 12px 4px 12px 4px;
+  padding: 0.55rem 0.75rem; min-width: 95px; text-align: center;
+  box-shadow: 3px 3px 0 #1a1a1a;
+}
+.ch1-step.s1 { transform: rotate(-2deg); }
+.ch1-step.s2 { transform: rotate(1.5deg); }
+.ch1-step.s3 { transform: rotate(-1.5deg); }
+.ch1-step.s4 { transform: rotate(2deg); }
+.ch1-step .num {
+  display: inline-block;
+  font-family: "Gochi Hand", "Caveat", cursive;
+  font-size: 1.7rem; font-weight: 700;
+  color: #0277bd;
+  line-height: 1; margin-bottom: 0.15rem;
+  transform: rotate(-4deg);
+}
+.ch1-step .name { font-family: "Gochi Hand", "Caveat", "楷体", cursive;
+  font-weight: 800; font-size: 1.1rem; color: #0277bd;
+  letter-spacing: 0.05em; }
+.ch1-step .q { font-size: 0.72rem; color: #555; line-height: 1.35; margin-top: 0.2rem;
+  font-family: "楷体", "STKaiti", cursive; }
+.ch1-step-arrow {
+  font-family: "Gochi Hand", "Caveat", cursive;
+  font-size: 1.8rem; font-weight: 700; color: #1a1a1a;
+  transform: rotate(-5deg);
+  display: inline-block;
+}
+
+.ch1-final-row {
+  display: flex; align-items: center; justify-content: center;
+  gap: 1rem; flex-wrap: wrap; margin-top: 0.4rem;
+}
+.ch1-final-row .ch1-mascot { width: 75px; height: 75px; flex-shrink: 0; }
+/* 决策段：统一黄色 */
+.ch1-final {
+  background: #ffd54f; border: 2.5px solid #1a1a1a;
+  border-radius: 14px 4px 14px 4px;
+  padding: 0.7rem 1.4rem;
+  font-family: "Gochi Hand", "Caveat", "楷体", cursive;
+  font-weight: 800; font-size: 1.4rem; color: #1a1a1a;
+  box-shadow: 4px 4px 0 #1a1a1a;
+  letter-spacing: 0.06em;
+  transform: rotate(-1.5deg);
+}
+.ch1-caveat {
+  margin-top: 1rem; padding: 0.7rem 1rem;
+  background: #fff8e1; border: 2.5px dashed #ffb300;
+  border-radius: 8px;
+  font-size: 0.85rem; color: #444; line-height: 1.7;
+  font-family: "楷体", "STKaiti", "Microsoft YaHei", cursive;
+}
+.ch1-caveat b { color: #ef6c00;
+  font-family: "Gochi Hand", "Caveat", "楷体", cursive;
+  font-size: 1.1rem; letter-spacing: 0.05em; }
+</style>
+
+<div class="ch1-fig sketch">
+  <div class="ch1-section">
+    <div class="ch1-section-h">① 保护数据中的不确定性</div>
+    <div class="ch1-noise-row">
+      <img src="../images/mascot/cat-think.svg" alt="黑豹思考" class="ch1-mascot"/>
+      <div class="ch1-noises">
+        <span class="tag">自然变异</span>
+        <span class="tag">观察误差</span>
+        <span class="tag">时间波动</span>
+        <span class="tag">样本有限</span>
+        <span class="tag">偶然性</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="ch1-divider"><span class="arrow">↓</span></div>
+
+  <div class="ch1-section">
+    <div class="ch1-section-h">② 统计学在保护中的四个作用</div>
+    <div class="ch1-pipeline-row">
+      <img src="../images/mascot/cat-point.svg" alt="黑豹指引" class="ch1-mascot"/>
+      <div class="ch1-pipeline">
+        <div class="ch1-step s1">
+          <div class="num">1</div>
+          <div class="name">描述</div>
+          <div class="q">现在是<br>什么状态？</div>
+        </div>
+        <span class="ch1-step-arrow">→</span>
+        <div class="ch1-step s2">
+          <div class="num">2</div>
+          <div class="name">比较</div>
+          <div class="q">不同对象<br>有差异吗？</div>
+        </div>
+        <span class="ch1-step-arrow">→</span>
+        <div class="ch1-step s3">
+          <div class="num">3</div>
+          <div class="name">推断</div>
+          <div class="q">差异<br>可信吗？</div>
+        </div>
+        <span class="ch1-step-arrow">→</span>
+        <div class="ch1-step s4">
+          <div class="num">4</div>
+          <div class="name">支持行动</div>
+          <div class="q">下一步<br>怎么做？</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ch1-divider"><span class="arrow">↓</span></div>
+
+  <div class="ch1-final-row">
+    <img src="../images/mascot/cat-flag.svg" alt="黑豹举旗" class="ch1-mascot"/>
+    <div class="ch1-final">🛡️ 保护决策</div>
+  </div>
+
+  <div class="ch1-caveat">
+    <b>黑豹提醒：</b>显著 ≠ 重要 ｜ 不显著 ≠ 没效果 ｜ 证据 ≠ 决策<br>
+    统计回答"证据有多强"，保护决策还要回答"行动是否值得"。
+  </div>
+</div>
+```
 
 ## 真实保护问题
 
