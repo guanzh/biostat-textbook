@@ -118,6 +118,179 @@ body { background: #ffffff; }
   display: inline-block;
 }
 
+/* 第一章旧版手账封面：作为正文前的章首信息图保留 */
+.ch1-fig {
+  background: #fff;
+  border: 2px solid #1a1a1a;
+  border-radius: 16px 6px 16px 6px;
+  box-shadow: 5px 5px 0 #1a1a1a;
+  padding: 1.4rem 1.2rem 1.6rem;
+  margin: 0 0 2.5rem;
+}
+
+.ch1-section { margin: 1rem 0; }
+
+.ch1-section-h {
+  font-family: "Gochi Hand", "Caveat", "楷体", cursive;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  text-align: center;
+  margin-bottom: 0.5rem;
+  letter-spacing: 0.1em;
+}
+
+.ch1-noise-row,
+.ch1-pipeline-row,
+.ch1-final-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.ch1-noise-row { gap: 0.8rem; }
+.ch1-pipeline-row { gap: 0.6rem; }
+.ch1-final-row { gap: 1rem; margin-top: 0.4rem; }
+
+.ch1-noise-row .ch1-mascot { width: 70px; height: 70px; flex-shrink: 0; }
+.ch1-pipeline-row .ch1-mascot { width: 80px; height: 80px; flex-shrink: 0; }
+.ch1-final-row .ch1-mascot { width: 75px; height: 75px; flex-shrink: 0; }
+
+.ch1-noises {
+  display: flex;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.ch1-noises .tag {
+  background: #ffebee;
+  border: 2.5px solid #ef5350;
+  border-radius: 12px 4px 12px 4px;
+  padding: 0.35rem 0.8rem;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #c62828;
+  box-shadow: 3px 3px 0 #1a1a1a;
+  font-family: "Gochi Hand", "Caveat", "楷体", cursive;
+  letter-spacing: 0.05em;
+}
+
+.ch1-noises .tag:nth-child(1) { transform: rotate(-2deg); }
+.ch1-noises .tag:nth-child(2) { transform: rotate(2.5deg); }
+.ch1-noises .tag:nth-child(3) { transform: rotate(-2.5deg); }
+.ch1-noises .tag:nth-child(4) { transform: rotate(2deg); }
+.ch1-noises .tag:nth-child(5) { transform: rotate(-3deg); }
+
+.ch1-divider {
+  text-align: center;
+  font-family: "Gochi Hand", "Caveat", "楷体", cursive;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin: 0.9rem 0;
+  letter-spacing: 0.05em;
+}
+
+.ch1-divider .arrow {
+  display: inline-block;
+  transform: scale(2) rotate(-5deg);
+  margin: 0 0.5rem;
+}
+
+.ch1-pipeline {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.ch1-step {
+  background: #e1f5fe;
+  border: 2.5px solid #4fc3f7;
+  border-radius: 12px 4px 12px 4px;
+  padding: 0.55rem 0.75rem;
+  min-width: 95px;
+  text-align: center;
+  box-shadow: 3px 3px 0 #1a1a1a;
+}
+
+.ch1-step.s1 { transform: rotate(-2deg); }
+.ch1-step.s2 { transform: rotate(1.5deg); }
+.ch1-step.s3 { transform: rotate(-1.5deg); }
+.ch1-step.s4 { transform: rotate(2deg); }
+
+.ch1-step .num {
+  display: inline-block;
+  font-family: "Gochi Hand", "Caveat", cursive;
+  font-size: 1.7rem;
+  font-weight: 700;
+  color: #0277bd;
+  line-height: 1;
+  margin-bottom: 0.15rem;
+  transform: rotate(-4deg);
+}
+
+.ch1-step .name {
+  font-family: "Gochi Hand", "Caveat", "楷体", cursive;
+  font-weight: 800;
+  font-size: 1.1rem;
+  color: #0277bd;
+  letter-spacing: 0.05em;
+}
+
+.ch1-step .q {
+  font-size: 0.72rem;
+  color: #555;
+  line-height: 1.35;
+  margin-top: 0.2rem;
+  font-family: "楷体", "STKaiti", cursive;
+}
+
+.ch1-step-arrow {
+  font-family: "Gochi Hand", "Caveat", cursive;
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  transform: rotate(-5deg);
+  display: inline-block;
+}
+
+.ch1-final {
+  background: #ffd54f;
+  border: 2.5px solid #1a1a1a;
+  border-radius: 14px 4px 14px 4px;
+  padding: 0.7rem 1.4rem;
+  font-family: "Gochi Hand", "Caveat", "楷体", cursive;
+  font-weight: 800;
+  font-size: 1.4rem;
+  color: #1a1a1a;
+  box-shadow: 4px 4px 0 #1a1a1a;
+  letter-spacing: 0.06em;
+  transform: rotate(-1.5deg);
+}
+
+.ch1-caveat {
+  margin-top: 1rem;
+  padding: 0.7rem 1rem;
+  background: #fff8e1;
+  border: 2.5px dashed #ffb300;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  color: #444;
+  line-height: 1.7;
+  font-family: "楷体", "STKaiti", "Microsoft YaHei", cursive;
+}
+
+.ch1-caveat b {
+  color: #ef6c00;
+  font-family: "Gochi Hand", "Caveat", "楷体", cursive;
+  font-size: 1.1rem;
+  letter-spacing: 0.05em;
+}
+
 
 /* ============================================================
    v2 设计系统：清爽自然手账（Clean Field Notebook）
@@ -151,115 +324,6 @@ main.content h2 {
   color: var(--ink);
   border-bottom: 1px solid var(--line);
   padding-bottom: 0.35rem;
-}
-
-/* 第一章独立封面：使用生成插图作为全页场景，文字直接覆盖在留白区 */
-body:has(.chapter-cover) #title-block-header,
-body:has(.chapter-cover) #quarto-header,
-body:has(.chapter-cover) #quarto-sidebar,
-body:has(.chapter-cover) #quarto-margin-sidebar,
-body:has(.chapter-cover) .page-navigation {
-  display: none;
-}
-
-body:has(.chapter-cover) {
-  padding-top: 0 !important;
-  overflow-x: hidden;
-}
-
-body:has(.chapter-cover) #quarto-content,
-body:has(.chapter-cover) .page-columns,
-body:has(.chapter-cover) main.content {
-  display: block;
-  max-width: none;
-  width: 100%;
-  margin: 0;
-  padding: 0;
-}
-
-.chapter-cover {
-  position: relative;
-  min-height: 100vh;
-  overflow: hidden;
-  background: var(--paper-soft);
-  color: var(--ink);
-}
-
-.chapter-cover-media,
-.chapter-cover-media p {
-  position: absolute;
-  inset: 0;
-  margin: 0;
-}
-
-.chapter-cover-image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-}
-
-.chapter-cover-copy {
-  position: absolute;
-  z-index: 2;
-  left: clamp(2rem, 8vw, 7rem);
-  top: clamp(4rem, 16vh, 9rem);
-  width: min(680px, 55vw);
-}
-
-.chapter-cover-kicker {
-  display: block;
-  color: var(--forest);
-  font-size: 0.8rem;
-  font-weight: 700;
-  margin-bottom: 1rem;
-}
-
-.chapter-cover-copy h1 {
-  margin: 0;
-  color: var(--ink);
-  font-size: clamp(2.35rem, 4.2vw, 4.2rem);
-  line-height: 1.16;
-  letter-spacing: 0;
-}
-
-.chapter-cover-copy p {
-  margin-top: 1.2rem;
-  color: var(--ink-muted);
-  font-size: clamp(1rem, 1.35vw, 1.25rem);
-  line-height: 1.7;
-}
-
-.chapter-cover-foot {
-  position: absolute;
-  z-index: 2;
-  left: clamp(2rem, 8vw, 7rem);
-  right: clamp(2rem, 6vw, 5rem);
-  bottom: clamp(1.4rem, 5vh, 3rem);
-  display: flex;
-  align-items: center;
-  gap: 1.5rem;
-  color: var(--ink-muted);
-  font-size: 0.85rem;
-}
-
-.chapter-cover-foot p {
-  display: contents;
-}
-
-.chapter-cover-enter {
-  color: var(--forest);
-  font-size: 1rem;
-  font-weight: 700;
-  text-decoration: none;
-  border-bottom: 2px solid var(--mustard);
-  padding-bottom: 0.2rem;
-}
-
-.chapter-cover-enter:hover,
-.chapter-cover-enter:focus-visible {
-  color: var(--ink);
-  border-bottom-color: var(--coral);
 }
 
 /* 章首：双栏，桌面左右分栏，窄屏堆叠 */
@@ -469,44 +533,32 @@ body:has(.chapter-cover) main.content {
     max-width: 100%;
   }
 
-  .chapter-cover {
-    min-height: auto;
-    display: flex;
-    flex-direction: column;
+  .ch1-fig {
+    padding: 1rem 0.8rem 1.2rem;
+    box-shadow: 4px 4px 0 #1a1a1a;
   }
-  .chapter-cover-media,
-  .chapter-cover-media p {
-    position: relative;
-    inset: auto;
+  .ch1-noise-row .ch1-mascot,
+  .ch1-pipeline-row .ch1-mascot,
+  .ch1-final-row .ch1-mascot {
+    width: 64px;
+    height: 64px;
   }
-  .chapter-cover-image {
-    height: 46vh;
-    min-height: 320px;
-    object-position: 68% center;
-  }
-  .chapter-cover-copy,
-  .chapter-cover-foot {
-    position: relative;
-    left: auto;
-    right: auto;
-    top: auto;
-    bottom: auto;
-    width: auto;
-    padding-left: 1.25rem;
-    padding-right: 1.25rem;
-  }
-  .chapter-cover-copy {
-    padding-top: 1.5rem;
-  }
-  .chapter-cover-copy h1 {
-    font-size: 2rem;
-  }
-  .chapter-cover-foot {
-    align-items: flex-start;
-    flex-direction: column;
+  .ch1-pipeline {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 0.7rem;
-    padding-top: 1.3rem;
-    padding-bottom: 2rem;
+  }
+  .ch1-step {
+    width: 100%;
+    min-width: 0;
+  }
+  .ch1-step-arrow {
+    display: none;
+  }
+  .ch1-section-h {
+    font-size: 1.05rem;
+    letter-spacing: 0.05em;
   }
   .chapter-opener {
     grid-template-columns: 1fr;
