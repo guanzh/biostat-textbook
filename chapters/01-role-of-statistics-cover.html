@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>第7章 数据可视化 – 从样地到结论：保护生物学数据实战</title>
+<title>第 1 章 统计学在保护中的角色 – 从样地到结论：保护生物学数据实战</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -68,8 +68,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../chapters/08-two-group-comparison.html" rel="next">
-<link href="../chapters/06-sampling-error.html" rel="prev">
+<link href="../chapters/01-role-of-statistics.html" rel="next">
+<link href="../index.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -121,7 +121,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/04-data-management.html">第二篇：看懂并整理保护数据</a></li><li class="breadcrumb-item"><a href="../chapters/07-data-visualization.html"><span class="chapter-title">第7章 数据可视化</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/01-role-of-statistics-cover.html">第一篇：从保护问题进入统计</a></li><li class="breadcrumb-item"><a href="../chapters/01-role-of-statistics-cover.html"><span class="chapter-title">第 1 章 统计学在保护中的角色</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -131,7 +131,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
@@ -181,7 +181,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../chapters/01-role-of-statistics-cover.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">第 1 章 统计学在保护中的角色</span></a>
+  <a href="../chapters/01-role-of-statistics-cover.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">第 1 章 统计学在保护中的角色</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -227,7 +227,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../chapters/07-data-visualization.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">第7章 数据可视化</span></a>
+  <a href="../chapters/07-data-visualization.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">第7章 数据可视化</span></a>
   </div>
 </li>
       </ul>
@@ -391,33 +391,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">Table of contents</h2>
-   
-  <ul>
-  <li><a href="#第7章-数据可视化" id="toc-第7章-数据可视化" class="nav-link active" data-scroll-target="#第7章-数据可视化">第7章 数据可视化</a>
-  <ul class="collapse">
-  <li><a href="#图表选择指南" id="toc-图表选择指南" class="nav-link" data-scroll-target="#图表选择指南">图表选择指南</a></li>
-  <li><a href="#箱线图怎么读" id="toc-箱线图怎么读" class="nav-link" data-scroll-target="#箱线图怎么读">箱线图怎么读</a></li>
-  <li><a href="#图表规范" id="toc-图表规范" class="nav-link" data-scroll-target="#图表规范">图表规范</a></li>
-  <li><a href="#常见错误" id="toc-常见错误" class="nav-link" data-scroll-target="#常见错误">常见错误</a></li>
-  <li><a href="#练习" id="toc-练习" class="nav-link" data-scroll-target="#练习">练习</a></li>
-  </ul></li>
-  </ul>
-</nav>
-    </div>
+    
 <!-- main -->
-<main class="content" id="quarto-document-content">
+<main class="content column-page-right" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/04-data-management.html">第二篇：看懂并整理保护数据</a></li><li class="breadcrumb-item"><a href="../chapters/07-data-visualization.html"><span class="chapter-title">第7章 数据可视化</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/01-role-of-statistics-cover.html">第一篇：从保护问题进入统计</a></li><li class="breadcrumb-item"><a href="../chapters/01-role-of-statistics-cover.html"><span class="chapter-title">第 1 章 统计学在保护中的角色</span></a></li></ol></nav>
 <div class="quarto-title">
-<div class="quarto-title-block"><div><h1 class="title"><span class="chapter-title">第7章 数据可视化</span></h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
+<div class="quarto-title-block"><div><h1 class="title"><span class="chapter-title">第 1 章 统计学在保护中的角色</span></h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
 </div>
 
 
 
-<div class="quarto-title-meta">
+<div class="quarto-title-meta column-page-right">
 
     
   
@@ -429,84 +414,28 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="第7章-数据可视化" class="level1">
-<h1>第7章 数据可视化</h1>
-<section id="图表选择指南" class="level2">
-<h2 class="anchored" data-anchor-id="图表选择指南">图表选择指南</h2>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th>想展示什么</th>
-<th>推荐图表</th>
-<th>例子</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>各组均值比较</td>
-<td>柱状图+误差线</td>
-<td>三种药剂的平均害虫数</td>
-</tr>
-<tr class="even">
-<td>随时间变化趋势</td>
-<td>折线图</td>
-<td>连续5周的虫口密度</td>
-</tr>
-<tr class="odd">
-<td>数据分布形态</td>
-<td>箱线图</td>
-<td>不同林型的树高分布</td>
-</tr>
-<tr class="even">
-<td>两个连续变量的关系</td>
-<td>散点图</td>
-<td>湿度与病害指数</td>
-</tr>
-</tbody>
-</table>
-</section>
-<section id="箱线图怎么读" class="level2">
-<h2 class="anchored" data-anchor-id="箱线图怎么读">箱线图怎么读</h2>
-<p>箱线图展示了数据的五数概括：最小值、第一四分位数、中位数、第三四分位数、最大值。中间的粗线是中位数，箱子范围是中间50%的数据。</p>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
+<div class="chapter-cover">
+<div class="chapter-cover-media">
+<p><img class="chapter-cover-image" src="../images/chapter-openers/ch01-statistics-evidence.png" alt="保护区内的濒危草本植物固定样地监测场景，研究人员正在记录开花个体数"></p>
 </div>
-<div class="callout-title-container flex-fill">
-Tip
+<div class="chapter-cover-copy">
+<p><span class="chapter-cover-kicker">第一篇 · 从保护问题进入统计</span></p>
+<h1>
+第 1 章<br>统计学在保护中的角色
+</h1>
+<p>
+从“我感觉花少了”，走向“我们有多强的证据”。
+</p>
+</div>
+<div class="chapter-cover-foot">
+<p><a href="../chapters/01-role-of-statistics.html" class="chapter-cover-enter">开始本章 →</a></p>
+<p><span>观察现象 · 识别不确定性 · 形成证据 · 支持行动</span></p>
 </div>
 </div>
-<div class="callout-body-container callout-body">
-<p><strong>为什么很多期刊不推荐柱状图？</strong> 柱状图只展示均值（一个数字），丢失了数据分布的所有信息。相同的均值可能来自完全不同的数据分布。箱线图或散点图能让你看到数据的”形状”。</p>
-</div>
-</div>
-</section>
-<section id="图表规范" class="level2">
-<h2 class="anchored" data-anchor-id="图表规范">图表规范</h2>
-<ul>
-<li><strong>图题</strong>放在图的下方，编号+描述</li>
-<li><strong>坐标轴</strong>必须标注变量名和单位</li>
-<li><strong>误差线</strong>必须说明是标准差(SD)还是标准误(SE)</li>
-</ul>
-</section>
-<section id="常见错误" class="level2">
-<h2 class="anchored" data-anchor-id="常见错误">常见错误</h2>
-<ol type="1">
-<li>柱状图展示一切——分布形态应该用箱线图</li>
-<li>误差线不标注含义——SD还是SE？</li>
-<li>用3D图表——增加了视觉误导且难以精确读数</li>
-</ol>
-</section>
-<section id="练习" class="level2">
-<h2 class="anchored" data-anchor-id="练习">练习</h2>
-<p>同一组数据分别画柱状图、箱线图和散点图，比较哪种表达最合适。</p>
 
 
 <!-- -->
 
-</section>
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -960,58 +889,45 @@ Tip
     }
   });
   </script>
-<nav class="page-navigation">
+<nav class="page-navigation column-page-right">
   <div class="nav-page nav-page-previous">
-      <a href="../chapters/06-sampling-error.html" class="pagination-link" aria-label="第6章 样本、误差与不确定性">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">第6章 样本、误差与不确定性</span></span>
+      <a href="../index.html" class="pagination-link" aria-label="从样地到结论：保护生物学数据实战">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">从样地到结论：保护生物学数据实战</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../chapters/08-two-group-comparison.html" class="pagination-link" aria-label="第8章 两组比较">
-        <span class="nav-page-text"><span class="chapter-title">第8章 两组比较</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../chapters/01-role-of-statistics.html" class="pagination-link" aria-label="1.1 为什么保护工作需要统计学">
+        <span class="nav-page-text"><span class="chapter-title">1.1 为什么保护工作需要统计学</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "第7章 数据可视化"</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="an">maturity:</span><span class="co"> sprout</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="an">updated:</span><span class="co"> 2026-06-15</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu"># 第7章 数据可视化</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "第 1 章 统计学在保护中的角色"</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="an">maturity:</span><span class="co"> budding</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="an">updated:</span><span class="co"> 2026-06-18</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="an">toc:</span><span class="co"> false</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="an">page-layout:</span><span class="co"> full</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">## 图表选择指南</span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 想展示什么 <span class="pp">|</span> 推荐图表 <span class="pp">|</span> 例子 <span class="pp">|</span></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="pp">|-----------|---------|------|</span></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 各组均值比较 <span class="pp">|</span> 柱状图+误差线 <span class="pp">|</span> 三种药剂的平均害虫数 <span class="pp">|</span></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 随时间变化趋势 <span class="pp">|</span> 折线图 <span class="pp">|</span> 连续5周的虫口密度 <span class="pp">|</span></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 数据分布形态 <span class="pp">|</span> 箱线图 <span class="pp">|</span> 不同林型的树高分布 <span class="pp">|</span></span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 两个连续变量的关系 <span class="pp">|</span> 散点图 <span class="pp">|</span> 湿度与病害指数 <span class="pp">|</span></span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="fu">## 箱线图怎么读</span></span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>箱线图展示了数据的五数概括：最小值、第一四分位数、中位数、第三四分位数、最大值。中间的粗线是中位数，箱子范围是中间50%的数据。</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>:::: {.chapter-cover}</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>::: {.chapter-cover-media}</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">img</span><span class="ot"> class</span><span class="op">=</span><span class="st">"chapter-cover-image"</span><span class="ot"> src</span><span class="op">=</span><span class="st">"../images/chapter-openers/ch01-statistics-evidence.png"</span><span class="ot"> alt</span><span class="op">=</span><span class="st">"保护区内的濒危草本植物固定样地监测场景，研究人员正在记录开花个体数"</span><span class="dt">&gt;</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>::: {.chapter-cover-copy}</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">span</span><span class="ot"> class</span><span class="op">=</span><span class="st">"chapter-cover-kicker"</span><span class="dt">&gt;</span>第一篇 · 从保护问题进入统计<span class="dt">&lt;/</span><span class="kw">span</span><span class="dt">&gt;</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">h1</span><span class="dt">&gt;</span>第 1 章<span class="dt">&lt;</span><span class="kw">br</span><span class="dt">&gt;</span>统计学在保护中的角色<span class="dt">&lt;/</span><span class="kw">h1</span><span class="dt">&gt;</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">p</span><span class="dt">&gt;</span>从“我感觉花少了”，走向“我们有多强的证据”。<span class="dt">&lt;/</span><span class="kw">p</span><span class="dt">&gt;</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>:::</span>
 <span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>::: {.callout-tip}</span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>**为什么很多期刊不推荐柱状图？** 柱状图只展示均值（一个数字），丢失了数据分布的所有信息。相同的均值可能来自完全不同的数据分布。箱线图或散点图能让你看到数据的"形状"。</span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="fu">## 图表规范</span></span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**图题**放在图的下方，编号+描述</span>
-<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**坐标轴**必须标注变量名和单位</span>
-<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**误差线**必须说明是标准差(SD)还是标准误(SE)</span>
-<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a><span class="fu">## 常见错误</span></span>
-<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>柱状图展示一切——分布形态应该用箱线图</span>
-<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>误差线不标注含义——SD还是SE？</span>
-<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>用3D图表——增加了视觉误导且难以精确读数</span>
-<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a><span class="fu">## 练习</span></span>
-<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>同一组数据分别画柱状图、箱线图和散点图，比较哪种表达最合适。</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>::: {.chapter-cover-foot}</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">开始本章 →</span><span class="co">](01-role-of-statistics.qmd)</span>{.chapter-cover-enter}</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">span</span><span class="dt">&gt;</span>观察现象 · 识别不确定性 · 形成证据 · 支持行动<span class="dt">&lt;/</span><span class="kw">span</span><span class="dt">&gt;</span></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>::::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 
