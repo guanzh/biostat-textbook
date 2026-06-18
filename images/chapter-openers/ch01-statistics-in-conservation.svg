@@ -1,0 +1,128 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500" role="img" aria-label="保护样地中的统计观察：森林、样方、放大镜、数据卡和观察者黑豹">
+  <defs>
+    <filter id="ink-wobble" x="-5%" y="-5%" width="110%" height="110%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.022" numOctaves="2" seed="5"/>
+      <feDisplacementMap in="SourceGraphic" scale="1.6"/>
+    </filter>
+  </defs>
+
+  <rect width="800" height="500" fill="#ffffff"/>
+
+  <!-- 远山轮廓（极淡墨色） -->
+  <g filter="url(#ink-wobble)" fill="none" stroke="#d6ddd8" stroke-width="1.6"
+     stroke-linecap="round">
+    <path d="M 60 295 Q 180 250 280 285 T 520 270 T 760 290"/>
+  </g>
+
+  <!-- 地平线 -->
+  <g filter="url(#ink-wobble)" fill="none" stroke="#243129" stroke-width="2.4"
+     stroke-linecap="round">
+    <path d="M 60 385 Q 260 380 420 385 T 760 386"/>
+  </g>
+
+  <!-- 背景针叶树（森林绿剪影 + 墨线主干） -->
+  <g filter="url(#ink-wobble)" fill="none" stroke="#243129" stroke-width="2.2"
+     stroke-linecap="round" stroke-linejoin="round">
+    <path d="M 100 385 L 100 260" stroke="#315e46"/>
+    <path d="M 78 280 L 122 280 L 100 230 Z" fill="#6b906f" fill-opacity="0.55" stroke="#315e46"/>
+    <path d="M 82 305 L 118 305" stroke="#315e46" stroke-width="1.6"/>
+    <path d="M 86 325 L 114 325" stroke="#315e46" stroke-width="1.4"/>
+
+    <path d="M 170 385 L 170 240" stroke="#315e46"/>
+    <path d="M 148 262 L 192 262 L 170 195 Z" fill="#6b906f" fill-opacity="0.55" stroke="#315e46"/>
+    <path d="M 152 290 L 188 290" stroke="#315e46" stroke-width="1.6"/>
+    <path d="M 156 315 L 184 315" stroke="#315e46" stroke-width="1.4"/>
+
+    <path d="M 235 385 L 235 280" stroke="#315e46"/>
+    <path d="M 215 300 L 255 300 L 235 250 Z" fill="#6b906f" fill-opacity="0.5" stroke="#315e46"/>
+  </g>
+
+  <!-- 样方（湖水蓝虚线网格） -->
+  <g filter="url(#ink-wobble)" fill="none" stroke="#4d8294" stroke-width="2"
+     stroke-linecap="round" stroke-dasharray="5 4">
+    <rect x="320" y="318" width="200" height="66"/>
+  </g>
+  <g filter="url(#ink-wobble)" fill="none" stroke="#4d8294" stroke-width="1.2"
+     stroke-dasharray="2 3" opacity="0.7">
+    <line x1="370" y1="318" x2="370" y2="384"/>
+    <line x1="420" y1="318" x2="420" y2="384"/>
+    <line x1="470" y1="318" x2="470" y2="384"/>
+    <line x1="320" y1="351" x2="520" y2="351"/>
+  </g>
+
+  <!-- 样方内的濒危草本小株（森林绿简笔） -->
+  <g filter="url(#ink-wobble)" fill="none" stroke="#315e46" stroke-width="1.7"
+     stroke-linecap="round" stroke-linejoin="round">
+    <path d="M 345 365 L 345 340 M 339 348 L 345 342 L 351 348"/>
+    <path d="M 395 370 L 395 332 M 388 343 L 395 335 L 402 343"/>
+    <path d="M 445 367 L 445 336 M 438 346 L 445 339 L 452 346"/>
+    <path d="M 495 365 L 495 340 M 489 348 L 495 342 L 501 348"/>
+  </g>
+
+  <!-- 样方标签 -->
+  <g filter="url(#ink-wobble)">
+    <text x="320" y="310" font-family="Caveat, 楷体, cursive" font-size="20"
+          fill="#4d8294" font-weight="700">样地 Q-03</text>
+  </g>
+
+  <!-- 放大镜（湖蓝镜片 + 墨色镜柄） -->
+  <g filter="url(#ink-wobble)" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="245" cy="190" r="32" fill="#ffffff" fill-opacity="0.55"
+            stroke="#243129" stroke-width="2.6"/>
+    <line x1="269" y1="214" x2="298" y2="243" stroke="#243129" stroke-width="3.2"/>
+    <line x1="269" y1="214" x2="298" y2="243" stroke="#4d8294" stroke-width="1.2"
+          stroke-dasharray="2 3"/>
+  </g>
+
+  <!-- 数据卡（芥末黄提示带） -->
+  <g filter="url(#ink-wobble)">
+    <rect x="555" y="110" width="210" height="118" fill="#fff8e1"
+          stroke="#d0a03a" stroke-width="2.2" stroke-linejoin="round"/>
+    <line x1="568" y1="146" x2="752" y2="146" stroke="#d0a03a" stroke-width="1.2"/>
+    <text x="568" y="138" font-family="楷体, Microsoft YaHei, system-ui"
+          font-size="14" fill="#243129" font-weight="700">濒危草本 · 连续两年</text>
+    <text x="568" y="170" font-family="楷体, Microsoft YaHei, system-ui"
+          font-size="14" fill="#243129">去年  n=10   x̄ = 23</text>
+    <text x="568" y="194" font-family="楷体, Microsoft YaHei, system-ui"
+          font-size="14" fill="#c86652" font-weight="700">今年  n=10   x̄ = 17</text>
+    <text x="568" y="216" font-family="楷体, Microsoft YaHei, system-ui"
+          font-size="11" fill="#59665e">下降 6 株，是趋势还是噪声？</text>
+  </g>
+
+  <!-- 从数据卡指向样方的虚线（观察流向） -->
+  <g filter="url(#ink-wobble)" fill="none" stroke="#d0a03a" stroke-width="1.8"
+     stroke-linecap="round" stroke-dasharray="3 4">
+    <path d="M 555 200 Q 540 250 525 318"/>
+  </g>
+  <g filter="url(#ink-wobble)" fill="#d0a03a" stroke="#d0a03a" stroke-width="1">
+    <path d="M 519 314 L 528 320 L 521 326 Z"/>
+  </g>
+
+  <!-- 标题字（手写体） -->
+  <g filter="url(#ink-wobble)">
+    <text x="56" y="72" font-family="Caveat, 楷体, cursive" font-size="34"
+          fill="#315e46" font-weight="700">第 1 章 · 统计学的角色</text>
+    <text x="56" y="100" font-family="楷体, Microsoft YaHei, system-ui"
+          font-size="14" fill="#59665e">从一片样地，到一个判断</text>
+  </g>
+
+  <!-- 黑豹（缩到 0.55x，置于右下角观察） -->
+  <g transform="translate(660, 350) scale(0.55)">
+    <g filter="url(#ink-wobble)" fill="none" stroke="#1a1a1a" stroke-width="3"
+       stroke-linecap="round" stroke-linejoin="round">
+      <ellipse cx="100" cy="143" rx="40" ry="35" fill="#1a1a1a"/>
+      <g transform="rotate(-10 100 80)">
+        <circle cx="100" cy="80" r="36" fill="#1a1a1a"/>
+        <path d="M 72 56 L 67 32 L 88 50 Z" fill="#1a1a1a"/>
+        <path d="M 128 56 L 133 32 L 112 50 Z" fill="#1a1a1a"/>
+        <path d="M 72 50 L 70 38 L 82 48 Z" fill="#f8bbd0" stroke="none"/>
+        <path d="M 128 50 L 130 38 L 118 48 Z" fill="#f8bbd0" stroke="none"/>
+        <circle cx="86" cy="80" r="3" fill="#ffd54f" stroke="none"/>
+        <circle cx="114" cy="80" r="3" fill="#ffd54f" stroke="none"/>
+        <path d="M 97 92 L 100 96 L 103 92 Z" fill="#ef5350" stroke="none"/>
+      </g>
+      <ellipse cx="78" cy="162" rx="10" ry="13" fill="#1a1a1a"/>
+      <path d="M 138 153 Q 165 160 160 130" stroke="#1a1a1a" stroke-width="9" fill="none"/>
+    </g>
+  </g>
+</svg>
