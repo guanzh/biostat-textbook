@@ -1,9 +1,75 @@
 ---
-title: "1.1 为什么保护工作需要统计学"
+title: "第 1 章 统计学在保护中的角色"
 maturity: budding
 updated: 2026-06-18
 code-tools: false
 ---
+
+```{=html}
+<div class="ch1-fig sketch">
+  <div class="ch1-section">
+    <div class="ch1-section-h">① 保护数据中的不确定性</div>
+    <div class="ch1-noise-row">
+      <img src="../images/mascot/cat-think.svg" alt="黑豹思考" class="ch1-mascot">
+      <div class="ch1-noises">
+        <span class="tag">自然变异</span>
+        <span class="tag">观察误差</span>
+        <span class="tag">时间波动</span>
+        <span class="tag">样本有限</span>
+        <span class="tag">偶然性</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="ch1-divider"><span class="arrow">↓</span></div>
+
+  <div class="ch1-section">
+    <div class="ch1-section-h">② 统计学在保护中的四个作用</div>
+    <div class="ch1-pipeline-row">
+      <img src="../images/mascot/cat-point.svg" alt="黑豹指引" class="ch1-mascot">
+      <div class="ch1-pipeline">
+        <div class="ch1-step s1">
+          <div class="num">1</div>
+          <div class="name">描述</div>
+          <div class="q">现在是<br>什么状态？</div>
+        </div>
+        <span class="ch1-step-arrow">→</span>
+        <div class="ch1-step s2">
+          <div class="num">2</div>
+          <div class="name">比较</div>
+          <div class="q">不同对象<br>有差异吗？</div>
+        </div>
+        <span class="ch1-step-arrow">→</span>
+        <div class="ch1-step s3">
+          <div class="num">3</div>
+          <div class="name">推断</div>
+          <div class="q">差异<br>可信吗？</div>
+        </div>
+        <span class="ch1-step-arrow">→</span>
+        <div class="ch1-step s4">
+          <div class="num">4</div>
+          <div class="name">支持行动</div>
+          <div class="q">下一步<br>怎么做？</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ch1-divider"><span class="arrow">↓</span></div>
+
+  <div class="ch1-final-row">
+    <img src="../images/mascot/cat-flag.svg" alt="黑豹举旗" class="ch1-mascot">
+    <div class="ch1-final">🛡️ 保护决策</div>
+  </div>
+
+  <div class="ch1-caveat">
+    <b>黑豹提醒：</b>显著 ≠ 重要 ｜ 不显著 ≠ 没效果 ｜ 证据 ≠ 决策<br>
+    统计回答“证据有多强”，保护决策还要回答“行动是否值得”。
+  </div>
+</div>
+```
+
+## 1.1 为什么保护工作需要统计学
 
 <div class="chapter-route" aria-label="本节学习路线">
   <div><strong>观察现象</strong><span>23 株降到 17 株</span></div>
