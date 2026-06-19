@@ -287,13 +287,13 @@ code-tools: false
 
 回答不了这三问，进入数据分析就是瞎跑。回答得清，统计方法的选择会自己浮现。
 
-::: {.chapter-route}
-1. **拆问题**：把"我感觉花少了"翻译成四要素
-2. **辨变量**：识别连续 / 计数 / 分类 / 比例
-3. **写假设**：H₀ 与 H₁，并让它们可被反驳
-4. **避陷阱**：HARKing 与变量误判
-5. **进分析**：方法选择由变量类型决定
-:::
+<div class="chapter-route" aria-label="本章学习路线">
+  <div><strong>拆问题</strong><span>把"我感觉花少了"翻译成四要素</span></div>
+  <div><strong>辨变量</strong><span>识别连续 / 计数 / 分类 / 比例</span></div>
+  <div><strong>写假设</strong><span>H₀ 与 H₁，并让它们可被反驳</span></div>
+  <div><strong>避陷阱</strong><span>HARKing 与变量误判</span></div>
+  <div><strong>进分析</strong><span>方法选择由变量类型决定</span></div>
+</div>
 
 ## 从一句模糊感受到一份研究问题
 
@@ -350,13 +350,13 @@ code-tools: false
 - 是否在**同一物候期**调查？早一周或晚一周，结果可能差出一倍。
 - "样地"是否真的固定？有些保护站每年用 GPS 临时圈一块"差不多大"的区域——这其实不是固定样地。
 
-::: {.mascot-note}
-![](../images/mascot/cat-point.svg){.mascot aria-hidden="true"}
-
-**黑豹提醒：观测指标不只是"测什么"，还包括"怎么测"**
-
-数据中的差异，有时来自真实变化，有时来自调查员、季节、方法的不一致。第二章不展开"如何控制"——那是第三章的实验设计——但你必须从一开始就意识到：**测量过程本身是研究设计的一部分。**
-:::
+<div class="mascot-note">
+<img src="../images/mascot/cat-point.svg" alt="" class="mascot" aria-hidden="true">
+<div class="mascot-note-copy">
+<strong>黑豹提醒：观测指标不只是"测什么"，还包括"怎么测"</strong>
+<p>数据中的差异，有时来自真实变化，有时来自调查员、季节、方法的不一致。第二章不展开"如何控制"——那是第三章的实验设计——但你必须从一开始就意识到：<strong>测量过程本身是研究设计的一部分。</strong></p>
+</div>
+</div>
 
 ### 第四要素：研究假设 —— 预期看到什么？
 
@@ -478,13 +478,13 @@ code-tools: false
 1. **假设必须在收集数据之前以书面形式确定。** 立项书、研究计划、预注册（pre-registration）都是手段。
 2. **如果你确实是看了数据才发现一个有意思的模式**——把它**明确标注为"探索性发现"**，并安排**新的一轮独立数据**去验证它。"探索"和"验证"是两件事，不能用同一份数据做两次。
 
-::: {.mascot-note}
-![](../images/mascot/cat-flag.svg){.mascot aria-hidden="true"}
-
-**黑豹提醒：探索性 vs 验证性，必须明确分开**
-
-探索性分析是合法且必要的——很多保护问题最初都是从"哎，这个数好像有点怪"开始的。出问题的不是"看数据找规律"，而是**用同一份数据既找规律又验证规律**。把探索阶段诚实地标出来，下一年用新数据再验证，研究才站得住脚。
-:::
+<div class="mascot-note">
+<img src="../images/mascot/cat-flag.svg" alt="" class="mascot" aria-hidden="true">
+<div class="mascot-note-copy">
+<strong>黑豹提醒：探索性 vs 验证性，必须明确分开</strong>
+<p>探索性分析是合法且必要的——很多保护问题最初都是从"哎，这个数好像有点怪"开始的。出问题的不是"看数据找规律"，而是<strong>用同一份数据既找规律又验证规律</strong>。把探索阶段诚实地标出来，下一年用新数据再验证，研究才站得住脚。</p>
+</div>
+</div>
 
 ## 从假设到方法选择：一张通往后面章节的路线图
 
