@@ -1,185 +1,257 @@
 ---
-title: "措施效果与保护评估"
+title: "第 16 章 措施效果与保护评估"
 maturity: sprout
-updated: 2026-06-24
-execute:
-  eval: false
+updated: 2026-06-20
+code-tools: false
 ---
 
-::: {.callout-note}
-## 本章状态：最小试点稿
+```{=html}
+<style>
+.ch16-fig {
+  background: #fff;
+  border: 2px solid #1a1a1a;
+  border-radius: 16px 6px 16px 6px;
+  box-shadow: 5px 5px 0 #1a1a1a;
+  padding: 1.6rem 1.4rem 1.4rem;
+  margin: 0 0 2.5rem 0;
+}
+.ch16-fig-h {
+  font-family: "Gochi Hand", "Caveat", "楷体", cursive;
+  font-size: 1.2rem; font-weight: 700; color: #1a1a1a;
+  text-align: center; margin-bottom: 1.2rem; letter-spacing: 0.1em;
+}
+.ch16-pipeline {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr auto 1fr;
+  align-items: center; gap: 0.5rem; margin: 0.4rem 0;
+}
+.ch16-stage {
+  padding: 0.9rem 0.9rem 1rem; border-radius: 6px 16px 4px 18px;
+  box-shadow: 4px 4px 0 #1a1a1a;
+}
+.ch16-stage.s1 { background: #ffebee; border: 2.5px solid #ef5350; transform: rotate(-1.5deg); }
+.ch16-stage.s2 { background: #e1f5fe; border: 2.5px solid #0277bd; transform: rotate(0.5deg); }
+.ch16-stage.s3 { background: #e8f5e9; border: 2.5px solid #2e7d32; transform: rotate(1deg); }
+.ch16-stage-h {
+  font-family: "Gochi Hand", "Caveat", "楷体", cursive;
+  font-weight: 700; font-size: 0.95rem; margin-bottom: 0.4rem; text-align: center;
+}
+.ch16-stage.s1 .ch16-stage-h { color: #c62828; }
+.ch16-stage.s2 .ch16-stage-h { color: #01579b; }
+.ch16-stage.s3 .ch16-stage-h { color: #1b5e20; }
+.ch16-stage-body {
+  font-family: "楷体", "STKaiti", "Microsoft YaHei", cursive;
+  font-size: 0.85rem; color: #333; line-height: 1.65; text-align: center;
+}
+.ch16-arrow {
+  font-family: "Gochi Hand", "Caveat", cursive;
+  font-size: 2.2rem; font-weight: 700; color: #1a1a1a;
+  transform: rotate(-3deg); text-align: center; line-height: 1;
+}
+.ch16-caveat {
+  margin-top: 1.1rem; padding: 0.6rem 0.85rem;
+  background: #fafafa; border-left: 3px solid #1a1a1a; border-radius: 2px;
+  font-size: 0.86rem; color: #1a1a1a; line-height: 1.7; text-align: center;
+}
+@media (max-width: 720px) {
+  .ch16-pipeline { grid-template-columns: 1fr; gap: 0.8rem; }
+  .ch16-arrow { transform: rotate(87deg); }
+  .ch16-stage { transform: rotate(0deg); }
+}
+</style>
 
-本章把“保护干预是否真的有效”作为试点主题。当前版本先建立判断框架和最小 R 示例，后续可替换为真实保护区、林业站或科研项目数据。
-:::
-
-## 真实保护问题
-
-某保护区为了提高黄黄草幼苗的存活率，在 2026 年春季对一部分样地实施了围栏减压措施，减少踩踏和取食干扰。半年后，实施围栏的样地中幼苗存活率从 42% 上升到 58%。管理者很高兴，准备把围栏推广到所有分布点。
-
-这个判断还缺一块关键证据：**没有围栏的样地同期发生了什么？**
-
-如果没有围栏的样地也从 42% 上升到 55%，那么围栏的额外贡献可能很小；如果没有围栏的样地从 42% 下降到 35%，围栏的保护效果就更值得重视。措施评估不能只问“干预后有没有变好”，而要问：**相对于没有干预的变化，干预多带来了多少改变？**
-
-::: {.observation-question}
-**观察问题：** 一项保护措施实施后，目标物种数量上升了。这个结果是否足以说明措施有效？至少列出三个替代解释。
-:::
-
-## 学习目标
-
-学完本章后，你能够：
-
-1. 区分“干预前后变化”和“干预造成的额外变化”。
-2. 识别措施评估中的对照、基线差异、同期变化和选择偏差。
-3. 用 BACI 思路组织保护干预数据：Before-After-Control-Impact。
-4. 估计措施效果的方向、大小和不确定性，而不只报告 P 值。
-5. 把统计结果写成带有行动边界的保护评估建议。
-
-## 为什么这个问题需要统计
-
-保护措施很少在理想实验条件下实施。围栏、人工补植、病虫害防治、巡护加强、栖息地修复，往往都先投向“最严重”“最容易执行”或“最受关注”的地点。这会带来两个问题。
-
-第一，干预地点和未干预地点一开始就可能不同。干预组的改善，可能来自它们本来更容易恢复，也可能来自它们原本更差、回升空间更大。
-
-第二，时间本身会改变结果。降雨、温度、物候、调查努力量、周边干扰都可能在干预前后一起变化。只比较干预前后，容易把自然波动误认为措施效果。
-
-措施评估的核心不是证明“做了事情以后有变化”，而是估计：**如果没有这项措施，同一批保护对象本来会怎样？**
-
-## 核心概念
-
-**干预组（impact）** 是接受保护措施的单位，例如设置围栏的样地。
-
-**对照组（control）** 是没有接受该措施、但尽量与干预组可比的单位。对照不是形式要求，而是用来估计“没有干预时会怎样”。
-
-**基线（before）** 是措施实施前的状态。没有基线，就很难判断组间差异是措施造成的，还是原本就存在。
-
-**BACI 设计** 同时比较干预前后和干预/对照差异。它关注的不是某一个均值，而是两种变化量的差：
-
-```text
-措施效果 ≈ (干预组干预后 - 干预组干预前) - (对照组同期后 - 对照组同期前)
+<div class="ch16-fig sketch">
+  <div class="ch16-fig-h">措施后变好 → 寻找反事实 → 有边界效果评估</div>
+  <div class="ch16-pipeline">
+    <div class="ch16-stage s1">
+      <div class="ch16-stage-h">① 定义反事实</div>
+      <div class="ch16-stage-body">如果没有修复，丰富度会是多少？——这个数字你永远看不到</div>
+    </div>
+    <div class="ch16-arrow" aria-hidden="true">→</div>
+    <div class="ch16-stage s2">
+      <div class="ch16-stage-h">② 选择对照</div>
+      <div class="ch16-stage-body">随机对照→BACI→匹配→DID——不同设计排除不同的替代解释</div>
+    </div>
+    <div class="ch16-arrow" aria-hidden="true">→</div>
+    <div class="ch16-stage s3">
+      <div class="ch16-stage-h">③ 预设行动</div>
+      <div class="ch16-stage-body">效果多大算成功？副作用多大算不可接受？——标准必须在看到结果前定</div>
+    </div>
+  </div>
+  <div class="ch16-caveat">
+    <b>黑豹提醒：</b>修复地丰富度 10→14，宣称增加 40%；同期对照 8→13——BACI 对比告诉你真相。
+  </div>
+</div>
 ```
 
-**最小有意义效应** 是管理上值得行动的最小变化。例如幼苗存活率提高 3 个百分点也许统计上可见，但如果围栏成本高、维护困难，这个幅度未必值得推广。
+## 16.1 看不见的反事实
 
-::: {.key-judgment}
-**关键判断：** 措施评估的目标不是证明“做了以后变好”，而是估计“相对于不做，措施多带来了多少改变”。
-:::
+保护措施评估的核心难题：**你永远看不到"如果没有措施会怎样"。** 这个看不见的"反事实"（counterfactual）是所有效果评估的逻辑起点。
 
-## R 分析过程
+- 修复地丰富度从 10 升到 14 → 增加了 4 种
+- 但如果没有修复，丰富度可能从 10 升到 13（自然恢复趋势）
+- 修复的真实效果 = (14 − 10) − (13 − 10) = 1 种——不是 4 种
 
-下面用一个小型 BACI 数据演示。真实数据中，每一行可以是一个样地在某个时间点的存活率；如果同一样地多次测量，后续需要进入第 18 章的混合模型。
+没有对照组的"前后比较"隐含了一个强假设：**没有措施的情况下，结果不会变化。** 在生态系统中，这个假设几乎从不成立——植被会自然演替、气候会波动、动物会迁移。
 
-```{r}
-library(dplyr)
-library(ggplot2)
+```r
+rest <- read.csv("../data/teaching/restoration_site_period.csv",
+                 stringsAsFactors = FALSE)
+```
 
-survival <- tibble::tribble(
-  ~site_id, ~group,     ~period,  ~survival_rate,
-  "A1",     "impact",   "before", 0.40,
-  "A1",     "impact",   "after",  0.58,
-  "A2",     "impact",   "before", 0.44,
-  "A2",     "impact",   "after",  0.60,
-  "C1",     "control",  "before", 0.41,
-  "C1",     "control",  "after",  0.48,
-  "C2",     "control",  "before", 0.43,
-  "C2",     "control",  "after",  0.47
+<div class="chapter-route" aria-label="本章学习路线">
+  <div><strong>定义反事实</strong><span>看不见的对照</span></div>
+  <div><strong>选择对照</strong><span>随机/BACI/匹配</span></div>
+  <div><strong>计算交互</strong><span>变化之差</span></div>
+  <div><strong>检查破坏</strong><span>平行趋势/溢出/失访</span></div>
+  <div><strong>预设行动</strong><span>成功标准与停止规则</span></div>
+</div>
+
+## 16.2 随机与观察性评估边界
+
+效果评估设计从强到弱：
+
+1. **随机对照试验（RCT）：** 随机分配处理/对照——最强因果推断。森林病虫害试验属于此类。
+2. **BACI（Before-After-Control-Impact）：** 处理前后 + 对照——控制共同时间趋势。修复地监测属于此类。
+3. **匹配（Matching）：** 为每个处理单元找一个"相似"的对照单元——只平衡已测变量。
+4. **差异中的差异（DID）：** 比较处理组和对照组在政策前后的变化差——假设平行趋势。
+5. **单纯前后比较：** 没有对照组——最弱，几乎不能排除任何替代解释。
+
+**随机化增强可比性，但不保证可比性。** 即使随机分配，小样本下两组基线仍可能偶然不同——这就是为什么需要检查基线平衡。
+
+## 16.3 单纯前后比较为何不够
+
+**反例（本章核心反例）：** "修复地丰富度从 10 升到 14，增加了 40%。"
+
+这个结论假设了：如果没有修复，丰富度会保持在 10。但同期对照地从 8 升到 13——说明存在一个区域性的丰富度上升趋势（可能是降水增加、气温变化、或其他未测量的因素）。
+
+```r
+# 计算各组前后变化
+rest_agg <- aggregate(
+  species_richness ~ landscape_id + site_id + status + period,
+  data = rest, FUN = mean
 )
 
-site_change <- survival |>
-  tidyr::pivot_wider(
-    names_from = period,
-    values_from = survival_rate
-  ) |>
-  mutate(change = after - before)
+# 前后变化
+rest_before <- rest_agg[rest_agg$period == "before", ]
+rest_after <- rest_agg[rest_agg$period == "after", ]
 
-effect_estimate <- site_change |>
-  group_by(group) |>
-  summarise(mean_change = mean(change), .groups = "drop") |>
-  tidyr::pivot_wider(
-    names_from = group,
-    values_from = mean_change
-  ) |>
-  mutate(baci_effect = impact - control)
+# 修复地变化
+restored_change <- rest_after$species_richness[rest_after$status == "restored"] -
+  rest_before$species_richness[rest_before$status == "restored"]
+# 对照地变化
+control_change <- rest_after$species_richness[rest_after$status == "control"] -
+  rest_before$species_richness[rest_before$status == "control"]
 
-effect_estimate
+cat("修复地平均变化:", round(mean(restored_change), 1), "\n")
+cat("对照地平均变化:", round(mean(control_change), 1), "\n")
+cat("BACI 效果（变化之差）:", round(mean(restored_change - control_change), 1), "\n")
 ```
 
-如果干预组平均提高 17 个百分点，对照组同期提高 5.5 个百分点，那么围栏的额外效果估计约为 11.5 个百分点。这个数字比“干预后提高了 17 个百分点”更接近措施本身的贡献。
+## 16.4 BACI 的交互差异
 
-可以用图把变化量表达出来：
+BACI 的核心是**处理 × 时期的交互作用**。统计模型：
 
-```{r}
-ggplot(survival, aes(x = period, y = survival_rate, group = site_id, color = group)) +
-  geom_line() +
-  geom_point(size = 2) +
-  labs(
-    x = NULL,
-    y = "幼苗存活率",
-    color = "组别"
-  )
+Y = β₀ + β₁×Status + β₂×Period + β₃×Status×Period + ε
+
+- β₁：修复前的处理-对照差异（基线不平衡）
+- β₂：对照组的时期变化（共同时间趋势）
+- β₃：**BACI 效果——修复的额外变化**（我们关心的）
+
+```r
+# 拟合 BACI 模型（简化版：按地点聚合后）
+rest_site <- aggregate(
+  species_richness ~ landscape_id + site_id + status + period,
+  data = rest, FUN = mean
+)
+
+rest_site$status <- factor(rest_site$status)
+rest_site$period <- factor(rest_site$period)
+
+model_baci <- lm(species_richness ~ status * period, data = rest_site)
+summary(model_baci)
+
+# BACI 效果
+cat("\nBACI 效果（statusrestored:periodafter）:\n")
+cat("估计:", round(coef(model_baci)["statusrestored:periodafter"], 2), "\n")
+cat("95% CI: [",
+    round(confint(model_baci)["statusrestored:periodafter", 1], 2), ",",
+    round(confint(model_baci)["statusrestored:periodafter", 2], 2), "]\n")
 ```
 
-图不是装饰。它帮助我们检查一个问题：干预组是否都朝同一方向变化，还是由某一个样地拉动了平均效果。
+## 16.5 匹配、差异中的差异与假设
 
-## 结果解释
+BACI 的强假设：**平行趋势**——如果没有修复，修复地和对照地的变化趋势相同。这个假设无法直接检验（因为你永远看不到修复地的反事实），但可以通过以下方式间接评估：
 
-措施评估的解释要同时报告四件事。
+- 修复前两组的轨迹是否平行？
+- 对照地是否受到修复的间接影响（溢出）？
+- 是否有其他事件在修复前后同时发生（混杂）？
 
-**方向。** 围栏样地的存活率是否相对于对照样地提高。
+**匹配**可以增强可比性，但只平衡**已测量**的变量。如果未测量的变量同时影响处理分配和结果，匹配也无能为力。
 
-**大小。** 额外提高了多少个百分点，而不是只说“有效”。
+## 16.6 实施完整性、溢出、失访和附带伤害
 
-**不确定性。** 样地数量少时，效果估计可能很不稳定。需要报告置信区间、敏感性分析或至少承认样本量限制。
+效果评估不只是"处理组 vs 对照组"——还需要检查：
 
-**行动边界。** 结果是否足以支持扩大推广，还是只支持继续试点、扩大样本或延长监测。
+- **实施完整性：** 修复措施是否按方案执行？如果只执行了 60%，效果打折扣是预期的。
+- **溢出（spillover）：** 修复地的效果是否"溢出"到邻近的对照地？（如种子扩散）
+- **失访（attrition）：** 是否有样方在修复后被破坏或无法调查？
+- **附带伤害：** 修复是否带来了非预期的负面影响？（如外来种入侵）
 
-给管理者看的简短表述可以写成：
+```r
+# 检查各景观的 BACI 效果异质性
+baci_by_landscape <- aggregate(
+  species_richness ~ landscape_id + status + period,
+  data = rest_site, FUN = mean
+)
 
-> 本次试点中，围栏样地的幼苗存活率提升幅度高于未围栏样地，额外效果估计约为 11.5 个百分点。由于样地数量少，且围栏样地可能与对照样地存在初始差异，当前证据支持继续扩大试点并补充对照样地，不宜直接推广到所有分布点。
+# 计算每个景观的 BACI 效果
+for (l in unique(baci_by_landscape$landscape_id)) {
+  ld <- baci_by_landscape[baci_by_landscape$landscape_id == l, ]
+  ctrl_change <- ld$species_richness[ld$status == "control" & ld$period == "after"] -
+    ld$species_richness[ld$status == "control" & ld$period == "before"]
+  treat_change <- ld$species_richness[ld$status == "restored" & ld$period == "after"] -
+    ld$species_richness[ld$status == "restored" & ld$period == "before"]
+  cat("景观", l, "BACI 效果:", round(treat_change - ctrl_change, 1), "\n")
+}
+```
 
-## 常见错误
+## 16.7 成功标准与停止规则
 
-| 错误 | 为什么危险 | 更好的做法 |
-|---|---|---|
-| 只做干预前后比较 | 把同期自然变化当成措施效果 | 加入对照组或历史对照 |
-| 只报告 P 值 | 看不出管理意义 | 报告效应大小和不确定范围 |
-| 干预点由管理者挑选 | 容易产生选择偏差 | 说明选择规则，尽量随机或匹配 |
-| 忽视调查努力量变化 | 记录增加可能来自调查更多 | 保留调查时长、样线长度、相机工作天数 |
-| 效果好就建议全面推广 | 跨过证据边界 | 区分继续试点、局部推广和全面推广 |
+效果评估的最后一步：**在见到结果之前，定义"成功"和"失败"。**
 
-## AI 辅助任务
+成功标准应包含：
+- **主要效果：** 丰富度增加 ≥ X 种（最小有意义效应）
+- **不确定性：** 95% CI 的下限 > 0（效果不太可能为零或负）
+- **副作用：** 非本地种比例没有显著增加
+- **成本：** 每增加 1 种的成本 ≤ Y 元
+- **实施：** 方案执行完整度 ≥ 80%
 
-可以让 AI 帮你检查评估设计是否缺少对照、基线或调查努力量。但不要让 AI 直接给出“应该推广”的判断，除非你提供了成本、风险、保护目标和执行约束。
+停止规则：如果中期评估显示效果远低于预期或副作用超出可接受范围——停止并重新设计方案。**不能因为"已经投入了很多"而继续一个无效或有害的措施。**
 
-推荐提问：
+## 本章小结
 
-> 我正在评估一项保护措施是否有效。数据包括干预组和对照组的干预前后记录。请帮我检查这是否满足 BACI 思路，指出可能的选择偏差、同期变化和结论边界。不要把“干预后变好”直接解释为“措施有效”。
-
-人工核查记录格式：
-
-> AI 建议围栏措施可以全面推广。但经核查，本数据只有 2 个干预样地和 2 个对照样地，且干预样地由管理者优先选择，选择偏差没有排除。因此我决定把结论改为“支持扩大试点，不支持全面推广”。
+- **反事实是效果评估的逻辑起点。** 你永远看不到"如果没有措施会怎样"——对照组的全部意义就是近似这个反事实。
+- **单纯前后比较几乎从不成立。** 生态系统有自然趋势——没有对照组的变化不能归因于措施。
+- **BACI 的核心是交互作用。** 修复效果 = (修复后 − 修复前) − (对照后 − 对照前)。
+- **平行趋势是 BACI 的关键假设。** 它不能被直接检验，但可以通过修复前轨迹间接评估。
+- **成功标准必须在看到结果之前定义。** 效果大小、不确定性、副作用、成本——全部预先规定。
 
 ## 练习
 
-1. **识别层。** 判断以下三种说法中，哪一种是在描述变化，哪一种是在估计措施效果：
-   “围栏后存活率提高了 16 个百分点”；“未围栏样地同期也提高了 6 个百分点”；“围栏额外提高约 10 个百分点”。
-2. **解释层。** 为什么一个保护措施实施后目标物种数量上升，仍然不能直接说明措施有效？
-3. **应用层。** 为“加强巡护是否降低盗猎事件”设计一个 BACI 数据表，列出必须保留的字段。
-4. **分析层。** 给定干预组和对照组的前后数据，计算 BACI 效果，并用一句话解释管理意义。
-5. **综合任务。** 为一个真实或模拟保护措施写一页评估简报，包含研究问题、设计、效果大小、不确定性、行动建议和结论边界。
-6. **AI 核查。** 把你的简报交给 AI，让它指出是否存在过度因果解释。逐条标注“接受 / 拒绝 / 证据不足”。
+1. **识别层。** 以下评估设计各属于什么类型？各能排除什么替代解释？
+   (a) 修复地前后比较，无对照组
+   (b) 修复地 + 对照地，前后各一次调查
+   (c) 随机分配 20 个样地，10 个修复、10 个对照
 
-### 评估简报评分量规
+2. **解释层。** "修复地丰富度增加 40%"——如果同期对照地增加了 30%，修复的真实效果是多少？
 
-| 维度 | 分值 | 满分标准 |
-|---|---:|---|
-| 设计识别 | 20 | 清楚区分干预组、对照组、干预前和干预后 |
-| 效果估计 | 20 | 报告相对于对照的额外变化 |
-| 不确定性 | 20 | 说明样本量、选择偏差和调查努力量限制 |
-| 管理解释 | 20 | 把效果大小转译为保护意义 |
-| 行动边界 | 20 | 明确支持什么行动、不支持什么行动 |
+3. **应用层。** 用修复地数据计算每个景观的 BACI 效果。哪些景观效果最强？哪些最弱？这种异质性意味着什么？
+
+4. **诊断层。** 修复前，修复地的平均丰富度比对照地高 3 种。这会影响 BACI 分析吗？如何影响？
+
+5. **综合层。** 为森林防治试验写一份预先成功标准。包含：主要效果阈值、副作用上限、成本上限、以及什么情况下应该停止。
 
 ## 继续学习
-
-本章回答“措施是否带来了额外变化”。下一章继续追问：有了统计结果以后，怎样把证据、成本、风险和保护目标放在一起，写成负责任的行动建议？
 
 → [第 17 章：从统计结果到保护行动](17-stats-to-action.qmd)

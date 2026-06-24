@@ -1,55 +1,278 @@
 ---
-title: "第19章 生态过程与观测过程"
-maturity: seed
-updated: 2026-06-15
+title: "第 19 章 生态过程与观测过程"
+maturity: sprout
+updated: 2026-06-20
+code-tools: false
 ---
 
-# 第19章 生态过程与观测过程
+```{=html}
+<style>
+.ch19-fig {
+  background: #fff;
+  border: 2px solid #1a1a1a;
+  border-radius: 16px 6px 16px 6px;
+  box-shadow: 5px 5px 0 #1a1a1a;
+  padding: 1.6rem 1.4rem 1.4rem;
+  margin: 0 0 2.5rem 0;
+}
+.ch19-fig-h {
+  font-family: "Gochi Hand", "Caveat", "楷体", cursive;
+  font-size: 1.2rem; font-weight: 700; color: #1a1a1a;
+  text-align: center; margin-bottom: 1.2rem; letter-spacing: 0.1em;
+}
+.ch19-pipeline {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr auto 1fr;
+  align-items: center; gap: 0.5rem; margin: 0.4rem 0;
+}
+.ch19-stage {
+  padding: 0.9rem 0.9rem 1rem; border-radius: 6px 16px 4px 18px;
+  box-shadow: 4px 4px 0 #1a1a1a;
+}
+.ch19-stage.s1 { background: #ffebee; border: 2.5px solid #ef5350; transform: rotate(-1.5deg); }
+.ch19-stage.s2 { background: #e1f5fe; border: 2.5px solid #0277bd; transform: rotate(0.5deg); }
+.ch19-stage.s3 { background: #e8f5e9; border: 2.5px solid #2e7d32; transform: rotate(1deg); }
+.ch19-stage-h {
+  font-family: "Gochi Hand", "Caveat", "楷体", cursive;
+  font-weight: 700; font-size: 0.95rem; margin-bottom: 0.4rem; text-align: center;
+}
+.ch19-stage.s1 .ch19-stage-h { color: #c62828; }
+.ch19-stage.s2 .ch19-stage-h { color: #01579b; }
+.ch19-stage.s3 .ch19-stage-h { color: #1b5e20; }
+.ch19-stage-body {
+  font-family: "楷体", "STKaiti", "Microsoft YaHei", cursive;
+  font-size: 0.85rem; color: #333; line-height: 1.65; text-align: center;
+}
+.ch19-arrow {
+  font-family: "Gochi Hand", "Caveat", cursive;
+  font-size: 2.2rem; font-weight: 700; color: #1a1a1a;
+  transform: rotate(-3deg); text-align: center; line-height: 1;
+}
+.ch19-caveat {
+  margin-top: 1.1rem; padding: 0.6rem 0.85rem;
+  background: #fafafa; border-left: 3px solid #1a1a1a; border-radius: 2px;
+  font-size: 0.86rem; color: #1a1a1a; line-height: 1.7; text-align: center;
+}
+@media (max-width: 720px) {
+  .ch19-pipeline { grid-template-columns: 1fr; gap: 0.8rem; }
+  .ch19-arrow { transform: rotate(87deg); }
+  .ch19-stage { transform: rotate(0deg); }
+}
+</style>
 
-::: {{.callout-note}}
-## 本章状态：seed
-
-本章内容尚在建设中。以下为本章规划大纲，具体内容将随课程反馈和新案例持续补充。
-:::
-
-## 真实保护问题
-
-<!-- 以一个具体的保护生物学问题开篇 -->
-
-## 学习目标
-
-<!-- 学完本章后学生应能做到的 3-5 件事 -->
-
-## 为什么这个问题需要统计
-
-<!-- 动机段落 -->
-
-## 核心概念
-
-<!-- 本章关键概念的简要介绍 -->
-
-## R 分析过程
-
-```{r}
-# 本章 R 代码示例（待补充）
+<div class="ch19-fig sketch">
+  <div class="ch19-fig-h">未拍到 → 状态与观测混在一起 → 双过程模型</div>
+  <div class="ch19-pipeline">
+    <div class="ch19-stage s1">
+      <div class="ch19-stage-h">① 定义状态</div>
+      <div class="ch19-stage-body">物种是否占据这个样点？——潜在生态状态，不可直接观察</div>
+    </div>
+    <div class="ch19-arrow" aria-hidden="true">→</div>
+    <div class="ch19-stage s2">
+      <div class="ch19-stage-h">② 安排重复</div>
+      <div class="ch19-stage-body">6 次调查 → 检出/未检出模式 → 区分"不在"和"没看见"</div>
+    </div>
+    <div class="ch19-arrow" aria-hidden="true">→</div>
+    <div class="ch19-stage s3">
+      <div class="ch19-stage-h">③ 改进监测</div>
+      <div class="ch19-stage-body">探测概率太低？→ 增加重复或改进设备，不是增加样点</div>
+    </div>
+  </div>
+  <div class="ch19-caveat">
+    <b>黑豹提醒：</b>朴素检出率 ≠ 占域率。未检出 ≠ 不存在。单次调查不能同时估计占域和探测。
+  </div>
+</div>
 ```
 
-## 结果解释
+## 19.1 未检出不等于不存在
 
-<!-- 如何将统计结果转化为保护生物学语言 -->
+第 14 章教你设计野生动物监测。但监测数据有一个根本问题：**你没有看到动物，不等于动物不存在。** 它可能就在那里，只是没有被相机拍到（假阴性）。
 
-## 常见错误
+这是生态过程（物种是否占据样点）和观测过程（给定占据，是否被检出）的混淆。前面所有章节的模型都假设"你测量到的就是真实值"——这个假设在野生动物监测中不成立。
 
-<!-- 学生在本章内容上最容易犯的错误 -->
+```r
+camera <- read.csv("../data/teaching/camera_monitoring_long.csv",
+                   stringsAsFactors = FALSE)
+```
 
-## AI 辅助任务
+<div class="chapter-route" aria-label="本章学习路线">
+  <div><strong>定义状态</strong><span>潜在占域</span></div>
+  <div><strong>安排重复</strong><span>检测历史</span></div>
+  <div><strong>估计探测</strong><span>ψ 与 p</span></div>
+  <div><strong>检查假设</strong><span>封闭与异质性</span></div>
+  <div><strong>改进监测</strong><span>设计优化</span></div>
+</div>
 
-<!-- 配套的 AI 提问与人工核查任务 -->
+::: {.learning-goals}
+**学完本章后，你能够：**
+
+1. 区分潜在生态状态和观测过程，解释为什么假阴性是野生动物监测的核心问题。
+2. 理解重复调查如何为探测概率提供信息。
+3. 描述占域模型的两个子模型（状态子模型和观测子模型）。
+4. 识别封闭假设和可识别性问题。
+5. 解释为什么单次调查不能同时估计占域和探测概率。
+:::
+
+## 19.2 潜在生态状态
+
+占域模型将问题分为两层：
+
+**状态过程（state process）：** 样点 i 是否被目标物种占据？
+- z_i = 1（占据）或 0（未占据）
+- z_i 是潜在的——你永远无法直接观察
+- ψ = P(z_i = 1)：占域概率——我们真正想知道的
+
+**观测过程（observation process）：** 给定占据，调查 j 是否检出？
+- y_ij = 1（检出）或 0（未检出）
+- p = P(y_ij = 1 | z_i = 1)：探测概率——给定占据，单次调查检出的概率
+- 如果 z_i = 0，则 y_ij 必然为 0（没有假阳性）
+
+## 19.3 观测过程和探测概率
+
+探测概率 p 受多种因素影响：
+- 调查努力量（相机夜数越多，p 越高）
+- 生境特征（密林中 p 低于开阔地）
+- 天气条件
+- 物种行为（活动节律、种群密度）
+
+**关键洞察：** 如果 p = 0.5，那么一个被占据的样点在单次调查中有 50% 的概率被"错过"。6 次调查全部错过的概率 = (1 − 0.5)⁶ ≈ 1.6%——重复调查大幅降低了假阴性的概率。
+
+## 19.4 重复调查为何提供信息
+
+假设一个样点的 6 次调查结果是：0, 1, 0, 0, 1, 0（检出 2 次）。
+
+- 朴素解释：检出率 = 2/6 = 33%
+- 占域解释：这个样点肯定被占据（因为至少有 1 次检出），但探测概率较低
+
+对于从未检出的样点（0, 0, 0, 0, 0, 0）：
+- 可能未被占据（z = 0）
+- 可能被占据但 6 次都错过了（概率 = (1−p)⁶）
+
+重复调查的作用就是区分这两种情况。
+
+```r
+# 选择第一年的数据构造检测历史
+camera_y1 <- camera[camera$year == 1, ]
+
+# 朴素占域率（至少一次检出）
+naive_occ <- aggregate(
+  detected ~ station_id,
+  data = camera_y1,
+  FUN = max
+)
+cat("朴素占域率:", round(mean(naive_occ$detected), 3), "\n")
+cat("注意：这低估了真实占域率，因为探测概率 < 1。\n")
+```
+
+## 19.5 占域模型的两个子模型
+
+**状态子模型：** logit(ψ_i) = β₀ + β₁ × 森林覆盖度_i
+
+**观测子模型：** logit(p_ij) = α₀ + α₁ × 努力量_ij
+
+似然函数同时包含 ψ 和 p——通过重复调查的数据来同时估计两者。
+
+```r
+# 用基础 R 的 optim() 拟合简单占域模型
+# 构造检测历史矩阵：60 样点 × 6 occasion
+y <- matrix(0, 60, 6)
+for (i in 1:60) {
+  sid <- sprintf("S%03d", i)
+  y[i, ] <- camera_y1$detected[camera_y1$station_id == sid]
+}
+
+# 负对数似然函数
+nll <- function(params) {
+  psi <- plogis(params[1])    # 占域概率（常数）
+  p <- plogis(params[2])      # 探测概率（常数）
+
+  ll <- 0
+  for (i in 1:60) {
+    n_detected <- sum(y[i, ])
+    # 如果至少一次检出：必然占据
+    if (n_detected > 0) {
+      ll <- ll + log(psi) +
+        n_detected * log(p) + (6 - n_detected) * log(1 - p)
+    } else {
+      # 从未检出：可能未占据，也可能占据但 6 次都错过
+      ll <- ll + log((1 - psi) + psi * (1 - p)^6)
+    }
+  }
+  return(-ll)
+}
+
+fit <- optim(c(0, 0), nll, method = "BFGS")
+psi_hat <- plogis(fit$par[1])
+p_hat <- plogis(fit$par[2])
+
+cat("估计占域率 ψ:", round(psi_hat, 3), "\n")
+cat("估计探测概率 p:", round(p_hat, 3), "\n")
+cat("朴素占域率:", round(mean(naive_occ$detected), 3), "\n")
+cat("\nψ > 朴素占域率——因为模型考虑了假阴性。\n")
+```
+
+## 19.6 封闭、异质性与可识别性
+
+**封闭假设（closure assumption）：** 在 6 次重复调查期间，样点的占域状态不变。如果物种在调查期间迁入或迁出，这个假设被违反。
+
+**探测异质性：** 不同样点的探测概率不同（如密林 vs 开阔地）。如果忽略探测异质性，ψ 的估计可能偏差。
+
+**可识别性（identifiability）：** 如果只有 1 次调查，无法同时估计 ψ 和 p——模型不可识别。至少需要 2 次重复调查（部分样点至少 3 次更好）。
+
+```r
+# 演示：移除重复访问导致不可识别
+# 只用第一次 occasion
+y_single <- y[, 1, drop = FALSE]
+cat("单次调查：检出率 =", round(mean(y_single), 3), "\n")
+cat("问题：这个数字是 ψ×p 的乘积——无法拆开。\n")
+cat("可能是 ψ=0.5, p=0.6，也可能是 ψ=0.3, p=1.0……\n")
+```
+
+## 19.7 从模型回到监测改进
+
+占域模型的输出直接指导监测设计：
+
+- **p 太低（< 0.3）：** 增加每次调查的努力量或改进设备
+- **p 的变异太大：** 记录并建模探测协变量（努力量、天气、调查员）
+- **ψ 的区间太宽：** 增加样点数量或重复调查次数
+- **封闭假设可能违反：** 缩短重复调查的时间窗口
+
+```r
+cat("=== 占域分析报告 ===\n\n")
+cat("估计占域率 ψ:", round(psi_hat, 3), "\n")
+cat("估计探测概率 p:", round(p_hat, 3), "\n\n")
+cat("结论边界：\n")
+cat("- 占域率估计高于朴素检出率——模型分离了生态和观测过程。\n")
+cat("- 假设：6 次调查期间占域状态不变（封闭）。\n")
+cat("- 假设：所有样点的探测概率相同（无异质性）。\n")
+cat("- 未分析：生境协变量对 ψ 和 p 的影响。\n")
+cat("- 未分析：年份间的占域变化（第 21 章）。\n")
+```
+
+## 本章小结
+
+- **未检出 ≠ 不存在。** 假阴性是野生动物监测的核心问题——占域模型通过重复调查来分离生态过程和观测过程。
+- **ψ 是占域概率，p 是探测概率。** 朴素检出率 = ψ × p（近似）——低估了真实占域。
+- **重复调查是关键。** 6 次调查检出 2 次 → 肯定占据但 p 低。0 次检出 → 可能未占据，也可能占据但运气差。
+- **单次调查不能同时估计 ψ 和 p。** 模型不可识别——至少需要重复调查。
+- **封闭假设：** 重复调查期间占域状态不变。如果违反，需要动态占域模型。
 
 ## 练习
 
-<!-- 课堂练习和课后作业 -->
+1. **识别层。** 以下变量各属于状态过程还是观测过程？
+   (a) 样点是否被目标物种占据
+   (b) 相机是否拍到目标物种
+   (c) 森林覆盖度对占域的影响
+   (d) 调查努力量对检出概率的影响
+
+2. **解释层。** 为什么朴素检出率（至少一次检出的样点比例）低估了真实占域率？
+
+3. **应用层。** 如果探测概率 p = 0.3，一个被占据的样点在 6 次调查中至少被检出 1 次的概率是多少？
+
+4. **诊断层。** 一个样点 6 次调查全部未检出。它未被占据的概率是多少？（用 ψ = 0.5, p = 0.4 计算）
+
+5. **综合层。** 设计一个监测方案改进计划：当前 p ≈ 0.3，你想把 p 提高到 0.5 以上。有哪些可行的方法？各有什么代价？
 
 ## 继续学习
 
-<!-- 推荐阅读和下一章链接 -->
+→ [第 20 章：贝叶斯统计与模型诊断](20-bayesian-intro.qmd)

@@ -1,55 +1,341 @@
 ---
-title: "第6章 样本、误差与不确定性"
-maturity: seed
-updated: 2026-06-15
+title: "第 6 章 样本、误差与不确定性"
+maturity: sprout
+updated: 2026-06-20
+code-tools: false
 ---
 
-# 第6章 样本、误差与不确定性
+```{=html}
+<style>
+.ch6-fig {
+  background: #fff;
+  border: 2px solid #1a1a1a;
+  border-radius: 16px 6px 16px 6px;
+  box-shadow: 5px 5px 0 #1a1a1a;
+  padding: 1.6rem 1.4rem 1.4rem;
+  margin: 0 0 2.5rem 0;
+}
+.ch6-fig-h {
+  font-family: "Gochi Hand", "Caveat", "楷体", cursive;
+  font-size: 1.2rem; font-weight: 700; color: #1a1a1a;
+  text-align: center; margin-bottom: 1.2rem;
+  letter-spacing: 0.1em;
+}
+.ch6-pipeline {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr auto 1fr;
+  align-items: center; gap: 0.5rem; margin: 0.4rem 0;
+}
+.ch6-stage {
+  padding: 0.9rem 0.9rem 1rem; border-radius: 6px 16px 4px 18px;
+  box-shadow: 4px 4px 0 #1a1a1a;
+}
+.ch6-stage.s1 { background: #ffebee; border: 2.5px solid #ef5350; transform: rotate(-1.5deg); }
+.ch6-stage.s2 { background: #e1f5fe; border: 2.5px solid #0277bd; transform: rotate(0.5deg); }
+.ch6-stage.s3 { background: #e8f5e9; border: 2.5px solid #2e7d32; transform: rotate(1deg); }
+.ch6-stage-h {
+  font-family: "Gochi Hand", "Caveat", "楷体", cursive;
+  font-weight: 700; font-size: 0.95rem; margin-bottom: 0.4rem; text-align: center;
+}
+.ch6-stage.s1 .ch6-stage-h { color: #c62828; }
+.ch6-stage.s2 .ch6-stage-h { color: #01579b; }
+.ch6-stage.s3 .ch6-stage-h { color: #1b5e20; }
+.ch6-stage-body {
+  font-family: "楷体", "STKaiti", "Microsoft YaHei", cursive;
+  font-size: 0.85rem; color: #333; line-height: 1.65; text-align: center;
+}
+.ch6-arrow {
+  font-family: "Gochi Hand", "Caveat", cursive;
+  font-size: 2.2rem; font-weight: 700; color: #1a1a1a;
+  transform: rotate(-3deg); text-align: center; line-height: 1;
+}
+.ch6-caveat {
+  margin-top: 1.1rem; padding: 0.6rem 0.85rem;
+  background: #fafafa; border-left: 3px solid #1a1a1a; border-radius: 2px;
+  font-size: 0.86rem; color: #1a1a1a; line-height: 1.7; text-align: center;
+}
+@media (max-width: 720px) {
+  .ch6-pipeline { grid-template-columns: 1fr; gap: 0.8rem; }
+  .ch6-arrow { transform: rotate(87deg); }
+  .ch6-stage { transform: rotate(0deg); }
+}
+</style>
 
-::: {{.callout-note}}
-## 本章状态：seed
-
-本章内容尚在建设中。以下为本章规划大纲，具体内容将随课程反馈和新案例持续补充。
-:::
-
-## 真实保护问题
-
-<!-- 以一个具体的保护生物学问题开篇 -->
-
-## 学习目标
-
-<!-- 学完本章后学生应能做到的 3-5 件事 -->
-
-## 为什么这个问题需要统计
-
-<!-- 动机段落 -->
-
-## 核心概念
-
-<!-- 本章关键概念的简要介绍 -->
-
-## R 分析过程
-
-```{r}
-# 本章 R 代码示例（待补充）
+<div class="ch6-fig sketch">
+  <div class="ch6-fig-h">照片很多 → 代表性与探测仍有缺口 → 按误差来源安排调查</div>
+  <div class="ch6-pipeline">
+    <div class="ch6-stage s1">
+      <div class="ch6-stage-h">① 样本代表谁</div>
+      <div class="ch6-stage-body">60 个相机样点——它们覆盖了整个保护区，还是只覆盖了道路两侧？</div>
+    </div>
+    <div class="ch6-arrow" aria-hidden="true">→</div>
+    <div class="ch6-stage s2">
+      <div class="ch6-stage-h">② 拆分误差来源</div>
+      <div class="ch6-stage-body">覆盖偏差、测量误差、探测失败、模型假设——每类误差需要不同的缓解措施</div>
+    </div>
+    <div class="ch6-arrow" aria-hidden="true">→</div>
+    <div class="ch6-stage s3">
+      <div class="ch6-stage-h">③ 建立不确定性预算</div>
+      <div class="ch6-stage-body">区间不是"样本量够不够"的问题——是每种误差来源各贡献了多少不确定性</div>
+    </div>
+  </div>
+  <div class="ch6-caveat">
+    <b>黑豹提醒：</b>扩大样本不能修复系统偏差——更多的有偏样本只产生更窄的错误区间。
+  </div>
+</div>
 ```
 
-## 结果解释
+## 6.1 样本究竟要代表谁
 
-<!-- 如何将统计结果转化为保护生物学语言 -->
+第 5 章让你看清了数据长什么样。但描述统计回答的是"我手上的数据是什么样的"——它不回答"我手上的数据能代表谁"。
 
-## 常见错误
+这是抽样推断的核心问题。回到红外相机监测项目：你在保护区布设了 60 个相机样点，连续三年每年调查 6 次，积累了 1080 条记录。第 5 章的数据画像告诉你检出率、照片数的分布、样点间的差异。但如果你要说"目标物种在保护区的占域率约为 45%"，你必须先回答：**这 60 个样点能代表整个保护区吗？**
 
-<!-- 学生在本章内容上最容易犯的错误 -->
+目标总体（target population）是你想把结论推广到的所有对象。对于红外相机监测，目标总体是"保护区范围内所有可能被目标物种利用的生境"。但你的 60 个样点只是从这个总体中选出的一个样本——它们是否覆盖了所有生境类型？是否有些区域（陡峭山脊、密灌丛、深谷）根本没有样点？
 
-## AI 辅助任务
+抽样框（sampling frame）是实际从中抽取样本的名单或范围。如果保护区有 500 个 1 km² 的网格，你从中随机抽取了 60 个布设相机——那么抽样框是 500 个网格，样本是 60 个。但如果你的 60 个样点全部位于"步行 2 小时内可达"的区域，那么抽样框实际上被缩小了——不可达区域根本没有机会被抽中。
 
-<!-- 配套的 AI 提问与人工核查任务 -->
+```r
+# 读取相机数据
+camera <- read.csv("../data/teaching/camera_monitoring_long.csv",
+                   stringsAsFactors = FALSE)
+
+# 检查样点的空间覆盖
+# 分层覆盖
+table(camera$stratum) / 18  # 每个样点有 18 条记录
+# 检查道路距离的分布
+summary(camera$distance_road_km)
+# 检查森林覆盖的分布
+summary(camera$forest_cover)
+```
+
+::: {.observation-question}
+**观察问题：** 你的 60 个相机样点中，距离道路 2 km 以内的占了多少？如果目标物种偏好远离道路的生境，你的样本能代表它的真实分布吗？
+:::
+
+## 6.2 抽样框决定哪些对象有机会进入数据
+
+抽样框是推断链条中最容易被忽视的一环。三种常见的抽样方式，对应三种不同的推断范围：
+
+**概率抽样（probability sampling）：** 总体中每个单位有已知的、非零的概率被抽中。简单随机抽样、分层抽样、系统抽样都属于这一类。只有概率抽样允许你从样本推断总体——因为你知道每个单位被抽中的概率，可以据此加权。
+
+**便利抽样（convenience sampling）：** 样本由最容易获取的单位组成——"沿道路布设相机""选最近的 10 个样地"。便利样本不能代表总体，因为"容易获取"本身就是一个系统性的选择偏差。
+
+**目的抽样（purposive sampling）：** 根据研究目的有意识地选择特定单位——"选已知有目标物种活动的区域布设相机"。目的抽样适合探索性研究，但不能用于推断总体参数。
+
+```r
+# 演示：全样点 vs 道路旁便利样点的检出率差异
+# 假设"道路旁"定义为距离道路 < 1 km
+roadside <- camera$distance_road_km < 1
+# 全样点朴素检出率
+mean(camera$detected)
+# 道路旁样点朴素检出率
+mean(camera$detected[roadside])
+# 远离道路样点朴素检出率
+mean(camera$detected[!roadside])
+
+# 差异可能来自生境偏好，也可能来自抽样偏差
+```
+
+::: {.key-judgment}
+**关键判断：** 抽样框决定了"谁有机会被听见"。如果某些生境类型根本没有样点，那么无论你收集多少照片，你的结论都不能推广到那些生境。
+:::
+
+## 6.3 随机误差与系统偏差不能互相替代
+
+误差有两种根本不同的类型，它们需要完全不同的应对策略。
+
+**随机误差（random error）：** 由抽样、测量或自然过程的随机波动引起。它的特点是：重复抽样时，误差有时高有时低，平均趋向于零。增加样本量可以减小随机误差——更多的独立样点会让均值更稳定，标准误更小。
+
+**系统偏差（systematic bias）：** 由抽样方式、测量工具或数据处理的系统性缺陷引起。它的特点是：重复抽样时，误差始终偏向同一方向。增加样本量不能减小系统偏差——更多的有偏样本只会产生更窄但同样错误的结果。
+
+红外相机监测中的系统偏差来源：
+
+- **选择偏差：** 样点全部布在道路旁 → 低估远离道路生境中的物种出现率
+- **测量偏差：** 相机触发灵敏度不一致 → 某些样点系统性漏拍
+- **探测偏差：** 目标物种在密林中的可探测性低于开阔地 → 密林样点检出率系统性偏低
+- **失访偏差：** 相机故障集中在雨季 → 雨季的物种活动模式缺失
+
+```r
+# 演示：随机误差 vs 系统偏差
+# 假设真实检出率为 0.5，但道路旁样点系统性高估 0.1
+set.seed(20260620)
+true_rate <- 0.5
+bias <- 0.1
+
+# 小样本（n=10）：随机误差大
+small_sample <- rbinom(10, 1, true_rate + bias)
+mean(small_sample)  # 可能远离真值
+
+# 大样本（n=1000）：随机误差小，但偏差仍在
+large_sample <- rbinom(1000, 1, true_rate + bias)
+mean(large_sample)  # 非常接近 0.6，而不是 0.5
+```
+
+<div class="mascot-note">
+<img src="../images/mascot/cat-point.svg" alt="" class="mascot" aria-hidden="true">
+<div class="mascot-note-copy">
+<strong>黑豹提醒：更多数据不能修复系统偏差</strong>
+<p>如果 60 个相机全部布在道路旁，拍 10 万张照片得到的检出率仍然只代表"道路旁的物种活动"——它不能告诉你远离道路的森林里物种是否存在。增加照片数缩小了随机误差，但系统偏差纹丝不动。</p>
+</div>
+</div>
+
+## 6.4 标准误和区间描述哪一种不确定性
+
+标准误（standard error, SE）可能是统计入门中最容易被误解的概念。它不是"数据的变异程度"——那是标准差（SD）。标准误是**样本均值的变异程度**：如果你从同一个总体中反复抽取同样大小的样本，这些样本均值之间的标准差就是标准误。
+
+SE = SD / √n。这个公式揭示了一个关键关系：**标准误随样本量的平方根减小。** 要把标准误减半，你需要 4 倍的样本量。
+
+置信区间（confidence interval）是标准误的直接应用。一个 95% 置信区间的正确解释是：**如果从同一个总体中反复抽样并计算区间，95% 的区间会包含真实参数。** 它不表示"真实参数有 95% 的概率落在这个区间内"——参数是固定的，不是随机的。这是频率学派和贝叶斯学派（第 20 章）的根本分歧。
+
+```r
+# 演示：标准误 vs 标准差
+# 以相机样点的森林覆盖度为例
+forest_cover <- aggregate(forest_cover ~ station_id, data = camera, FUN = mean)
+fc <- forest_cover$forest_cover
+
+# 标准差：单个样点森林覆盖度的典型偏离
+sd(fc)
+
+# 标准误：样点均值的不确定性
+sd(fc) / sqrt(length(fc))
+
+# 95% 置信区间（正态近似）
+mean(fc) + c(-1, 1) * 1.96 * sd(fc) / sqrt(length(fc))
+
+# 注意：这个区间只反映抽样误差——它假设样点是随机抽取的，
+# 且没有考虑测量误差、探测误差或模型假设违反
+```
+
+::: {.key-judgment}
+**关键判断：** 标准误只反映特定模型下的随机抽样变异。它不包含选择偏差、测量误差、探测失败或模型错误带来的不确定性。
+:::
+
+## 6.5 重抽样必须尊重独立单位
+
+Bootstrap 是一种通过从原始数据中有放回地重抽样来估计统计量分布的方法。它不依赖正态假设，是理解不确定性的有力工具。
+
+但 bootstrap 有一个致命的陷阱：**重抽样的单位必须是独立单位。** 如果你对 1080 行相机数据直接做 bootstrap（每行有相等的被抽中概率），你实际上假设了 1080 行是独立的——这意味着你把同一个样点的 18 次重复调查当成了 18 个独立观测。
+
+```r
+# 错误做法：按行重抽样（把 occasion 当独立单位）
+set.seed(20260620)
+n_boot <- 1000
+boot_means_wrong <- replicate(n_boot, {
+  idx <- sample(1:nrow(camera), replace = TRUE)
+  mean(camera$detected[idx])
+})
+# 区间会很窄——因为伪重复制造了虚假的精度
+quantile(boot_means_wrong, c(0.025, 0.975))
+
+# 正确做法：按样点重抽样
+stations <- unique(camera$station_id)
+boot_means_right <- replicate(n_boot, {
+  idx_stations <- sample(stations, replace = TRUE)
+  # 对每个抽中的样点，取其所有 occasion 的均值
+  samp <- camera[camera$station_id %in% idx_stations, ]
+  mean(samp$detected)
+})
+# 区间会更宽——因为正确反映了样点间的变异
+quantile(boot_means_right, c(0.025, 0.975))
+
+# 比较两种方法的区间宽度
+cat("错误方法区间宽度:",
+    diff(quantile(boot_means_wrong, c(0.025, 0.975))), "\n")
+cat("正确方法区间宽度:",
+    diff(quantile(boot_means_right, c(0.025, 0.975))), "\n")
+```
+
+::: {.key-judgment}
+**关键判断：** Bootstrap 的重抽样单位必须与研究设计中的独立单位一致。对 1080 行重抽样假设行间独立——这等于把同一样点的 18 次重复调查当作 18 个独立样点。
+:::
+
+## 6.6 建立调查的不确定性预算
+
+不确定性预算（uncertainty budget）是一份系统性的清单，列出所有可能影响结论的误差来源、它们的方向、大致量级和缓解措施。它不是精确的定量工具——它是防止你遗漏重要误差来源的检查表。
+
+红外相机监测的不确定性预算：
+
+| 误差来源 | 类型 | 方向 | 缓解措施 | 对应章节 |
+|---|---|---|---|---|
+| 样点未覆盖某些生境 | 选择偏差 | 未知 | 分层抽样、事后加权 | 本章 |
+| 样点数量有限 | 随机误差 | 双向 | 增加样点（不是增加照片） | 本章 |
+| 相机触发不一致 | 测量偏差 | 未知 | 统一相机型号和设置 | 第 14 章 |
+| 物种未被检出 | 探测偏差 | 低估 | 重复调查、占域模型 | 第 19 章 |
+| 相机故障 | 失访偏差 | 低估 | 记录故障、分析中处理 | 第 4 章 |
+| 模型假设违反 | 模型偏差 | 未知 | 诊断、替代模型 | 第 8–12 章 |
+
+```r
+# 演示：分层查看生境覆盖
+# 按分层统计样点数和检出率
+stratum_stats <- aggregate(
+  cbind(n_stations = detected) ~ stratum,
+  data = camera,
+  FUN = function(x) c(
+    n_stations = length(unique(camera$station_id[camera$stratum == x[1]])),
+    n_occasions = length(x),
+    detected = sum(x == 1)
+  )
+)
+print(stratum_stats)
+```
+
+## 6.7 不确定性如何改变监测行动
+
+不确定性的最终用途不是报告一个数字——而是指导下一步行动。不同来源的不确定性需要不同的行动：
+
+- **样点覆盖不足 → 扩大抽样框。** 在未覆盖的生境类型中增设样点。
+- **样点数量不足 → 增加样点。** 增加照片数或重复调查次数不能替代增加独立样点。
+- **探测概率低 → 增加重复调查或改进设备。** 占域模型（第 19 章）可以分离探测过程。
+- **模型假设不确定 → 做敏感性分析。** 用不同模型重复分析，看结论是否稳定。
+
+**反例：** 某分析者用 60 个道路旁样点、共 10 万张照片，计算目标物种的"出现率"为 62%，95% 置信区间为 [59%, 65%]——区间非常窄。他据此报告"保护区目标物种出现率约为 62%，估计很精确"。
+
+问题在哪里？这个窄区间只反映了**给定这 60 个道路旁样点的随机抽样误差**。它完全没有反映"道路旁样点不能代表远离道路的生境"这一系统偏差。真正的出现率可能是 30%（如果目标物种回避道路），也可能是 80%（如果目标物种偏好道路）——这个区间没有提供任何关于系统偏差的信息。
+
+```r
+# 演示：比较全样点与道路旁样点的检出率差异
+# 按道路距离分组
+camera$road_group <- cut(camera$distance_road_km,
+                          breaks = c(0, 1, 3, 8),
+                          labels = c("近道路(<1km)", "中等(1-3km)", "远(>3km)"))
+aggregate(detected ~ road_group, data = camera, FUN = mean)
+
+# 如果三组的检出率系统性地不同，
+# 那么"全样点均值"的窄区间掩盖了重要的空间异质性
+```
+
+::: {.key-judgment}
+**关键判断：** 一个很窄的置信区间不等于一个可靠的结论。区间只反映特定误差模型下的随机变异——它不包含系统偏差、探测失败或模型错误。
+:::
+
+## 本章小结
+
+- **样本要代表目标总体，首先取决于抽样框。** 如果某些生境类型没有样点，无论样本多大，结论都不能推广到那些生境。
+- **随机误差和系统偏差需要完全不同的应对策略。** 增加样本量减小随机误差，但不能修复系统偏差——更多的有偏样本只产生更窄的错误区间。
+- **标准误描述样本均值的变异，不描述数据的变异。** SE = SD/√n；置信区间只反映特定模型下的随机抽样误差。
+- **Bootstrap 的重抽样单位必须与独立单位一致。** 对观测行重抽样等于制造伪重复——区间会被人为缩窄。
+- **不确定性预算是一份系统性的误差清单。** 覆盖偏差、测量误差、探测失败、模型假设——每类误差需要不同的缓解措施。
+- **不同来源的不确定性需要不同的行动。** 扩大样点覆盖、增加独立样点、增加重复调查、改进设备、做敏感性分析——它们不能互相替代。
 
 ## 练习
 
-<!-- 课堂练习和课后作业 -->
+1. **识别层。** 以下场景中，目标总体和抽样框分别是什么？抽样框是否存在缺口？
+   (a) 60 个红外相机样点全部位于保护区道路网 500 m 范围内。
+   (b) 黄黄草调查的 10 个固定样地全部位于保护区南坡。
+
+2. **解释层。** "我拍了 10 万张照片，样本量非常大，所以结论很可靠。" 请用本章的概念说明为什么照片数不等于独立样本量。
+
+3. **应用层。** 为红外相机监测项目选择正确的 bootstrap 重抽样单位，并解释为什么不能按 1080 行重抽样。
+
+4. **诊断层。** 一位研究者报告："目标物种的检出率为 45%，95% CI [42%, 48%]。" 你发现他的 60 个样点全部位于海拔 1000 m 以下。这个置信区间遗漏了什么？
+
+5. **综合层。** 为黄黄草野外观察（第 1–2 章的 10 个固定样地监测）建立一份不确定性预算。包含至少四种误差来源，并说明每种误差的方向和缓解措施。
 
 ## 继续学习
 
-<!-- 推荐阅读和下一章链接 -->
+::: {.chapter-next}
+下一步：不确定性预算告诉你"我们不知道什么"——第 7 章将教你用图形把这些不确定性、设计结构和证据关系同时呈现出来。
+
+→ [第 7 章：数据可视化](07-data-visualization.qmd)
+:::

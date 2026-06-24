@@ -1,40 +1,420 @@
 ---
-title: "第7章 数据可视化"
+title: "第 7 章 数据可视化"
 maturity: sprout
-updated: 2026-06-15
+updated: 2026-06-20
+code-tools: false
 ---
 
-# 第7章 数据可视化
+```{=html}
+<style>
+.ch7-fig {
+  background: #fff;
+  border: 2px solid #1a1a1a;
+  border-radius: 16px 6px 16px 6px;
+  box-shadow: 5px 5px 0 #1a1a1a;
+  padding: 1.6rem 1.4rem 1.4rem;
+  margin: 0 0 2.5rem 0;
+}
+.ch7-fig-h {
+  font-family: "Gochi Hand", "Caveat", "楷体", cursive;
+  font-size: 1.2rem; font-weight: 700; color: #1a1a1a;
+  text-align: center; margin-bottom: 1.2rem;
+  letter-spacing: 0.1em;
+}
+.ch7-pipeline {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr auto 1fr;
+  align-items: center; gap: 0.5rem; margin: 0.4rem 0;
+}
+.ch7-stage {
+  padding: 0.9rem 0.9rem 1rem; border-radius: 6px 16px 4px 18px;
+  box-shadow: 4px 4px 0 #1a1a1a;
+}
+.ch7-stage.s1 { background: #ffebee; border: 2.5px solid #ef5350; transform: rotate(-1.5deg); }
+.ch7-stage.s2 { background: #e1f5fe; border: 2.5px solid #0277bd; transform: rotate(0.5deg); }
+.ch7-stage.s3 { background: #e8f5e9; border: 2.5px solid #2e7d32; transform: rotate(1deg); }
+.ch7-stage-h {
+  font-family: "Gochi Hand", "Caveat", "楷体", cursive;
+  font-weight: 700; font-size: 0.95rem; margin-bottom: 0.4rem; text-align: center;
+}
+.ch7-stage.s1 .ch7-stage-h { color: #c62828; }
+.ch7-stage.s2 .ch7-stage-h { color: #01579b; }
+.ch7-stage.s3 .ch7-stage-h { color: #1b5e20; }
+.ch7-stage-body {
+  font-family: "楷体", "STKaiti", "Microsoft YaHei", cursive;
+  font-size: 0.85rem; color: #333; line-height: 1.65; text-align: center;
+}
+.ch7-arrow {
+  font-family: "Gochi Hand", "Caveat", cursive;
+  font-size: 2.2rem; font-weight: 700; color: #1a1a1a;
+  transform: rotate(-3deg); text-align: center; line-height: 1;
+}
+.ch7-caveat {
+  margin-top: 1.1rem; padding: 0.6rem 0.85rem;
+  background: #fafafa; border-left: 3px solid #1a1a1a; border-radius: 2px;
+  font-size: 0.86rem; color: #1a1a1a; line-height: 1.7; text-align: center;
+}
+@media (max-width: 720px) {
+  .ch7-pipeline { grid-template-columns: 1fr; gap: 0.8rem; }
+  .ch7-arrow { transform: rotate(87deg); }
+  .ch7-stage { transform: rotate(0deg); }
+}
+</style>
 
-## 图表选择指南
+<div class="ch7-fig sketch">
+  <div class="ch7-fig-h">漂亮柱图 → 设计结构被隐藏 → 图形成为证据</div>
+  <div class="ch7-pipeline">
+    <div class="ch7-stage s1">
+      <div class="ch7-stage-h">① 先写问题</div>
+      <div class="ch7-stage-body">"修复是否提高了本地物种盖度？"——问题决定图形，不是反过来</div>
+    </div>
+    <div class="ch7-arrow" aria-hidden="true">→</div>
+    <div class="ch7-stage s2">
+      <div class="ch7-stage-h">② 保留结构</div>
+      <div class="ch7-stage-body">配对、时间、层级——图形必须暴露设计结构，不能隐藏它</div>
+    </div>
+    <div class="ch7-arrow" aria-hidden="true">→</div>
+    <div class="ch7-stage s3">
+      <div class="ch7-stage-h">③ 审计结论</div>
+      <div class="ch7-stage-body">效应、不确定性、样本量、边界——一张证据图能支持什么、不能支持什么</div>
+    </div>
+  </div>
+  <div class="ch7-caveat">
+    <b>黑豹提醒：</b>均值柱状图是保护数据可视化中最常见的错误——它隐藏了样本量、分布形状和设计结构。
+  </div>
+</div>
+```
 
-| 想展示什么 | 推荐图表 | 例子 |
-|-----------|---------|------|
-| 各组均值比较 | 柱状图+误差线 | 三种药剂的平均害虫数 |
-| 随时间变化趋势 | 折线图 | 连续5周的虫口密度 |
-| 数据分布形态 | 箱线图 | 不同林型的树高分布 |
-| 两个连续变量的关系 | 散点图 | 湿度与病害指数 |
+## 7.1 先写判断问题，再选择图形
 
-## 箱线图怎么读
+第 5 章和第 6 章教你认识数据的分布和不确定性。但数据分析和数据沟通之间有一道鸿沟：你能看懂数字，不代表别人能看懂。图形是跨越这道鸿沟的桥梁——但前提是，图形必须服务于一个明确的判断问题。
 
-箱线图展示了数据的五数概括：最小值、第一四分位数、中位数、第三四分位数、最大值。中间的粗线是中位数，箱子范围是中间50%的数据。
+**图形不是分析结束后的装饰。** 它是你对设计和证据的可视化检查。在写任何一行绘图代码之前，先写出你要回答的判断问题：
 
-::: {.callout-tip}
-**为什么很多期刊不推荐柱状图？** 柱状图只展示均值（一个数字），丢失了数据分布的所有信息。相同的均值可能来自完全不同的数据分布。箱线图或散点图能让你看到数据的"形状"。
+- "修复地物种丰富度是否高于对照地？" → 需要比较两组分布
+- "修复前后，每个景观的变化是否一致？" → 需要保留景观配对
+- "本地物种盖度的增加有多少是不确定性？" → 需要显示效应和区间
+
+本章的主项目是栖息地修复监测（项目 D）。我们将用同一批修复数据，依次展示不同判断问题对应不同图形选择。
+
+```r
+# 读取修复地数据
+rest <- read.csv("../data/teaching/restoration_site_period.csv",
+                 stringsAsFactors = FALSE)
+# 读取群落长表
+comm <- read.csv("../data/teaching/restoration_community_long.csv",
+                 stringsAsFactors = FALSE)
+
+# 先确认数据结构
+str(rest)
+```
+
+::: {.observation-question}
+**观察问题：** 修复地管理者想知道"修复措施是否有效"。这个模糊问题至少可以拆成四个具体的判断问题——你能列出它们吗？每个问题应该用什么图形来回答？
 :::
 
-## 图表规范
+<div class="chapter-route" aria-label="本章学习路线">
+  <div><strong>写出问题</strong><span>图形服务于判断</span></div>
+  <div><strong>展开数据</strong><span>原始值优先于摘要</span></div>
+  <div><strong>保留结构</strong><span>配对、时间、层级</span></div>
+  <div><strong>显示区间</strong><span>效应和不确定性</span></div>
+  <div><strong>审计结论</strong><span>图形能支持什么</span></div>
+</div>
 
-- **图题**放在图的下方，编号+描述
-- **坐标轴**必须标注变量名和单位
-- **误差线**必须说明是标准差(SD)还是标准误(SE)
+::: {.learning-goals}
+**学完本章后，你能够：**
 
-## 常见错误
+1. 根据判断问题选择正确的图形类型——而不是默认使用均值柱状图。
+2. 在图形中保留配对、时间序列和层级结构，避免隐藏设计信息。
+3. 同时呈现效应大小和不确定性，并写出包含设计、单位和样本量的图注。
+4. 区分探索图（暴露异常）和证据图（交代设计和证据强度）。
+5. 识别并纠正常见的可视化错误：截断坐标、颜色误导、隐藏样本量。
+:::
 
-1. 柱状图展示一切——分布形态应该用箱线图
-2. 误差线不标注含义——SD还是SE？
-3. 用3D图表——增加了视觉误导且难以精确读数
+## 7.2 展开原始值与分布
+
+图形设计的第一原则：**先展示原始数据，再展示摘要。** 均值柱状图之所以是"最常见的错误"，不是因为它不准确——而是因为它只展示了两个数字（均值和标准误），却隐藏了样本量、分布形状、离群点和数据重叠。
+
+对于修复地数据，如果你只画四根柱子（修复前对照、修复前修复、修复后对照、修复后修复），读者看不到：
+- 每个景观内部的配对关系
+- 样方之间的变异
+- 是否有离群点
+- 修复前两组是否已经不同
+
+```r
+# 正确做法：先展示原始值
+# 按时期和地点类型画原始点 + 箱线图
+par(mfrow = c(1, 2))
+
+# 修复前
+rest_before <- rest[rest$period == "before", ]
+boxplot(native_cover ~ status, data = rest_before,
+        col = c("#ffebee", "#e8f5e9"),
+        names = c("对照", "修复"),
+        main = "修复前：本地物种盖度", ylab = "盖度 (%)",
+        ylim = c(0, 100))
+# 叠加原始点
+stripchart(native_cover ~ status, data = rest_before,
+           method = "jitter", vertical = TRUE, add = TRUE,
+           pch = 16, col = "#4d8294", cex = 0.8)
+
+# 修复后
+rest_after <- rest[rest$period == "after", ]
+boxplot(native_cover ~ status, data = rest_after,
+        col = c("#ffebee", "#e8f5e9"),
+        names = c("对照", "修复"),
+        main = "修复后：本地物种盖度", ylab = "盖度 (%)",
+        ylim = c(0, 100))
+stripchart(native_cover ~ status, data = rest_after,
+           method = "jitter", vertical = TRUE, add = TRUE,
+           pch = 16, col = "#4d8294", cex = 0.8)
+```
+
+::: {.key-judgment}
+**关键判断：** 原始点 + 箱线图 > 均值柱状图。前者展示了样本量、分布形状、离群点和中位数——后者只展示了两个数字。
+:::
+
+## 7.3 保留配对、时间与层级关系
+
+修复地数据的核心设计结构是 BACI：每个景观有一对修复地和对照地，在修复前后各调查一次。这个设计决定了：**你不能把四个组当成四个独立的柱子来画。**
+
+**反例：** 四根带标准误差条的彩色柱状图——修复前对照、修复前修复、修复后对照、修复后修复。这张图看起来"专业"，但它隐藏了三个关键信息：
+1. 修复地和对照地在同一个景观内是配对的——它们共享景观尺度的气候和干扰历史。
+2. 修复前后的变化在每个景观内是配对的——同一地点的样方在前后两个时期被重复测量。
+3. 不同景观之间的修复效果可能不同——景观 1 的修复效果可能远大于景观 6。
+
+```r
+# 正确做法：保留景观配对
+# 先按景观和地点聚合
+rest_agg <- aggregate(
+  cbind(native_cover, species_richness) ~ landscape_id + site_id + status + period,
+  data = rest, FUN = mean
+)
+
+# 画每个景观的配对变化
+par(mfrow = c(2, 3))
+for (l in unique(rest_agg$landscape_id)) {
+  ld <- rest_agg[rest_agg$landscape_id == l, ]
+  # 对照地
+  ctrl <- ld[ld$status == "control", ]
+  # 修复地
+  treat <- ld[ld$status == "restored", ]
+
+  plot(c(1, 2), c(0, 100), type = "n",
+       xlab = "时期", ylab = "本地物种盖度 (%)",
+       main = paste("景观", l),
+       xaxt = "n")
+  axis(1, at = c(1, 2), labels = c("修复前", "修复后"))
+
+  # 对照地：灰色虚线
+  lines(c(1, 2), c(ctrl$native_cover[ctrl$period == "before"],
+                    ctrl$native_cover[ctrl$period == "after"]),
+        col = "gray60", lwd = 2, lty = 2)
+  points(c(1, 2), c(ctrl$native_cover[ctrl$period == "before"],
+                     ctrl$native_cover[ctrl$period == "after"]),
+         col = "gray60", pch = 1, cex = 1.5)
+
+  # 修复地：绿色实线
+  lines(c(1, 2), c(treat$native_cover[treat$period == "before"],
+                    treat$native_cover[treat$period == "after"]),
+        col = "#2e7d32", lwd = 2)
+  points(c(1, 2), c(treat$native_cover[treat$period == "before"],
+                     treat$native_cover[treat$period == "after"]),
+         col = "#2e7d32", pch = 16, cex = 1.5)
+}
+```
+
+::: {.key-judgment}
+**关键判断：** 配对设计的图形必须保留配对关系。四根独立柱子把 BACI 设计降级为"四个独立组的比较"——这是图形层面的伪重复。
+:::
+
+## 7.4 同时呈现效应和不确定性
+
+第 6 章告诉你标准误和置信区间描述的是哪一种不确定性。现在你需要把这些不确定性画出来。
+
+效应图（effect plot）的核心要素：
+- **点估计**（均值差、回归系数）——效应有多大
+- **区间**（置信区间）——效应估计有多精确
+- **参考线**（零效应线）——效应是否可能与零无异
+- **样本量标注**——区间宽度取决于什么
+
+```r
+# 计算每个景观的修复效果（修复后 - 修复前的变化之差）
+# 对照地的变化
+ctrl_change <- aggregate(
+  native_cover ~ landscape_id,
+  data = rest[rest$status == "control", ],
+  FUN = function(x) {
+    after <- mean(x[rest$period[rest$status == "control"] == "after"])
+    before <- mean(x[rest$period[rest$status == "control"] == "before"])
+    return(after - before)
+  }
+)
+names(ctrl_change)[2] <- "ctrl_change"
+
+# 修复地的变化
+treat_change <- aggregate(
+  native_cover ~ landscape_id,
+  data = rest[rest$status == "restored", ],
+  FUN = function(x) {
+    after <- mean(x[rest$period[rest$status == "restored"] == "after"])
+    before <- mean(x[rest$period[rest$status == "restored"] == "before"])
+    return(after - before)
+  }
+)
+names(treat_change)[2] <- "treat_change"
+
+# BACI 效果 = 修复地变化 - 对照地变化
+baci <- merge(ctrl_change, treat_change, by = "landscape_id")
+baci$effect <- baci$treat_change - baci$ctrl_change
+
+# 画效应图
+par(mar = c(5, 8, 4, 2))
+plot(baci$effect, 1:6, pch = 16, cex = 1.5,
+     col = ifelse(baci$effect > 0, "#2e7d32", "#c86652"),
+     xlab = "修复效果（修复地变化 - 对照地变化，%）",
+     ylab = "", yaxt = "n",
+     xlim = range(baci$effect) * c(0.5, 1.5),
+     main = "各景观修复效果（BACI）")
+axis(2, at = 1:6, labels = paste("景观", baci$landscape_id), las = 2)
+abline(v = 0, lty = 2, col = "gray50")
+
+# 标注总体均值
+grand_effect <- mean(baci$effect)
+abline(v = grand_effect, col = "#4d8294", lwd = 2)
+text(grand_effect, 6.5, paste("均值:", round(grand_effect, 1), "%"),
+     col = "#4d8294", pos = 3, cex = 0.9)
+```
+
+::: {.key-judgment}
+**关键判断：** 效应图必须同时显示点估计和区间（或至少显示各景观的异质性）。只画一个均值点，等于把景观间的效果差异——可能是最重要的生态信息——全部隐藏了。
+:::
+
+## 7.5 探索图与证据图承担不同任务
+
+图形有两种根本不同的用途，混淆它们是可视化中最常见的错误之一。
+
+**探索图（exploratory plot）：** 你自己看的，用来发现数据中的模式、异常和意外。探索图可以"丑"——它不需要图注、不需要配色方案、不需要为出版优化。它的唯一标准是：**能否暴露数据中隐藏的结构。**
+
+**证据图（evidence plot）：** 给别人看的，用来支持一个具体的判断。证据图必须包含：图题、变量和单位、样本量、图形元素的含义、以及这张图能支持什么、不能支持什么。
+
+```r
+# 探索图：检查冠层盖度和土壤湿度的关系
+# 这是给自己看的——找模式，不做美化
+plot(rest$canopy_cover, rest$soil_moisture,
+     col = ifelse(rest$status == "restored", "#2e7d32", "#c86652"),
+     pch = ifelse(rest$period == "before", 1, 16),
+     xlab = "冠层盖度 (%)", ylab = "土壤湿度 (%)")
+legend("topleft",
+       legend = c("对照-前", "对照-后", "修复-前", "修复-后"),
+       col = c("#c86652", "#c86652", "#2e7d32", "#2e7d32"),
+       pch = c(1, 16, 1, 16), cex = 0.8)
+
+# 证据图：需要完整的图注
+# "图 7.X：修复前后各景观修复地与对照地的本地物种盖度变化。
+#  每个景观用一条线连接修复前和修复后的均值。
+#  灰色虚线为对照地，绿色实线为修复地。n = 6 个景观。
+#  此图支持：修复地在多数景观中本地物种盖度增幅大于对照地。
+#  此图不支持：修复效果在景观间一致——景观 3 和景观 5 的效果明显不同。"
+```
+
+## 7.6 坐标、颜色、图注与可访问性
+
+好的图形不只是"好看"——它必须能被准确解读，包括被色觉异常者、被打印成灰度、被投影到老化屏幕上的人。
+
+**坐标轴：**
+- 不要截断坐标轴来夸大变化。如果数据范围是 50–60%，但你把 Y 轴设为 50–60%，一个 2% 的变化看起来像 50%。
+- 如果必须截断（例如有一个极端离群点），在轴上用断裂符号明确标注。
+- 对数坐标必须明确标注——读者不能猜。
+
+**颜色：**
+- 不要只用颜色区分组别——同时使用形状、线型或位置。
+- 红-绿色盲是最常见的色觉异常——避免用红绿对比作为唯一的区分方式。
+- 本书使用固定语义色：蓝色 = 数据/方法，绿色 = 保护主线/正向，红色 = 风险/误区，黄色 = 提醒/注意。
+
+**图注：**
+- 图注必须包含：研究对象、设计、独立单位、变量与单位、样本量、图形元素含义、主要模式和边界。
+- 不要写"图 7.X：修复效果"——这没有告诉读者任何信息。
+- 好的图注示例见 7.5 节末尾。
+
+```r
+# 反例：截断坐标
+par(mfrow = c(1, 2))
+# 截断坐标——夸大了变化
+boxplot(native_cover ~ period, data = rest[rest$status == "restored", ],
+        col = "#e8f5e9", main = "截断坐标（误导）",
+        ylab = "本地物种盖度 (%)", ylim = c(50, 70))
+# 完整坐标——显示了真实的变化幅度
+boxplot(native_cover ~ period, data = rest[rest$status == "restored", ],
+        col = "#e8f5e9", main = "完整坐标（真实）",
+        ylab = "本地物种盖度 (%)", ylim = c(0, 100))
+```
+
+<div class="mascot-note">
+<img src="../images/mascot/cat-point.svg" alt="" class="mascot" aria-hidden="true">
+<div class="mascot-note-copy">
+<strong>黑豹提醒：截断坐标是最常见的图形误导</strong>
+<p>如果你把 Y 轴从 50 截到 70，一个 5% 的变化会占据 25% 的图形高度。读者的大脑会按面积比例判断效应大小——截断坐标等于在视觉上撒谎。如果确实需要放大局部，用第二个小图（inset）而不是截断主轴。</p>
+</div>
+</div>
+
+## 7.7 用图形审计一项统计结论
+
+图形的最终用途不是"让报告更好看"——而是**审计统计结论是否站得住脚**。在相信任何 P 值或置信区间之前，先用图形检查：
+
+1. **原始数据是否支持摘要？** 均值差 10% 是来自一致的偏移，还是来自少数极端值？
+2. **设计结构是否被保留？** 配对、区组、重复测量——图形中是否能看到这些结构？
+3. **不确定性是否被呈现？** 区间有多宽？样本量是多少？
+4. **结论是否超出了图形的支持范围？** 图形显示 A 组高于 B 组——但这是因果还是相关？
+
+```r
+# 审计：修复地本地物种盖度的 BACI 效果
+# 1. 原始数据：每个景观的配对变化（见 7.3 节图）
+# 2. 效应量：各景观效果 + 总体均值（见 7.4 节图）
+# 3. 检查：修复前两组是否已经不同？
+
+# 修复前对照 vs 修复地的本地物种盖度
+before_ctrl <- rest$native_cover[rest$period == "before" & rest$status == "control"]
+before_treat <- rest$native_cover[rest$period == "before" & rest$status == "restored"]
+# 如果修复前两组已经不同，BACI 的前提——平行趋势——可能不成立
+boxplot(list(对照 = before_ctrl, 修复 = before_treat),
+        col = c("#ffebee", "#e8f5e9"),
+        main = "修复前：对照 vs 修复地",
+        ylab = "本地物种盖度 (%)")
+```
+
+::: {.key-judgment}
+**关键判断：** 图形是统计结论的第一道审计。在报告任何 P 值之前，先用图形检查：原始数据是否支持摘要、设计结构是否被保留、不确定性是否被呈现、结论是否超出了图形的支持范围。
+:::
+
+## 本章小结
+
+- **先写判断问题，再选择图形。** 图形服务于问题——不是反过来。"修复是否有效"需要配对变化图，不是四根独立柱子。
+- **原始值优先于摘要。** 点图 + 箱线图展示样本量、分布、离群点——均值柱状图只展示两个数字。
+- **保留设计结构。** 配对设计的图形必须显示配对关系；BACI 数据不能画成四个独立组。
+- **效应和不确定性必须同时呈现。** 效应图包含点估计、区间、参考线和样本量——只画均值等于隐藏了证据强度。
+- **探索图和证据图承担不同任务。** 探索图暴露异常，证据图交代设计和证据边界——两者不能混淆。
+- **用图形审计统计结论。** 在相信任何数字之前，先用图形检查原始数据、设计结构和不确定性。
 
 ## 练习
 
-同一组数据分别画柱状图、箱线图和散点图，比较哪种表达最合适。
+1. **识别层。** 以下判断问题各适合哪种图形类型？
+   (a) 修复地物种丰富度是否高于对照地？
+   (b) 冠层盖度和土壤湿度之间是否有关系？
+   (c) 六个景观的修复效果是否一致？
+
+2. **解释层。** 有人用四根均值柱状图展示 BACI 数据。请说明这张图至少隐藏了哪三种设计信息。
+
+3. **应用层。** 为修复地数据画一张证据图，展示修复前后各景观的本地物种盖度配对变化。写出完整的图注。
+
+4. **诊断层。** 以下图注有什么问题？请改写。"图 7.X：修复效果。"
+
+5. **综合层。** 为森林病虫害数据设计一张效果—成本联合图。横轴为防治成本（元/小区），纵轴为虫口密度降低百分比。每个处理一个点，标注处理名称。写出图注，说明这张图能支持什么管理决策、不能支持什么。
+
+## 继续学习
+
+::: {.chapter-next}
+下一步：图形审计完成后，你已经知道数据长什么样、不确定性来自哪里、设计结构是什么。现在可以进入正式模型了——第 8 章从"两组比较"开始，教你根据设计结构选择正确的检验方法。
+
+→ [第 8 章：两组比较](08-two-group-comparison.qmd)
+:::

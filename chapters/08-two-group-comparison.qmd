@@ -1,84 +1,413 @@
 ---
-title: "第8章 两组比较"
+title: "第 8 章 两组比较"
 maturity: sprout
-updated: 2026-06-15
+updated: 2026-06-20
+code-tools: false
 ---
 
-# 第8章 两组比较
+```{=html}
+<style>
+.ch8-fig {
+  background: #fff;
+  border: 2px solid #1a1a1a;
+  border-radius: 16px 6px 16px 6px;
+  box-shadow: 5px 5px 0 #1a1a1a;
+  padding: 1.6rem 1.4rem 1.4rem;
+  margin: 0 0 2.5rem 0;
+}
+.ch8-fig-h {
+  font-family: "Gochi Hand", "Caveat", "楷体", cursive;
+  font-size: 1.2rem; font-weight: 700; color: #1a1a1a;
+  text-align: center; margin-bottom: 1.2rem;
+  letter-spacing: 0.1em;
+}
+.ch8-pipeline {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr auto 1fr;
+  align-items: center; gap: 0.5rem; margin: 0.4rem 0;
+}
+.ch8-stage {
+  padding: 0.9rem 0.9rem 1rem; border-radius: 6px 16px 4px 18px;
+  box-shadow: 4px 4px 0 #1a1a1a;
+}
+.ch8-stage.s1 { background: #ffebee; border: 2.5px solid #ef5350; transform: rotate(-1.5deg); }
+.ch8-stage.s2 { background: #e1f5fe; border: 2.5px solid #0277bd; transform: rotate(0.5deg); }
+.ch8-stage.s3 { background: #e8f5e9; border: 2.5px solid #2e7d32; transform: rotate(1deg); }
+.ch8-stage-h {
+  font-family: "Gochi Hand", "Caveat", "楷体", cursive;
+  font-weight: 700; font-size: 0.95rem; margin-bottom: 0.4rem; text-align: center;
+}
+.ch8-stage.s1 .ch8-stage-h { color: #c62828; }
+.ch8-stage.s2 .ch8-stage-h { color: #01579b; }
+.ch8-stage.s3 .ch8-stage-h { color: #1b5e20; }
+.ch8-stage-body {
+  font-family: "楷体", "STKaiti", "Microsoft YaHei", cursive;
+  font-size: 0.85rem; color: #333; line-height: 1.65; text-align: center;
+}
+.ch8-arrow {
+  font-family: "Gochi Hand", "Caveat", cursive;
+  font-size: 2.2rem; font-weight: 700; color: #1a1a1a;
+  transform: rotate(-3deg); text-align: center; line-height: 1;
+}
+.ch8-caveat {
+  margin-top: 1.1rem; padding: 0.6rem 0.85rem;
+  background: #fafafa; border-left: 3px solid #1a1a1a; border-radius: 2px;
+  font-size: 0.86rem; color: #1a1a1a; line-height: 1.7; text-align: center;
+}
+@media (max-width: 720px) {
+  .ch8-pipeline { grid-template-columns: 1fr; gap: 0.8rem; }
+  .ch8-arrow { transform: rotate(87deg); }
+  .ch8-stage { transform: rotate(0deg); }
+}
+</style>
 
-::: {.callout-note}
-## 本章状态：sprout
-
-已有 P 值核心内容（来自课程 wiki），需要补充 t 检验完整流程和 R 代码。
-:::
-
-## 真实保护问题
-
-施药处理后，害虫数量真的变少了吗？还是只是巧合？
-
-## P 值：统计推断的核心
-
-<!-- 嵌入P值演示动画 -->
-<iframe src="../animations/p-value.html" width="100%" height="600" style="border: none; border-radius: 8px;"></iframe>
-
-11|
-12|# P 值（P-value）
-13|
-14|## 定义
-15|
-16|P 值是**在零假设为真的前提下，观察到当前数据（或更极端数据）的概率**。
-17|
-18|- 它不是"零假设为真的概率"
-19|- 它不是"处理无效的概率"
-20|- 它不是"效应的大小"
-21|
-22|## 直观解释
-23|
-24|> 如果只让学生记住一句话：**P 值小，说明你看到的数据在"什么都没发生"的世界里不太可能出现——这让你怀疑"什么都没发生"可能不对。但 P 值不告诉你"到底发生了什么"、也不告诉你"效果有多大"。**
-25|
-26|打个比方：你在森林里听到一声吼叫。如果假设"森林里没有老虎"，听到吼叫的 P 值就很小——你会怀疑这个假设。但 P 值不告诉你是一只老虎还是三只老虎，也不告诉你老虎离你多远。
-27|
-28|## 在生物保护中的例子
-29|
-30|**病虫害防治试验**：你在 20 块样地中随机选 10 块施药，10 块做对照。施药后处理组平均虫口密度 3.2 头/株，对照组 5.8 头/株。t 检验得到 P = 0.03。
-31|
-32|- ✅ P = 0.03 意味着：如果药物真的完全无效（零假设为真），观察到这么大差异的概率只有 3%。
-33|- ❌ P = 0.03 **不意味着**药物有效的概率是 97%。
-34|- ❌ P = 0.03 **不意味着**药物能减少 2.6 头/株（这是效应量的工作）。
-35|
-36|## 常见误解
-37|
-38|1. **"P < 0.05 就说明处理一定有效"** → 错。P 值只是反对零假设的证据强度，不能证明备择假设为真。且 P = 0.049 和 P = 0.051 之间没有本质差异。
-39|2. **"P 值越小，效应越大"** → 错。P 值受样本量影响极大。大样本下微小的效应也能得到很小的 P 值。
-40|3. **"P > 0.05 就说明没有效应"** → 错。可能是样本量太小（统计功效不足），而非真的没有效应。
-41|4. **"P 值是零假设为真的概率"** → 错。这是最根本的误解。P 值是数据在零假设下出现的概率，不是零假设本身的概率。
-42|
-43|## 相关概念
-44|
-45|- [显著性水平](significance-level.md) — α = 0.05 从哪来？
-46|- [效应量](effect-size.md) — P 值不告诉你的东西
-47|- [统计功效](statistical-power.md) — 为什么 P > 0.05 不等于无效
-48|- [第一类错误](../concepts/type-i-error.md) — P < 0.05 仍然可能犯错
-49|- [置信区间](../concepts/confidence-interval.md) — 比 P 值更丰富的信息
-50|
-51|## 来源
-52|
-53|- 学生课堂反馈（2026-06-09）：P 值解释是高频误解来源
-54|
-
-## R 分析过程
-
-```{r}
-# 独立样本 t 检验示例
-# 待补充：处理组 vs 对照组害虫数量数据
+<div class="ch8-fig sketch">
+  <div class="ch8-fig-h">看到两列数 → 找回设计关系 → 估计正确差异</div>
+  <div class="ch8-pipeline">
+    <div class="ch8-stage s1">
+      <div class="ch8-stage-h">① 识别设计</div>
+      <div class="ch8-stage-body">独立？配对？重复测量？——"有两组"不足以选择方法</div>
+    </div>
+    <div class="ch8-arrow" aria-hidden="true">→</div>
+    <div class="ch8-stage s2">
+      <div class="ch8-stage-h">② 定义差异</div>
+      <div class="ch8-stage-body">均值差、比例差、变化量——先明确要估计什么，再选检验</div>
+    </div>
+    <div class="ch8-arrow" aria-hidden="true">→</div>
+    <div class="ch8-stage s3">
+      <div class="ch8-stage-h">③ 诊断与解释</div>
+      <div class="ch8-stage-body">效应量、区间、诊断失败——P 值不是结论，是诊断的起点</div>
+    </div>
+  </div>
+  <div class="ch8-caveat">
+    <b>黑豹提醒：</b>先做方差齐性检验再决定 t 检验版本 → 这条路是错的。Welch t 不需要方差相等的前提。
+  </div>
+</div>
 ```
 
-## 常见错误
+## 8.1 同样是两组，设计关系可能完全不同
 
-1. P < 0.05 就说明处理一定有效
-2. P 值越小效应越大
-3. P > 0.05 就说明没有效应
+从本章开始，我们进入第三篇：回答常见保护问题。前面七章建立了从设计到数据到可视化的完整链条。现在，你要用这些基础来做正式的统计推断。
+
+两组比较是最简单的推断问题——也是最容易被做错的。不是因为 t 检验的公式难，而是因为**"有两组数据"不等于"两组是独立的"**。
+
+本章的主项目是森林病虫害防治试验（项目 C）。10 个区组中，每个区组有 4 个处理小区——对照（control）、标准防治（standard）、生物防治（biocontrol）和综合防治（integrated）。本章聚焦于一个预先指定的比较：**对照 vs 综合防治**。
+
+在开始任何计算之前，先确认设计关系：
+
+- 处理施加在**小区**层级（每个区组内随机分配）
+- 每个小区有 20 株树，树木是**观测单位**，不是实验单位
+- 对照和综合防治的小区在同一个区组内是**配对的**——它们共享区组的所有条件
+
+这意味着：**你不能把 200 株对照树和 200 株综合防治树当作两组独立样本。** 正确做法是先按小区汇总，然后在区组内做配对比较。
+
+```r
+# 读取森林病虫害数据
+forest <- read.csv("../data/teaching/forest_pest_trial_long.csv",
+                   stringsAsFactors = FALSE)
+
+# 只取对照和综合防治
+f2 <- forest[forest$treatment %in% c("control", "integrated"), ]
+
+# 检查设计
+table(f2$block_id, f2$treatment)  # 每个区组 × 处理 各 60 行（20 株 × 3 次调查）
+```
+
+::: {.observation-question}
+**观察问题：** 有人把 200 株对照树和 200 株综合防治树直接做 t 检验，得到 P < 0.001。这个 P 值可信吗？问题出在哪里？
+:::
+
+<div class="chapter-route" aria-label="本章学习路线">
+  <div><strong>识别单位</strong><span>小区是实验单位</span></div>
+  <div><strong>定义差异</strong><span>区组内处理差</span></div>
+  <div><strong>匹配设计</strong><span>配对 t 检验</span></div>
+  <div><strong>检查失败</strong><span>诊断与敏感性</span></div>
+  <div><strong>解释行动</strong><span>效应、区间、边界</span></div>
+</div>
+
+::: {.learning-goals}
+**学完本章后，你能够：**
+
+1. 根据设计关系（独立/配对/重复测量）选择正确的两组比较方法。
+2. 区分实验单位和观测单位，避免伪重复导致的错误推断。
+3. 使用 Welch t 检验和配对 t 检验，并解释为什么不需要先做方差齐性检验。
+4. 报告效应量（均值差）和置信区间，而不仅仅是 P 值。
+5. 解释置换检验和秩方法的适用边界——它们改变了被检验的对象。
+:::
+
+## 8.2 先定义要估计的差异
+
+"对照和综合防治是否有差异"——这句话不够精确。你必须明确：
+
+- **目标量（estimand）：** 你要估计什么？均值差？中位数差？比例差？变化量？
+- **比较尺度：** 在什么层级上比较？小区均值？树木个体？
+- **预先指定的主要响应：** 哪个指标是主要判断依据？
+
+本章的主要比较：**对照与综合防治在第三次调查时的小区平均虫口密度之差。** 选择第三次调查是因为防治效果需要时间显现；选择虫口密度是因为它是防治措施最直接的靶标。
+
+次要响应（虫害等级、死亡率、非目标生物数量）将在后续章节处理——本章不基于次要响应反推结论。
+
+```r
+# 计算每个小区第三次调查的平均虫口密度
+f2_visit3 <- f2[f2$visit == 3, ]
+plot_means <- aggregate(
+  pest_count ~ block_id + plot_id + treatment,
+  data = f2_visit3,
+  FUN = mean
+)
+
+# 查看数据结构
+head(plot_means)
+# 每个区组应有 2 行（对照 + 综合防治）
+table(plot_means$block_id)
+```
+
+## 8.3 独立两组：为什么优先考虑 Welch 方法
+
+如果你的两组确实是独立的（例如：完全随机设计中随机分配到两个处理的实验单位），Welch t 检验应该是你的默认选择——不是先做方差齐性检验再决定。
+
+**为什么不做方差齐性检验？** 因为方差齐性检验（如 Levene 检验）本身有功效问题：小样本时检不出方差不齐，大样本时连微不足道的方差差异也能检出。更根本的是，Welch t 检验在方差不齐时仍然有效——它调整了自由度来补偿。所以流程应该是：**直接使用 Welch t，不需要方差齐性检验这个中间步骤。**
+
+Student t 检验（等方差假设）和 Welch t 检验（不等方差）的区别：
+
+| | Student t | Welch t |
+|---|---|---|
+| 方差假设 | 两组方差相等 | 不假设方差相等 |
+| 自由度 | n₁ + n₂ − 2 | Satterthwaite 近似 |
+| 方差不齐时 | 第一类错误率膨胀 | 仍然稳健 |
+| 方差齐时 | 略高的功效 | 几乎相同的功效 |
+
+结论：Welch t 在方差齐时几乎不损失功效，在方差不齐时远更可靠——**它应该是默认选择。**
+
+```r
+# 注意：以下演示的是独立两组的 Welch t 检验
+# 但本章的主案例是配对设计——所以这只是方法演示，
+# 实际分析见 8.4 节
+
+# 假设我们有两个独立组的虫口密度（仅为演示 Welch t 的语法）
+# 实际分析不应在树级做独立检验
+```
+
+::: {.key-judgment}
+**关键判断：** Welch t 检验不要求方差相等——它是两组独立比较的合理默认选择。不需要先做方差齐性检验再决定用哪个 t 检验。
+:::
+
+## 8.4 配对设计：分析的是组内差值
+
+回到主案例。对照和综合防治的小区在同一个区组内是配对的——区组 1 的对照小区和区组 1 的综合防治小区共享区组 1 的所有条件（土壤、坡向、管理历史）。配对 t 检验分析的是**区组内的处理差值**，而不是两组的原始值。
+
+配对 t 检验的步骤：
+1. 在每个区组内计算差值 dᵢ = 综合防治 − 对照
+2. 对这 10 个差值做单样本 t 检验：H₀: 差值的均值为 0
+
+这等价于把区组间的变异从误差中扣除——区组效应不再污染处理效应的估计。
+
+```r
+# 正确做法：区组内配对比较
+# 将数据转为宽格式（每个区组一行，对照和综合防治各一列）
+plot_wide <- reshape(
+  plot_means[, c("block_id", "treatment", "pest_count")],
+  idvar = "block_id",
+  timevar = "treatment",
+  direction = "wide"
+)
+names(plot_wide) <- c("block_id", "control", "integrated")
+
+# 计算区组内差值
+plot_wide$diff <- plot_wide$integrated - plot_wide$control
+
+# 配对 t 检验
+t_test_paired <- t.test(plot_wide$integrated, plot_wide$control,
+                         paired = TRUE)
+print(t_test_paired)
+
+# 效应量：平均差值
+mean_diff <- mean(plot_wide$diff)
+cat("平均区组内差（综合防治 - 对照）：", round(mean_diff, 2), "头/株\n")
+
+# 差值的分布
+stripchart(plot_wide$diff, method = "jitter", vertical = TRUE,
+           pch = 16, col = "#4d8294",
+           main = "区组内处理差（综合防治 - 对照）",
+           ylab = "虫口密度差（头/株）")
+abline(h = 0, lty = 2, col = "gray50")
+abline(h = mean_diff, col = "#c86652", lwd = 2)
+```
+
+::: {.key-judgment}
+**关键判断：** 配对来自设计，不是来自数值相近。区组内的对照和综合防治小区是配对的，因为它们在同一个区组内被随机分配——不是因为它们的虫口密度恰好接近。
+:::
+
+## 8.5 置换与秩方法并非免假设通行证
+
+当数据不满足正态假设时，常有人建议"改用非参数检验"。但非参数检验不是免费的——它们改变了被检验的对象。
+
+**置换检验（permutation test）：** 在零假设下，处理标签是可交换的。通过反复随机打乱标签并计算统计量，得到统计量的零分布。置换检验不假设正态分布，但它假设**可交换性**——即零假设下，任何分配方案都是等可能的。在配对设计中，可交换性意味着在区组内随机交换处理标签——这与随机区组设计的随机化方案完全一致。
+
+**Mann-Whitney U 检验（Wilcoxon 秩和检验）：** 检验的是两组的中位数是否相等——或者说，从一组随机抽取的观测值大于从另一组随机抽取的观测值的概率是否为 0.5。它不检验均值差。如果你的研究问题确实是"均值是否有差异"，秩检验回答的是一个不同的问题。
+
+```r
+# 配对置换检验（区组内交换标签）
+set.seed(20260620)
+n_perm <- 9999
+obs_diff <- mean(plot_wide$diff)
+perm_diffs <- replicate(n_perm, {
+  # 在每个区组内随机交换处理标签
+  swapped <- plot_wide
+  for (i in 1:nrow(swapped)) {
+    if (runif(1) < 0.5) {
+      tmp <- swapped$control[i]
+      swapped$control[i] <- swapped$integrated[i]
+      swapped$integrated[i] <- tmp
+    }
+  }
+  swapped$diff <- swapped$integrated - swapped$control
+  mean(swapped$diff)
+})
+
+# 双侧 P 值
+p_perm <- mean(abs(perm_diffs) >= abs(obs_diff))
+cat("置换检验 P 值:", p_perm, "\n")
+cat("配对 t 检验 P 值:", t_test_paired$p.value, "\n")
+
+# 置换分布
+hist(perm_diffs, breaks = 50, col = "#e1f5fe",
+     main = "置换零分布", xlab = "平均差值")
+abline(v = obs_diff, col = "#c86652", lwd = 2)
+```
+
+::: {.key-judgment}
+**关键判断：** 置换检验不假设正态，但假设可交换性——在配对设计中，这意味着区组内随机交换标签。秩检验改变了被检验的对象——它检验中位数差异，不是均值差异。
+:::
+
+## 8.6 从诊断、效应量和区间解释结果
+
+统计推断的终点不是 P 值。一个完整的分析报告至少包含：
+
+1. **效应量：** 综合防治比对照平均减少多少虫口密度？单位是什么？
+2. **置信区间：** 这个效应的合理范围是多少？
+3. **诊断：** 模型假设是否合理？是否有异常区组？
+4. **实际意义：** 这个效应在管理上是否重要？
+
+```r
+# 完整分析报告
+
+# 1. 效应量
+cat("=== 对照 vs 综合防治：第三次调查虫口密度 ===\n\n")
+cat("平均区组内差：", round(mean_diff, 2), "头/株\n")
+cat("对照均值：", round(mean(plot_wide$control), 2), "头/株\n")
+cat("综合防治均值：", round(mean(plot_wide$integrated), 2), "头/株\n")
+cat("相对降低：", round(100 * (1 - mean(plot_wide$integrated) /
+                                mean(plot_wide$control)), 1), "%\n\n")
+
+# 2. 置信区间
+cat("95% 置信区间：[", round(t_test_paired$conf.int[1], 2), ",",
+    round(t_test_paired$conf.int[2], 2), "] 头/株\n\n")
+
+# 3. 诊断：检查差值的分布
+cat("差值 Shapiro-Wilk 正态性检验 P =",
+    round(shapiro.test(plot_wide$diff)$p.value, 3), "\n")
+# 注意：n=10 时正态性检验功效很低——不显著不等于正态
+
+# 检查是否有异常区组
+plot_wide$abs_diff <- abs(plot_wide$diff)
+plot_wide[order(-plot_wide$abs_diff), c("block_id", "control", "integrated", "diff")]
+
+# 4. 区组间异质性
+cat("\n区组间差值的标准差：", round(sd(plot_wide$diff), 2), "\n")
+cat("这表明不同区组的防治效果存在差异——\n")
+cat("不能假设综合防治在所有区组中效果相同。\n")
+```
+
+<div class="mascot-note">
+<img src="../images/mascot/cat-point.svg" alt="" class="mascot" aria-hidden="true">
+<div class="mascot-note-copy">
+<strong>黑豹提醒：P 值不是效应大小</strong>
+<p>P = 0.01 不意味着"效应很大"——它只意味着"如果零假设为真，观察到当前数据的概率很小"。效应大小、置信区间和实际意义必须单独报告。一个很小的效应在大样本下也能 P < 0.001。</p>
+</div>
+</div>
+
+## 8.7 两组证据怎样进入防治决策
+
+统计分析的终点是回答"这些证据对防治决策意味着什么"。对于对照 vs 综合防治的比较：
+
+**证据支持：** 综合防治在第三次调查时平均降低虫口密度约 X 头/株（95% CI [下限, 上限]）。在 10 个区组中，有 Y 个区组显示综合防治优于对照。
+
+**证据不支持：** 综合防治在所有区组中效果一致——区组间差值存在异质性（SD = Z）。不能假设在新区组中效果完全相同。
+
+**尚未进入本章分析的因素：**
+- 非目标生物影响（`non_target_count`）——综合防治是否伤害了天敌？
+- 防治成本（`cost_cny_plot`）——效果是否值得投入？
+- 实施完整性（`implementation_score`）——效果是否依赖于执行质量？
+- 这些因素将在第 13、16、17 章中逐步纳入。
+
+**反例（树级伪重复）：** 现在来演示本章最重要的反例——把树木当作独立处理重复。
+
+```r
+# ⚠️ 错误做法：树级独立 t 检验（伪重复）
+# 这是本章最重要的反例——请仔细阅读为什么它是错的
+
+# 提取对照和综合防治的树级数据（第三次调查）
+trees_ctrl <- f2_visit3$pest_count[f2_visit3$treatment == "control"]
+trees_int <- f2_visit3$pest_count[f2_visit3$treatment == "integrated"]
+
+# 错误的树级 t 检验
+t_wrong <- t.test(trees_int, trees_ctrl)
+cat("=== 错误分析：树级独立 t 检验 ===\n")
+cat("P 值:", format.pval(t_wrong$p.value, digits = 4), "\n")
+cat("均值差:", round(mean(trees_ctrl) - mean(trees_int), 2), "\n")
+cat("95% CI: [", round(t_wrong$conf.int[1], 2), ",",
+    round(t_wrong$conf.int[2], 2), "]\n")
+cat("\n样本量：对照", length(trees_ctrl), "株，综合防治",
+    length(trees_int), "株\n")
+
+cat("\n=== 正确分析：区组内配对 t 检验 ===\n")
+cat("P 值:", format.pval(t_test_paired$p.value, digits = 4), "\n")
+cat("均值差:", round(mean_diff, 2), "\n")
+cat("95% CI: [", round(t_test_paired$conf.int[1], 2), ",",
+    round(t_test_paired$conf.int[2], 2), "]\n")
+cat("\n样本量：", nrow(plot_wide), "个区组\n")
+
+cat("\n=== 为什么树级检验是错的？ ===\n")
+cat("1. 处理施加在小区，不是树木——同一小区的 20 株树共享处理。\n")
+cat("2. 树级检验假设 400 个独立观测——实际只有 20 个独立实验单位。\n")
+cat("3. 伪重复人为缩小了标准误——区间太窄，P 值太小。\n")
+cat("4. 比较两个 P 值——树级检验的 P 值通常远小于配对检验。\n")
+cat("   这不是因为'树级检验更灵敏'——是因为它在数学上作弊。\n")
+```
+
+::: {.key-judgment}
+**关键判断：** 树级 t 检验的 P 值更小，不是因为"方法更灵敏"——是因为伪重复人为缩小了标准误。正确的分析以小区为实验单位，在区组内配对比较。
+:::
+
+## 本章小结
+
+- **"有两组"不足以选择方法。** 独立、配对和重复测量对应完全不同的分析——方法首先由设计关系决定。
+- **Welch t 检验是独立两组比较的合理默认选择。** 不需要先做方差齐性检验——Welch t 在方差不齐时仍然稳健。
+- **配对来自设计，不是来自数值相近。** 区组内的处理小区是配对的，因为它们在同一个区组内被随机分配。
+- **置换检验不假设正态，但假设可交换性。** 秩检验改变了被检验的对象——它检验中位数差异，不是均值差异。
+- **P 值不是效应大小。** 效应量、置信区间和实际意义必须单独报告。
+- **伪重复是两组比较中最致命的错误。** 把树木当作独立处理重复，等于把 20 个实验单位冒充为 400 个——标准误被人为缩小，P 值被人为夸小。
 
 ## 练习
 
-<!-- 待补充 -->
+1. **识别层。** 以下场景中，应该用独立 t 检验还是配对 t 检验？为什么？
+   (a) 10 个区组，每个区组内随机分配对照和处理。
+   (b) 20 个独立温室，10 个控温 22°C，10 个控温 28°C。
+   (c) 同一批幼苗，先在光照 A 下测量，再移到光照 B 下测量。
+
+2. **解释层。** 为什么树级 t 检验的 P 值比配对 t 检验更小？这是好事还是坏事？
+
+3. **应用层。** 用森林病虫害数据，比较标准防治（standard）和生物防治（biocontrol）在第三次调查时的虫口密度。使用正确的配对设计，报告效应量、置信区间和诊断。
+
+4. **诊断层。** 配对 t 检验的 95% 置信区间为 [−3.2, −0.4]。请用一句话解释这个区间的含义，并说明它是否支持"综合防治有效"。
+
+5. **综合层。** 为黄黄草光照试验设计一个两组比较：比较 100% 光照和 40% 光照在第六个月的开花比例。写出：实验单位、比较结构（独立还是配对？）、目标量、以及为什么不能把植株当作独立重复。
+
+## 继续学习
+
+::: {.chapter-next}
+下一步：两组比较扩展到多组——但 ANOVA 不是"三组以上的 t 检验"。第 9 章将教你按设计分解变异，并估计预先关心的对比。
+
+→ [第 9 章：多组比较与方差分析](09-anova.qmd)
+:::

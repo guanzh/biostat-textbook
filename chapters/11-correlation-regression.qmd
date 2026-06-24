@@ -1,53 +1,336 @@
 ---
-title: "第11章 相关与线性回归"
+title: "第 11 章 相关与线性回归"
 maturity: sprout
-updated: 2026-06-15
+updated: 2026-06-20
+code-tools: false
 ---
 
-# 第11章 相关与线性回归
+```{=html}
+<style>
+.ch11-fig {
+  background: #fff;
+  border: 2px solid #1a1a1a;
+  border-radius: 16px 6px 16px 6px;
+  box-shadow: 5px 5px 0 #1a1a1a;
+  padding: 1.6rem 1.4rem 1.4rem;
+  margin: 0 0 2.5rem 0;
+}
+.ch11-fig-h {
+  font-family: "Gochi Hand", "Caveat", "楷体", cursive;
+  font-size: 1.2rem; font-weight: 700; color: #1a1a1a;
+  text-align: center; margin-bottom: 1.2rem; letter-spacing: 0.1em;
+}
+.ch11-pipeline {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr auto 1fr;
+  align-items: center; gap: 0.5rem; margin: 0.4rem 0;
+}
+.ch11-stage {
+  padding: 0.9rem 0.9rem 1rem; border-radius: 6px 16px 4px 18px;
+  box-shadow: 4px 4px 0 #1a1a1a;
+}
+.ch11-stage.s1 { background: #ffebee; border: 2.5px solid #ef5350; transform: rotate(-1.5deg); }
+.ch11-stage.s2 { background: #e1f5fe; border: 2.5px solid #0277bd; transform: rotate(0.5deg); }
+.ch11-stage.s3 { background: #e8f5e9; border: 2.5px solid #2e7d32; transform: rotate(1deg); }
+.ch11-stage-h {
+  font-family: "Gochi Hand", "Caveat", "楷体", cursive;
+  font-weight: 700; font-size: 0.95rem; margin-bottom: 0.4rem; text-align: center;
+}
+.ch11-stage.s1 .ch11-stage-h { color: #c62828; }
+.ch11-stage.s2 .ch11-stage-h { color: #01579b; }
+.ch11-stage.s3 .ch11-stage-h { color: #1b5e20; }
+.ch11-stage-body {
+  font-family: "楷体", "STKaiti", "Microsoft YaHei", cursive;
+  font-size: 0.85rem; color: #333; line-height: 1.65; text-align: center;
+}
+.ch11-arrow {
+  font-family: "Gochi Hand", "Caveat", cursive;
+  font-size: 2.2rem; font-weight: 700; color: #1a1a1a;
+  transform: rotate(-3deg); text-align: center; line-height: 1;
+}
+.ch11-caveat {
+  margin-top: 1.1rem; padding: 0.6rem 0.85rem;
+  background: #fafafa; border-left: 3px solid #1a1a1a; border-radius: 2px;
+  font-size: 0.86rem; color: #1a1a1a; line-height: 1.7; text-align: center;
+}
+@media (max-width: 720px) {
+  .ch11-pipeline { grid-template-columns: 1fr; gap: 0.8rem; }
+  .ch11-arrow { transform: rotate(87deg); }
+  .ch11-stage { transform: rotate(0deg); }
+}
+</style>
 
-## 相关分析
+<div class="ch11-fig sketch">
+  <div class="ch11-fig-h">一条相关线 → 分清问题与替代解释 → 形成有边界的回归结论</div>
+  <div class="ch11-pipeline">
+    <div class="ch11-stage s1">
+      <div class="ch11-stage-h">① 定义目的</div>
+      <div class="ch11-stage-body">描述、预测还是因果？——同一条回归线，三种目的对应三种不同的表述边界</div>
+    </div>
+    <div class="ch11-arrow" aria-hidden="true">→</div>
+    <div class="ch11-stage s2">
+      <div class="ch11-stage-h">② 检查关系</div>
+      <div class="ch11-stage-body">散点图、相关系数、非线性、异方差——在拟合模型之前先看数据</div>
+    </div>
+    <div class="ch11-arrow" aria-hidden="true">→</div>
+    <div class="ch11-stage s3">
+      <div class="ch11-stage-h">③ 限制外推</div>
+      <div class="ch11-stage-body">置信区间 vs 预测区间、外推边界、留出验证——结论不能超出数据范围</div>
+    </div>
+  </div>
+  <div class="ch11-caveat">
+    <b>黑豹提醒：</b>相关 ≠ 因果。看到土壤湿度和丰富度正相关，不能直接建议"提高土壤湿度以增加物种"。
+  </div>
+</div>
+```
 
-### 相关系数
+## 11.1 先区分描述、预测与因果问题
 
-Pearson相关系数 r 衡量两个连续变量之间线性关系的强度和方向。r ∈ [-1, 1]。
+前面三章处理的是分组比较——分类处理因素，连续响应。但保护研究中大量问题是连续的：土壤湿度和物种丰富度之间有什么关系？森林覆盖度越高，相机检出率是否越高？
 
-- r > 0：正相关（X增大，Y也增大）
-- r < 0：负相关（X增大，Y减小）
-- r ≈ 0：无线性相关
+同一条回归线可以服务于三种完全不同的目的：
 
-### 相关 ≠ 因果
+- **描述：** "土壤湿度每增加 1%，物种丰富度平均增加 X 种。"——只描述观测到的关联，不声称因果。
+- **预测：** "给定土壤湿度为 30%，预测物种丰富度为 Y 种（95% PI: [下限, 上限]）。"——关心预测精度，不关心为什么。
+- **因果：** "提高土壤湿度会导致物种丰富度增加。"——需要排除混杂、反向因果和替代解释。
 
-这是统计学最核心的教训之一。两个变量高度相关，不代表一个导致了另一个。
+**本章只处理描述和预测。** 因果推断需要额外的设计（随机化、工具变量、DID 等），第 16 章会涉及。
 
-::: {.callout-warning}
-**经典反例**：冰激凌销量与溺水人数高度正相关。但吃冰激凌不会导致溺水——真正的原因是"夏季气温高"同时导致了冰激凌销量增加和更多人游泳。
+本章的主项目回到栖息地修复监测（项目 D）：修复后的样方中，土壤湿度与本地物种盖度之间有什么关系？
+
+```r
+rest <- read.csv("../data/teaching/restoration_site_period.csv",
+                 stringsAsFactors = FALSE)
+
+# 只取修复后的修复地样方
+rest_ra <- rest[rest$period == "after" & rest$status == "restored", ]
+nrow(rest_ra)  # 30 个样方（6 景观 × 5 样方）
+```
+
+<div class="chapter-route" aria-label="本章学习路线">
+  <div><strong>定义目的</strong><span>描述/预测/因果</span></div>
+  <div><strong>检查关系</strong><span>散点图优先</span></div>
+  <div><strong>写出模型</strong><span>斜率的条件含义</span></div>
+  <div><strong>诊断失败</strong><span>非线性/异方差/杠杆</span></div>
+  <div><strong>限制外推</strong><span>区间与边界</span></div>
+</div>
+
+::: {.learning-goals}
+**学完本章后，你能够：**
+
+1. 区分回归的三种目的（描述、预测、因果），并使用对应的表述边界。
+2. 解释回归斜率的单位和条件含义。
+3. 识别混杂变量，并理解"多放几个变量"不能自动解决混杂。
+4. 诊断非线性、异方差和高杠杆点，并做相应的敏感性分析。
+5. 区分置信区间和预测区间，并识别外推的边界。
 :::
 
-**在保护生物学中的陷阱**：发现游客数量与野生动物出现频次呈负相关→不能直接说"游客吓跑了动物"——也可能是游客多的季节恰好是动物繁殖期。
+## 11.2 散点图和相关系数能告诉什么
 
-## 简单线性回归
+在拟合任何回归线之前，先画散点图。散点图能暴露：
+- 关系是否大致线性？
+- 是否有异常点？
+- 方差是否随 X 变化？
+- 是否有聚集结构（同一样方的多个观测）？
 
-回归分析用一个变量（自变量X）解释或预测另一个变量（因变量Y）的变化。
+相关系数（Pearson r）量化线性关联的强度和方向：r = 1 完美正相关，r = −1 完美负相关，r = 0 无线性相关。但 r 有三个局限：
+1. 它只测量**线性**关联——非线性关系可能 r ≈ 0 但关系很强
+2. 它对异常点敏感
+3. 它不区分 X 和 Y——相关是对称的，回归不是
 
-**回归系数β**：X每增加1个单位，Y平均变化β个单位。
+```r
+# 散点图：土壤湿度 vs 本地物种盖度
+plot(rest_ra$soil_moisture, rest_ra$native_cover,
+     pch = 16, col = "#4d8294",
+     xlab = "土壤湿度 (%)", ylab = "本地物种盖度 (%)",
+     main = "修复后修复地：土壤湿度 vs 本地物种盖度")
 
-**R²**：模型解释的变异比例。R²=0.7表示模型解释了Y的70%变异。
+# 相关系数
+cor_test <- cor.test(rest_ra$soil_moisture, rest_ra$native_cover)
+cat("Pearson r =", round(cor_test$estimate, 3),
+    "P =", round(cor_test$p.value, 4), "\n")
 
-## 两种方法的区别
+# 注意：样方嵌套于景观——这 30 个点不是独立的
+# 同一景观的 5 个样方共享景观条件
+```
 
-| | 相关分析 | 回归分析 |
-|------|---------|---------|
-| 目的 | 衡量关系强度 | 解释/预测 |
-| 方向 | 对称（X和Y地位相同） | 不对称（Y是被解释变量） |
-| 输出 | r | β, R², P值 |
+## 11.3 线性回归的斜率是一个条件比较
 
-## 常见错误
+简单线性回归模型：Y = β₀ + β₁X + ε
 
-1. 相关显著就声称因果
-2. 回归显著但R²极低（<0.1）仍声称"有重要影响"
-3. 不检查残差就报告回归结果
+**β₁（斜率）的含义：** 当 X 增加 1 个单位时，Y 平均变化 β₁ 个单位——**在模型中的其他变量保持不变的前提下。**
+
+这个"在其他变量保持不变的前提下"是回归解释的核心。在简单回归中，没有其他变量，所以斜率就是"X 和 Y 的伴随变化"。在多元回归中，斜率变成"在控制其他变量后，X 与 Y 的条件关联"。
+
+```r
+# 简单线性回归
+model_simple <- lm(native_cover ~ soil_moisture, data = rest_ra)
+summary(model_simple)
+
+# 斜率的解释
+b1 <- coef(model_simple)["soil_moisture"]
+cat("\n土壤湿度每增加 1 个百分点，本地物种盖度平均增加",
+    round(b1, 2), "个百分点。\n")
+
+# 加入景观区组作为控制变量
+# 注意：景观只有 6 个水平，作为固定效应会消耗自由度
+model_adj <- lm(native_cover ~ soil_moisture + factor(landscape_id),
+                data = rest_ra)
+summary(model_adj)
+
+cat("\n控制景观后，土壤湿度的效应变为",
+    round(coef(model_adj)["soil_moisture"], 2), "\n")
+```
+
+## 11.4 混杂变量为什么不能靠多放几个变量解决
+
+当土壤湿度和本地物种盖度正相关时，至少有三种解释：
+1. 土壤湿度 → 本地物种盖度（土壤湿度促进本地物种生长）
+2. 本地物种盖度 → 土壤湿度（本地物种的蒸腾作用保持土壤湿度）
+3. 第三个变量同时影响两者（如冠层盖度——冠层越高，遮阴越多→土壤湿度高，同时本地物种多）
+
+多元回归"控制"其他变量，只能排除**已测量**的混杂。未测量的混杂仍然存在。这就是为什么观察性回归不能声称因果——无论你放了多少控制变量。
+
+```r
+# 演示：加入冠层盖度后，土壤湿度的效应可能改变
+model_full <- lm(native_cover ~ soil_moisture + canopy_cover +
+                  factor(landscape_id), data = rest_ra)
+summary(model_full)
+
+cat("\n加入冠层盖度后，土壤湿度的效应：",
+    round(coef(model_full)["soil_moisture"], 2), "\n")
+cat("如果这个系数大幅变小，说明部分'土壤湿度效应'\n")
+cat("实际上来自冠层盖度的混杂。\n")
+```
+
+<div class="mascot-note">
+<img src="../images/mascot/cat-point.svg" alt="" class="mascot" aria-hidden="true">
+<div class="mascot-note-copy">
+<strong>黑豹提醒：统计控制 ≠ 实验控制</strong>
+<p>回归模型可以"控制"已测量的变量，但不能控制未测量的混杂。只有随机化实验才能期望排除未测量混杂。观察性回归的结论应该使用"与……相关""伴随……变化"，而不是"导致""提高""降低"。</p>
+</div>
+</div>
+
+## 11.5 非线性、异方差与高杠杆点
+
+回归的三个常见诊断问题：
+
+**非线性：** 残差图出现弯曲 → 考虑变换或非线性模型（第 12 章 GLM 可以处理某些非线性）。
+
+**异方差：** 残差的散布随拟合值变化 → 标准误可能不准确，考虑稳健标准误或加权回归。
+
+**高杠杆点：** 某些点的 X 值远离其他观测 → 它们对回归线有不成比例的影响。先核查来源，再做敏感性分析。
+
+```r
+# 诊断图
+par(mfrow = c(2, 2))
+plot(model_simple)
+
+# 检查高杠杆点
+lev <- hatvalues(model_simple)
+high_lev <- which(lev > 2 * length(coef(model_simple)) / length(lev))
+cat("高杠杆点:", high_lev, "\n")
+
+# 敏感性分析：去掉高杠杆点后斜率是否变化？
+if (length(high_lev) > 0) {
+  model_sens <- lm(native_cover ~ soil_moisture,
+                   data = rest_ra[-high_lev, ])
+  cat("完整模型斜率:", round(b1, 2), "\n")
+  cat("去掉高杠杆点后斜率:",
+      round(coef(model_sens)["soil_moisture"], 2), "\n")
+}
+```
+
+## 11.6 预测区间、外推与交叉验证
+
+**置信区间（CI）：** 回归线的平均位置的不确定性——"如果在这个 X 值处重复抽样，回归线均值的范围"。
+
+**预测区间（PI）：** 单个新观测值的不确定性——"在这个 X 值处，一个新样方的 Y 值可能落在什么范围"。PI 总是比 CI 宽，因为它包含了观测层面的随机变异。
+
+**外推：** 在数据范围之外做预测。X 的范围是 [min, max]——在这个范围之外的预测是外推，假设线性关系延伸到未知区域。保护研究中，外推是常见的（预测未来、预测未调查区域），但必须明确标注并讨论风险。
+
+```r
+# 置信区间 vs 预测区间
+new_x <- data.frame(soil_moisture = seq(15, 50, by = 5))
+
+# 置信区间（回归线的均值）
+ci <- predict(model_simple, new_x, interval = "confidence")
+
+# 预测区间（单个新观测）
+pi <- predict(model_simple, new_x, interval = "prediction")
+
+# 画图
+plot(rest_ra$soil_moisture, rest_ra$native_cover,
+     pch = 16, col = "#4d8294",
+     xlab = "土壤湿度 (%)", ylab = "本地物种盖度 (%)",
+     main = "回归线、置信区间与预测区间",
+     xlim = c(10, 55), ylim = c(0, 100))
+
+# 回归线
+abline(model_simple, col = "#2e7d32", lwd = 2)
+
+# 置信区间（窄）
+lines(new_x$soil_moisture, ci[, "lwr"], col = "#2e7d32", lty = 2)
+lines(new_x$soil_moisture, ci[, "upr"], col = "#2e7d32", lty = 2)
+
+# 预测区间（宽）
+lines(new_x$soil_moisture, pi[, "lwr"], col = "#c86652", lty = 3)
+lines(new_x$soil_moisture, pi[, "upr"], col = "#c86652", lty = 3)
+
+legend("topleft",
+       legend = c("回归线", "95% CI", "95% PI"),
+       col = c("#2e7d32", "#2e7d32", "#c86652"),
+       lty = c(1, 2, 3), lwd = c(2, 1, 1), cex = 0.8)
+```
+
+## 11.7 从环境关联到修复假设
+
+回归分析的结果应该被表述为**假设**，而不是**结论**。
+
+**允许的表述：** "修复后样方中，土壤湿度与本地物种盖度呈正相关（每增加 1% 湿度，盖度平均增加 X 个百分点，95% CI [下限, 上限]）。这一关联在控制冠层盖度和景观差异后仍然存在。"
+
+**不允许的表述：** "提高土壤湿度可以增加本地物种盖度。"——这是因果声称，观察性回归不能支持。
+
+```r
+cat("=== 回归分析报告 ===\n\n")
+cat("问题：修复后样方中，土壤湿度与本地物种盖度的关系（描述性）。\n\n")
+cat("数据：修复后修复地 30 个样方（6 景观 × 5 样方）。\n")
+cat("注意：样方嵌套于景观——30 个点不完全独立。\n\n")
+cat("简单回归：斜率 =", round(b1, 2),
+    "95% CI [", round(confint(model_simple)["soil_moisture", 1], 2), ",",
+    round(confint(model_simple)["soil_moisture", 2], 2), "]\n")
+cat("R² =", round(summary(model_simple)$r.squared, 3), "\n\n")
+cat("结论边界：\n")
+cat("- 支持：土壤湿度与本地物种盖度在修复后样方中正相关。\n")
+cat("- 不支持：土壤湿度'导致'本地物种盖度增加。\n")
+cat("- 不支持：此关系可外推到修复前或对照地。\n")
+cat("- 未分析：样方嵌套于景观的层级结构（第 18 章）。\n")
+```
+
+## 本章小结
+
+- **同一条回归线可以服务于描述、预测或因果——三种目的对应不同的表述边界。** 观察性回归只能支持描述和预测。
+- **相关系数只测量线性关联。** r ≈ 0 不意味着没有关系——可能是非线性的。
+- **回归斜率是条件比较。** "X 增加 1 单位，Y 平均变化 β₁ 单位——在其他变量不变的前提下。"
+- **统计控制 ≠ 实验控制。** 多元回归不能排除未测量混杂——只有随机化实验可以。
+- **预测区间比置信区间宽。** CI 描述回归线均值的不确定性，PI 描述单个新观测的不确定性。
+- **外推必须明确标注。** 在数据范围之外的预测假设关系不变——这在生态系统中很少成立。
 
 ## 练习
 
-分析温度与虫口密度的关系。画出散点图，计算相关系数和回归线。
+1. **识别层。** 以下回归分析各属于哪种目的（描述/预测/因果）？
+   (a) "森林覆盖度每增加 10%，相机检出率增加 5%。"
+   (b) "给定森林覆盖度 60%，预测检出率为 45%。"
+   (c) "增加森林覆盖度可以提高物种检出率。"
+
+2. **解释层。** 为什么"控制更多变量"不能自动解决混杂问题？
+
+3. **应用层。** 用修复地数据，分析冠层盖度与土壤湿度的关系。报告斜率、置信区间和 R²。
+
+4. **诊断层。** 残差 vs 拟合值图显示"喇叭形"（拟合值越大，残差散布越宽）。这意味着什么？你应该怎么处理？
+
+5. **综合层。** 为相机数据中的森林覆盖度与检出率（按样点聚合）做回归分析。写一段结论，使用正确的描述性表述（不允许因果声称），并说明外推边界。
+
+## 继续学习
+
+→ [第 12 章：从线性模型走向广义线性模型](12-glm-intro.qmd)

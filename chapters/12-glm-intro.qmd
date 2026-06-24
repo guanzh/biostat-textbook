@@ -1,55 +1,345 @@
 ---
-title: "第12章 从线性模型走向广义线性模型"
-maturity: seed
-updated: 2026-06-15
+title: "第 12 章 从线性模型走向广义线性模型"
+maturity: sprout
+updated: 2026-06-20
+code-tools: false
 ---
 
-# 第12章 从线性模型走向广义线性模型
+```{=html}
+<style>
+.ch12-fig {
+  background: #fff;
+  border: 2px solid #1a1a1a;
+  border-radius: 16px 6px 16px 6px;
+  box-shadow: 5px 5px 0 #1a1a1a;
+  padding: 1.6rem 1.4rem 1.4rem;
+  margin: 0 0 2.5rem 0;
+}
+.ch12-fig-h {
+  font-family: "Gochi Hand", "Caveat", "楷体", cursive;
+  font-size: 1.2rem; font-weight: 700; color: #1a1a1a;
+  text-align: center; margin-bottom: 1.2rem; letter-spacing: 0.1em;
+}
+.ch12-pipeline {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr auto 1fr;
+  align-items: center; gap: 0.5rem; margin: 0.4rem 0;
+}
+.ch12-stage {
+  padding: 0.9rem 0.9rem 1rem; border-radius: 6px 16px 4px 18px;
+  box-shadow: 4px 4px 0 #1a1a1a;
+}
+.ch12-stage.s1 { background: #ffebee; border: 2.5px solid #ef5350; transform: rotate(-1.5deg); }
+.ch12-stage.s2 { background: #e1f5fe; border: 2.5px solid #0277bd; transform: rotate(0.5deg); }
+.ch12-stage.s3 { background: #e8f5e9; border: 2.5px solid #2e7d32; transform: rotate(1deg); }
+.ch12-stage-h {
+  font-family: "Gochi Hand", "Caveat", "楷体", cursive;
+  font-weight: 700; font-size: 0.95rem; margin-bottom: 0.4rem; text-align: center;
+}
+.ch12-stage.s1 .ch12-stage-h { color: #c62828; }
+.ch12-stage.s2 .ch12-stage-h { color: #01579b; }
+.ch12-stage.s3 .ch12-stage-h { color: #1b5e20; }
+.ch12-stage-body {
+  font-family: "楷体", "STKaiti", "Microsoft YaHei", cursive;
+  font-size: 0.85rem; color: #333; line-height: 1.65; text-align: center;
+}
+.ch12-arrow {
+  font-family: "Gochi Hand", "Caveat", cursive;
+  font-size: 2.2rem; font-weight: 700; color: #1a1a1a;
+  transform: rotate(-3deg); text-align: center; line-height: 1;
+}
+.ch12-caveat {
+  margin-top: 1.1rem; padding: 0.6rem 0.85rem;
+  background: #fafafa; border-left: 3px solid #1a1a1a; border-radius: 2px;
+  font-size: 0.86rem; color: #1a1a1a; line-height: 1.7; text-align: center;
+}
+@media (max-width: 720px) {
+  .ch12-pipeline { grid-template-columns: 1fr; gap: 0.8rem; }
+  .ch12-arrow { transform: rotate(87deg); }
+  .ch12-stage { transform: rotate(0deg); }
+}
+</style>
 
-::: {{.callout-note}}
-## 本章状态：seed
-
-本章内容尚在建设中。以下为本章规划大纲，具体内容将随课程反馈和新案例持续补充。
-:::
-
-## 真实保护问题
-
-<!-- 以一个具体的保护生物学问题开篇 -->
-
-## 学习目标
-
-<!-- 学完本章后学生应能做到的 3-5 件事 -->
-
-## 为什么这个问题需要统计
-
-<!-- 动机段落 -->
-
-## 核心概念
-
-<!-- 本章关键概念的简要介绍 -->
-
-## R 分析过程
-
-```{r}
-# 本章 R 代码示例（待补充）
+<div class="ch12-fig sketch">
+  <div class="ch12-fig-h">把计数塞进直线 → 按生成机制搭建 GLM → 回到响应尺度解释</div>
+  <div class="ch12-pipeline">
+    <div class="ch12-stage s1">
+      <div class="ch12-stage-h">① 识别响应</div>
+      <div class="ch12-stage-body">照片数是计数，不是连续变量——Poisson 比正态更尊重数据生成过程</div>
+    </div>
+    <div class="ch12-arrow" aria-hidden="true">→</div>
+    <div class="ch12-stage s2">
+      <div class="ch12-stage-h">② 选择分布</div>
+      <div class="ch12-stage-body">二项→检出/未检出，Poisson→计数，负二项→过度离散的计数</div>
+    </div>
+    <div class="ch12-arrow" aria-hidden="true">→</div>
+    <div class="ch12-stage s3">
+      <div class="ch12-stage-h">③ 检查离散</div>
+      <div class="ch12-stage-body">方差 > 均值 → 过度离散 → 负二项或 quasi-Poisson，不能假装没看见</div>
+    </div>
+  </div>
+  <div class="ch12-caveat">
+    <b>黑豹提醒：</b>零很多 ≠ 必须用零膨胀模型。先检查过度离散——很多时候负二项就够用了。
+  </div>
+</div>
 ```
 
-## 结果解释
+## 12.1 响应变量怎样产生，模型就应怎样表示
 
-<!-- 如何将统计结果转化为保护生物学语言 -->
+第 8–11 章的方法有一个共同前提：响应变量是连续的，残差近似正态。但保护数据中大量响应不是这样的：
 
-## 常见错误
+- 红外相机拍到的照片数：非负整数，大多数是 0 或很小的数
+- 树木是否受害：0 或 1
+- 样方中某物种的出现与否：0 或 1
+- 幼苗成活率：n 棵中成活 k 棵
 
-<!-- 学生在本章内容上最容易犯的错误 -->
+把这些数据强行塞进线性模型（或者先做变换再塞进线性模型），有两个问题：
+1. **预测值可能超出合理范围。** 线性模型可以预测出"−3 张照片"或"120% 的成活率"。
+2. **方差结构不对。** 计数数据的方差通常随均值增大——线性模型的等方差假设被违反。
 
-## AI 辅助任务
+广义线性模型（GLM）的解决方案是：**让模型尊重数据的生成过程。** 不是变换数据去适应模型，而是选择适合数据的模型。
 
-<!-- 配套的 AI 提问与人工核查任务 -->
+本章的主项目回到红外相机监测（项目 B）：照片数与调查努力量和森林覆盖度的关系。
+
+```r
+camera <- read.csv("../data/teaching/camera_monitoring_long.csv",
+                   stringsAsFactors = FALSE)
+```
+
+<div class="chapter-route" aria-label="本章学习路线">
+  <div><strong>识别响应</strong><span>生成机制决定分布</span></div>
+  <div><strong>选择分布</strong><span>二项/Poisson/负二项</span></div>
+  <div><strong>加入努力量</strong><span>offset 表达暴露量</span></div>
+  <div><strong>检查离散</strong><span>过度离散 vs 零膨胀</span></div>
+  <div><strong>解释预测</strong><span>链接尺度→响应尺度</span></div>
+</div>
+
+::: {.learning-goals}
+**学完本章后，你能够：**
+
+1. 根据响应变量的生成过程选择正确的 GLM 分布和链接函数。
+2. 使用 offset 表达调查努力量，并解释为什么不能把"照片数/努力量"当作连续变量。
+3. 诊断过度离散，并在 quasi-Poisson 和负二项之间做出选择。
+4. 区分链接尺度和响应尺度的效应解释。
+5. 识别普通 GLM 的独立性假设何时被违反（层级、重复测量——第 18、19 章接口）。
+:::
+
+## 12.2 GLM 的三部分：分布、线性预测子与链接
+
+GLM 由三个组件构成：
+
+1. **随机成分（分布）：** 响应变量 Y 来自哪个分布族？二项、Poisson、负二项……
+2. **系统成分（线性预测子）：** η = β₀ + β₁X₁ + β₂X₂ + … — 和线性回归一样的线性组合
+3. **链接函数：** g(μ) = η — 把线性预测子映射到响应变量的尺度
+
+对于 Poisson 回归：Y ~ Poisson(μ)，链接函数 g(μ) = log(μ)。这意味着：
+- 线性预测子 η 可以是任意实数（−∞ 到 +∞）
+- μ = exp(η) 始终为正——符合计数数据的约束
+- X 增加 1 单位 → η 增加 β → μ 乘以 exp(β)
+
+## 12.3 二元结果与逻辑回归
+
+当响应是 0/1（检出/未检出）时，使用二项分布 + logit 链接。
+
+逻辑回归模型：logit(P(检出)) = β₀ + β₁ × 森林覆盖度
+
+- β₁ 的解释：森林覆盖度增加 1%，检出优势乘以 exp(β₁)
+- 第 10 章的优势比在这里自然地出现——逻辑回归的系数就是对数优势比
+
+```r
+# 逻辑回归：检出 ~ 森林覆盖度
+model_logit <- glm(detected ~ forest_cover, data = camera,
+                   family = binomial)
+summary(model_logit)
+
+# 系数解释
+cat("森林覆盖度每增加 1%，检出优势乘以",
+    round(exp(coef(model_logit)["forest_cover"]), 3), "\n")
+```
+
+## 12.4 计数、调查努力量与 Poisson 模型
+
+照片数是计数数据——Poisson 回归是自然的起点。但不同 occasion 的相机工作夜数不同——工作 14 夜的相机自然比工作 5 夜的相机有更多机会拍到照片。
+
+**offset（偏移量）：** 把 log(努力量) 作为系数固定为 1 的项加入线性预测子。这样模型实际上在建模**单位努力量的照片数**。
+
+模型：log(μ) = β₀ + β₁ × 森林覆盖度 + **1 × log(努力量)**
+
+等价于：log(μ / 努力量) = β₀ + β₁ × 森林覆盖度
+
+```r
+# Poisson 回归：照片数 ~ 森林覆盖度 + offset(log(努力量))
+model_pois <- glm(photo_count ~ forest_cover + offset(log(effort_nights)),
+                  data = camera, family = poisson)
+summary(model_pois)
+
+# 系数解释
+cat("森林覆盖度每增加 1%，单位努力量照片数乘以",
+    round(exp(coef(model_pois)["forest_cover"]), 3), "\n")
+
+# 反例：对 photo_count/effort_nights 做线性回归
+camera$photo_rate <- camera$photo_count / camera$effort_nights
+model_wrong <- lm(photo_rate ~ forest_cover, data = camera)
+cat("\n错误做法（线性回归 on 比率）：\n")
+cat("斜率:", round(coef(model_wrong)["forest_cover"], 4), "\n")
+cat("问题：比率丢失了分母信息——5 夜拍 1 张和 14 夜拍 2.8 张被等同对待。\n")
+```
+
+## 12.5 过度离散、零值与负二项接口
+
+Poisson 分布有一个强假设：**方差 = 均值。** 生态数据中，方差通常大于均值——这就是**过度离散（overdispersion）**。
+
+过度离散的来源：
+- 个体间的异质性（有些样点天生"多照片"，有些天生"少照片"）
+- 聚集分布（照片数不是独立事件）
+- 缺失的重要预测变量
+
+诊断过度离散：**离散统计量 = 残差 deviance / 残差自由度**。如果远大于 1，说明过度离散。
+
+解决方案：
+- **quasi-Poisson：** 方差 = φ × μ，φ 从数据估计。不改变系数估计，但调整标准误。
+- **负二项（Negative Binomial）：** 方差 = μ + μ²/k，k 是离散参数。显式建模过度离散。
+
+```r
+# 诊断过度离散
+dispersion <- sum(residuals(model_pois, type = "pearson")^2) / df.residual(model_pois)
+cat("离散统计量:", round(dispersion, 2),
+    "(> 1 表示过度离散，>> 1 表示严重过度离散)\n")
+
+# quasi-Poisson
+model_qpois <- glm(photo_count ~ forest_cover + offset(log(effort_nights)),
+                   data = camera, family = quasipoisson)
+summary(model_qpois)
+
+# 负二项（需要 MASS 包）
+# 如果 MASS 不可用，只解释概念
+if (requireNamespace("MASS", quietly = TRUE)) {
+  model_nb <- MASS::glm.nb(photo_count ~ forest_cover +
+                            offset(log(effort_nights)), data = camera)
+  summary(model_nb)
+  cat("\n负二项离散参数 theta:",
+      round(model_nb$theta, 2),
+      "(越小 = 过度离散越严重)\n")
+} else {
+  cat("\nMASS 包未安装——负二项模型的概念：\n")
+  cat("方差 = μ + μ²/k，k 越小离散越严重。\n")
+  cat("当 k → ∞ 时，负二项趋近 Poisson。\n")
+}
+```
+
+<div class="mascot-note">
+<img src="../images/mascot/cat-point.svg" alt="" class="mascot" aria-hidden="true">
+<div class="mascot-note-copy">
+<strong>黑豹提醒：零很多 ≠ 零膨胀</strong>
+<p>数据中有很多零，不一定需要零膨胀模型。Poisson 和负二项本身就可以产生大量零（当均值小时）。零膨胀模型适用于"零比模型预测的还多"的情况——先用负二项检查，如果预测的零远少于观测的零，再考虑零膨胀。</p>
+</div>
+</div>
+
+## 12.6 残差、预测检查与模型比较
+
+GLM 的残差不像线性回归的残差那样直观——它们不是"观测 − 拟合"。常用的 GLM 残差类型：
+
+- **Pearson 残差：** (y − μ̂) / √(Var(μ̂)) — 标准化到方差为 1
+- **Deviance 残差：** 每个观测对模型 deviance 的贡献
+
+**预测检查：** 模拟从拟合模型生成新数据，比较模拟数据与实际数据的分布。这是比残差图更直观的诊断工具。
+
+```r
+# 残差诊断
+par(mfrow = c(2, 2))
+plot(model_pois)
+
+# 预测检查：模拟数据与实际数据比较
+set.seed(20260620)
+sim_counts <- simulate(model_pois, nsim = 1)[, 1]
+
+par(mfrow = c(1, 2))
+hist(camera$photo_count, breaks = 30, col = "#e1f5fe",
+     main = "实际照片数", xlab = "照片数")
+hist(sim_counts, breaks = 30, col = "#e8f5e9",
+     main = "Poisson 模型模拟", xlab = "照片数")
+# 如果模拟分布与实际分布差异很大，模型可能需要改进
+```
+
+## 12.7 从链接尺度回到保护问题
+
+GLM 的系数在链接尺度上（log 或 logit），但保护决策需要响应尺度上的数字。
+
+```r
+cat("=== GLM 分析报告 ===\n\n")
+
+# 逻辑回归：森林覆盖度对检出概率的影响
+cat("1. 检出概率（逻辑回归）\n")
+cat("森林覆盖度每增加 10%，检出优势乘以",
+    round(exp(10 * coef(model_logit)["forest_cover"]), 2), "\n\n")
+
+# 预测特定森林覆盖度下的检出概率
+new_forest <- data.frame(forest_cover = c(30, 50, 70))
+pred_logit <- predict(model_logit, new_forest, type = "response",
+                      se.fit = TRUE)
+for (i in 1:3) {
+  cat("森林覆盖度", new_forest$forest_cover[i], "%：检出概率",
+      round(pred_logit$fit[i], 3), "\n")
+}
+
+# Poisson：森林覆盖度对照片数的影响
+cat("\n2. 照片数（Poisson 回归，offset = log(努力量)）\n")
+cat("森林覆盖度每增加 10%，单位努力量照片数乘以",
+    round(exp(10 * coef(model_pois)["forest_cover"]), 2), "\n")
+
+# 预测
+new_forest_effort <- data.frame(
+  forest_cover = c(30, 50, 70),
+  effort_nights = 10  # 固定努力量为 10 夜
+)
+pred_pois <- predict(model_pois, new_forest_effort, type = "response",
+                     se.fit = TRUE)
+for (i in 1:3) {
+  cat("森林覆盖度", new_forest_effort$forest_cover[i],
+      "%，10 夜努力量：预测照片数",
+      round(pred_pois$fit[i], 1), "\n")
+}
+
+cat("\n=== 结论边界 ===\n")
+cat("支持：森林覆盖度与检出概率和照片数正相关。\n")
+cat("不支持：森林覆盖度'导致'物种出现——这是观察性关联。\n")
+cat("未分析：样点的重复测量结构（第 18 章）。\n")
+cat("未分析：探测过程与生态过程的分离（第 19 章）。\n")
+cat("注意：本章模型假设 occasion 之间独立——\n")
+cat("      同一样点的 18 次调查实际上不独立。\n")
+```
+
+::: {.key-judgment}
+**关键判断：** GLM 尊重数据的生成过程——不是变换数据去适应模型，而是选择适合数据的模型。但普通 GLM 仍然假设观测独立——层级结构和重复测量需要第 18 章的混合模型。
+:::
+
+## 本章小结
+
+- **GLM 的三部分：分布、线性预测子、链接函数。** 响应变量的生成过程决定分布——计数用 Poisson，0/1 用二项。
+- **offset 表达调查努力量。** log(努力量) 作为系数固定为 1 的项——不能把"照片数/努力量"当作连续变量做线性回归。
+- **过度离散是常态，不是异常。** 方差 > 均值 → quasi-Poisson 或负二项。零很多不一定需要零膨胀。
+- **链接尺度和响应尺度的解释不同。** log 尺度的系数是乘法效应；响应尺度的预测是原始单位。
+- **普通 GLM 假设观测独立。** 同一样点的重复调查、样方嵌套于地点——这些层级结构需要第 18 章的混合模型。
 
 ## 练习
 
-<!-- 课堂练习和课后作业 -->
+1. **识别层。** 以下响应变量各适合什么 GLM 分布？
+   (a) 样方中某物种的出现/未出现
+   (b) 红外相机一次调查的照片数
+   (c) 20 粒种子中发芽的数量
+
+2. **解释层。** 为什么不能把"照片数/努力量"当作连续变量做线性回归？至少给出两个理由。
+
+3. **应用层。** 用相机数据拟合逻辑回归：detected ~ forest_cover + distance_road_km。报告系数（优势比尺度）和解释。
+
+4. **诊断层。** Poisson 模型的离散统计量为 3.5。这意味着什么？你应该怎么处理？
+
+5. **综合层。** 为森林虫口密度（pest_count）选择初始 GLM。写出：响应分布、链接函数、是否需要 offset、可能的过度离散来源、以及为什么树木嵌套于小区违反了独立性假设。
 
 ## 继续学习
 
-<!-- 推荐阅读和下一章链接 -->
+::: {.chapter-next}
+下一步：第三篇的方法基础已经建立。第四篇将把这些方法放回真实的保护场景——第 13 章从森林与植物保护研究开始，教你如何把防治问题写成完整的研究方案。
+
+→ [第 13 章：森林与植物保护研究](13-forest-plant-protection.qmd)
+:::

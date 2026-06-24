@@ -1,55 +1,322 @@
 ---
-title: "第18章 层级结构与混合模型"
-maturity: seed
-updated: 2026-06-15
+title: "第 18 章 层级结构与混合模型"
+maturity: sprout
+updated: 2026-06-20
+code-tools: false
 ---
 
-# 第18章 层级结构与混合模型
+```{=html}
+<style>
+.ch18-fig {
+  background: #fff;
+  border: 2px solid #1a1a1a;
+  border-radius: 16px 6px 16px 6px;
+  box-shadow: 5px 5px 0 #1a1a1a;
+  padding: 1.6rem 1.4rem 1.4rem;
+  margin: 0 0 2.5rem 0;
+}
+.ch18-fig-h {
+  font-family: "Gochi Hand", "Caveat", "楷体", cursive;
+  font-size: 1.2rem; font-weight: 700; color: #1a1a1a;
+  text-align: center; margin-bottom: 1.2rem; letter-spacing: 0.1em;
+}
+.ch18-pipeline {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr auto 1fr;
+  align-items: center; gap: 0.5rem; margin: 0.4rem 0;
+}
+.ch18-stage {
+  padding: 0.9rem 0.9rem 1rem; border-radius: 6px 16px 4px 18px;
+  box-shadow: 4px 4px 0 #1a1a1a;
+}
+.ch18-stage.s1 { background: #ffebee; border: 2.5px solid #ef5350; transform: rotate(-1.5deg); }
+.ch18-stage.s2 { background: #e1f5fe; border: 2.5px solid #0277bd; transform: rotate(0.5deg); }
+.ch18-stage.s3 { background: #e8f5e9; border: 2.5px solid #2e7d32; transform: rotate(1deg); }
+.ch18-stage-h {
+  font-family: "Gochi Hand", "Caveat", "楷体", cursive;
+  font-weight: 700; font-size: 0.95rem; margin-bottom: 0.4rem; text-align: center;
+}
+.ch18-stage.s1 .ch18-stage-h { color: #c62828; }
+.ch18-stage.s2 .ch18-stage-h { color: #01579b; }
+.ch18-stage.s3 .ch18-stage-h { color: #1b5e20; }
+.ch18-stage-body {
+  font-family: "楷体", "STKaiti", "Microsoft YaHei", cursive;
+  font-size: 0.85rem; color: #333; line-height: 1.65; text-align: center;
+}
+.ch18-arrow {
+  font-family: "Gochi Hand", "Caveat", cursive;
+  font-size: 2.2rem; font-weight: 700; color: #1a1a1a;
+  transform: rotate(-3deg); text-align: center; line-height: 1;
+}
+.ch18-caveat {
+  margin-top: 1.1rem; padding: 0.6rem 0.85rem;
+  background: #fafafa; border-left: 3px solid #1a1a1a; border-radius: 2px;
+  font-size: 0.86rem; color: #1a1a1a; line-height: 1.7; text-align: center;
+}
+@media (max-width: 720px) {
+  .ch18-pipeline { grid-template-columns: 1fr; gap: 0.8rem; }
+  .ch18-arrow { transform: rotate(87deg); }
+  .ch18-stage { transform: rotate(0deg); }
+}
+</style>
 
-::: {{.callout-note}}
-## 本章状态：seed
-
-本章内容尚在建设中。以下为本章规划大纲，具体内容将随课程反馈和新案例持续补充。
-:::
-
-## 真实保护问题
-
-<!-- 以一个具体的保护生物学问题开篇 -->
-
-## 学习目标
-
-<!-- 学完本章后学生应能做到的 3-5 件事 -->
-
-## 为什么这个问题需要统计
-
-<!-- 动机段落 -->
-
-## 核心概念
-
-<!-- 本章关键概念的简要介绍 -->
-
-## R 分析过程
-
-```{r}
-# 本章 R 代码示例（待补充）
+<div class="ch18-fig sketch">
+  <div class="ch18-fig-h">480 行 → 找回四层结构 → 模型在正确层级共享信息</div>
+  <div class="ch18-pipeline">
+    <div class="ch18-stage s1">
+      <div class="ch18-stage-h">① 画出层级</div>
+      <div class="ch18-stage-body">区组→小区→植株→时间——480 行不是 480 个独立观测</div>
+    </div>
+    <div class="ch18-arrow" aria-hidden="true">→</div>
+    <div class="ch18-stage s2">
+      <div class="ch18-stage-h">② 选择共享</div>
+      <div class="ch18-stage-body">完全合并（忽略层级）vs 完全分开（每小区独立）vs 部分汇聚</div>
+    </div>
+    <div class="ch18-arrow" aria-hidden="true">→</div>
+    <div class="ch18-stage s3">
+      <div class="ch18-stage-h">③ 解释预测</div>
+      <div class="ch18-stage-body">群体平均 vs 特定小区——随机效应让模型在层级间共享信息</div>
+    </div>
+  </div>
+  <div class="ch18-caveat">
+    <b>黑豹提醒：</b>把 480 行输入普通线性模型并声称 n=480——这是混合模型章节最重要的反例。
+  </div>
+</div>
 ```
 
-## 结果解释
+## 18.1 数据为何不是独立行
 
-<!-- 如何将统计结果转化为保护生物学语言 -->
+前面 12 章的所有模型（t 检验、ANOVA、回归、GLM）共享一个核心假设：**观测之间相互独立。** 但真实数据中，这个假设经常被违反：
 
-## 常见错误
+- 同一小区的 5 株幼苗共享光照处理——它们的响应不是独立的
+- 同一植株在 3 个时间点被重复测量——时间点之间相关
+- 同一景观内的修复地和对照地共享气候——不是独立的两个地点
 
-<!-- 学生在本章内容上最容易犯的错误 -->
+**忽视层级结构的后果：** 标准误被人为缩小，置信区间过窄，P 值过小——你以为是 480 个独立观测，实际上只有 32 个独立实验单位。这就是第 3 章反复强调的伪重复问题，现在用模型语言来正式处理它。
 
-## AI 辅助任务
+```r
+hh <- read.csv("../data/teaching/huanghuang_light_long.csv",
+               stringsAsFactors = FALSE)
+```
 
-<!-- 配套的 AI 提问与人工核查任务 -->
+<div class="chapter-route" aria-label="本章学习路线">
+  <div><strong>画出层级</strong><span>区组→小区→植株→时间</span></div>
+  <div><strong>选择共享</strong><span>合并/分开/汇聚</span></div>
+  <div><strong>拟合差异</strong><span>随机截距与斜率</span></div>
+  <div><strong>诊断方差</strong><span>分量与奇异拟合</span></div>
+  <div><strong>解释预测</strong><span>群体 vs 单位特异</span></div>
+</div>
+
+::: {.learning-goals}
+**学完本章后，你能够：**
+
+1. 从设计层级推导出混合模型的随机效应结构。
+2. 区分固定效应和随机效应——由研究问题决定，不由数据决定。
+3. 解释随机截距和随机斜率的含义，以及部分汇聚的原理。
+4. 识别奇异拟合和方差分量接近零的情况。
+5. 区分群体平均预测和单位特异预测。
+:::
+
+## 18.2 完全合并、完全分开与部分汇聚
+
+处理层级数据有三种策略：
+
+**完全合并（complete pooling）：** 忽略层级，把所有观测当作独立的。→ 伪重复，标准误过小。
+
+**完全分开（no pooling）：** 为每个小区单独拟合一个模型。→ 每个小区只有 15 个观测（5 株 × 3 时间点），估计极不稳定。
+
+**部分汇聚（partial pooling）：** 混合模型的核心思想。每个小区的效应被建模为来自一个共同分布——小区效应向总体均值"收缩"。样本量小的小区收缩得多（向总体借力），样本量大的小区收缩得少（相信自己的数据）。
+
+```r
+# 反例：完全合并——把 480 行当独立观测
+model_pooled <- lm(height_cm ~ light_pct + month, data = hh)
+cat("完全合并：n =", nrow(hh), "（伪重复！）\n")
+cat("R² =", round(summary(model_pooled)$r.squared, 3), "\n")
+
+# 反例：完全分开——每个小区独立拟合
+# 只为演示概念，实际不推荐
+```
+
+## 18.3 随机截距
+
+随机截距模型允许每个小区有自己的基线株高，但假设光照的效应在所有小区中相同。
+
+模型：height_ij = (β₀ + b_i) + β₁ × light + β₂ × month + ε_ij
+
+- β₀：总体平均截距（固定效应）
+- b_i：小区 i 的随机截距，b_i ~ N(0, σ²_b)
+- σ²_b：小区间变异——越大说明小区间基线差异越大
+
+**部分汇聚：** 小区 i 的估计截距 = (小区 i 的均值 × 该小区的权重) + (总体均值 × 总体权重)。权重取决于小区内样本量和 σ²_b——样本量越小、σ²_b 越小，越向总体收缩。
+
+```r
+# 随机截距模型（需要 nlme 或 lme4 包）
+# 如果包不可用，展示概念和可运行的数据聚合替代方案
+
+# 先按小区聚合，演示层级结构
+plot_means <- aggregate(
+  height_cm ~ block_id + plot_id + light_pct + month,
+  data = hh, FUN = mean
+)
+
+# 画各小区的时间轨迹
+par(mfrow = c(2, 4))
+for (b in 1:8) {
+  for (p in 1:4) {
+    plot_id <- sprintf("B%d_P%d", b, p)
+    pd <- plot_means[plot_means$plot_id == plot_id, ]
+    if (p == 1 && b == 1) {
+      plot(pd$month, pd$height_cm, type = "b", col = "#4d8294",
+           xlab = "月", ylab = "株高 (cm)", main = paste("区组", b),
+           ylim = c(5, 40))
+    } else {
+      lines(pd$month, pd$height_cm, type = "b", col = "#4d8294")
+    }
+  }
+}
+
+# 如果 nlme 可用，拟合随机截距模型
+if (requireNamespace("nlme", quietly = TRUE)) {
+  library(nlme)
+  # 聚合到植株-时间层级（避免植株内的伪重复）
+  hh_agg <- aggregate(
+    height_cm ~ block_id + plot_id + light_pct + plant_id + month,
+    data = hh, FUN = mean
+  )
+  model_ri <- lme(height_cm ~ light_pct + month,
+                  random = ~ 1 | plot_id,
+                  data = hh_agg)
+  summary(model_ri)
+  cat("\n小区间标准差 (σ_b):",
+      round(as.numeric(VarCorr(model_ri)[2, "StdDev"]), 2), "\n")
+} else {
+  cat("\nnlme 包未安装。随机截距模型的概念：\n")
+  cat("每个小区有自己的基线株高，但光照效应在所有小区中相同。\n")
+  cat("小区效应 b_i ~ N(0, σ²_b)，σ²_b 越大说明小区间差异越大。\n")
+}
+```
+
+## 18.4 随机斜率
+
+随机截距假设光照效应在所有小区中相同。但不同小区的幼苗可能对光照有不同的响应——这就是随机斜率。
+
+模型：height_ij = (β₀ + b₀i) + (β₁ + b₁i) × light + β₂ × month + ε_ij
+
+- b₁i：小区 i 的光照效应偏离总体平均效应的程度
+- 现在每个小区有自己的截距**和**斜率
+
+随机斜率消耗更多自由度——需要更多的小区和更多的观测来稳定估计。如果只有 3 个小区，随机斜率模型几乎肯定会奇异拟合。
+
+```r
+if (requireNamespace("nlme", quietly = TRUE)) {
+  # 随机截距 + 随机斜率（光照）
+  model_rs <- tryCatch({
+    lme(height_cm ~ light_pct + month,
+        random = ~ light_pct | plot_id,
+        data = hh_agg)
+  }, error = function(e) {
+    cat("随机斜率模型拟合失败（可能奇异）:", e$message, "\n")
+    return(NULL)
+  })
+  if (!is.null(model_rs)) {
+    summary(model_rs)
+  }
+} else {
+  cat("\n随机斜率模型的概念：\n")
+  cat("不同小区对光照的响应可能不同——\n")
+  cat("有的小区在低光照下株高下降很快，有的小区几乎不受影响。\n")
+  cat("随机斜率捕捉这种异质性。\n")
+}
+```
+
+## 18.5 嵌套与重复测量
+
+黄黄草数据的层级结构是嵌套的：植株嵌套于小区，小区嵌套于区组。时间点是重复测量——同一植株在 3 个时间点被测量。
+
+混合模型通过**相关结构**来处理重复测量：
+- 同一植株的 3 次测量之间相关——时间越近，相关越强
+- 复合对称（compound symmetry）：假设任意两个时间点之间的相关相同
+- 自回归（AR1）：时间越近相关越强，时间越远相关越弱
+
+```r
+if (requireNamespace("nlme", quietly = TRUE)) {
+  # 加入时间相关结构
+  hh_agg$plant_id <- factor(hh_agg$plant_id)
+  model_cor <- tryCatch({
+    lme(height_cm ~ light_pct + month,
+        random = ~ 1 | plot_id / plant_id,
+        correlation = corAR1(form = ~ month | plot_id / plant_id),
+        data = hh_agg)
+  }, error = function(e) {
+    cat("相关结构模型拟合失败:", e$message, "\n")
+    return(NULL)
+  })
+  if (!is.null(model_cor)) {
+    summary(model_cor)
+  }
+}
+```
+
+## 18.6 方差分量、奇异拟合和诊断
+
+**方差分量（variance components）：** 混合模型将总变异分解为不同层级的贡献：
+- 区组间变异
+- 小区间变异（区组内）
+- 植株间变异（小区内）
+- 残差变异（植株内、时间点间）
+
+**奇异拟合（singular fit）：** 某个方差分量估计为零或接近零——意味着该层级的变异太小，数据不支持在该层级上拟合随机效应。常见于：
+- 层级数量太少（如只有 3 个区组）
+- 层内变异确实很小
+- 模型太复杂（随机斜率太多）
+
+**诊断：** 检查残差的正态性和等方差性；检查随机效应的预测值是否有异常小区。
+
+## 18.7 群体与单位预测
+
+混合模型提供两种预测：
+
+**群体平均预测（population-averaged）：** 只使用固定效应——"对于典型的小区，在 X 光照下，预测株高为 Y"。不包括随机效应 b_i。
+
+**单位特异预测（unit-specific）：** 使用固定效应 + 随机效应——"对于小区 B1_P2，在 X 光照下，预测株高为 Y"。包含了该小区特有的偏离。
+
+两者的区别在保护决策中很重要：
+- "新选一个苗圃位置，预期效果如何？" → 群体平均预测
+- "已知小区 B1_P2 的历史表现，下个月会怎样？" → 单位特异预测
+
+```r
+cat("=== 混合模型概念总结 ===\n\n")
+cat("1. 层级结构 → 随机效应结构\n")
+cat("   区组→小区→植株→时间 → 随机截距在小区层，重复测量在植株层\n\n")
+cat("2. 部分汇聚 = 向总体借力\n")
+cat("   样本量小的小区 → 估计向总体均值收缩\n")
+cat("   样本量大的小区 → 相信自己的数据\n\n")
+cat("3. 固定 vs 随机：由研究问题决定\n")
+cat("   你想推断到新的光照水平？→ 固定效应\n")
+cat("   你想估计小区间的变异？→ 随机效应\n\n")
+cat("4. 奇异拟合 → 模型太复杂或数据太少\n")
+cat("   只有 3 个上层单位 → 不要拟合随机斜率\n\n")
+cat("5. 随机效应不能修复错误设计\n")
+cat("   如果处理不是随机分配的，混合模型也不能给你因果推断\n")
+```
+
+## 本章小结
+
+- **层级数据不能用普通线性模型。** 480 行 ≠ 480 个独立观测——忽视层级等于制造伪重复。
+- **部分汇聚是混合模型的核心。** 每个小区的估计向总体均值收缩——样本量越小，收缩越多。
+- **随机截距表达基线差异，随机斜率表达响应差异。** 由研究问题决定哪些效应是随机的。
+- **重复测量需要相关结构。** 同一植株的多次测量之间不是独立的。
+- **奇异拟合是警告信号。** 方差分量接近零 → 模型太复杂或层级数量太少。
+- **群体平均预测和单位特异预测回答不同问题。** 前者用于推广，后者用于特定单位的管理。
 
 ## 练习
 
-<!-- 课堂练习和课后作业 -->
+1. **识别层。** 黄黄草数据有几个层级？每个层级各有多少个单位？
+2. **解释层。** "部分汇聚"是什么意思？为什么样本量小的小区向总体均值收缩？
+3. **应用层。** 写出黄黄草数据的随机截距模型公式。每个符号代表什么？
+4. **诊断层。** 随机斜率模型的方差分量估计为 0。这意味着什么？应该怎么处理？
+5. **综合层。** 为修复地数据设计混合模型：样方嵌套于地点，地点嵌套于景观。写出随机效应结构。
 
 ## 继续学习
 
-<!-- 推荐阅读和下一章链接 -->
+→ [第 19 章：生态过程与观测过程](19-ecological-processes.qmd)
