@@ -490,23 +490,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div class="ch10-arrow" aria-hidden="true">→</div>
     <div class="ch10-stage s2">
       <div class="ch10-stage-h">② 保留分母</div>
-      <div class="ch10-stage-body">3/5 和 60/100 都是 60%——但证据强度差几十倍</div>
+      <div class="ch10-stage-body">3/5 和 60/100 都是 60%，但证据强度差几十倍</div>
     </div>
     <div class="ch10-arrow" aria-hidden="true">→</div>
     <div class="ch10-stage s3">
       <div class="ch10-stage-h">③ 沟通风险</div>
-      <div class="ch10-stage-body">风险差、风险比、优势比——三种效应量回答不同问题</div>
+      <div class="ch10-stage-body">风险差、风险比、优势比：三种效应量回答不同问题</div>
     </div>
   </div>
   <div class="ch10-caveat">
-    <b>黑豹提醒：</b>优势比不是风险比——当基线风险不低时，优势比会严重夸大效应。
+    黑豹提醒：优势比不是风险比：当基线风险不低时，优势比会严重夸大效应。
   </div>
 </div>
 <section id="分类结果也来自明确的观测单位" class="level2">
 <h2 class="anchored" data-anchor-id="分类结果也来自明确的观测单位">10.1 分类结果也来自明确的观测单位</h2>
-<p>前面两章处理的是连续响应变量（虫口密度、开花比例）。但保护研究中大量结果是分类的：树木是否受害、动物是否被检出、幼苗是否成活。分类数据的分析有自己的一套逻辑——起点仍然是观测单位。</p>
-<p>本章的主项目回到森林病虫害试验。我们关心的不是虫口密度的均值，而是：<strong>综合防治是否降低了树木受害（damage_class ≥ 3）的比例？</strong></p>
-<p>在开始分析之前，先确认： - <strong>事件定义：</strong> “受害” = damage_class ≥ 3（明确阈值，可复核） - <strong>观测单位：</strong> 树木（但树木嵌套于小区——聚集问题见 10.6 节） - <strong>分母：</strong> 每个处理小区的树木总数</p>
+<p>前面两章处理的是连续响应变量（虫口密度、开花比例）。但保护研究中大量结果是分类的：树木是否受害、动物是否被检出、幼苗是否成活。分类数据的分析有自己的一套逻辑：起点仍然是观测单位。</p>
+<p>本章的主项目回到森林病虫害试验。我们关心的不是虫口密度的均值，而是：综合防治是否降低了树木受害（damage_class ≥ 3）的比例？</p>
+<p>在开始分析之前，先确认： - 事件定义：“受害” = damage_class ≥ 3（明确阈值，可复核） - 观测单位：树木（但树木嵌套于小区：聚集问题见 10.6 节） - 分母：每个处理小区的树木总数</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>forest <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"../data/teaching/forest_pest_trial_long.csv"</span>,</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>                   <span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span>)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -529,56 +529,56 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(plot_damage)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="chapter-route" aria-label="本章学习路线">
 <div>
-<strong>定义事件</strong><span>互斥且可复核</span>
+定义事件<span>互斥且可复核</span>
 </div>
 <div>
-<strong>保留分母</strong><span>分子和分母同等重要</span>
+保留分母<span>分子和分母同等重要</span>
 </div>
 <div>
-<strong>检查独立</strong><span>卡方与 Fisher</span>
+检查独立<span>卡方与 Fisher</span>
 </div>
 <div>
-<strong>估计效应</strong><span>风险差/风险比/优势比</span>
+估计效应<span>风险差/风险比/优势比</span>
 </div>
 <div>
-<strong>沟通风险</strong><span>基线 + 绝对差</span>
+沟通风险<span>基线 + 绝对差</span>
 </div>
 </div>
 <div class="learning-goals">
-<p><strong>学完本章后，你能够：</strong></p>
+<p>学完本章后，你能够：</p>
 <ol type="1">
 <li>定义互斥且可复核的分类结果，并正确识别分子和分母。</li>
 <li>在卡方检验和 Fisher 精确检验之间做出有依据的选择。</li>
 <li>区分风险差、风险比和优势比，并解释为什么优势比不等于风险比。</li>
-<li>识别聚集数据中的伪重复问题——树木嵌套于小区。</li>
+<li>识别聚集数据中的伪重复问题：树木嵌套于小区。</li>
 <li>在报告风险时同时给出基线风险和绝对差异。</li>
 </ol>
 </div>
 </section>
 <section id="比例必须同时保留分子和分母" class="level2">
 <h2 class="anchored" data-anchor-id="比例必须同时保留分子和分母">10.2 比例必须同时保留分子和分母</h2>
-<p>“受害率 60%”——这个数字丢失了最关键的信息：分母是多少？</p>
+<p>“受害率 60%”。这个数字丢失了最关键的信息：分母是多少？</p>
 <ul>
 <li>3/5 = 60%：只有 5 棵树，随机波动极大</li>
 <li>60/100 = 60%：100 棵树，估计相对稳定</li>
 <li>600/1000 = 60%：1000 棵树，估计很精确</li>
 </ul>
-<p>同样的比例，完全不同的证据强度。<strong>永远不要只报告比例而不报告分子和分母。</strong></p>
+<p>同样的比例，完全不同的证据强度。永远不要只报告比例而不报告分子和分母。</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 演示：相同比例，不同信息量</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 这三个"60%"的证据强度完全不同</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"3/5 ="</span>, <span class="fu">round</span>(<span class="dv">100</span> <span class="sc">*</span> <span class="dv">3</span><span class="sc">/</span><span class="dv">5</span>), <span class="st">"%  —— 95% CI: ["</span>,</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"3/5 ="</span>, <span class="fu">round</span>(<span class="dv">100</span> <span class="sc">*</span> <span class="dv">3</span><span class="sc">/</span><span class="dv">5</span>), <span class="st">"%  ：95% CI: ["</span>,</span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">round</span>(<span class="fu">binom.test</span>(<span class="dv">3</span>, <span class="dv">5</span>)<span class="sc">$</span>conf.int[<span class="dv">1</span>] <span class="sc">*</span> <span class="dv">100</span>), <span class="st">"%, "</span>,</span>
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">round</span>(<span class="fu">binom.test</span>(<span class="dv">3</span>, <span class="dv">5</span>)<span class="sc">$</span>conf.int[<span class="dv">2</span>] <span class="sc">*</span> <span class="dv">100</span>), <span class="st">"%]</span><span class="sc">\n</span><span class="st">"</span>)</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"60/100 ="</span>, <span class="fu">round</span>(<span class="dv">100</span> <span class="sc">*</span> <span class="dv">60</span><span class="sc">/</span><span class="dv">100</span>), <span class="st">"%  —— 95% CI: ["</span>,</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"60/100 ="</span>, <span class="fu">round</span>(<span class="dv">100</span> <span class="sc">*</span> <span class="dv">60</span><span class="sc">/</span><span class="dv">100</span>), <span class="st">"%  ：95% CI: ["</span>,</span>
 <span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">round</span>(<span class="fu">binom.test</span>(<span class="dv">60</span>, <span class="dv">100</span>)<span class="sc">$</span>conf.int[<span class="dv">1</span>] <span class="sc">*</span> <span class="dv">100</span>), <span class="st">"%, "</span>,</span>
 <span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">round</span>(<span class="fu">binom.test</span>(<span class="dv">60</span>, <span class="dv">100</span>)<span class="sc">$</span>conf.int[<span class="dv">2</span>] <span class="sc">*</span> <span class="dv">100</span>), <span class="st">"%]</span><span class="sc">\n</span><span class="st">"</span>)</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"600/1000 ="</span>, <span class="fu">round</span>(<span class="dv">100</span> <span class="sc">*</span> <span class="dv">600</span><span class="sc">/</span><span class="dv">1000</span>), <span class="st">"%  —— 95% CI: ["</span>,</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"600/1000 ="</span>, <span class="fu">round</span>(<span class="dv">100</span> <span class="sc">*</span> <span class="dv">600</span><span class="sc">/</span><span class="dv">1000</span>), <span class="st">"%  ：95% CI: ["</span>,</span>
 <span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">round</span>(<span class="fu">binom.test</span>(<span class="dv">600</span>, <span class="dv">1000</span>)<span class="sc">$</span>conf.int[<span class="dv">1</span>] <span class="sc">*</span> <span class="dv">100</span>), <span class="st">"%, "</span>,</span>
 <span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">round</span>(<span class="fu">binom.test</span>(<span class="dv">600</span>, <span class="dv">1000</span>)<span class="sc">$</span>conf.int[<span class="dv">2</span>] <span class="sc">*</span> <span class="dv">100</span>), <span class="st">"%]</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="列联表回答的是哪一种独立性问题" class="level2">
 <h2 class="anchored" data-anchor-id="列联表回答的是哪一种独立性问题">10.3 列联表回答的是哪一种独立性问题</h2>
-<p>列联表（contingency table）交叉分类两个分类变量。对于森林防治数据，我们关心：<strong>处理（对照/综合防治）和受害状态（是/否）是否独立？</strong></p>
+<p>列联表（contingency table）交叉分类两个分类变量。对于森林防治数据，我们关心：处理（对照/综合防治）和受害状态（是/否）是否独立？</p>
 <table class="caption-top table">
 <thead>
 <tr class="header">
@@ -609,13 +609,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 </tbody>
 </table>
-<p>零假设：处理与受害状态独立——即受害比例在处理间无差异。</p>
-<p>但注意：这个表里的计数应该以<strong>小区</strong>为单位还是以<strong>树木</strong>为单位？如果以树木为单位（a = 对照组受害树木数），我们假设了每棵树是独立的——这违反了树木嵌套于小区的设计。正确做法是先在小区层级汇总（见 10.6 节）。</p>
+<p>零假设：处理与受害状态独立：即受害比例在处理间无差异。</p>
+<p>但注意：这个表里的计数应该以小区为单位还是以树木为单位？如果以树木为单位（a = 对照组受害树木数），我们假设了每棵树是独立的。这违反了树木嵌套于小区的设计。正确做法是先在小区层级汇总（见 10.6 节）。</p>
 </section>
 <section id="卡方与-fisher-方法的条件" class="level2">
 <h2 class="anchored" data-anchor-id="卡方与-fisher-方法的条件">10.4 卡方与 Fisher 方法的条件</h2>
-<p><strong>卡方检验（χ² test）：</strong> 基于大样本正态近似。适用条件：期望频数 ≥ 5（传统标准）。当期望频数太小时，卡方近似不可靠。</p>
-<p><strong>Fisher 精确检验：</strong> 基于超几何分布，不依赖大样本近似。适用于小样本或稀疏表格。但 Fisher 检验假设行列边际固定——这在某些设计下不完全合理。</p>
+<p>卡方检验（χ² test）：基于大样本正态近似。适用条件：期望频数 ≥ 5（传统标准）。当期望频数太小时，卡方近似不可靠。</p>
+<p>Fisher 精确检验：基于超几何分布，不依赖大样本近似。适用于小样本或稀疏表格。但 Fisher 检验假设行列边际固定。这在某些设计下不完全合理。</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 先在小区层级汇总：以小区是否超过受害阈值为分类</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 定义：小区受害率 &gt; 30% 为"高受害"</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>plot_damage<span class="sc">$</span>high_damage <span class="ot">&lt;-</span> plot_damage<span class="sc">$</span>prop <span class="sc">&gt;</span> <span class="fl">0.3</span></span>
@@ -636,9 +636,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="风险差风险比与优势比" class="level2">
 <h2 class="anchored" data-anchor-id="风险差风险比与优势比">10.5 风险差、风险比与优势比</h2>
 <p>三种效应量回答不同的问题：</p>
-<p><strong>风险差（risk difference, RD）：</strong> 对照风险 − 处理风险。最直观——“综合防治使受害率降低了 X 个百分点”。单位是百分点。</p>
-<p><strong>风险比（risk ratio, RR）：</strong> 处理风险 / 对照风险。“综合防治组的受害风险是对照组的 X 倍”。</p>
-<p><strong>优势比（odds ratio, OR）：</strong> 处理组的优势 / 对照组的优势。优势 = 受害概率 / (1 − 受害概率)。OR 在数学上方便（与逻辑回归直接对应），但在解释上容易误导——当基线风险不低时，OR 会严重偏离 RR。</p>
+<p>风险差（risk difference, RD）：对照风险 − 处理风险。最直观：“综合防治使受害率降低了 X 个百分点”。单位是百分点。</p>
+<p>风险比（risk ratio, RR）：处理风险 / 对照风险。“综合防治组的受害风险是对照组的 X 倍”。</p>
+<p>优势比（odds ratio, OR）：处理组的优势 / 对照组的优势。优势 = 受害概率 / (1 − 受害概率)。OR 在数学上方便（与逻辑回归直接对应），但在解释上容易误导：当基线风险不低时，OR 会严重偏离 RR。</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 计算三种效应量</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 从列联表</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> tbl[<span class="st">"control"</span>, <span class="st">"TRUE"</span>]    <span class="co"># 对照高受害</span></span>
@@ -669,9 +669,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="mascot-note">
 <img src="../images/mascot/cat-point.svg" alt="" class="mascot" aria-hidden="true">
 <div class="mascot-note-copy">
-<strong>黑豹提醒：优势比不是风险比</strong>
+黑豹提醒：优势比不是风险比
 <p>
-当基线风险为 50% 时，OR = 2.0 对应的 RR 只有约 1.33。报告”风险降低 50%“（OR = 0.5）而实际绝对风险只从 50% 降到 33%——这在保护沟通中可能严重误导管理决策。
+当基线风险为 50% 时，OR = 2.0 对应的 RR 只有约 1.33。报告”风险降低 50%“（OR = 0.5）而实际绝对风险只从 50% 降到 33%。这在保护沟通中可能严重误导管理决策。
 </p>
 </div>
 </div>
@@ -679,8 +679,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="聚集稀疏与完全分离" class="level2">
 <h2 class="anchored" data-anchor-id="聚集稀疏与完全分离">10.6 聚集、稀疏与完全分离</h2>
 <p>分类数据在保护研究中有两个特殊问题：</p>
-<p><strong>聚集（clustering）：</strong> 树木嵌套于小区——同一小区的树木共享处理和环境，不是独立的。把树木汇总成 2×2 表（忽略小区）等于制造伪重复。</p>
-<p><strong>完全分离（complete separation）：</strong> 当某个处理的观测全部是同一结果时（如综合防治所有小区都是低受害），标准 logistic 回归无法拟合——这是第 12 章的接口。</p>
+<p>聚集（clustering）：树木嵌套于小区。同一小区的树木共享处理和环境，不是独立的。把树木汇总成 2×2 表（忽略小区）等于制造伪重复。</p>
+<p>完全分离（complete separation）：当某个处理的观测全部是同一结果时（如综合防治所有小区都是低受害），标准 logistic 回归无法拟合。这是第 12 章的接口。</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 反例：树级汇总（忽略小区聚集）</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>tree_tbl <span class="ot">&lt;-</span> <span class="fu">table</span>(f3<span class="sc">$</span>treatment[f3<span class="sc">$</span>treatment <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"control"</span>, <span class="st">"integrated"</span>)],</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>                  f3<span class="sc">$</span>damaged[f3<span class="sc">$</span>treatment <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"control"</span>, <span class="st">"integrated"</span>)])</span>
@@ -690,13 +690,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="co"># 正确做法：小区级汇总</span></span>
 <span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"小区级 Fisher P ="</span>, <span class="fu">round</span>(<span class="fu">fisher.test</span>(tbl)<span class="sc">$</span>p.value, <span class="dv">4</span>), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span>
 <span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"</span><span class="sc">\n</span><span class="st">树级分析把 400 棵树当作独立观测——</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"</span><span class="sc">\n</span><span class="st">树级分析把 400 棵树当作独立观测：</span><span class="sc">\n</span><span class="st">"</span>)</span>
 <span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"实际上只有 20 个独立实验单位（小区）。</span><span class="sc">\n</span><span class="st">"</span>)</span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"树级 P 值通常更小——不是因为效应更强，而是因为伪重复。</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"树级 P 值通常更小，不是因为效应更强，而是因为伪重复。</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="从比例证据到风险沟通" class="level2">
 <h2 class="anchored" data-anchor-id="从比例证据到风险沟通">10.7 从比例证据到风险沟通</h2>
-<p>完整的风险沟通必须包含： 1. <strong>基线风险：</strong> 对照组受害率是多少？ 2. <strong>绝对风险降低：</strong> 综合防治使受害率降低了多少个百分点？ 3. <strong>相对风险降低：</strong> 降低的比例是多少？ 4. <strong>不确定性：</strong> 这些估计的置信区间？ 5. <strong>聚集提醒：</strong> 分析在小区层级进行，树木不是独立重复。</p>
+<p>完整的风险沟通必须包含： 1. 基线风险：对照组受害率是多少？ 2. 绝对风险降低：综合防治使受害率降低了多少个百分点？ 3. 相对风险降低：降低的比例是多少？ 4. 不确定性。这些估计的置信区间？ 5. 聚集提醒：分析在小区层级进行，树木不是独立重复。</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"=== 风险沟通摘要 ===</span><span class="sc">\n\n</span><span class="st">"</span>)</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"对照组高受害小区比例:"</span>, <span class="fu">round</span>(risk_ctrl <span class="sc">*</span> <span class="dv">100</span>), <span class="st">"%</span><span class="sc">\n</span><span class="st">"</span>)</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"综合防治组高受害小区比例:"</span>, <span class="fu">round</span>(risk_int <span class="sc">*</span> <span class="dv">100</span>), <span class="st">"%</span><span class="sc">\n</span><span class="st">"</span>)</span>
@@ -708,25 +708,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="本章小结" class="level2">
 <h2 class="anchored" data-anchor-id="本章小结">本章小结</h2>
 <ul>
-<li><strong>比例必须保留分子和分母。</strong> 3/5 和 60/100 都是 60%，但证据强度完全不同。</li>
-<li><strong>卡方检验依赖大样本近似；Fisher 检验适用于小样本。</strong> 选择取决于期望频数，不是”哪个 P 值更小”。</li>
-<li><strong>优势比不是风险比。</strong> 当基线风险不低时，OR 会严重偏离 RR——在保护沟通中优先使用风险差和风险比。</li>
-<li><strong>树木嵌套于小区——树级汇总制造伪重复。</strong> 分类分析同样需要尊重设计层级。</li>
-<li><strong>风险沟通必须同时给出基线风险和绝对差异。</strong> 只报告”风险降低 50%“而不说基线风险是 2% 还是 50%，是误导。</li>
+<li>比例必须保留分子和分母。3/5 和 60/100 都是 60%，但证据强度完全不同。</li>
+<li>卡方检验依赖大样本近似；Fisher 检验适用于小样本。选择取决于期望频数，不是”哪个 P 值更小”。</li>
+<li>优势比不是风险比。当基线风险不低时，OR 会严重偏离 RR：在保护沟通中优先使用风险差和风险比。</li>
+<li>树木嵌套于小区：树级汇总制造伪重复。分类分析同样需要尊重设计层级。</li>
+<li>风险沟通必须同时给出基线风险和绝对差异。只报告”风险降低 50%“而不说基线风险是 2% 还是 50%，是误导。</li>
 </ul>
 </section>
 <section id="练习" class="level2">
 <h2 class="anchored" data-anchor-id="练习">练习</h2>
 <ol type="1">
-<li><p><strong>识别层。</strong> 以下比例的分母是什么？证据强度如何？</p>
+<li><p>识别层。以下比例的分母是什么？证据强度如何？</p>
 <ol type="a">
 <li>“发芽率 80%”（20 粒种子，16 粒发芽）</li>
 <li>“检出率 45%”（60 个样点，27 个至少一次检出）</li>
 </ol></li>
-<li><p><strong>解释层。</strong> 为什么优势比不等于风险比？在什么情况下两者接近？</p></li>
-<li><p><strong>应用层。</strong> 用森林数据比较标准防治和生物防治的”高受害”比例。使用小区级分析，报告风险差和风险比。</p></li>
-<li><p><strong>诊断层。</strong> 树级卡方检验 P = 0.001，小区级 Fisher 检验 P = 0.08。为什么差异这么大？哪个更可信？</p></li>
-<li><p><strong>综合层。</strong> 把相机检出数据（detected）写成二项结构：分子是什么？分母是什么？独立单位是什么？为什么不能把 1080 行当作独立二项试验？</p></li>
+<li><p>解释层。为什么优势比不等于风险比？在什么情况下两者接近？</p></li>
+<li><p>应用层。用森林数据比较标准防治和生物防治的”高受害”比例。使用小区级分析，报告风险差和风险比。</p></li>
+<li><p>诊断层。树级卡方检验 P = 0.001，小区级 Fisher 检验 P = 0.08。为什么差异这么大？哪个更可信？</p></li>
+<li><p>综合层。把相机检出数据（detected）写成二项结构：分子是什么？分母是什么？独立单位是什么？为什么不能把 1080 行当作独立二项试验？</p></li>
 </ol>
 </section>
 <section id="继续学习" class="level2">

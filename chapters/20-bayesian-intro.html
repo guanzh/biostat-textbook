@@ -485,55 +485,55 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <div class="ch20-pipeline">
     <div class="ch20-stage s1">
       <div class="ch20-stage-h">① 写出先验</div>
-      <div class="ch20-stage-body">根据已有知识设定先验分布——弱信息、实质先验、或均匀</div>
+      <div class="ch20-stage-body">根据已有知识设定先验分布：弱信息、实质先验、或均匀</div>
     </div>
     <div class="ch20-arrow" aria-hidden="true">→</div>
     <div class="ch20-stage s2">
       <div class="ch20-stage-h">② 接入数据</div>
-      <div class="ch20-stage-body">似然函数 × 先验 → 后验——数据更新了我们的信念</div>
+      <div class="ch20-stage-body">似然函数 × 先验 → 后验。数据更新了我们的信念</div>
     </div>
     <div class="ch20-arrow" aria-hidden="true">→</div>
     <div class="ch20-stage s3">
       <div class="ch20-stage-h">③ 比较行动</div>
-      <div class="ch20-stage-body">P(效果 &gt; 阈值 | 数据)——直接回答管理者的问题</div>
+      <div class="ch20-stage-body">P(效果 &gt; 阈值 | 数据)：直接回答管理者的问题</div>
     </div>
   </div>
   <div class="ch20-caveat">
-    <b>黑豹提醒：</b>贝叶斯不自动解决小样本问题——弱数据 + 强先验 = 后验就是先验。
+    黑豹提醒：贝叶斯不自动解决小样本问题：弱数据 + 强先验 = 后验就是先验。
   </div>
 </div>
 <section id="概率更新服务哪个决策" class="level2">
 <h2 class="anchored" data-anchor-id="概率更新服务哪个决策">20.1 概率更新服务哪个决策</h2>
 <p>前面 19 章使用的是频率学派（frequentist）框架：参数是固定的未知数，数据是随机的，P 值是”如果零假设为真，观察到当前数据的概率”。</p>
-<p>贝叶斯框架翻转了这个逻辑：<strong>参数是随机的（表达我们的不确定性），数据是固定的（已经观察到的）。</strong> 我们从先验信念出发，用数据更新信念，得到后验信念。</p>
+<p>贝叶斯框架翻转了这个逻辑：参数是随机的（表达我们的不确定性），数据是固定的（已经观察到的）。我们从先验信念出发，用数据更新信念，得到后验信念。</p>
 <p>贝叶斯框架直接回答管理者真正关心的问题： - “综合防治效果超过阈值的概率是多少？” → P(效果 &gt; 阈值 | 数据) - “下一个样方的丰富度会落在什么范围？” → 后验预测分布</p>
-<p>频率学派不能直接回答这些问题——它只能回答”如果零假设为真，数据的概率”。</p>
+<p>频率学派不能直接回答这些问题。它只能回答”如果零假设为真，数据的概率”。</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>forest <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"../data/teaching/forest_pest_trial_long.csv"</span>,</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>                   <span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="chapter-route" aria-label="本章学习路线">
 <div>
-<strong>写出先验</strong><span>可解释可检查</span>
+写出先验<span>可解释可检查</span>
 </div>
 <div>
-<strong>接入数据</strong><span>似然×先验→后验</span>
+接入数据<span>似然×先验→后验</span>
 </div>
 <div>
-<strong>检查预测</strong><span>先验预测与后验预测</span>
+检查预测<span>先验预测与后验预测</span>
 </div>
 <div>
-<strong>诊断计算</strong><span>R-hat 与有效样本量</span>
+诊断计算<span>R-hat 与有效样本量</span>
 </div>
 <div>
-<strong>比较行动</strong><span>决策概率与敏感性</span>
+比较行动<span>决策概率与敏感性</span>
 </div>
 </div>
 <div class="learning-goals">
-<p><strong>学完本章后，你能够：</strong></p>
+<p>学完本章后，你能够：</p>
 <ol type="1">
 <li>解释先验、似然和后验的概念，以及贝叶斯更新的直观含义。</li>
 <li>区分弱信息先验、实质先验和均匀先验，并说明先验必须可解释和可检查。</li>
 <li>解释可信区间与频率学派置信区间的区别。</li>
-<li>理解后验预测检查的目的——模型生成的数据是否像真实数据。</li>
+<li>理解后验预测检查的目的：模型生成的数据是否像真实数据。</li>
 <li>识别 R-hat 和有效样本量在 MCMC 诊断中的作用。</li>
 </ol>
 </div>
@@ -542,19 +542,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="先验似然与后验">20.2 先验、似然与后验</h2>
 <p>贝叶斯定理：P(参数 | 数据) ∝ P(数据 | 参数) × P(参数)</p>
 <ul>
-<li><strong>先验 P(参数)：</strong> 在看到数据之前，我们对参数的信念</li>
-<li><strong>似然 P(数据 | 参数)：</strong> 给定参数，观察到当前数据的概率——与频率学派相同</li>
-<li><strong>后验 P(参数 | 数据)：</strong> 在看到数据之后，我们对参数的更新信念</li>
+<li>先验 P(参数)：在看到数据之前，我们对参数的信念</li>
+<li>似然 P(数据 | 参数)：给定参数，观察到当前数据的概率：与频率学派相同</li>
+<li>后验 P(参数 | 数据)：在看到数据之后，我们对参数的更新信念</li>
 </ul>
-<p><strong>共轭先验：</strong> 当先验和后验属于同一分布族时，后验有解析解。Beta-Binomial 是最经典的例子——适合演示贝叶斯更新的核心逻辑。</p>
+<p>共轭先验：当先验和后验属于同一分布族时，后验有解析解。Beta-Binomial 是最经典的例子：适合演示贝叶斯更新的主要逻辑。</p>
 </section>
 <section id="先验必须可解释和可检查" class="level2">
 <h2 class="anchored" data-anchor-id="先验必须可解释和可检查">20.3 先验必须可解释和可检查</h2>
 <p>三种先验类型：</p>
-<p><strong>弱信息先验（weakly informative）：</strong> 提供合理的范围约束，但不强烈影响结果。例如 Normal(0, 10)——“效应不太可能超过 ±20”。</p>
-<p><strong>实质先验（substantive prior）：</strong> 基于已有研究或专家知识。例如”根据 5 个已发表的苗圃试验，光照效应约为 −0.5 ± 0.3”。</p>
-<p><strong>均匀先验（flat prior）：</strong> 对所有可能值赋予相等的权重。看似”客观”，但实际隐含了”大效应和小效应同样可能”的假设——这在生态学中很少合理。</p>
-<p><strong>先验预测检查：</strong> 在见到数据之前，从先验生成模拟数据——这些模拟数据是否在合理范围内？如果先验预测的虫口密度经常为负数，说明先验不合理。</p>
+<p>弱信息先验（weakly informative）：提供合理的范围约束，但不强烈影响结果。例如 Normal(0, 10)：“效应不太可能超过 ±20”。</p>
+<p>实质先验（substantive prior）：基于已有研究或专家知识。例如”根据 5 个已发表的苗圃试验，光照效应约为 −0.5 ± 0.3”。</p>
+<p>均匀先验（flat prior）：对所有可能值赋予相等的权重。看似”客观”，但实际隐含了”大效应和小效应同样可能”的假设。这在生态学中很少合理。</p>
+<p>先验预测检查：在见到数据之前，从先验生成模拟数据。这些模拟数据是否在合理范围内？如果先验预测的虫口密度经常为负数，说明先验不合理。</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Beta-Binomial 共轭示例：综合防治的"成功"概率</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 定义"成功"：小区受害率 &lt; 30%</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>f3 <span class="ot">&lt;-</span> forest[forest<span class="sc">$</span>visit <span class="sc">==</span> <span class="dv">3</span>, ]</span>
@@ -573,9 +573,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>int_plots<span class="sc">$</span>success <span class="ot">&lt;-</span> int_plots<span class="sc">$</span>damaged_count <span class="sc">&lt;=</span> <span class="dv">6</span></span>
 <span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="co"># 三种先验</span></span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="co"># 先验 1：弱信息——Beta(1, 1) 即均匀分布</span></span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a><span class="co"># 先验 2：乐观——Beta(2, 1)，倾向于高成功率</span></span>
-<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a><span class="co"># 先验 3：悲观——Beta(1, 2)，倾向于低成功率</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="co"># 先验 1：弱信息：Beta(1, 1) 即均匀分布</span></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a><span class="co"># 先验 2：乐观：Beta(2, 1)，倾向于高成功率</span></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a><span class="co"># 先验 3：悲观：Beta(1, 2)，倾向于低成功率</span></span>
 <span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a><span class="co"># 数据：n 个小区中 k 个成功</span></span>
 <span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>k <span class="ot">&lt;-</span> <span class="fu">sum</span>(int_plots<span class="sc">$</span>success)</span>
@@ -627,61 +627,61 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="可信区间与决策概率" class="level2">
 <h2 class="anchored" data-anchor-id="可信区间与决策概率">20.4 可信区间与决策概率</h2>
-<p><strong>可信区间（credible interval）：</strong> “给定数据和先验，参数有 95% 的概率落在这个区间内。”——这是管理者能直接理解的表述。</p>
-<p><strong>决策概率：</strong> “综合防治成功率超过 70% 的概率是多少？”——贝叶斯后验直接给出答案。频率学派不能回答这个问题。</p>
-<p><strong>与频率学派置信区间的区别：</strong> - 95% CI：“如果重复抽样，95% 的区间会包含真实参数。”（关于程序的陈述） - 95% CrI：“参数有 95% 的概率在这个区间内。”（关于参数的陈述）</p>
+<p>可信区间（credible interval）：“给定数据和先验，参数有 95% 的概率落在这个区间内。”。这是管理者能直接理解的表述。</p>
+<p>决策概率：“综合防治成功率超过 70% 的概率是多少？”：贝叶斯后验直接给出答案。频率学派不能回答这个问题。</p>
+<p>与频率学派置信区间的区别： - 95% CI：“如果重复抽样，95% 的区间会包含真实参数。”（关于程序的陈述） - 95% CrI：“参数有 95% 的概率在这个区间内。”（关于参数的陈述）</p>
 </section>
 <section id="后验预测检查" class="level2">
 <h2 class="anchored" data-anchor-id="后验预测检查">20.5 后验预测检查</h2>
-<p><strong>后验预测检查（posterior predictive check）：</strong> 从后验分布中抽取参数，生成模拟数据，比较模拟数据与实际数据的分布。</p>
-<p>如果模型合理，模拟数据应该”看起来像”实际数据。如果模拟数据系统性地缺少零值、或者方差太小——模型需要改进。</p>
-<p>这是比残差图更直观的模型诊断工具——它直接回答”模型生成的数据是否像真实数据”。</p>
+<p>后验预测检查（posterior predictive check）：从后验分布中抽取参数，生成模拟数据，比较模拟数据与实际数据的分布。</p>
+<p>如果模型合理，模拟数据应该”看起来像”实际数据。如果模拟数据系统性地缺少零值，或者方差太小，模型需要改进。</p>
+<p>这是比残差图更直观的模型诊断工具。它直接回答”模型生成的数据是否像真实数据”。</p>
 </section>
 <section id="收敛有效样本量与链诊断" class="level2">
 <h2 class="anchored" data-anchor-id="收敛有效样本量与链诊断">20.6 收敛、有效样本量与链诊断</h2>
-<p>复杂模型（如层级模型、占域模型）的后验通常没有解析解——需要用 MCMC（马尔可夫链蒙特卡洛）采样。</p>
-<p><strong>MCMC 诊断：</strong> - <strong>R-hat：</strong> 多条链之间的收敛诊断。R-hat ≈ 1 表示链已混合，&gt; 1.1 表示未收敛。 - <strong>有效样本量（ESS）：</strong> MCMC 样本不是独立的——ESS 告诉你”这些样本等价于多少个独立样本”。ESS 太低说明混合差。 - <strong>链图（trace plot）：</strong> 可视化链的轨迹——应该像”毛毛虫”，没有明显的趋势或跳跃。</p>
-<p>本章不伪造 MCMC 输出——只解释这些诊断工具的用途和判读标准。</p>
+<p>复杂模型（如层级模型、占域模型）的后验通常没有解析解：需要用 MCMC（马尔可夫链蒙特卡洛）采样。</p>
+<p>MCMC 诊断： - R-hat：多条链之间的收敛诊断。R-hat ≈ 1 表示链已混合，&gt; 1.1 表示未收敛。 - 有效样本量（ESS）：MCMC 样本不是独立的：ESS 告诉你”这些样本等价于多少个独立样本”。ESS 太低说明混合差。 - 链图（trace plot）：可视化链的轨迹：应该像”毛毛虫”，没有明显的趋势或跳跃。</p>
+<p>本章不伪造 MCMC 输出：只解释这些诊断工具的用途和判读标准。</p>
 </section>
 <section id="敏感性和行动边界" class="level2">
 <h2 class="anchored" data-anchor-id="敏感性和行动边界">20.7 敏感性和行动边界</h2>
-<p>贝叶斯分析的最后一个必要步骤：<strong>先验敏感性分析。</strong></p>
-<p>用不同的合理先验重复分析——结论是否稳定？如果弱信息先验和实质先验给出相似的后验，说明数据足够强。如果后验严重依赖先验，说明数据太弱——需要更多数据或更谨慎的结论。</p>
+<p>贝叶斯分析的最后一个必要步骤：先验敏感性分析。</p>
+<p>用不同的合理先验重复分析。结论是否稳定？如果弱信息先验和实质先验给出相似的后验，说明数据足够强。如果后验严重依赖先验，说明数据太弱：需要更多数据或更谨慎的结论。</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"=== 贝叶斯分析报告 ===</span><span class="sc">\n\n</span><span class="st">"</span>)</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"问题：综合防治的成功率（受害率 ≤ 30%）是否超过 50%？</span><span class="sc">\n\n</span><span class="st">"</span>)</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"数据："</span>, n, <span class="st">"个小区中"</span>, k, <span class="st">"个成功</span><span class="sc">\n\n</span><span class="st">"</span>)</span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"结论：</span><span class="sc">\n</span><span class="st">"</span>)</span>
 <span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"- 三种先验下的后验成功率 &gt; 0.5 的概率均较高。</span><span class="sc">\n</span><span class="st">"</span>)</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"- 结论对先验选择不敏感——数据足够强。</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"- 结论对先验选择不敏感。数据足够强。</span><span class="sc">\n</span><span class="st">"</span>)</span>
 <span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"- 可信区间直接回答管理问题。</span><span class="sc">\n\n</span><span class="st">"</span>)</span>
 <span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"边界：</span><span class="sc">\n</span><span class="st">"</span>)</span>
 <span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"- 贝叶斯方法不自动解决小样本问题。</span><span class="sc">\n</span><span class="st">"</span>)</span>
 <span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"- 如果 n=3 且先验很强，后验基本就是先验。</span><span class="sc">\n</span><span class="st">"</span>)</span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"- 先验必须可解释——不能因为'想要显著'而选择乐观先验。</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"- 先验必须可解释，不能因为'想要显著'而选择乐观先验。</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="本章小结" class="level2">
 <h2 class="anchored" data-anchor-id="本章小结">本章小结</h2>
 <ul>
-<li><strong>贝叶斯更新：先验 × 似然 → 后验。</strong> 从已有信念出发，用数据更新，得到新信念。</li>
-<li><strong>可信区间直接回答管理者的问题。</strong> “参数有 95% 的概率在这个区间内”——不需要绕弯解释。</li>
-<li><strong>先验必须可解释和可检查。</strong> 不能因为想要某个结论而选择相应的先验——先验预测检查可以暴露不合理的先验。</li>
-<li><strong>后验预测检查：模型生成的数据是否像真实数据？</strong> 比残差图更直观的诊断工具。</li>
-<li><strong>MCMC 需要诊断。</strong> R-hat、ESS、链图——不收敛的链给出的后验不可信。</li>
-<li><strong>先验敏感性分析是必需的。</strong> 结论是否依赖先验选择？如果依赖，数据太弱。</li>
+<li>贝叶斯更新：先验 × 似然 → 后验。从已有信念出发，用数据更新，得到新信念。</li>
+<li>可信区间直接回答管理者的问题。“参数有 95% 的概率在这个区间内”：不需要绕弯解释。</li>
+<li>先验必须可解释和可检查。不能因为想要某个结论而选择相应的先验：先验预测检查可以暴露不合理的先验。</li>
+<li>后验预测检查。模型生成的数据是否像真实数据？比残差图更直观的诊断工具。</li>
+<li>MCMC 需要诊断。R-hat、ESS、链图：不收敛的链给出的后验不可信。</li>
+<li>先验敏感性分析是必需的。结论是否依赖先验选择？如果依赖，数据太弱。</li>
 </ul>
 </section>
 <section id="练习" class="level2">
 <h2 class="anchored" data-anchor-id="练习">练习</h2>
 <ol type="1">
-<li><p><strong>识别层。</strong> 以下陈述各属于频率学派还是贝叶斯框架？</p>
+<li><p>识别层。以下陈述各属于频率学派还是贝叶斯框架？</p>
 <ol type="a">
 <li>“如果零假设为真，观察到当前数据的概率是 0.03。”</li>
 <li>“给定数据，效应 &gt; 0 的概率是 0.97。”</li>
 </ol></li>
-<li><p><strong>解释层。</strong> 为什么”贝叶斯自动解决小样本问题”是错的？</p></li>
-<li><p><strong>应用层。</strong> 用 Beta-Binomial 模型，计算三种先验下综合防治成功率 &gt; 0.5 的后验概率。结论对先验敏感吗？</p></li>
-<li><p><strong>诊断层。</strong> R-hat = 1.5 意味着什么？你应该怎么做？</p></li>
-<li><p><strong>综合层。</strong> 为黄黄草先导试验设计弱信息先验。说明：你选择了什么分布、什么参数、为什么这是”弱信息”而不是”无信息”。</p></li>
+<li><p>解释层。为什么”贝叶斯自动解决小样本问题”是错的？</p></li>
+<li><p>应用层。用 Beta-Binomial 模型，计算三种先验下综合防治成功率 &gt; 0.5 的后验概率。结论对先验敏感吗？</p></li>
+<li><p>诊断层。R-hat = 1.5 意味着什么？你应该怎么做？</p></li>
+<li><p>综合层。为黄黄草先导试验设计弱信息先验。说明：你选择了什么分布、什么参数、为什么这是”弱信息”而不是”无信息”。</p></li>
 </ol>
 </section>
 <section id="继续学习" class="level2">

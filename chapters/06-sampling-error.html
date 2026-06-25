@@ -486,29 +486,29 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <div class="ch6-pipeline">
     <div class="ch6-stage s1">
       <div class="ch6-stage-h">① 样本代表谁</div>
-      <div class="ch6-stage-body">60 个相机样点——它们覆盖了整个保护区，还是只覆盖了道路两侧？</div>
+      <div class="ch6-stage-body">60 个相机样点。它们覆盖了整个保护区，还是只覆盖了道路两侧？</div>
     </div>
     <div class="ch6-arrow" aria-hidden="true">→</div>
     <div class="ch6-stage s2">
       <div class="ch6-stage-h">② 拆分误差来源</div>
-      <div class="ch6-stage-body">覆盖偏差、测量误差、探测失败、模型假设——每类误差需要不同的缓解措施</div>
+      <div class="ch6-stage-body">覆盖偏差、测量误差、探测失败、模型假设：每类误差需要不同的缓解措施</div>
     </div>
     <div class="ch6-arrow" aria-hidden="true">→</div>
     <div class="ch6-stage s3">
       <div class="ch6-stage-h">③ 建立不确定性预算</div>
-      <div class="ch6-stage-body">区间不是"样本量够不够"的问题——是每种误差来源各贡献了多少不确定性</div>
+      <div class="ch6-stage-body">区间不是"样本量够不够"的问题：是每种误差来源各贡献了多少不确定性</div>
     </div>
   </div>
   <div class="ch6-caveat">
-    <b>黑豹提醒：</b>扩大样本不能修复系统偏差——更多的有偏样本只产生更窄的错误区间。
+    黑豹提醒：扩大样本不能修复系统偏差。更多的有偏样本只产生更窄的错误区间。
   </div>
 </div>
 <section id="样本究竟要代表谁" class="level2">
 <h2 class="anchored" data-anchor-id="样本究竟要代表谁">6.1 样本究竟要代表谁</h2>
-<p>第 5 章让你看清了数据长什么样。但描述统计回答的是”我手上的数据是什么样的”——它不回答”我手上的数据能代表谁”。</p>
-<p>这是抽样推断的核心问题。回到红外相机监测项目：你在保护区布设了 60 个相机样点，连续三年每年调查 6 次，积累了 1080 条记录。第 5 章的数据画像告诉你检出率、照片数的分布、样点间的差异。但如果你要说”目标物种在保护区的占域率约为 45%“，你必须先回答：<strong>这 60 个样点能代表整个保护区吗？</strong></p>
-<p>目标总体（target population）是你想把结论推广到的所有对象。对于红外相机监测，目标总体是”保护区范围内所有可能被目标物种利用的生境”。但你的 60 个样点只是从这个总体中选出的一个样本——它们是否覆盖了所有生境类型？是否有些区域（陡峭山脊、密灌丛、深谷）根本没有样点？</p>
-<p>抽样框（sampling frame）是实际从中抽取样本的名单或范围。如果保护区有 500 个 1 km² 的网格，你从中随机抽取了 60 个布设相机——那么抽样框是 500 个网格，样本是 60 个。但如果你的 60 个样点全部位于”步行 2 小时内可达”的区域，那么抽样框实际上被缩小了——不可达区域根本没有机会被抽中。</p>
+<p>第 5 章让你看清了数据长什么样。但描述统计回答的是”我手上的数据是什么样的”。也不回答”我手上的数据能代表谁”。</p>
+<p>这是抽样推断的要紧的问题。回到红外相机监测项目：你在保护区布设了 60 个相机样点，连续三年每年调查 6 次，积累了 1080 条记录。第 5 章的数据画像告诉你检出率、照片数的分布、样点间的差异。但如果你要说”目标物种在保护区的占域率约为 45%“，你必须先回答：这 60 个样点能代表整个保护区吗？</p>
+<p>目标总体（target population）是你想把结论推广到的所有对象。对于红外相机监测，目标总体是”保护区范围内所有可能被目标物种利用的生境”。但你的 60 个样点只是从这个总体中选出的一个样本。它们是否覆盖了所有生境类型？是否有些区域（陡峭山脊、密灌丛、深谷）根本没有样点？</p>
+<p>抽样框（sampling frame）是实际从中抽取样本的名单或范围。如果保护区有 500 个 1 km² 的网格，你从中随机抽取了 60 个布设相机：那么抽样框是 500 个网格，样本是 60 个。但如果你的 60 个样点全部位于”步行 2 小时内可达”的区域，那么抽样框实际上被缩小了：不可达区域根本没有机会被抽中。</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 读取相机数据</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>camera <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"../data/teaching/camera_monitoring_long.csv"</span>,</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>                   <span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span>)</span>
@@ -521,15 +521,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co"># 检查森林覆盖的分布</span></span>
 <span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(camera<span class="sc">$</span>forest_cover)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="observation-question">
-<p><strong>观察问题：</strong> 你的 60 个相机样点中，距离道路 2 km 以内的占了多少？如果目标物种偏好远离道路的生境，你的样本能代表它的真实分布吗？</p>
+<p>观察问题：你的 60 个相机样点中，距离道路 2 km 以内的占了多少？如果目标物种偏好远离道路的生境，你的样本能代表它的真实分布吗？</p>
 </div>
 </section>
 <section id="抽样框决定哪些对象有机会进入数据" class="level2">
 <h2 class="anchored" data-anchor-id="抽样框决定哪些对象有机会进入数据">6.2 抽样框决定哪些对象有机会进入数据</h2>
 <p>抽样框是推断链条中最容易被忽视的一环。三种常见的抽样方式，对应三种不同的推断范围：</p>
-<p><strong>概率抽样（probability sampling）：</strong> 总体中每个单位有已知的、非零的概率被抽中。简单随机抽样、分层抽样、系统抽样都属于这一类。只有概率抽样允许你从样本推断总体——因为你知道每个单位被抽中的概率，可以据此加权。</p>
-<p><strong>便利抽样（convenience sampling）：</strong> 样本由最容易获取的单位组成——“沿道路布设相机”“选最近的 10 个样地”。便利样本不能代表总体，因为”容易获取”本身就是一个系统性的选择偏差。</p>
-<p><strong>目的抽样（purposive sampling）：</strong> 根据研究目的有意识地选择特定单位——“选已知有目标物种活动的区域布设相机”。目的抽样适合探索性研究，但不能用于推断总体参数。</p>
+<p>概率抽样（probability sampling）：总体中每个单位有已知的、非零的概率被抽中。简单随机抽样、分层抽样、系统抽样都属于这一类。只有概率抽样允许你从样本推断总体，因为你知道每个单位被抽中的概率，可以据此加权。</p>
+<p>便利抽样（convenience sampling）：样本由最容易获取的单位组成：“沿道路布设相机”“选最近的 10 个样地”。便利样本不能代表总体，因为”容易获取”本身就是一个系统性的选择偏差。</p>
+<p>目的抽样（purposive sampling）：根据研究目的有意识地选择特定单位：“选已知有目标物种活动的区域布设相机”。目的抽样适合探索性研究，但不能用于推断总体参数。</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 演示：全样点 vs 道路旁便利样点的检出率差异</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 假设"道路旁"定义为距离道路 &lt; 1 km</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>roadside <span class="ot">&lt;-</span> camera<span class="sc">$</span>distance_road_km <span class="sc">&lt;</span> <span class="dv">1</span></span>
@@ -542,20 +542,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="co"># 差异可能来自生境偏好，也可能来自抽样偏差</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="key-judgment">
-<p><strong>关键判断：</strong> 抽样框决定了”谁有机会被听见”。如果某些生境类型根本没有样点，那么无论你收集多少照片，你的结论都不能推广到那些生境。</p>
+<p>判断：抽样框决定了”谁有机会被听见”。如果某些生境类型根本没有样点，那么无论你收集多少照片，你的结论都不能推广到那些生境。</p>
 </div>
 </section>
 <section id="随机误差与系统偏差不能互相替代" class="level2">
 <h2 class="anchored" data-anchor-id="随机误差与系统偏差不能互相替代">6.3 随机误差与系统偏差不能互相替代</h2>
 <p>误差有两种根本不同的类型，它们需要完全不同的应对策略。</p>
-<p><strong>随机误差（random error）：</strong> 由抽样、测量或自然过程的随机波动引起。它的特点是：重复抽样时，误差有时高有时低，平均趋向于零。增加样本量可以减小随机误差——更多的独立样点会让均值更稳定，标准误更小。</p>
-<p><strong>系统偏差（systematic bias）：</strong> 由抽样方式、测量工具或数据处理的系统性缺陷引起。它的特点是：重复抽样时，误差始终偏向同一方向。增加样本量不能减小系统偏差——更多的有偏样本只会产生更窄但同样错误的结果。</p>
+<p>随机误差（random error）：由抽样、测量或自然过程的随机波动引起。它的特点是：重复抽样时，误差有时高有时低，平均趋向于零。增加样本量可以减小随机误差。更多的独立样点会让均值更稳定，标准误更小。</p>
+<p>系统偏差（systematic bias）：由抽样方式、测量工具或数据处理的系统性缺陷引起。它的特点是：重复抽样时，误差始终偏向同一方向。增加样本量不能减小系统偏差。更多的有偏样本只会产生更窄但同样错误的结果。</p>
 <p>红外相机监测中的系统偏差来源：</p>
 <ul>
-<li><strong>选择偏差：</strong> 样点全部布在道路旁 → 低估远离道路生境中的物种出现率</li>
-<li><strong>测量偏差：</strong> 相机触发灵敏度不一致 → 某些样点系统性漏拍</li>
-<li><strong>探测偏差：</strong> 目标物种在密林中的可探测性低于开阔地 → 密林样点检出率系统性偏低</li>
-<li><strong>失访偏差：</strong> 相机故障集中在雨季 → 雨季的物种活动模式缺失</li>
+<li>选择偏差：样点全部布在道路旁 → 低估远离道路生境中的物种出现率</li>
+<li>测量偏差：相机触发灵敏度不一致 → 某些样点系统性漏拍</li>
+<li>探测偏差：目标物种在密林中的可探测性低于开阔地 → 密林样点检出率系统性偏低</li>
+<li>失访偏差：相机故障集中在雨季 → 雨季的物种活动模式缺失</li>
 </ul>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 演示：随机误差 vs 系统偏差</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 假设真实检出率为 0.5，但道路旁样点系统性高估 0.1</span></span>
@@ -573,18 +573,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="mascot-note">
 <img src="../images/mascot/cat-point.svg" alt="" class="mascot" aria-hidden="true">
 <div class="mascot-note-copy">
-<strong>黑豹提醒：更多数据不能修复系统偏差</strong>
+黑豹提醒：更多数据不能修复系统偏差
 <p>
-如果 60 个相机全部布在道路旁，拍 10 万张照片得到的检出率仍然只代表”道路旁的物种活动”——它不能告诉你远离道路的森林里物种是否存在。增加照片数缩小了随机误差，但系统偏差纹丝不动。
+如果 60 个相机全部布在道路旁，拍 10 万张照片得到的检出率仍然只代表”道路旁的物种活动”。它不能告诉你远离道路的森林里物种是否存在。增加照片数缩小了随机误差，但系统偏差纹丝不动。
 </p>
 </div>
 </div>
 </section>
 <section id="标准误和区间描述哪一种不确定性" class="level2">
 <h2 class="anchored" data-anchor-id="标准误和区间描述哪一种不确定性">6.4 标准误和区间描述哪一种不确定性</h2>
-<p>标准误（standard error, SE）可能是统计入门中最容易被误解的概念。它不是”数据的变异程度”——那是标准差（SD）。标准误是<strong>样本均值的变异程度</strong>：如果你从同一个总体中反复抽取同样大小的样本，这些样本均值之间的标准差就是标准误。</p>
-<p>SE = SD / √n。这个公式揭示了一个关键关系：<strong>标准误随样本量的平方根减小。</strong> 要把标准误减半，你需要 4 倍的样本量。</p>
-<p>置信区间（confidence interval）是标准误的直接应用。一个 95% 置信区间的正确解释是：<strong>如果从同一个总体中反复抽样并计算区间，95% 的区间会包含真实参数。</strong> 它不表示”真实参数有 95% 的概率落在这个区间内”——参数是固定的，不是随机的。这是频率学派和贝叶斯学派（第 20 章）的根本分歧。</p>
+<p>标准误（standard error, SE）可能是统计入门中最容易被误解的概念。它不是”数据的变异程度”：那是标准差（SD）。标准误是样本均值的变异程度。如果你从同一个总体中反复抽取同样大小的样本，这些样本均值之间的标准差就是标准误。</p>
+<p>SE = SD / √n。这个公式揭示了一个关键关系：标准误随样本量的平方根减小。要把标准误减半，你需要 4 倍的样本量。</p>
+<p>置信区间（confidence interval）是标准误的直接应用。一个 95% 置信区间的正确解释是。如果从同一个总体中反复抽样并计算区间，95% 的区间会包含真实参数。它不表示”真实参数有 95% 的概率落在这个区间内”：参数是固定的，不是随机的。这是频率学派和贝叶斯学派（第 20 章）的根本分歧。</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 演示：标准误 vs 标准差</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 以相机样点的森林覆盖度为例</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>forest_cover <span class="ot">&lt;-</span> <span class="fu">aggregate</span>(forest_cover <span class="sc">~</span> station_id, <span class="at">data =</span> camera, <span class="at">FUN =</span> mean)</span>
@@ -599,16 +599,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="co"># 95% 置信区间（正态近似）</span></span>
 <span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(fc) <span class="sc">+</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="dv">1</span>) <span class="sc">*</span> <span class="fl">1.96</span> <span class="sc">*</span> <span class="fu">sd</span>(fc) <span class="sc">/</span> <span class="fu">sqrt</span>(<span class="fu">length</span>(fc))</span>
 <span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="co"># 注意：这个区间只反映抽样误差——它假设样点是随机抽取的，</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="co"># 注意。这个区间只反映抽样误差。它假设样点是随机抽取的，</span></span>
 <span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="co"># 且没有考虑测量误差、探测误差或模型假设违反</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="key-judgment">
-<p><strong>关键判断：</strong> 标准误只反映特定模型下的随机抽样变异。它不包含选择偏差、测量误差、探测失败或模型错误带来的不确定性。</p>
+<p>判断：标准误只反映特定模型下的随机抽样变异。它不包含选择偏差、测量误差、探测失败或模型错误带来的不确定性。</p>
 </div>
 </section>
 <section id="重抽样必须尊重独立单位" class="level2">
 <h2 class="anchored" data-anchor-id="重抽样必须尊重独立单位">6.5 重抽样必须尊重独立单位</h2>
 <p>Bootstrap 是一种通过从原始数据中有放回地重抽样来估计统计量分布的方法。它不依赖正态假设，是理解不确定性的有力工具。</p>
-<p>但 bootstrap 有一个致命的陷阱：<strong>重抽样的单位必须是独立单位。</strong> 如果你对 1080 行相机数据直接做 bootstrap（每行有相等的被抽中概率），你实际上假设了 1080 行是独立的——这意味着你把同一个样点的 18 次重复调查当成了 18 个独立观测。</p>
+<p>但 bootstrap 有一个致命的陷阱：重抽样的单位必须是独立单位。如果你对 1080 行相机数据直接做 bootstrap（每行有相等的被抽中概率），你实际上假设了 1080 行是独立的。这意味着你把同一个样点的 18 次重复调查当成了 18 个独立观测。</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 错误做法：按行重抽样（把 occasion 当独立单位）</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">20260620</span>)</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>n_boot <span class="ot">&lt;-</span> <span class="dv">1000</span></span>
@@ -616,7 +616,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  idx <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(camera), <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
 <span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mean</span>(camera<span class="sc">$</span>detected[idx])</span>
 <span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>})</span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="co"># 区间会很窄——因为伪重复制造了虚假的精度</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="co"># 区间会很窄，因为伪重复制造了虚假的精度</span></span>
 <span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="fu">quantile</span>(boot_means_wrong, <span class="fu">c</span>(<span class="fl">0.025</span>, <span class="fl">0.975</span>))</span>
 <span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="co"># 正确做法：按样点重抽样</span></span>
@@ -627,7 +627,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>  samp <span class="ot">&lt;-</span> camera[camera<span class="sc">$</span>station_id <span class="sc">%in%</span> idx_stations, ]</span>
 <span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mean</span>(samp<span class="sc">$</span>detected)</span>
 <span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>})</span>
-<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a><span class="co"># 区间会更宽——因为正确反映了样点间的变异</span></span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a><span class="co"># 区间会更宽，因为正确反映了样点间的变异</span></span>
 <span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a><span class="fu">quantile</span>(boot_means_right, <span class="fu">c</span>(<span class="fl">0.025</span>, <span class="fl">0.975</span>))</span>
 <span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a><span class="co"># 比较两种方法的区间宽度</span></span>
@@ -636,12 +636,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"正确方法区间宽度:"</span>,</span>
 <span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>    <span class="fu">diff</span>(<span class="fu">quantile</span>(boot_means_right, <span class="fu">c</span>(<span class="fl">0.025</span>, <span class="fl">0.975</span>))), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="key-judgment">
-<p><strong>关键判断：</strong> Bootstrap 的重抽样单位必须与研究设计中的独立单位一致。对 1080 行重抽样假设行间独立——这等于把同一样点的 18 次重复调查当作 18 个独立样点。</p>
+<p>判断：Bootstrap 的重抽样单位必须与研究设计中的独立单位一致。对 1080 行重抽样假设行间独立。这等于把同一样点的 18 次重复调查当作 18 个独立样点。</p>
 </div>
 </section>
 <section id="建立调查的不确定性预算" class="level2">
 <h2 class="anchored" data-anchor-id="建立调查的不确定性预算">6.6 建立调查的不确定性预算</h2>
-<p>不确定性预算（uncertainty budget）是一份系统性的清单，列出所有可能影响结论的误差来源、它们的方向、大致量级和缓解措施。它不是精确的定量工具——它是防止你遗漏重要误差来源的检查表。</p>
+<p>不确定性预算（uncertainty budget）是一份系统性的清单，列出所有可能影响结论的误差来源、它们的方向、大致量级和缓解措施。它不是精确的定量工具。它是防止你遗漏重要误差来源的检查表。</p>
 <p>红外相机监测的不确定性预算：</p>
 <table class="caption-top table">
 <thead>
@@ -694,7 +694,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td>模型偏差</td>
 <td>未知</td>
 <td>诊断、替代模型</td>
-<td>第 8–12 章</td>
+<td>第 8-12 章</td>
 </tr>
 </tbody>
 </table>
@@ -713,15 +713,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="不确定性如何改变监测行动" class="level2">
 <h2 class="anchored" data-anchor-id="不确定性如何改变监测行动">6.7 不确定性如何改变监测行动</h2>
-<p>不确定性的最终用途不是报告一个数字——而是指导下一步行动。不同来源的不确定性需要不同的行动：</p>
+<p>不确定性的最终用途不是报告一个数字，而是指导下一步行动。不同来源的不确定性需要不同的行动：</p>
 <ul>
-<li><strong>样点覆盖不足 → 扩大抽样框。</strong> 在未覆盖的生境类型中增设样点。</li>
-<li><strong>样点数量不足 → 增加样点。</strong> 增加照片数或重复调查次数不能替代增加独立样点。</li>
-<li><strong>探测概率低 → 增加重复调查或改进设备。</strong> 占域模型（第 19 章）可以分离探测过程。</li>
-<li><strong>模型假设不确定 → 做敏感性分析。</strong> 用不同模型重复分析，看结论是否稳定。</li>
+<li>样点覆盖不足 → 扩大抽样框。在未覆盖的生境类型中增设样点。</li>
+<li>样点数量不足 → 增加样点。增加照片数或重复调查次数不能替代增加独立样点。</li>
+<li>探测概率低 → 增加重复调查或改进设备。占域模型（第 19 章）可以分离探测过程。</li>
+<li>模型假设不确定 → 做敏感性分析。用不同模型重复分析，看结论是否稳定。</li>
 </ul>
-<p><strong>反例：</strong> 某分析者用 60 个道路旁样点、共 10 万张照片，计算目标物种的”出现率”为 62%，95% 置信区间为 [59%, 65%]——区间非常窄。他据此报告”保护区目标物种出现率约为 62%，估计很精确”。</p>
-<p>问题在哪里？这个窄区间只反映了<strong>给定这 60 个道路旁样点的随机抽样误差</strong>。它完全没有反映”道路旁样点不能代表远离道路的生境”这一系统偏差。真正的出现率可能是 30%（如果目标物种回避道路），也可能是 80%（如果目标物种偏好道路）——这个区间没有提供任何关于系统偏差的信息。</p>
+<p>反例：某分析者用 60 个道路旁样点、共 10 万张照片，计算目标物种的”出现率”为 62%，95% 置信区间为 [59%, 65%]：区间非常窄。他据此报告”保护区目标物种出现率约为 62%，估计很精确”。</p>
+<p>问题在哪里？这个窄区间只反映了给定这 60 个道路旁样点的随机抽样误差。它完全没有反映”道路旁样点不能代表远离道路的生境”这一系统偏差。真正的出现率可能是 30%（如果目标物种回避道路），也可能是 80%（如果目标物种偏好道路）。这个区间没有提供任何关于系统偏差的信息。</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 演示：比较全样点与道路旁样点的检出率差异</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 按道路距离分组</span></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>camera<span class="sc">$</span>road_group <span class="ot">&lt;-</span> <span class="fu">cut</span>(camera<span class="sc">$</span>distance_road_km,</span>
@@ -732,38 +732,38 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="co"># 如果三组的检出率系统性地不同，</span></span>
 <span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="co"># 那么"全样点均值"的窄区间掩盖了重要的空间异质性</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="key-judgment">
-<p><strong>关键判断：</strong> 一个很窄的置信区间不等于一个可靠的结论。区间只反映特定误差模型下的随机变异——它不包含系统偏差、探测失败或模型错误。</p>
+<p>判断：一个很窄的置信区间不等于一个可靠的结论。区间只反映特定误差模型下的随机变异。它不包含系统偏差、探测失败或模型错误。</p>
 </div>
 </section>
 <section id="本章小结" class="level2">
 <h2 class="anchored" data-anchor-id="本章小结">本章小结</h2>
 <ul>
-<li><strong>样本要代表目标总体，首先取决于抽样框。</strong> 如果某些生境类型没有样点，无论样本多大，结论都不能推广到那些生境。</li>
-<li><strong>随机误差和系统偏差需要完全不同的应对策略。</strong> 增加样本量减小随机误差，但不能修复系统偏差——更多的有偏样本只产生更窄的错误区间。</li>
-<li><strong>标准误描述样本均值的变异，不描述数据的变异。</strong> SE = SD/√n；置信区间只反映特定模型下的随机抽样误差。</li>
-<li><strong>Bootstrap 的重抽样单位必须与独立单位一致。</strong> 对观测行重抽样等于制造伪重复——区间会被人为缩窄。</li>
-<li><strong>不确定性预算是一份系统性的误差清单。</strong> 覆盖偏差、测量误差、探测失败、模型假设——每类误差需要不同的缓解措施。</li>
-<li><strong>不同来源的不确定性需要不同的行动。</strong> 扩大样点覆盖、增加独立样点、增加重复调查、改进设备、做敏感性分析——它们不能互相替代。</li>
+<li>样本要代表目标总体，首先取决于抽样框。如果某些生境类型没有样点，无论样本多大，结论都不能推广到那些生境。</li>
+<li>随机误差和系统偏差需要完全不同的应对策略。增加样本量减小随机误差，但不能修复系统偏差。更多的有偏样本只产生更窄的错误区间。</li>
+<li>标准误描述样本均值的变异，不描述数据的变异。SE = SD/√n；置信区间只反映特定模型下的随机抽样误差。</li>
+<li>Bootstrap 的重抽样单位必须与独立单位一致。对观测行重抽样等于制造伪重复：区间会被人为缩窄。</li>
+<li>不确定性预算是一份系统性的误差清单。覆盖偏差、测量误差、探测失败、模型假设：每类误差需要不同的缓解措施。</li>
+<li>不同来源的不确定性需要不同的行动。扩大样点覆盖、增加独立样点、增加重复调查、改进设备、做敏感性分析。它们不能互相替代。</li>
 </ul>
 </section>
 <section id="练习" class="level2">
 <h2 class="anchored" data-anchor-id="练习">练习</h2>
 <ol type="1">
-<li><p><strong>识别层。</strong> 以下场景中，目标总体和抽样框分别是什么？抽样框是否存在缺口？</p>
+<li><p>识别层。以下场景中，目标总体和抽样框分别是什么？抽样框是否存在缺口？</p>
 <ol type="a">
 <li>60 个红外相机样点全部位于保护区道路网 500 m 范围内。</li>
 <li>黄黄草调查的 10 个固定样地全部位于保护区南坡。</li>
 </ol></li>
-<li><p><strong>解释层。</strong> “我拍了 10 万张照片，样本量非常大，所以结论很可靠。” 请用本章的概念说明为什么照片数不等于独立样本量。</p></li>
-<li><p><strong>应用层。</strong> 为红外相机监测项目选择正确的 bootstrap 重抽样单位，并解释为什么不能按 1080 行重抽样。</p></li>
-<li><p><strong>诊断层。</strong> 一位研究者报告：“目标物种的检出率为 45%，95% CI [42%, 48%]。” 你发现他的 60 个样点全部位于海拔 1000 m 以下。这个置信区间遗漏了什么？</p></li>
-<li><p><strong>综合层。</strong> 为黄黄草野外观察（第 1–2 章的 10 个固定样地监测）建立一份不确定性预算。包含至少四种误差来源，并说明每种误差的方向和缓解措施。</p></li>
+<li><p>解释层。“我拍了 10 万张照片，样本量非常大，所以结论很可靠。” 请用本章的概念说明为什么照片数不等于独立样本量。</p></li>
+<li><p>应用层。为红外相机监测项目选择正确的 bootstrap 重抽样单位，并解释为什么不能按 1080 行重抽样。</p></li>
+<li><p>诊断层。一位研究者报告：“目标物种的检出率为 45%，95% CI [42%, 48%]。” 你发现他的 60 个样点全部位于海拔 1000 m 以下。这个置信区间遗漏了什么？</p></li>
+<li><p>综合层。为黄黄草野外观察（第 1-2 章的 10 个固定样地监测）建立一份不确定性预算。包含至少四种误差来源，并说明每种误差的方向和缓解措施。</p></li>
 </ol>
 </section>
 <section id="继续学习" class="level2">
 <h2 class="anchored" data-anchor-id="继续学习">继续学习</h2>
 <div class="chapter-next">
-<p>下一步：不确定性预算告诉你”我们不知道什么”——第 7 章将教你用图形把这些不确定性、设计结构和证据关系同时呈现出来。</p>
+<p>下一步：不确定性预算告诉你”我们不知道什么”：第 7 章将教你用图形把这些不确定性、设计结构和证据关系同时呈现出来。</p>
 <p>→ <a href="../chapters/07-data-visualization.html">第 7 章：数据可视化</a></p>
 </div>
 

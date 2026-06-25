@@ -485,33 +485,33 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <div class="ch11-pipeline">
     <div class="ch11-stage s1">
       <div class="ch11-stage-h">① 定义目的</div>
-      <div class="ch11-stage-body">描述、预测还是因果？——同一条回归线，三种目的对应三种不同的表述边界</div>
+      <div class="ch11-stage-body">描述、预测还是因果？同一条回归线，三种目的对应三种不同的表述边界</div>
     </div>
     <div class="ch11-arrow" aria-hidden="true">→</div>
     <div class="ch11-stage s2">
       <div class="ch11-stage-h">② 检查关系</div>
-      <div class="ch11-stage-body">散点图、相关系数、非线性、异方差——在拟合模型之前先看数据</div>
+      <div class="ch11-stage-body">散点图、相关系数、非线性、异方差：在拟合模型之前先看数据</div>
     </div>
     <div class="ch11-arrow" aria-hidden="true">→</div>
     <div class="ch11-stage s3">
       <div class="ch11-stage-h">③ 限制外推</div>
-      <div class="ch11-stage-body">置信区间 vs 预测区间、外推边界、留出验证——结论不能超出数据范围</div>
+      <div class="ch11-stage-body">置信区间 vs 预测区间、外推边界、留出验证。结论不能超出数据范围</div>
     </div>
   </div>
   <div class="ch11-caveat">
-    <b>黑豹提醒：</b>相关 ≠ 因果。看到土壤湿度和丰富度正相关，不能直接建议"提高土壤湿度以增加物种"。
+    黑豹提醒：相关 ≠ 因果。看到土壤湿度和丰富度正相关，不能直接建议"提高土壤湿度以增加物种"。
   </div>
 </div>
 <section id="先区分描述预测与因果问题" class="level2">
 <h2 class="anchored" data-anchor-id="先区分描述预测与因果问题">11.1 先区分描述、预测与因果问题</h2>
-<p>前面三章处理的是分组比较——分类处理因素，连续响应。但保护研究中大量问题是连续的：土壤湿度和物种丰富度之间有什么关系？森林覆盖度越高，相机检出率是否越高？</p>
+<p>前面三章处理的是分组比较：分类处理因素，连续响应。但保护研究中大量问题是连续的：土壤湿度和物种丰富度之间有什么关系？森林覆盖度越高，相机检出率是否越高？</p>
 <p>同一条回归线可以服务于三种完全不同的目的：</p>
 <ul>
-<li><strong>描述：</strong> “土壤湿度每增加 1%，物种丰富度平均增加 X 种。”——只描述观测到的关联，不声称因果。</li>
-<li><strong>预测：</strong> “给定土壤湿度为 30%，预测物种丰富度为 Y 种（95% PI: [下限, 上限]）。”——关心预测精度，不关心为什么。</li>
-<li><strong>因果：</strong> “提高土壤湿度会导致物种丰富度增加。”——需要排除混杂、反向因果和替代解释。</li>
+<li>描述：“土壤湿度每增加 1%，物种丰富度平均增加 X 种。”：只描述观测到的关联，不声称因果。</li>
+<li>预测：“给定土壤湿度为 30%，预测物种丰富度为 Y 种（95% PI: [下限, 上限]）。”：关心预测精度，不关心为什么。</li>
+<li>因果：“提高土壤湿度会导致物种丰富度增加。”：需要排除混杂、反向因果和替代解释。</li>
 </ul>
-<p><strong>本章只处理描述和预测。</strong> 因果推断需要额外的设计（随机化、工具变量、DID 等），第 16 章会涉及。</p>
+<p>本章只处理描述和预测。因果推断需要额外的设计（随机化、工具变量、DID 等），第 16 章会涉及。</p>
 <p>本章的主项目回到栖息地修复监测（项目 D）：修复后的样方中，土壤湿度与本地物种盖度之间有什么关系？</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>rest <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"../data/teaching/restoration_site_period.csv"</span>,</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>                 <span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span>)</span>
@@ -521,23 +521,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(rest_ra)  <span class="co"># 30 个样方（6 景观 × 5 样方）</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="chapter-route" aria-label="本章学习路线">
 <div>
-<strong>定义目的</strong><span>描述/预测/因果</span>
+定义目的<span>描述/预测/因果</span>
 </div>
 <div>
-<strong>检查关系</strong><span>散点图优先</span>
+检查关系<span>散点图优先</span>
 </div>
 <div>
-<strong>写出模型</strong><span>斜率的条件含义</span>
+写出模型<span>斜率的条件含义</span>
 </div>
 <div>
-<strong>诊断失败</strong><span>非线性/异方差/杠杆</span>
+诊断失败<span>非线性/异方差/杠杆</span>
 </div>
 <div>
-<strong>限制外推</strong><span>区间与边界</span>
+限制外推<span>区间与边界</span>
 </div>
 </div>
 <div class="learning-goals">
-<p><strong>学完本章后，你能够：</strong></p>
+<p>学完本章后，你能够：</p>
 <ol type="1">
 <li>区分回归的三种目的（描述、预测、因果），并使用对应的表述边界。</li>
 <li>解释回归斜率的单位和条件含义。</li>
@@ -550,7 +550,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="散点图和相关系数能告诉什么" class="level2">
 <h2 class="anchored" data-anchor-id="散点图和相关系数能告诉什么">11.2 散点图和相关系数能告诉什么</h2>
 <p>在拟合任何回归线之前，先画散点图。散点图能暴露： - 关系是否大致线性？ - 是否有异常点？ - 方差是否随 X 变化？ - 是否有聚集结构（同一样方的多个观测）？</p>
-<p>相关系数（Pearson r）量化线性关联的强度和方向：r = 1 完美正相关，r = −1 完美负相关，r = 0 无线性相关。但 r 有三个局限： 1. 它只测量<strong>线性</strong>关联——非线性关系可能 r ≈ 0 但关系很强 2. 它对异常点敏感 3. 它不区分 X 和 Y——相关是对称的，回归不是</p>
+<p>相关系数（Pearson r）量化线性关联的强度和方向：r = 1 完美正相关，r = −1 完美负相关，r = 0 无线性相关。但 r 有三个局限： 1. 它只测量线性关联：非线性关系可能 r ≈ 0 但关系很强 2. 它对异常点敏感 3. 它不区分 X 和 Y：相关是对称的，回归不是</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 散点图：土壤湿度 vs 本地物种盖度</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(rest_ra<span class="sc">$</span>soil_moisture, rest_ra<span class="sc">$</span>native_cover,</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">pch =</span> <span class="dv">16</span>, <span class="at">col =</span> <span class="st">"#4d8294"</span>,</span>
@@ -562,14 +562,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Pearson r ="</span>, <span class="fu">round</span>(cor_test<span class="sc">$</span>estimate, <span class="dv">3</span>),</span>
 <span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">"P ="</span>, <span class="fu">round</span>(cor_test<span class="sc">$</span>p.value, <span class="dv">4</span>), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span>
 <span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="co"># 注意：样方嵌套于景观——这 30 个点不是独立的</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="co"># 注意：样方嵌套于景观。这 30 个点不是独立的</span></span>
 <span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="co"># 同一景观的 5 个样方共享景观条件</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="线性回归的斜率是一个条件比较" class="level2">
 <h2 class="anchored" data-anchor-id="线性回归的斜率是一个条件比较">11.3 线性回归的斜率是一个条件比较</h2>
 <p>简单线性回归模型：Y = β₀ + β₁X + ε</p>
-<p><strong>β₁（斜率）的含义：</strong> 当 X 增加 1 个单位时，Y 平均变化 β₁ 个单位——<strong>在模型中的其他变量保持不变的前提下。</strong></p>
-<p>这个”在其他变量保持不变的前提下”是回归解释的核心。在简单回归中，没有其他变量，所以斜率就是”X 和 Y 的伴随变化”。在多元回归中，斜率变成”在控制其他变量后，X 与 Y 的条件关联”。</p>
+<p>β₁（斜率）的含义：当 X 增加 1 个单位时，Y 平均变化 β₁ 个单位：在模型中的其他变量保持不变的前提下。</p>
+<p>这个”在其他变量保持不变的前提下”是回归解释的主要。在简单回归中，没有其他变量，所以斜率就是”X 和 Y 的伴随变化”。在多元回归中，斜率变成”在控制其他变量后，X 与 Y 的条件关联”。</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 简单线性回归</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>model_simple <span class="ot">&lt;-</span> <span class="fu">lm</span>(native_cover <span class="sc">~</span> soil_moisture, <span class="at">data =</span> rest_ra)</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model_simple)</span>
@@ -590,8 +590,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="混杂变量为什么不能靠多放几个变量解决" class="level2">
 <h2 class="anchored" data-anchor-id="混杂变量为什么不能靠多放几个变量解决">11.4 混杂变量为什么不能靠多放几个变量解决</h2>
-<p>当土壤湿度和本地物种盖度正相关时，至少有三种解释： 1. 土壤湿度 → 本地物种盖度（土壤湿度促进本地物种生长） 2. 本地物种盖度 → 土壤湿度（本地物种的蒸腾作用保持土壤湿度） 3. 第三个变量同时影响两者（如冠层盖度——冠层越高，遮阴越多→土壤湿度高，同时本地物种多）</p>
-<p>多元回归”控制”其他变量，只能排除<strong>已测量</strong>的混杂。未测量的混杂仍然存在。这就是为什么观察性回归不能声称因果——无论你放了多少控制变量。</p>
+<p>当土壤湿度和本地物种盖度正相关时，至少有三种解释： 1. 土壤湿度 → 本地物种盖度（土壤湿度促进本地物种生长） 2. 本地物种盖度 → 土壤湿度（本地物种的蒸腾作用保持土壤湿度） 3. 第三个变量同时影响两者（如冠层盖度：冠层越高，遮阴越多→土壤湿度高，同时本地物种多）</p>
+<p>多元回归”控制”其他变量，只能排除已测量的混杂。未测量的混杂仍然存在。这就是为什么观察性回归不能声称因果：无论你放了多少控制变量。</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 演示：加入冠层盖度后，土壤湿度的效应可能改变</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>model_full <span class="ot">&lt;-</span> <span class="fu">lm</span>(native_cover <span class="sc">~</span> soil_moisture <span class="sc">+</span> canopy_cover <span class="sc">+</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>                  <span class="fu">factor</span>(landscape_id), <span class="at">data =</span> rest_ra)</span>
@@ -604,7 +604,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="mascot-note">
 <img src="../images/mascot/cat-point.svg" alt="" class="mascot" aria-hidden="true">
 <div class="mascot-note-copy">
-<strong>黑豹提醒：统计控制 ≠ 实验控制</strong>
+黑豹提醒：统计控制 ≠ 实验控制
 <p>
 回归模型可以”控制”已测量的变量，但不能控制未测量的混杂。只有随机化实验才能期望排除未测量混杂。观察性回归的结论应该使用”与……相关”“伴随……变化”，而不是”导致”“提高”“降低”。
 </p>
@@ -614,9 +614,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="非线性异方差与高杠杆点" class="level2">
 <h2 class="anchored" data-anchor-id="非线性异方差与高杠杆点">11.5 非线性、异方差与高杠杆点</h2>
 <p>回归的三个常见诊断问题：</p>
-<p><strong>非线性：</strong> 残差图出现弯曲 → 考虑变换或非线性模型（第 12 章 GLM 可以处理某些非线性）。</p>
-<p><strong>异方差：</strong> 残差的散布随拟合值变化 → 标准误可能不准确，考虑稳健标准误或加权回归。</p>
-<p><strong>高杠杆点：</strong> 某些点的 X 值远离其他观测 → 它们对回归线有不成比例的影响。先核查来源，再做敏感性分析。</p>
+<p>非线性：残差图出现弯曲 → 考虑变换或非线性模型（第 12 章 GLM 可以处理某些非线性）。</p>
+<p>异方差：残差的散布随拟合值变化 → 标准误可能不准确，考虑稳健标准误或加权回归。</p>
+<p>高杠杆点：某些点的 X 值远离其他观测 → 它们对回归线有不成比例的影响。先核查来源，再做敏感性分析。</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 诊断图</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">2</span>))</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(model_simple)</span>
@@ -637,9 +637,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="预测区间外推与交叉验证" class="level2">
 <h2 class="anchored" data-anchor-id="预测区间外推与交叉验证">11.6 预测区间、外推与交叉验证</h2>
-<p><strong>置信区间（CI）：</strong> 回归线的平均位置的不确定性——“如果在这个 X 值处重复抽样，回归线均值的范围”。</p>
-<p><strong>预测区间（PI）：</strong> 单个新观测值的不确定性——“在这个 X 值处，一个新样方的 Y 值可能落在什么范围”。PI 总是比 CI 宽，因为它包含了观测层面的随机变异。</p>
-<p><strong>外推：</strong> 在数据范围之外做预测。X 的范围是 [min, max]——在这个范围之外的预测是外推，假设线性关系延伸到未知区域。保护研究中，外推是常见的（预测未来、预测未调查区域），但必须明确标注并讨论风险。</p>
+<p>置信区间（CI）：回归线的平均位置的不确定性：“如果在这个 X 值处重复抽样，回归线均值的范围”。</p>
+<p>预测区间（PI）：单个新观测值的不确定性：“在这个 X 值处，一个新样方的 Y 值可能落在什么范围”。PI 总是比 CI 宽，因为它包含了观测层面的随机变异。</p>
+<p>外推：在数据范围之外做预测。X 的范围是 [min, max]：在这个范围之外的预测是外推，假设线性关系延伸到未知区域。保护研究中，外推是常见的（预测未来、预测未调查区域），但必须明确标注并讨论风险。</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 置信区间 vs 预测区间</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>new_x <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">soil_moisture =</span> <span class="fu">seq</span>(<span class="dv">15</span>, <span class="dv">50</span>, <span class="at">by =</span> <span class="dv">5</span>))</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -674,13 +674,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="从环境关联到修复假设" class="level2">
 <h2 class="anchored" data-anchor-id="从环境关联到修复假设">11.7 从环境关联到修复假设</h2>
-<p>回归分析的结果应该被表述为<strong>假设</strong>，而不是<strong>结论</strong>。</p>
-<p><strong>允许的表述：</strong> “修复后样方中，土壤湿度与本地物种盖度呈正相关（每增加 1% 湿度，盖度平均增加 X 个百分点，95% CI [下限, 上限]）。这一关联在控制冠层盖度和景观差异后仍然存在。”</p>
-<p><strong>不允许的表述：</strong> “提高土壤湿度可以增加本地物种盖度。”——这是因果声称，观察性回归不能支持。</p>
+<p>回归分析的结果应该被表述为假设，而不是结论。</p>
+<p>允许的表述：“修复后样方中，土壤湿度与本地物种盖度呈正相关（每增加 1% 湿度，盖度平均增加 X 个百分点，95% CI [下限, 上限]）。这一关联在控制冠层盖度和景观差异后仍然存在。”</p>
+<p>不允许的表述：“提高土壤湿度可以增加本地物种盖度。”。这是因果声称，观察性回归不能支持。</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"=== 回归分析报告 ===</span><span class="sc">\n\n</span><span class="st">"</span>)</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"问题：修复后样方中，土壤湿度与本地物种盖度的关系（描述性）。</span><span class="sc">\n\n</span><span class="st">"</span>)</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"数据：修复后修复地 30 个样方（6 景观 × 5 样方）。</span><span class="sc">\n</span><span class="st">"</span>)</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"注意：样方嵌套于景观——30 个点不完全独立。</span><span class="sc">\n\n</span><span class="st">"</span>)</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"注意：样方嵌套于景观：30 个点不完全独立。</span><span class="sc">\n\n</span><span class="st">"</span>)</span>
 <span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"简单回归：斜率 ="</span>, <span class="fu">round</span>(b1, <span class="dv">2</span>),</span>
 <span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"95% CI ["</span>, <span class="fu">round</span>(<span class="fu">confint</span>(model_simple)[<span class="st">"soil_moisture"</span>, <span class="dv">1</span>], <span class="dv">2</span>), <span class="st">","</span>,</span>
 <span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">round</span>(<span class="fu">confint</span>(model_simple)[<span class="st">"soil_moisture"</span>, <span class="dv">2</span>], <span class="dv">2</span>), <span class="st">"]</span><span class="sc">\n</span><span class="st">"</span>)</span>
@@ -694,27 +694,27 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="本章小结" class="level2">
 <h2 class="anchored" data-anchor-id="本章小结">本章小结</h2>
 <ul>
-<li><strong>同一条回归线可以服务于描述、预测或因果——三种目的对应不同的表述边界。</strong> 观察性回归只能支持描述和预测。</li>
-<li><strong>相关系数只测量线性关联。</strong> r ≈ 0 不意味着没有关系——可能是非线性的。</li>
-<li><strong>回归斜率是条件比较。</strong> “X 增加 1 单位，Y 平均变化 β₁ 单位——在其他变量不变的前提下。”</li>
-<li><strong>统计控制 ≠ 实验控制。</strong> 多元回归不能排除未测量混杂——只有随机化实验可以。</li>
-<li><strong>预测区间比置信区间宽。</strong> CI 描述回归线均值的不确定性，PI 描述单个新观测的不确定性。</li>
-<li><strong>外推必须明确标注。</strong> 在数据范围之外的预测假设关系不变——这在生态系统中很少成立。</li>
+<li>同一条回归线可以服务于描述、预测或因果：三种目的对应不同的表述边界。观察性回归只能支持描述和预测。</li>
+<li>相关系数只测量线性关联。r ≈ 0 不意味着没有关系：可能是非线性的。</li>
+<li>回归斜率是条件比较。“X 增加 1 单位，Y 平均变化 β₁ 单位：在其他变量不变的前提下。”</li>
+<li>统计控制 ≠ 实验控制。多元回归不能排除未测量混杂：只有随机化实验可以。</li>
+<li>预测区间比置信区间宽。CI 描述回归线均值的不确定性，PI 描述单个新观测的不确定性。</li>
+<li>外推必须明确标注。在数据范围之外的预测假设关系不变。这在生态系统中很少成立。</li>
 </ul>
 </section>
 <section id="练习" class="level2">
 <h2 class="anchored" data-anchor-id="练习">练习</h2>
 <ol type="1">
-<li><p><strong>识别层。</strong> 以下回归分析各属于哪种目的（描述/预测/因果）？</p>
+<li><p>识别层。以下回归分析各属于哪种目的（描述/预测/因果）？</p>
 <ol type="a">
 <li>“森林覆盖度每增加 10%，相机检出率增加 5%。”</li>
 <li>“给定森林覆盖度 60%，预测检出率为 45%。”</li>
 <li>“增加森林覆盖度可以提高物种检出率。”</li>
 </ol></li>
-<li><p><strong>解释层。</strong> 为什么”控制更多变量”不能自动解决混杂问题？</p></li>
-<li><p><strong>应用层。</strong> 用修复地数据，分析冠层盖度与土壤湿度的关系。报告斜率、置信区间和 R²。</p></li>
-<li><p><strong>诊断层。</strong> 残差 vs 拟合值图显示”喇叭形”（拟合值越大，残差散布越宽）。这意味着什么？你应该怎么处理？</p></li>
-<li><p><strong>综合层。</strong> 为相机数据中的森林覆盖度与检出率（按样点聚合）做回归分析。写一段结论，使用正确的描述性表述（不允许因果声称），并说明外推边界。</p></li>
+<li><p>解释层。为什么”控制更多变量”不能自动解决混杂问题？</p></li>
+<li><p>应用层。用修复地数据，分析冠层盖度与土壤湿度的关系。报告斜率、置信区间和 R²。</p></li>
+<li><p>诊断层。残差 vs 拟合值图显示”喇叭形”（拟合值越大，残差散布越宽）。这意味着什么？你应该怎么处理？</p></li>
+<li><p>综合层。为相机数据中的森林覆盖度与检出率（按样点聚合）做回归分析。写一段结论，使用正确的描述性表述（不允许因果声称），并说明外推边界。</p></li>
 </ol>
 </section>
 <section id="继续学习" class="level2">

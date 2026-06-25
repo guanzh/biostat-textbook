@@ -485,71 +485,71 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <div class="ch21-pipeline">
     <div class="ch21-stage s1">
       <div class="ch21-stage-h">① 识别依赖</div>
-      <div class="ch21-stage-body">相邻年份、相邻样点——观测不是独立的，依赖结构必须进入模型</div>
+      <div class="ch21-stage-body">相邻年份、相邻样点：观测不是独立的，依赖结构必须进入模型</div>
     </div>
     <div class="ch21-arrow" aria-hidden="true">→</div>
     <div class="ch21-stage s2">
       <div class="ch21-stage-h">② 选择尺度</div>
-      <div class="ch21-stage-body">趋势、季节、空间梯度——不同尺度需要不同的模型结构</div>
+      <div class="ch21-stage-body">趋势、季节、空间梯度：不同尺度需要不同的模型结构</div>
     </div>
     <div class="ch21-arrow" aria-hidden="true">→</div>
     <div class="ch21-stage s3">
       <div class="ch21-stage-h">③ 限制外推</div>
-      <div class="ch21-stage-body">分块验证、地图不确定性——随机拆行验证会泄漏空间信息</div>
+      <div class="ch21-stage-body">分块验证、地图不确定性：随机拆行验证会泄漏空间信息</div>
     </div>
   </div>
   <div class="ch21-caveat">
-    <b>黑豹提醒：</b>把 1080 行当独立样本随机分割训练/测试——这是在验证数据录入，不是在验证模型。
+    黑豹提醒：把 1080 行当独立样本随机分割训练/测试。这是在验证数据录入，不是在验证模型。
   </div>
 </div>
 <section id="相邻观测为何共享信息" class="level2">
 <h2 class="anchored" data-anchor-id="相邻观测为何共享信息">21.1 相邻观测为何共享信息</h2>
-<p>第 18 章处理了层级结构（植株嵌套于小区）。但保护数据中还有另一种依赖：<strong>时间和空间上的邻近。</strong></p>
+<p>第 18 章处理了层级结构（植株嵌套于小区）。但保护数据中还有另一种依赖：时间和空间上的邻近。</p>
 <ul>
-<li>同一相机样点今年的检出率和去年的检出率相关——时间自相关</li>
-<li>相邻两个相机样点的检出率比远距离样点更相似——空间自相关</li>
-<li>同一景观内修复地和对照地的变化趋势相关——空间共享</li>
+<li>同一相机样点今年的检出率和去年的检出率相关：时间自相关</li>
+<li>相邻两个相机样点的检出率比远距离样点更相似：空间自相关</li>
+<li>同一景观内修复地和对照地的变化趋势相关：空间共享</li>
 </ul>
-<p>忽视时空依赖的后果与忽视层级结构相同：<strong>标准误过小，置信区间过窄，P 值过小。</strong> 你以为你有 1080 个独立观测——实际上相邻观测共享信息，有效样本量远小于 1080。</p>
+<p>忽视时空依赖的后果与忽视层级结构相同：标准误过小，置信区间过窄，P 值过小。你以为你有 1080 个独立观测：实际上相邻观测共享信息，有效样本量远小于 1080。</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>camera <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"../data/teaching/camera_monitoring_long.csv"</span>,</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>                   <span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span>)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>rest <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"../data/teaching/restoration_site_period.csv"</span>,</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>                 <span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="chapter-route" aria-label="本章学习路线">
 <div>
-<strong>识别依赖</strong><span>时间与空间</span>
+识别依赖<span>时间与空间</span>
 </div>
 <div>
-<strong>选择尺度</strong><span>趋势/季节/梯度</span>
+选择尺度<span>趋势/季节/梯度</span>
 </div>
 <div>
-<strong>调整模型</strong><span>相关结构与平滑</span>
+调整模型<span>相关结构与平滑</span>
 </div>
 <div>
-<strong>分块验证</strong><span>空间留出</span>
+分块验证<span>空间留出</span>
 </div>
 <div>
-<strong>限制外推</strong><span>地图与边界</span>
+限制外推<span>地图与边界</span>
 </div>
 </div>
 <div class="learning-goals">
-<p><strong>学完本章后，你能够：</strong></p>
+<p>学完本章后，你能够：</p>
 <ol type="1">
 <li>识别时间自相关和空间自相关，并解释它们如何缩小有效样本量。</li>
-<li>区分趋势、季节和随机波动——不同时间尺度需要不同的模型。</li>
+<li>区分趋势、季节和随机波动：不同时间尺度需要不同的模型。</li>
 <li>理解为什么随机拆分训练/测试集会泄漏空间信息。</li>
 <li>设计按年份或空间区块留出的验证方案。</li>
-<li>识别外推的边界——地图空白区不等于低风险。</li>
+<li>识别外推的边界：地图空白区不等于低风险。</li>
 </ol>
 </div>
 </section>
 <section id="趋势季节与时间自相关" class="level2">
 <h2 class="anchored" data-anchor-id="趋势季节与时间自相关">21.2 趋势、季节与时间自相关</h2>
 <p>时间序列的三个成分：</p>
-<p><strong>趋势（trend）：</strong> 长期的系统性变化——“三年间检出率是否在下降？”</p>
-<p><strong>季节（seasonality）：</strong> 周期性波动——“每年第三 occasion（雨季）检出率是否系统性偏低？”</p>
-<p><strong>自相关（autocorrelation）：</strong> 相邻时间点的残差相关——“今年的高检出率增加了明年也高的概率。”</p>
-<p>如果忽视自相关，趋势检验的标准误会偏小——你以为是独立的三年的独立证据，实际上它们共享信息。</p>
+<p>趋势（trend）：长期的系统性变化：“三年间检出率是否在下降？”</p>
+<p>季节（seasonality）：周期性波动：“每年第三 occasion（雨季）检出率是否系统性偏低？”</p>
+<p>自相关（autocorrelation）：相邻时间点的残差相关：“今年的高检出率增加了明年也高的概率。”</p>
+<p>如果忽视自相关，趋势检验的标准误会偏小：你以为是独立的三年的独立证据，实际上它们共享信息。</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 按年份聚合检出率</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>yearly_detection <span class="ot">&lt;-</span> <span class="fu">aggregate</span>(</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  detected <span class="sc">~</span> year <span class="sc">+</span> station_id,</span>
@@ -572,8 +572,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="空间梯度距离与空间自相关" class="level2">
 <h2 class="anchored" data-anchor-id="空间梯度距离与空间自相关">21.3 空间梯度、距离与空间自相关</h2>
-<p>空间自相关：<strong>距离越近的样点越相似。</strong> 原因可能是： - 共享生境条件（土壤、气候） - 物种扩散（相邻样点可能有同一个体） - 未测量的空间梯度</p>
-<p><strong>空间自相关的诊断：</strong> 残差的半变异函数（variogram）或 Moran’s I——如果近距离残差比远距离残差更相似，说明存在空间自相关。</p>
+<p>空间自相关：距离越近的样点越相似。原因可能是： - 共享生境条件（土壤、气候） - 物种扩散（相邻样点可能有同一个体） - 未测量的空间梯度</p>
+<p>空间自相关的诊断：残差的半变异函数（variogram）或 Moran’s I。如果近距离残差比远距离残差更相似，说明存在空间自相关。</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 按样点聚合坐标和检出率</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>station_info <span class="ot">&lt;-</span> <span class="fu">unique</span>(camera[, <span class="fu">c</span>(<span class="st">"station_id"</span>, <span class="st">"x_km"</span>, <span class="st">"y_km"</span>)])</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>station_detection <span class="ot">&lt;-</span> <span class="fu">aggregate</span>(</span>
@@ -601,11 +601,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="采样尺度决定可见过程" class="level2">
 <h2 class="anchored" data-anchor-id="采样尺度决定可见过程">21.4 采样尺度决定可见过程</h2>
-<p><strong>尺度（scale）</strong> 是时空分析中最关键的概念：</p>
+<p>尺度（scale） 是时空分析中最关键的概念：</p>
 <ul>
-<li><strong>采样尺度（grain）：</strong> 单个观测的分辨率——相机样点覆盖约 0.01 km²</li>
-<li><strong>研究范围（extent）：</strong> 所有样点覆盖的总面积——约 30 × 30 km</li>
-<li><strong>尺度错配：</strong> 用 1 m² 样方研究景观尺度的过程，或用 30 km 网格研究微生境选择</li>
+<li>采样尺度（grain）：单个观测的分辨率：相机样点覆盖约 0.01 km²</li>
+<li>研究范围（extent）：所有样点覆盖的总面积：约 30 × 30 km</li>
+<li>尺度错配：用 1 m² 样方研究景观尺度的过程，或用 30 km 网格研究微生境选择</li>
 </ul>
 <p>不同过程在不同尺度上显现： - 微生境选择 → 样方尺度（米） - 种群动态 → 样点尺度（百米到千米） - 分布变化 → 景观尺度（千米到数十千米）</p>
 </section>
@@ -613,18 +613,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="时空依赖怎样进入模型">21.5 时空依赖怎样进入模型</h2>
 <p>处理时空依赖的常见方法（本章只要求识别，不要求实现）：</p>
 <ul>
-<li><strong>固定效应：</strong> 把时间或空间坐标作为协变量——“检出率随 x 坐标线性变化”</li>
-<li><strong>随机效应：</strong> 样点或年份作为随机截距——第 18 章的方法</li>
-<li><strong>相关结构：</strong> 残差的自回归（AR1）或空间相关结构</li>
-<li><strong>平滑项：</strong> 用 GAM（广义可加模型）拟合非线性时空趋势</li>
-<li><strong>随机场：</strong> 用高斯随机场建模连续空间变化</li>
+<li>固定效应：把时间或空间坐标作为协变量：“检出率随 x 坐标线性变化”</li>
+<li>随机效应：样点或年份作为随机截距：第 18 章的方法</li>
+<li>相关结构：残差的自回归（AR1）或空间相关结构</li>
+<li>平滑项：用 GAM（广义可加模型）拟合非线性时空趋势</li>
+<li>随机场：用高斯随机场建模连续空间变化</li>
 </ul>
 </section>
 <section id="分块验证与地图不确定性" class="level2">
 <h2 class="anchored" data-anchor-id="分块验证与地图不确定性">21.6 分块验证与地图不确定性</h2>
-<p><strong>随机拆分训练/测试集是时空数据中最常见的验证错误。</strong></p>
-<p>如果 1080 行数据中，同一相机样点的 18 条记录被随机分到训练集和测试集——模型在测试集上表现”很好”，因为它已经”见过”这个样点的其他记录。这不是在验证模型的预测能力——这是在验证数据录入的一致性。</p>
-<p><strong>正确的验证方案：</strong> - <strong>按年份留出：</strong> 用第 1–2 年训练，预测第 3 年 - <strong>按空间区块留出：</strong> 用部分景观训练，预测留出的景观 - <strong>按样点留出：</strong> 用部分样点训练，预测留出的样点</p>
+<p>随机拆分训练/测试集是时空数据中最常见的验证错误。</p>
+<p>如果 1080 行数据中，同一相机样点的 18 条记录被随机分到训练集和测试集。模型在测试集上表现”很好”，因为它已经”见过”这个样点的其他记录。这不是在验证模型的预测能力。这是在验证数据录入的一致性。</p>
+<p>正确的验证方案： - 按年份留出：用第 1-2 年训练，预测第 3 年 - 按空间区块留出：用部分景观训练，预测留出的景观 - 按样点留出：用部分样点训练，预测留出的样点</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 演示：随机拆分 vs 空间留出</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">20260620</span>)</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -632,7 +632,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>idx_random <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(camera), <span class="at">size =</span> <span class="fl">0.7</span> <span class="sc">*</span> <span class="fu">nrow</span>(camera))</span>
 <span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"随机拆分：训练集"</span>, <span class="fu">length</span>(idx_random), <span class="st">"行，测试集"</span>,</span>
 <span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">nrow</span>(camera) <span class="sc">-</span> <span class="fu">length</span>(idx_random), <span class="st">"行</span><span class="sc">\n</span><span class="st">"</span>)</span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"问题：同一样点的不同 occasion 可能分散在训练和测试集中。</span><span class="sc">\n\n</span><span class="st">"</span>)</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"问题。同一样点的不同 occasion 可能分散在训练和测试集中。</span><span class="sc">\n\n</span><span class="st">"</span>)</span>
 <span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="co"># 正确：按样点留出</span></span>
 <span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>all_stations <span class="ot">&lt;-</span> <span class="fu">unique</span>(camera<span class="sc">$</span>station_id)</span>
@@ -646,35 +646,35 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="外推和监测更新">21.7 外推和监测更新</h2>
 <p>时空模型的外推边界：</p>
 <ul>
-<li><strong>时间外推：</strong> 用 3 年数据预测第 4 年——假设趋势延续。如果发生了异常气候事件或管理变化，预测可能严重偏差。</li>
-<li><strong>空间外推：</strong> 用 60 个样点预测未布点区域——假设空间关系在预测范围内一致。如果未布点区域有不同生境，预测不可靠。</li>
-<li><strong>地图空白区 ≠ 低风险：</strong> 没有样点的区域，模型的不确定性最大——不要因为地图上没有”热点”就认为那里安全。</li>
+<li>时间外推：用 3 年数据预测第 4 年：假设趋势延续。如果发生了异常气候事件或管理变化，预测可能严重偏差。</li>
+<li>空间外推：用 60 个样点预测未布点区域：假设空间关系在预测范围内一致。如果未布点区域有不同生境，预测不可靠。</li>
+<li>地图空白区 ≠ 低风险，没有样点的区域，模型的不确定性最大：不要因为地图上没有”热点”就认为那里安全。</li>
 </ul>
-<p><strong>观测制度变化可能伪装生态趋势：</strong> 如果第 3 年换了相机型号、改了调查时间、或换了调查员——检出率的变化可能是观测制度变化，不是生态变化。</p>
+<p>观测制度变化可能伪装生态趋势。如果第 3 年换了相机型号、改了调查时间、或换了调查员：检出率的变化可能是观测制度变化，不是生态变化。</p>
 </section>
 <section id="本章小结" class="level2">
 <h2 class="anchored" data-anchor-id="本章小结">本章小结</h2>
 <ul>
-<li><strong>相邻观测共享信息。</strong> 时间自相关和空间自相关缩小有效样本量——忽视它们等于制造伪重复。</li>
-<li><strong>不同过程在不同尺度上显现。</strong> 采样尺度和研究范围决定了你能看到什么过程。</li>
-<li><strong>随机拆分训练/测试集泄漏空间信息。</strong> 正确的验证按年份或空间区块留出。</li>
-<li><strong>外推必须明确标注边界。</strong> 时间外推假设趋势延续；空间外推假设关系一致。</li>
-<li><strong>观测制度变化可能伪装生态趋势。</strong> 比较年份之前，先检查调查方法是否一致。</li>
+<li>相邻观测共享信息。时间自相关和空间自相关缩小有效样本量：忽视它们等于制造伪重复。</li>
+<li>不同过程在不同尺度上显现。采样尺度和研究范围决定了你能看到什么过程。</li>
+<li>随机拆分训练/测试集泄漏空间信息。正确的验证按年份或空间区块留出。</li>
+<li>外推必须明确标注边界。时间外推假设趋势延续；空间外推假设关系一致。</li>
+<li>观测制度变化可能伪装生态趋势。比较年份之前，先检查调查方法是否一致。</li>
 </ul>
 </section>
 <section id="练习" class="level2">
 <h2 class="anchored" data-anchor-id="练习">练习</h2>
 <ol type="1">
-<li><p><strong>识别层。</strong> 以下数据各存在什么类型的依赖？</p>
+<li><p>识别层。以下数据各存在什么类型的依赖？</p>
 <ol type="a">
 <li>同一相机样点 3 年的检出率</li>
 <li>相邻 5 个样方的物种丰富度</li>
 <li>同一植株 3 个时间点的株高</li>
 </ol></li>
-<li><p><strong>解释层。</strong> 为什么随机拆分 1080 行会高估模型的预测能力？</p></li>
-<li><p><strong>应用层。</strong> 为相机数据设计一个按年份留出的验证方案。说明训练集和测试集各包含什么。</p></li>
-<li><p><strong>诊断层。</strong> 残差的 Moran’s I 显著为正。这意味着什么？你应该怎么处理？</p></li>
-<li><p><strong>综合层。</strong> 为修复地项目设计一个多年空间监测方案。包含：样点布局、时间频率、验证策略、以及外推边界。</p></li>
+<li><p>解释层。为什么随机拆分 1080 行会高估模型的预测能力？</p></li>
+<li><p>应用层。为相机数据设计一个按年份留出的验证方案。说明训练集和测试集各包含什么。</p></li>
+<li><p>诊断层。残差的 Moran’s I 显著为正。这意味着什么？你应该怎么处理？</p></li>
+<li><p>综合层。为修复地项目设计一个多年空间监测方案。包含：样点布局、时间频率、验证策略、以及外推边界。</p></li>
 </ol>
 </section>
 <section id="继续学习" class="level2">

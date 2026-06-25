@@ -486,107 +486,107 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <div class="ch22-pipeline">
     <div class="ch22-stage s1">
       <div class="ch22-stage-h">① 提供上下文</div>
-      <div class="ch22-stage-body">八要素分析请求——保护决策、目标量、设计、单位、数据、模型、诊断、行动</div>
+      <div class="ch22-stage-body">八要素分析请求。保护决策、目标量、设计、单位、数据、模型、诊断、行动</div>
     </div>
     <div class="ch22-arrow" aria-hidden="true">→</div>
     <div class="ch22-stage s2">
       <div class="ch22-stage-h">② 运行核查</div>
-      <div class="ch22-stage-body">代码可运行 ≠ 分析正确——核查单位、泄漏、选择性尝试、虚构引用</div>
+      <div class="ch22-stage-body">代码可运行 ≠ 分析正确：核查单位、泄漏、选择性尝试、虚构引用</div>
     </div>
     <div class="ch22-arrow" aria-hidden="true">→</div>
     <div class="ch22-stage s3">
       <div class="ch22-stage-h">③ 保存记录</div>
-      <div class="ch22-stage-body">提示、版本、代码、输出、人工判断——完整审计链，可复现</div>
+      <div class="ch22-stage-body">提示、版本、代码、输出、人工判断：完整审计链，可复现</div>
     </div>
   </div>
   <div class="ch22-caveat">
-    <b>黑豹提醒：</b>AI 可以生成候选分析——研究者必须拥有设计理由、诊断证据和最终解释。
+    黑豹提醒：AI 可以生成候选分析。研究者必须拥有设计理由、诊断证据和最终解释。
   </div>
 </div>
 <section id="ai-能生成什么不能决定什么" class="level2">
 <h2 class="anchored" data-anchor-id="ai-能生成什么不能决定什么">22.1 AI 能生成什么，不能决定什么</h2>
-<p>这是本书的最后一章。前面 21 章建立了一条完整的证据链：<strong>设计 → 数据结构 → 模型 → 诊断 → 解释 → 行动。</strong> 这条链上的每一步，AI 都可以提供帮助——但每一步的最终判断，必须由你来做。</p>
-<p><strong>AI 能做的：</strong> - 根据你的描述生成 R 代码 - 解释统计输出 - 建议诊断检查 - 改写技术性表述为管理语言 - 生成反例和替代模型</p>
-<p><strong>AI 不能做的：</strong> - 决定研究设计（不知道你的保护目标和约束） - 判断数据质量（不知道数据是怎么收集的） - 选择主要响应变量（不知道你的保护优先级） - 解释效应的生态意义（不知道你的生态系统） - 决定是否采取行动（不知道你的预算、风险和伦理约束）</p>
+<p>这是本书的最后一章。前面 21 章建立了一条完整的证据链：设计 → 数据结构 → 模型 → 诊断 → 解释 → 行动。这条链上的每一步，AI 都可以提供帮助，但每一步的最终判断，必须由你来做。</p>
+<p>AI 能做的： - 根据你的描述生成 R 代码 - 解释统计输出 - 建议诊断检查 - 改写技术性表述为管理语言 - 生成反例和替代模型</p>
+<p>AI 不能做的： - 决定研究设计（不知道你的保护目标和约束） - 判断数据质量（不知道数据是怎么收集的） - 选择主要响应变量（不知道你的保护优先级） - 解释效应的生态意义（不知道你的生态系统） - 决定是否采取行动（不知道你的预算、风险和伦理约束）</p>
 <p>本章不设置最终考核，也不做工具推荐榜。四个贯穿项目的常见 AI 错误片段将帮助你训练”AI 输出审计”的能力。</p>
 <div class="chapter-route" aria-label="本章学习路线">
 <div>
-<strong>提供上下文</strong><span>八要素请求</span>
+提供上下文<span>八要素请求</span>
 </div>
 <div>
-<strong>生成候选</strong><span>代码与解释</span>
+生成候选<span>代码与解释</span>
 </div>
 <div>
-<strong>运行核查</strong><span>单位/泄漏/引用</span>
+运行核查<span>单位/泄漏/引用</span>
 </div>
 <div>
-<strong>限制解释</strong><span>不外包判断</span>
+限制解释<span>不外包判断</span>
 </div>
 <div>
-<strong>保存记录</strong><span>完整审计链</span>
+保存记录<span>完整审计链</span>
 </div>
 </div>
 <div class="learning-goals">
-<p><strong>学完本章后，你能够：</strong></p>
+<p>学完本章后，你能够：</p>
 <ol type="1">
 <li>使用八要素模板向 AI 提出完整的分析请求。</li>
 <li>核查 AI 生成的代码中的实验单位错误、数据泄漏和选择性尝试。</li>
 <li>核查 AI 生成的解释中的虚构引用、变量误读和越界行动建议。</li>
-<li>保存完整的审计记录——提示、版本、代码、输出与人工判断。</li>
+<li>保存完整的审计记录，包括提示、版本、代码、输出与人工判断。</li>
 <li>要求 AI 给出反例、替代模型和失败条件，而不是只给一个”最佳”答案。</li>
 </ol>
 </div>
 </section>
 <section id="八要素分析请求" class="level2">
 <h2 class="anchored" data-anchor-id="八要素分析请求">22.2 八要素分析请求</h2>
-<p>向 AI 提出分析请求时，不能只说”帮我分析这些数据”。必须提供完整的上下文。<strong>八要素模板：</strong></p>
+<p>向 AI 提出分析请求时，不能只说”帮我分析这些数据”。必须提供完整的上下文。八要素模板：</p>
 <ol type="1">
-<li><strong>保护决策：</strong> 管理者最终要决定什么？</li>
-<li><strong>目标量：</strong> 需要估计什么参数来支持这个决定？</li>
-<li><strong>设计：</strong> 数据由什么设计产生？（CRD/RCBD/BACI/监测……）</li>
-<li><strong>独立单位：</strong> 什么层级的单位是独立的？n 是多少？</li>
-<li><strong>数据字段：</strong> 每个字段的名称、类型、单位和设计层级</li>
-<li><strong>候选模型：</strong> 哪些模型是合理的？为什么排除其他？</li>
-<li><strong>诊断要求：</strong> 需要检查哪些失败模式？</li>
-<li><strong>允许的行动表述：</strong> 结论可以说什么、不能说什么？</li>
+<li>保护决策：管理者最终要决定什么？</li>
+<li>目标量：需要估计什么参数来支持这个决定？</li>
+<li>设计：数据由什么设计产生？（CRD/RCBD/BACI/监测……）</li>
+<li>独立单位：什么层级的单位是独立的？n 是多少？</li>
+<li>数据字段：每个字段的名称、类型、单位和设计层级</li>
+<li>候选模型：哪些模型是合理的？为什么排除其他？</li>
+<li>诊断要求：需要检查哪些失败模式？</li>
+<li>允许的行动表述：结论可以说什么、不能说什么？</li>
 </ol>
-<p><strong>不完整的请求：</strong> “帮我分析 camera_monitoring_long.csv，看看检出率和生境的关系。”</p>
-<p><strong>完整的请求：</strong> “这是红外相机监测数据，60 个样点 × 3 年 × 每年 6 次重复调查。独立单位是样点（n=60），不是 occasion（n=1080）。响应变量 detected 是 0/1，请用逻辑回归（或考虑占域模型）。主要协变量是 forest_cover 和 distance_road_km。请检查残差空间自相关。结论不能声称因果——这是观察性数据。”</p>
+<p>不完整的请求：“帮我分析 camera_monitoring_long.csv，看看检出率和生境的关系。”</p>
+<p>完整的请求：“这是红外相机监测数据，60 个样点 × 3 年 × 每年 6 次重复调查。独立单位是样点（n=60），不是 occasion（n=1080）。响应变量 detected 是 0/1，请用逻辑回归（或考虑占域模型）。主要协变量是 forest_cover 和 distance_road_km。请检查残差空间自相关。结论不能声称因果。这是观察性数据。”</p>
 </section>
 <section id="从代码可运行到分析正确" class="level2">
 <h2 class="anchored" data-anchor-id="从代码可运行到分析正确">22.3 从代码可运行到分析正确</h2>
-<p><strong>可运行 ≠ 正确。</strong> AI 生成的代码可能： - 语法正确但实验单位错误（把树木当独立重复） - 使用了正确的函数但错误的参数（没用 offset） - 输出了看起来合理的数字但基于错误的前提</p>
-<p><strong>四个错误片段审计：</strong></p>
-<p><strong>错误 1（黄黄草——伪重复）：</strong> AI 把 480 行输入 <code>lm(height_cm ~ light_pct, data = hh)</code>，报告 n = 480，P &lt; 0.001。审计要点：实验单位是小区（n=32），不是植株×时间（n=480）。正确做法是使用混合模型或先聚合到小区。</p>
-<p><strong>错误 2（相机——未检出当不存在）：</strong> AI 删除了所有 <code>detected = 0</code> 的行，“因为分析的是检出情况”。审计要点：未检出 ≠ 不存在。删除零值等于把”调查了但没拍到”和”没调查”一起扔掉——抽样框被改变。</p>
-<p><strong>错误 3（森林——选择性尝试）：</strong> AI 对四个响应变量分别做了检验，只报告了 <code>pest_count</code> 的显著结果，对其他三个不显著的只字不提。审计要点：这是选择性报告——如果四个指标都做了检验，应该全部报告或预先指定主要指标。</p>
-<p><strong>错误 4（修复地——数据泄漏）：</strong> AI 用 <code>sample()</code> 随机拆分 120 行做训练/测试，报告 R² = 0.85。审计要点：同一地点的 5 个样方被分散到训练和测试集——模型在测试集上表现好是因为它”见过”这个地点的其他样方。正确做法是按地点留出。</p>
+<p>可运行 ≠ 正确。AI 生成的代码可能： - 语法正确但实验单位错误（把树木当独立重复） - 使用了正确的函数但错误的参数（没用 offset） - 输出了看起来合理的数字但基于错误的前提</p>
+<p>四个错误片段审计：</p>
+<p>错误 1（黄黄草：伪重复）：AI 把 480 行输入 <code>lm(height_cm ~ light_pct, data = hh)</code>，报告 n = 480，P &lt; 0.001。审计要点：实验单位是小区（n=32），不是植株×时间（n=480）。正确做法是使用混合模型或先聚合到小区。</p>
+<p>错误 2（相机：未检出当不存在）：AI 删除了所有 <code>detected = 0</code> 的行，“因为分析的是检出情况”。审计要点：未检出 ≠ 不存在。删除零值等于把”调查了但没拍到”和”没调查”一起扔掉：抽样框被改变。</p>
+<p>错误 3（森林：选择性尝试）：AI 对四个响应变量分别做了检验，只报告了 <code>pest_count</code> 的显著结果，对其他三个不显著的只字不提。审计要点：这是选择性报告。如果四个指标都做了检验，应该全部报告或预先指定主要指标。</p>
+<p>错误 4（修复地：数据泄漏）：AI 用 <code>sample()</code> 随机拆分 120 行做训练/测试，报告 R² = 0.85。审计要点：同一地点的 5 个样方被分散到训练和测试集。模型在测试集上表现好是因为它”见过”这个地点的其他样方。正确做法是按地点留出。</p>
 </section>
 <section id="核查单位数据泄漏和选择性尝试" class="level2">
 <h2 class="anchored" data-anchor-id="核查单位数据泄漏和选择性尝试">22.4 核查单位、数据泄漏和选择性尝试</h2>
 <p>AI 输出审计的三步检查：</p>
-<p><strong>第一步：核查实验单位。</strong> AI 报告的 n 是多少？如果 n = 480（黄黄草行数）而不是 32（小区数），说明它在制造伪重复。</p>
-<p><strong>第二步：核查数据泄漏。</strong> AI 是怎么拆分训练/测试的？如果是随机拆分行，检查是否有层级单位被分散。</p>
-<p><strong>第三步：核查选择性尝试。</strong> AI 跑了几个模型/指标？是否只报告了显著的？是否在见到结果后改变了主要指标？</p>
+<p>第一步：核查实验单位。AI 报告的 n 是多少？如果 n = 480（黄黄草行数）而不是 32（小区数），说明它在制造伪重复。</p>
+<p>第二步：核查数据泄漏。AI 是怎么拆分训练/测试的？如果是随机拆分行，检查是否有层级单位被分散。</p>
+<p>第三步：核查选择性尝试。AI 跑了几个模型/指标？是否只报告了显著的？是否在见到结果后改变了主要指标？</p>
 </section>
 <section id="核查解释引用和不确定性" class="level2">
 <h2 class="anchored" data-anchor-id="核查解释引用和不确定性">22.5 核查解释、引用和不确定性</h2>
-<p><strong>虚构引用：</strong> AI 可能编造不存在的论文、DOI、或”研究表明……“。<strong>每一条引用都必须人工核实。</strong> 如果无法核实，删除该引用，保留不依赖引用的教学表达。</p>
-<p><strong>变量误读：</strong> AI 可能把 <code>detected</code> 解释为”物种存在”，把 <code>photo_count</code> 解释为”种群大小”。必须核查 AI 对每个变量的理解是否与数据字典一致。</p>
-<p><strong>越界行动建议：</strong> AI 可能从”P &lt; 0.05”直接跳到”建议推广”。必须核查 AI 的结论是否包含了效应大小、不确定性、成本、风险和可逆性。</p>
+<p>虚构引用：AI 可能编造不存在的论文、DOI、或”研究表明……“。每一条引用都必须人工核实。如果无法核实，删除该引用，保留不依赖引用的教学表达。</p>
+<p>变量误读：AI 可能把 <code>detected</code> 解释为”物种存在”，把 <code>photo_count</code> 解释为”种群大小”。必须核查 AI 对每个变量的理解是否与数据字典一致。</p>
+<p>越界行动建议：AI 可能从”P &lt; 0.05”直接跳到”建议推广”。必须核查 AI 的结论是否包含了效应大小、不确定性、成本、风险和可逆性。</p>
 </section>
 <section id="保存提示版本代码与人工判断" class="level2">
 <h2 class="anchored" data-anchor-id="保存提示版本代码与人工判断">22.6 保存提示、版本、代码与人工判断</h2>
-<p><strong>可复现的 AI 辅助分析记录：</strong></p>
+<p>可复现的 AI 辅助分析记录：</p>
 <ol type="1">
-<li><strong>提示（prompt）：</strong> 你发给 AI 的完整请求——保存原文</li>
-<li><strong>AI 版本：</strong> 使用的模型和日期（不同版本的 AI 可能给出不同答案）</li>
-<li><strong>AI 输出：</strong> 完整的代码和解释——不要只复制”好的部分”</li>
-<li><strong>运行结果：</strong> 代码在你的环境中的实际输出</li>
-<li><strong>人工判断：</strong> 你核查了什么、发现了什么问题、做了什么修改</li>
-<li><strong>最终代码：</strong> 经过人工修改和验证的最终版本</li>
+<li>提示（prompt）：你发给 AI 的完整请求，保存原文</li>
+<li>AI 版本：使用的模型和日期（不同版本的 AI 可能给出不同答案）</li>
+<li>AI 输出：完整的代码和解释：不要只复制”好的部分”</li>
+<li>运行结果：代码在你的环境中的实际输出</li>
+<li>人工判断：你核查了什么、发现了什么问题、做了什么修改</li>
+<li>最终代码：经过人工修改和验证的最终版本</li>
 </ol>
-<p><strong>敏感数据不得上传。</strong> 如果数据包含坐标、濒危物种位置、或未脱敏的人员信息——在发送给 AI 之前脱敏或使用模拟数据。</p>
+<p>敏感数据不得上传。如果数据包含坐标、濒危物种位置、或未脱敏的人员信息：在发送给 AI 之前脱敏或使用模拟数据。</p>
 </section>
 <section id="完成一份-ai-分析审计记录" class="level2">
 <h2 class="anchored" data-anchor-id="完成一份-ai-分析审计记录">22.7 完成一份 AI 分析审计记录</h2>
@@ -596,10 +596,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"分析问题：森林覆盖度与相机检出率的关系</span><span class="sc">\n\n</span><span class="st">"</span>)</span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"--- AI 输出核查 ---</span><span class="sc">\n</span><span class="st">"</span>)</span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"[✓] 实验单位：正确识别样点为独立单位</span><span class="sc">\n</span><span class="st">"</span>)</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"[✗] 数据泄漏：随机拆分 1080 行——改为按样点留出</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"[✗] 数据泄漏：随机拆分 1080 行：改为按样点留出</span><span class="sc">\n</span><span class="st">"</span>)</span>
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"[✓] 变量理解：正确区分 detected 和 photo_count</span><span class="sc">\n</span><span class="st">"</span>)</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"[✗] 虚构引用：'Smith et al. 2023'无法核实——已删除</span><span class="sc">\n</span><span class="st">"</span>)</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"[✗] 越界行动：'增加森林覆盖度以提高检出率'——改为'森林覆盖度与检出率正相关'</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"[✗] 虚构引用：'Smith et al. 2023'无法核实：已删除</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"[✗] 越界行动：'增加森林覆盖度以提高检出率'：改为'森林覆盖度与检出率正相关'</span><span class="sc">\n</span><span class="st">"</span>)</span>
 <span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"[✓] 不确定性：报告了置信区间</span><span class="sc">\n\n</span><span class="st">"</span>)</span>
 <span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"--- 人工修改 ---</span><span class="sc">\n</span><span class="st">"</span>)</span>
 <span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"1. 验证方案改为按样点留出</span><span class="sc">\n</span><span class="st">"</span>)</span>
@@ -609,45 +609,45 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="全书结束语" class="level2">
 <h2 class="anchored" data-anchor-id="全书结束语">全书结束语</h2>
-<p>你从第 1 章的一个模糊问题——“开花个体减少了，种群在下降吗？”——走到了这里。</p>
+<p>你从第 1 章那个模糊问题：“开花个体减少了，种群在下降吗？”，走到了这里。</p>
 <p>22 章下来，你建立的不只是一套统计方法工具箱。你建立的是一条完整的证据链：</p>
 <blockquote class="blockquote">
-<p><strong>设计 → 数据结构 → 模型 → 诊断 → 解释 → 行动</strong></p>
+<p>设计 → 数据结构 → 模型 → 诊断 → 解释 → 行动</p>
 </blockquote>
-<p>这条链上的每一步，你都有能力独立做出判断： - 设计：对照排除你想得到的替代解释，随机化排除你想不到的 - 数据：一行代表什么，主键锁定什么，零和缺失不是一回事 - 模型：由目标量、设计和数据生成机制共同决定——不由变量类型机械匹配 - 诊断：模型在哪些地方可能失败——不只是看 P 值 - 解释：效应大小、不确定性、结论边界——不是”显著/不显著” - 行动：统计证据是决策的输入——成本、风险、伦理和可逆性共同决定行动</p>
-<p>AI 可以加速这条链上的每一步。但它不能替你决定研究设计、判断数据质量、选择保护优先级、解释生态意义、或做出管理决策。<strong>工具可以生成候选分析——研究者必须拥有设计理由、诊断证据和最终解释。</strong></p>
+<p>这条链上的每一步，你都有能力独立做出判断： - 设计：对照排除你想得到的替代解释，随机化排除你想不到的 - 数据：一行代表什么，主键锁定什么，零和缺失不是一回事 - 模型：由目标量、设计和数据生成机制共同决定，不由变量类型机械匹配 - 诊断：模型在哪些地方可能失败，不只是看 P 值 - 解释：效应大小、不确定性、结论边界，不是”显著/不显著” - 行动：统计证据是决策的输入，成本、风险、伦理和可逆性共同决定行动</p>
+<p>AI 可以加速这条链上的每一步。但它不能替你决定研究设计、判断数据质量、选择保护优先级、解释生态意义、或做出管理决策。工具可以生成候选分析，研究者必须拥有设计理由、诊断证据和最终解释。</p>
 <p>保护生物学不需要更多的”P &lt; 0.05”。它需要更多能说清”这个证据意味着什么、不能意味着什么、下一步该做什么”的人。你现在是其中之一。</p>
 </section>
 <section id="本章小结" class="level2">
 <h2 class="anchored" data-anchor-id="本章小结">本章小结</h2>
 <ul>
-<li><strong>AI 可以生成候选分析——你不能外包判断。</strong> 设计理由、诊断证据和最终解释必须由你拥有。</li>
-<li><strong>八要素模板是向 AI 提出分析请求的最低标准。</strong> 不完整的请求 → 不可靠的输出。</li>
-<li><strong>可运行 ≠ 正确。</strong> 核查实验单位、数据泄漏、选择性尝试和虚构引用。</li>
-<li><strong>敏感数据不得上传。</strong> 坐标、濒危物种位置、人员信息——脱敏后再发送。</li>
-<li><strong>保存完整审计链。</strong> 提示、版本、代码、输出、人工判断——可复现是最低标准。</li>
-<li><strong>要求 AI 给反例、替代模型和失败条件。</strong> 不要只接受一个”最佳”答案。</li>
+<li>AI 可以生成候选分析，但你不能外包判断。设计理由、诊断证据和最终解释必须由你拥有。</li>
+<li>八要素模板是向 AI 提出分析请求的最低标准。不完整的请求 → 不可靠的输出。</li>
+<li>可运行 ≠ 正确。核查实验单位、数据泄漏、选择性尝试和虚构引用。</li>
+<li>敏感数据不得上传。坐标、濒危物种位置、人员信息，脱敏后再发送。</li>
+<li>保存完整审计链。提示、版本、代码、输出、人工判断，可复现是最低标准。</li>
+<li>要求 AI 给反例、替代模型和失败条件。不要只接受一个”最佳”答案。</li>
 </ul>
 </section>
 <section id="练习" class="level2">
 <h2 class="anchored" data-anchor-id="练习">练习</h2>
 <ol type="1">
-<li><p><strong>识别层。</strong> 以下 AI 输出各有什么问题？</p>
+<li><p>识别层。以下 AI 输出各有什么问题？</p>
 <ol type="a">
 <li>“n = 480, P &lt; 0.001, 光照显著影响株高。”</li>
 <li>“删除所有 detected = 0 的行后，检出率 = 100%。”</li>
 <li>“根据 Johnson et al.&nbsp;(2024)，建议立即推广综合防治。”</li>
 </ol></li>
-<li><p><strong>解释层。</strong> 为什么”可运行”不等于”正确”？给出至少两个原因。</p></li>
-<li><p><strong>应用层。</strong> 用八要素模板为修复地 BACI 分析写一份完整的 AI 分析请求。</p></li>
-<li><p><strong>诊断层。</strong> AI 报告 R² = 0.92，但你发现它随机拆分了 120 行。这个 R² 可信吗？为什么？</p></li>
-<li><p><strong>综合层。</strong> 完成一份 AI 分析审计记录：选择一个贯穿项目，让 AI 生成分析代码，然后逐项核查本章列出的所有审计点。</p></li>
+<li><p>解释层。为什么”可运行”不等于”正确”？给出至少两个原因。</p></li>
+<li><p>应用层。用八要素模板为修复地 BACI 分析写一份完整的 AI 分析请求。</p></li>
+<li><p>诊断层。AI 报告 R² = 0.92，但你发现它随机拆分了 120 行。这个 R² 可信吗？为什么？</p></li>
+<li><p>综合层。完成一份 AI 分析审计记录：选择一个贯穿项目，让 AI 生成分析代码，然后逐项核查本章列出的所有审计点。</p></li>
 </ol>
 </section>
 <section id="继续学习" class="level2">
 <h2 class="anchored" data-anchor-id="继续学习">继续学习</h2>
-<p>这不是结束。本书的四个贯穿项目——黄黄草、红外相机、森林防治、栖息地修复——是你练习证据链的起点。真实的研究问题比教学案例更复杂，但逻辑相同：</p>
-<p><strong>先想清楚要回答什么问题，再决定需要什么设计、什么数据、什么模型。</strong> 统计方法会更新，软件会迭代，AI 会变强——但这条证据链的逻辑不会过时。</p>
+<p>这不是结束。本书的四个贯穿项目：黄黄草、红外相机、森林防治、栖息地修复，是你练习证据链的起点。真实的研究问题比教学案例更复杂，但逻辑相同：</p>
+<p>先想清楚要回答什么问题，再决定需要什么设计、什么数据、什么模型。统计方法会更新，软件会迭代，AI 会变强，但这条证据链的逻辑不会过时。</p>
 <p>保护生物学需要你。去吧。</p>
 
 

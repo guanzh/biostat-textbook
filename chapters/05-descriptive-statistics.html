@@ -486,21 +486,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <div class="ch5-pipeline">
     <div class="ch5-stage s1">
       <div class="ch5-stage-h">① 只看均值</div>
-      <div class="ch5-stage-body">修复后丰富度均值 16.3——但这一个数字背后藏着什么？</div>
+      <div class="ch5-stage-body">修复后丰富度均值 16.3，但这一个数字背后藏着什么？</div>
     </div>
     <div class="ch5-arrow" aria-hidden="true">→</div>
     <div class="ch5-stage s2">
       <div class="ch5-stage-h">② 展开分布</div>
-      <div class="ch5-stage-body">原始点、直方图、分组箱线——同样的均值可以对应完全不同的生态过程</div>
+      <div class="ch5-stage-body">原始点、直方图、分组箱线。同样的均值可以对应完全不同的生态过程</div>
     </div>
     <div class="ch5-arrow" aria-hidden="true">→</div>
     <div class="ch5-stage s3">
       <div class="ch5-stage-h">③ 形成画像</div>
-      <div class="ch5-stage-body">单位、分组、范围、分布、异常、模型约束——一页纸说清数据能回答什么</div>
+      <div class="ch5-stage-body">单位、分组、范围、分布、异常、模型约束：一页纸说清数据能回答什么</div>
     </div>
   </div>
   <div class="ch5-caveat">
-    <b>黑豹提醒：</b>正态分布是模型假设，不是数据目标——不要为了"让数据正态"而扭曲数据。
+    黑豹提醒：正态分布是模型假设，不是数据目标：不要为了"让数据正态"而扭曲数据。
   </div>
 </div>
 <section id="描述之前先问每一行代表什么" class="level2">
@@ -509,11 +509,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>本章的主项目是栖息地修复监测（项目 D）。6 个景观区组中，每个景观有一块修复地和一块对照地，在修复前和修复后各调查 5 个样方，共 120 行数据。响应变量包括冠层盖度、土壤湿度、物种丰富度和本地物种盖度。</p>
 <p>在开始计算任何均值之前，先回答三个问题：</p>
 <ol type="1">
-<li><strong>每一行代表什么？</strong> 一个样方 × 一个时期的一次调查。120 行 = 6 景观 × 2 地点 × 2 时期 × 5 样方。</li>
-<li><strong>哪些行之间不是独立的？</strong> 同一个地点内的 5 个样方共享该地点的所有条件（土壤基底、水文、管理历史）。同一个景观内的修复地和对照地共享景观尺度的气候和干扰历史。</li>
-<li><strong>“样本量”应该数什么？</strong> 如果你在比较修复地和对照地的差异，独立单位是地点（site_id，n = 12），不是样方（n = 120）。</li>
+<li>每一行代表什么？一个样方 × 一个时期的一次调查。120 行 = 6 景观 × 2 地点 × 2 时期 × 5 样方。</li>
+<li>哪些行之间不是独立的？同一个地点内的 5 个样方共享该地点的所有条件（土壤基底、水文、管理历史）。同一个景观内的修复地和对照地共享景观尺度的气候和干扰历史。</li>
+<li>“样本量”应该数什么？如果你在比较修复地和对照地的差异，独立单位是地点（site_id，n = 12），不是样方（n = 120）。</li>
 </ol>
-<p>如果你跳过这三个问题，直接把 120 行数据丢进 <code>mean()</code> 和 <code>sd()</code>，你会得到一些数字——但它们回答的问题可能和你以为的完全不同。</p>
+<p>如果你跳过这三个问题，直接把 120 行数据丢进 <code>mean()</code> 和 <code>sd()</code>，你会得到一些数字，但它们回答的问题可能和你以为的完全不同。</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 读取修复地数据</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>rest <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"../data/teaching/restoration_site_period.csv"</span>,</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>                 <span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span>)</span>
@@ -525,18 +525,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(rest<span class="sc">$</span>landscape_id, rest<span class="sc">$</span>status, rest<span class="sc">$</span>period)</span>
 <span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co"># 每个景观 × 地点类型 × 时期 应有 5 个样方</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="observation-question">
-<p><strong>观察问题：</strong> 修复地物种丰富度的均值是 14.2。这个数字是对什么问题的回答？是对”修复地样方的平均丰富度”还是”修复措施的平均效果”？两者的区别在哪里？</p>
+<p>观察问题：修复地物种丰富度的均值是 14.2。这个数字是对什么问题的回答？是对”修复地样方的平均丰富度”还是”修复措施的平均效果”？两者的区别在哪里？</p>
 </div>
 </section>
 <section id="用原始分布而不是一个均值认识数据" class="level2">
 <h2 class="anchored" data-anchor-id="用原始分布而不是一个均值认识数据">5.2 用原始分布而不是一个均值认识数据</h2>
 <p>均值是最常用的摘要量，也是最容易被滥用的。两组数据可以有完全相同的均值和标准差，但分布形状完全不同。</p>
-<p><strong>反例：</strong> 下面两组数据具有相同的均值（10）和标准差（约 4.6），但它们的生态含义截然不同：</p>
+<p>反例：下面两组数据具有相同的均值（10）和标准差（约 4.6），但它们的生态含义截然不同：</p>
 <ul>
-<li>组 A：<code>8, 9, 10, 11, 12</code>——对称分布，每个值都接近中心。</li>
-<li>组 B：<code>0, 0, 10, 20, 20</code>——大量零值和少量极高值，反映的是一个”要么没有、要么很多”的生态过程。</li>
+<li>组 A：<code>8, 9, 10, 11, 12</code>：对称分布，每个值都接近中心。</li>
+<li>组 B：<code>0, 0, 10, 20, 20</code>：大量零值和少量极高值，反映的是一个”要么没有、要么很多”的生态过程。</li>
 </ul>
-<p>在保护生物学中，组 B 的模式非常常见：很多样方没有目标物种（零值），少数样方有大量个体（聚集分布）。如果只看均值和标准差，你会以为这是一个”围绕 10 均匀波动”的系统——但实际上它是一个”大部分地方没有、少数地方爆发”的系统。这两种系统的管理策略完全不同。</p>
+<p>在保护生物学中，组 B 的模式非常常见，很多样方没有目标物种（零值），少数样方有大量个体（聚集分布）。如果只看均值和标准差，你会以为这是一个”围绕 10 均匀波动”的系统，但实际上它是一个”大部分地方没有、少数地方爆发”的系统。这两种系统的管理策略完全不同。</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 构造反例：相同均值，不同分布</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">20260620</span>)</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>group_A <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">8</span>, <span class="dv">9</span>, <span class="dv">10</span>, <span class="dv">11</span>, <span class="dv">12</span>)</span>
@@ -551,7 +551,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="fu">stripchart</span>(<span class="fu">list</span>(<span class="at">A =</span> group_A, <span class="at">B =</span> group_B), <span class="at">method =</span> <span class="st">"jitter"</span>,</span>
 <span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>           <span class="at">vertical =</span> <span class="cn">TRUE</span>, <span class="at">pch =</span> <span class="dv">16</span>, <span class="at">col =</span> <span class="fu">c</span>(<span class="st">"#4d8294"</span>, <span class="st">"#c86652"</span>),</span>
 <span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>           <span class="at">main =</span> <span class="st">"相同均值，不同分布"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>认识数据的正确顺序是：<strong>先看原始值，再看分布形状，最后才计算摘要量。</strong> 不要反过来——不要先算均值，然后用均值去”想象”数据长什么样。</p>
+<p>认识数据的正确顺序是：先看原始值，再看分布形状，最后才计算摘要量。不要反过来：不要先算均值，然后用均值去”想象”数据长什么样。</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 修复地物种丰富度：先看原始分布</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>))</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(rest<span class="sc">$</span>species_richness, <span class="at">breaks =</span> <span class="dv">15</span>, <span class="at">col =</span> <span class="st">"#e1f5fe"</span>,</span>
@@ -585,7 +585,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 <tr class="even">
 <td>中位数（median）</td>
-<td>“一半的观测值在它之上，一半在它之下——典型值是多少？”</td>
+<td>“一半的观测值在它之上，一半在它之下：典型值是多少？”</td>
 <td>弱</td>
 </tr>
 <tr class="odd">
@@ -619,16 +619,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="co"># 范围</span></span>
 <span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="fu">range</span>(rest<span class="sc">$</span>species_richness)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="key-judgment">
-<p><strong>关键判断：</strong> 均值和中位数回答不同的问题。当数据偏态时，用均值描述”典型值”会误导——均值被少数极端值拉向尾部，不再代表大多数观测值的位置。</p>
+<p>判断：均值和中位数回答不同的问题。当数据偏态时，用均值描述”典型值”会误导：均值被少数极端值拉向尾部，不再代表大多数观测值的位置。</p>
 </div>
 </section>
 <section id="偏态零值界限与离群点" class="level2">
 <h2 class="anchored" data-anchor-id="偏态零值界限与离群点">5.4 偏态、零值、界限与离群点</h2>
 <p>保护数据有四个常见的分布特征，每一个都必须在建模前被识别：</p>
-<p><strong>偏态（skewness）：</strong> 分布不对称，一条尾巴比另一条长。例如大多数样方的虫口密度很低，少数样方极高——这是典型的右偏分布。右偏数据的均值大于中位数。</p>
-<p><strong>零值（zero-inflation）：</strong> 很多观测值为零，超过了标准分布（如 Poisson）能解释的范围。例如大部分红外相机 occasion 没有拍到目标物种。</p>
-<p><strong>界限（bounds）：</strong> 变量有天然的上下限。物种丰富度 ≥ 0（下界），冠层盖度在 0–100% 之间（上下界）。这些界限意味着方差在边界附近会缩小——你不能在 100% 盖度的样方上再增加 20% 的盖度。</p>
-<p><strong>离群点（outliers）：</strong> 远离大多数观测值的个别点。离群点首先应该被核查——是录入错误？是仪器故障？还是真实的极端事件？只有在确认是错误后才能修正或排除；如果它是真实的，它可能恰恰是你研究中最有信息量的观测。</p>
+<p>偏态（skewness）：分布不对称，一条尾巴比另一条长。例如大多数样方的虫口密度很低，少数样方极高。这是典型的右偏分布。右偏数据的均值大于中位数。</p>
+<p>零值（zero-inflation），很多观测值为零，超过了标准分布（如 Poisson）能解释的范围。例如大部分红外相机 occasion 没有拍到目标物种。</p>
+<p>界限（bounds）：变量有天然的上下限。物种丰富度 ≥ 0（下界），冠层盖度在 0-100% 之间（上下界）。这些界限意味着方差在边界附近会缩小：你不能在 100% 盖度的样方上再增加 20% 的盖度。</p>
+<p>离群点（outliers）：远离大多数观测值的个别点。离群点首先应该被核查：是录入错误？是仪器故障？还是真实的极端事件？只有在确认是错误后才能修正或排除；如果它是真实的，它可能恰恰是你研究中最有信息量的观测。</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 检查冠层盖度的分布特征</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(rest<span class="sc">$</span>canopy_cover, <span class="at">breaks =</span> <span class="dv">20</span>, <span class="at">col =</span> <span class="st">"#e8f5e9"</span>,</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">"冠层盖度分布"</span>, <span class="at">xlab =</span> <span class="st">"盖度 (%)"</span>)</span>
@@ -645,9 +645,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="mascot-note">
 <img src="../images/mascot/cat-point.svg" alt="" class="mascot" aria-hidden="true">
 <div class="mascot-note-copy">
-<strong>黑豹提醒：离群点先核查，不能自动删除</strong>
+黑豹提醒：离群点先核查，不能自动删除
 <p>
-离群点可能是录入错误（“100”打成了”1000”），也可能是你研究中最重要的观测——那棵在极端干旱中存活下来的树、那个唯一拍到目标物种的样点。在确认来源之前，标记但不删除。
+离群点可能是录入错误（“100”打成了”1000”），也可能是你研究中最重要的观测：那棵在极端干旱中存活下来的树、那个唯一拍到目标物种的样点。在确认来源之前，标记但不删除。
 </p>
 </div>
 </div>
@@ -656,12 +656,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="分组与层级会改变总体描述">5.5 分组与层级会改变总体描述</h2>
 <p>把数据合并在一起算一个总均值，是描述统计中最常见的错误之一。修复地数据天然有四个分组维度：</p>
 <ul>
-<li><strong>时期：</strong> 修复前 vs 修复后</li>
-<li><strong>地点类型：</strong> 修复地 vs 对照地</li>
-<li><strong>景观区组：</strong> 6 个景观</li>
-<li><strong>样方：</strong> 嵌套于地点内</li>
+<li>时期：修复前 vs 修复后</li>
+<li>地点类型：修复地 vs 对照地</li>
+<li>景观区组：6 个景观</li>
+<li>样方：嵌套于地点内</li>
 </ul>
-<p>如果你把 120 行数据合并在一起算”总均值”，你实际上是在回答一个没有人问的问题：“如果不分修复前后、不分修复对照、不分景观差异，所有样方的平均丰富度是多少？”这个数字对于评估修复效果没有任何用处——它把修复效应、时间趋势和景观差异全部搅在一起了。</p>
+<p>如果你把 120 行数据合并在一起算”总均值”，你实际上是在回答一个没有人问的问题：“如果不分修复前后、不分修复对照、不分景观差异，所有样方的平均丰富度是多少？”这个数字对于评估修复效果没有任何用处。它把修复效应、时间趋势和景观差异全部搅在一起了。</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 分层描述：按时期和地点类型</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">aggregate</span>(species_richness <span class="sc">~</span> period <span class="sc">+</span> status, <span class="at">data =</span> rest, <span class="at">FUN =</span> mean)</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="fu">aggregate</span>(species_richness <span class="sc">~</span> period <span class="sc">+</span> status, <span class="at">data =</span> rest, <span class="at">FUN =</span> sd)</span>
@@ -671,7 +671,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="co"># 错误做法：合并所有分组</span></span>
 <span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(rest<span class="sc">$</span>species_richness)  <span class="co"># 这个数字回答的是什么问题？</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>正确的做法是：<strong>先分层，再描述。</strong> 每一层的摘要量只回答该层的问题。修复后的修复地样方丰富度均值，只描述”修复地样方在修复后的状态”——它不自动等于”修复措施的效果”。效果需要对照地和修复前的数据来估计（第 16 章）。</p>
+<p>正确的做法是：先分层，再描述。每一层的摘要量只回答该层的问题。修复后的修复地样方丰富度均值，只描述”修复地样方在修复后的状态”。它不自动等于”修复措施的效果”。效果需要对照地和修复前的数据来估计（第 16 章）。</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 按景观和时期画分组箱线图</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>))</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 修复前</span></span>
@@ -687,39 +687,39 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>        <span class="at">main =</span> <span class="st">"修复后"</span>, <span class="at">ylab =</span> <span class="st">"物种丰富度"</span>,</span>
 <span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>        <span class="at">names =</span> <span class="fu">c</span>(<span class="st">"对照"</span>, <span class="st">"修复"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="key-judgment">
-<p><strong>关键判断：</strong> 合并分组会掩盖交互效应。修复地丰富度从 12 升到 16，对照地从 12 升到 13——如果你只看”修复后所有样方的均值”，你会把时间趋势误认为修复效果。</p>
+<p>判断：合并分组会掩盖交互效应。修复地丰富度从 12 升到 16，对照地从 12 升到 13。如果你只看”修复后所有样方的均值”，你会把时间趋势误认为修复效果。</p>
 </div>
 </section>
 <section id="正态分布是模型假设不是数据目标" class="level2">
 <h2 class="anchored" data-anchor-id="正态分布是模型假设不是数据目标">5.6 正态分布是模型假设，不是数据目标</h2>
 <p>很多教材的第一句话是”正态分布是统计学中最重要的分布”。这句话本身没错，但它被误解的方式造成了大量伤害。</p>
-<p>正态分布是<strong>某些统计模型的假设</strong>——t 检验、ANOVA、线性回归的残差被假定来自正态分布。但它不是<strong>数据的天然目标</strong>。你的数据不需要”是正态的”才能被分析——它只需要被正确的模型处理。</p>
+<p>正态分布是某些统计模型的假设：t 检验、ANOVA、线性回归的残差被假定来自正态分布。但它不是数据的天然目标。你的数据不需要”是正态的”才能被分析。它只需要被正确的模型处理。</p>
 <p>保护数据中常见的非正态模式：</p>
 <ul>
-<li><strong>计数数据</strong>（物种数、虫口数、照片数）→ Poisson 或负二项分布（第 12 章）</li>
-<li><strong>0/1 数据</strong>（检出/未检出、存活/死亡）→ 二项分布（第 10、12 章）</li>
-<li><strong>比例数据</strong>（盖度、死亡率）→ Beta 分布或二项 GLM（第 12 章）</li>
-<li><strong>右偏连续数据</strong>（生物量、密度）→ 对数正态或 Gamma 分布</li>
+<li>计数数据（物种数、虫口数、照片数）→ Poisson 或负二项分布（第 12 章）</li>
+<li>0/1 数据（检出/未检出、存活/死亡）→ 二项分布（第 10、12 章）</li>
+<li>比例数据（盖度、死亡率）→ Beta 分布或二项 GLM（第 12 章）</li>
+<li>右偏连续数据（生物量、密度）→ 对数正态或 Gamma 分布</li>
 </ul>
-<p>“先做正态性检验，不显著就用 t 检验，显著就改用非参数检验”——这是教科书里常见的流程，但它是错的。问题不在于”数据是不是正态”，而在于”数据的生成过程应该用什么分布来描述”。计数数据不会因为”正态性检验不显著”就变成连续数据。</p>
+<p>“先做正态性检验，不显著就用 t 检验，显著就改用非参数检验”。这是教科书里常见的流程，但它是错的。问题不在于”数据是不是正态”，而在于”数据的生成过程应该用什么分布来描述”。计数数据不会因为”正态性检验不显著”就变成连续数据。</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 演示：丰富度数据的分布</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 丰富度是计数数据（非负整数），天然不适合用正态分布描述</span></span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(rest<span class="sc">$</span>species_richness, <span class="at">breaks =</span> <span class="dv">15</span>, <span class="at">col =</span> <span class="st">"#e1f5fe"</span>,</span>
 <span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">"物种丰富度：计数数据，不是正态数据"</span>,</span>
 <span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">"物种数"</span>)</span>
 <span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="co"># 叠加一个拟合的正态曲线——注意它延伸到负数区域</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="co"># 叠加一个拟合的正态曲线：注意它延伸到负数区域</span></span>
 <span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dnorm</span>(x, <span class="at">mean =</span> <span class="fu">mean</span>(rest<span class="sc">$</span>species_richness),</span>
 <span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>            <span class="at">sd =</span> <span class="fu">sd</span>(rest<span class="sc">$</span>species_richness)) <span class="sc">*</span> <span class="fu">nrow</span>(rest) <span class="sc">*</span> <span class="dv">2</span>,</span>
 <span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>      <span class="at">add =</span> <span class="cn">TRUE</span>, <span class="at">col =</span> <span class="st">"#c86652"</span>, <span class="at">lwd =</span> <span class="dv">2</span>)</span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="co"># 正态曲线延伸到 x &lt; 0——但丰富度不可能为负</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="co"># 正态曲线延伸到 x &lt; 0，但丰富度不可能为负</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="key-judgment">
-<p><strong>关键判断：</strong> 正态分布是某些模型的残差假设，不是所有数据的天然形态。不要为了”让数据正态”而对数据做变换——选择适合数据生成过程的模型，比扭曲数据去适应模型更可靠。</p>
+<p>判断：正态分布是某些模型的残差假设，不是所有数据的天然形态。不要为了”让数据正态”而对数据做变换：选择适合数据生成过程的模型，比扭曲数据去适应模型更可靠。</p>
 </div>
 </section>
 <section id="写出分析前数据画像" class="level2">
 <h2 class="anchored" data-anchor-id="写出分析前数据画像">5.7 写出分析前数据画像</h2>
-<p>在进入任何正式模型之前，你应该能在一页纸上说清以下内容。这份文档叫”分析前数据画像”（pre-analysis data profile），它的作用是：<strong>在模型假设和数据现实之间做第一次对照。</strong></p>
+<p>在进入任何正式模型之前，你应该能在一页纸上说清以下内容。这份文档叫”分析前数据画像”（pre-analysis data profile），它的作用是：在模型假设和数据现实之间做第一次对照。</p>
 <p>数据画像的固定栏目：</p>
 <table class="caption-top table">
 <thead>
@@ -771,7 +771,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">"中位数:"</span>, <span class="fu">median</span>(rest<span class="sc">$</span>species_richness),</span>
 <span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>    <span class="st">"SD:"</span>, <span class="fu">round</span>(<span class="fu">sd</span>(rest<span class="sc">$</span>species_richness), <span class="dv">1</span>),</span>
 <span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>    <span class="st">"IQR:"</span>, <span class="fu">IQR</span>(rest<span class="sc">$</span>species_richness),</span>
-<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>    <span class="st">"范围:"</span>, <span class="fu">paste</span>(<span class="fu">range</span>(rest<span class="sc">$</span>species_richness), <span class="at">collapse =</span> <span class="st">"–"</span>), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>    <span class="st">"范围:"</span>, <span class="fu">paste</span>(<span class="fu">range</span>(rest<span class="sc">$</span>species_richness), <span class="at">collapse =</span> <span class="st">"-"</span>), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span>
 <span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"</span><span class="sc">\n</span><span class="st">--- 按时期和地点类型 ---</span><span class="sc">\n</span><span class="st">"</span>)</span>
 <span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">aggregate</span>(species_richness <span class="sc">~</span> period <span class="sc">+</span> status, <span class="at">data =</span> rest,</span>
@@ -790,32 +790,32 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="本章小结" class="level2">
 <h2 class="anchored" data-anchor-id="本章小结">本章小结</h2>
 <ul>
-<li><strong>描述统计是正式建模前对数据生成过程的第一次审问。</strong> 先看原始值和分布，再算摘要量——不要反过来。</li>
-<li><strong>均值和标准差不是唯一答案。</strong> 中位数和四分位距在偏态数据中更能反映”典型”情况；选择摘要量取决于你的数据特征和你想回答的问题。</li>
-<li><strong>相同的摘要量可以对应完全不同的分布。</strong> 两组均值和标准差相同的数据，可能一组对称、另一组由大量零值和少量极高值构成——生态含义完全不同。</li>
-<li><strong>合并分组会掩盖交互效应。</strong> 修复地数据有时期、地点类型、景观和样方四个层级——每一层的摘要量只回答该层的问题。</li>
-<li><strong>正态分布是模型假设，不是数据目标。</strong> 计数、0/1、比例和右偏数据需要对应的分布模型，不要为了”让数据正态”而扭曲数据。</li>
-<li><strong>分析前数据画像让你在建模之前就识别出潜在的假设违反。</strong> 一页纸说清单位、分组、分布、异常和模型约束。</li>
+<li>描述统计是正式建模前对数据生成过程的第一次审问。先看原始值和分布，再算摘要量：不要反过来。</li>
+<li>均值和标准差不是唯一答案。中位数和四分位距在偏态数据中更能反映”典型”情况；选择摘要量取决于你的数据特征和你想回答的问题。</li>
+<li>相同的摘要量可以对应完全不同的分布。两组均值和标准差相同的数据，可能一组对称、另一组由大量零值和少量极高值构成：生态含义完全不同。</li>
+<li>合并分组会掩盖交互效应。修复地数据有时期、地点类型、景观和样方四个层级：每一层的摘要量只回答该层的问题。</li>
+<li>正态分布是模型假设，不是数据目标。计数、0/1、比例和右偏数据需要对应的分布模型，不要为了”让数据正态”而扭曲数据。</li>
+<li>分析前数据画像让你在建模之前就识别出潜在的假设违反。一页纸说清单位、分组、分布、异常和模型约束。</li>
 </ul>
 </section>
 <section id="练习" class="level2">
 <h2 class="anchored" data-anchor-id="练习">练习</h2>
 <ol type="1">
-<li><p><strong>识别层。</strong> 以下场景中，应该用均值还是中位数来描述”典型值”？为什么？</p>
+<li><p>识别层。以下场景中，应该用均值还是中位数来描述”典型值”？为什么？</p>
 <ol type="a">
-<li>60 个红外相机样点的独立照片数（多数样点 0–5 张，少数样点 &gt; 50 张）</li>
+<li>60 个红外相机样点的独立照片数（多数样点 0-5 张，少数样点 &gt; 50 张）</li>
 <li>32 个黄黄草小区的株高均值</li>
 </ol></li>
-<li><p><strong>解释层。</strong> “这两组的均值和标准差几乎一样，所以它们的生态过程也应该一样。” 请用本章的反例（组 A vs 组 B）说明为什么这个推理不成立。</p></li>
-<li><p><strong>应用层。</strong> 修复地数据中，有研究者发现一个样方的冠层盖度为 98%，远高于其他样方。请写出你应该做的三步核查流程。</p></li>
-<li><p><strong>诊断层。</strong> 有人把修复前后的所有样方数据合并，计算”总均值 = 14.2”，然后报告”修复地物种丰富度为 14.2 种”。这个数字至少混合了哪三种不同的变异来源？</p></li>
-<li><p><strong>综合层。</strong> 为森林病虫害数据的虫口密度（<code>pest_count</code>）写一份分析前数据画像。包含：观测单位、独立单位、分组变量、分布特征（偏态、零值比例、离群点）、以及基于观察的模型约束建议。</p></li>
+<li><p>解释层。“这两组的均值和标准差几乎一样，所以它们的生态过程也应该一样。” 请用本章的反例（组 A vs 组 B）说明为什么这个推理不成立。</p></li>
+<li><p>应用层。修复地数据中，有研究者发现一个样方的冠层盖度为 98%，远高于其他样方。请写出你应该做的三步核查流程。</p></li>
+<li><p>诊断层。有人把修复前后的所有样方数据合并，计算”总均值 = 14.2”，然后报告”修复地物种丰富度为 14.2 种”。这个数字至少混合了哪三种不同的变异来源？</p></li>
+<li><p>综合层。为森林病虫害数据的虫口密度（<code>pest_count</code>）写一份分析前数据画像。包含：观测单位、独立单位、分组变量、分布特征（偏态、零值比例、离群点）、以及基于观察的模型约束建议。</p></li>
 </ol>
 </section>
 <section id="继续学习" class="level2">
 <h2 class="anchored" data-anchor-id="继续学习">继续学习</h2>
 <div class="chapter-next">
-<p>下一步：数据画像暴露了变异和不确定性——但这些变异中，哪些来自抽样、哪些来自测量、哪些来自真实的生态过程？第 6 章将教你建立调查的不确定性预算。</p>
+<p>下一步。数据画像暴露了变异和不确定性，但这些变异中，哪些来自抽样、哪些来自测量、哪些来自真实的生态过程？第 6 章将教你建立调查的不确定性预算。</p>
 <p>→ <a href="../chapters/06-sampling-error.html">第 6 章：样本、误差与不确定性</a></p>
 </div>
 

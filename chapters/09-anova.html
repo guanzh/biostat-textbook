@@ -485,35 +485,35 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <div class="ch9-pipeline">
     <div class="ch9-stage s1">
       <div class="ch9-stage-h">① 确定单位</div>
-      <div class="ch9-stage-body">32 个小区是实验单位——不是 160 株幼苗</div>
+      <div class="ch9-stage-body">32 个小区是实验单位，不是 160 株幼苗</div>
     </div>
     <div class="ch9-arrow" aria-hidden="true">→</div>
     <div class="ch9-stage s2">
       <div class="ch9-stage-h">② 写出模型</div>
-      <div class="ch9-stage-body">区组 + 光照——每一项都回指第 3 章的设计</div>
+      <div class="ch9-stage-body">区组 + 光照：每一项都回指第 3 章的设计</div>
     </div>
     <div class="ch9-arrow" aria-hidden="true">→</div>
     <div class="ch9-stage s3">
       <div class="ch9-stage-h">③ 估计对比</div>
-      <div class="ch9-stage-body">40% vs 100% 是主要比较——总体 F 检验只是第一步</div>
+      <div class="ch9-stage-body">40% vs 100% 是主要比较：总体 F 检验只是第一步</div>
     </div>
   </div>
   <div class="ch9-caveat">
-    <b>黑豹提醒：</b>ANOVA 显著 ≠ 每组都不同。总体检验不能替代计划对比——先决定要比较什么，再跑模型。
+    黑豹提醒：ANOVA 显著 ≠ 每组都不同。总体检验不能替代计划对比：先决定要比较什么，再跑模型。
   </div>
 </div>
 <section id="多组问题首先是对比问题" class="level2">
 <h2 class="anchored" data-anchor-id="多组问题首先是对比问题">9.1 多组问题首先是对比问题</h2>
-<p>第 8 章比较了两组。但保护研究中经常需要同时比较三个或更多组——不同光照水平、不同防治措施、不同生境类型。ANOVA（方差分析）是处理多组比较的经典方法。</p>
-<p>但 ANOVA 有一个致命的误解：<strong>“ANOVA 显著”不等于”每组都不同”。</strong> F 检验只回答一个笼统的问题——“至少有一组和其他组不同”——它不告诉你哪组和哪组不同，更不告诉你差异有多大。</p>
+<p>第 8 章比较了两组。但保护研究中经常需要同时比较三个或更多组：不同光照水平、不同防治措施、不同生境类型。ANOVA（方差分析）是处理多组比较的经典方法。</p>
+<p>但 ANOVA 有一个致命的误解：“ANOVA 显著”不等于”每组都不同”。F 检验只回答一个笼统的问题：“至少有一组和其他组不同”。它不告诉你哪组和哪组不同，更不告诉你差异有多大。</p>
 <p>本章的主项目回到黄黄草光照试验（项目 A）：8 个区组 × 4 个光照水平（100%、70%、40%、15%），32 个小区，每小区 5 株幼苗，在 1、3、6 个月测量。本章聚焦于第六个月的开花比例。</p>
 <p>在跑任何模型之前，先明确你要比较什么：</p>
 <ul>
-<li><strong>主要比较：</strong> 40% 光照 vs 100% 光照——40% 对应野外林冠下典型光环境</li>
-<li><strong>次要比较：</strong> 70% vs 100%、15% vs 100%</li>
-<li><strong>趋势检验：</strong> 开花比例是否随光照降低而递减？</li>
+<li>主要比较：40% 光照 vs 100% 光照：40% 对应野外林冠下典型光环境</li>
+<li>次要比较：70% vs 100%、15% vs 100%</li>
+<li>趋势检验：开花比例是否随光照降低而递减？</li>
 </ul>
-<p>这些比较必须在看到数据之前指定——不能在看到结果后再挑”最显著”的那个。</p>
+<p>这些比较必须在看到数据之前指定，不能在看到结果后再挑”最显著”的那个。</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 读取黄黄草数据</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>hh <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"../data/teaching/huanghuang_light_long.csv"</span>,</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>               <span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span>)</span>
@@ -530,26 +530,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(plot_flower)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="chapter-route" aria-label="本章学习路线">
 <div>
-<strong>确定单位</strong><span>32 个小区</span>
+确定单位<span>32 个小区</span>
 </div>
 <div>
-<strong>写出模型</strong><span>区组 + 光照</span>
+写出模型<span>区组 + 光照</span>
 </div>
 <div>
-<strong>分解变异</strong><span>可解释 vs 剩余</span>
+分解变异<span>可解释 vs 剩余</span>
 </div>
 <div>
-<strong>估计对比</strong><span>计划对比优先</span>
+估计对比<span>计划对比优先</span>
 </div>
 <div>
-<strong>解释边界</strong><span>效应、诊断、外推</span>
+解释边界<span>效应、诊断、外推</span>
 </div>
 </div>
 <div class="learning-goals">
-<p><strong>学完本章后，你能够：</strong></p>
+<p>学完本章后，你能够：</p>
 <ol type="1">
 <li>根据设计结构（CRD/RCBD）写出正确的 ANOVA 模型公式。</li>
-<li>区分总体 F 检验和计划对比——前者不能替代后者。</li>
+<li>区分总体 F 检验和计划对比。前者不能替代后者。</li>
 <li>解释交互作用如何改变主效应的含义。</li>
 <li>进行残差诊断，识别异常小区和方差问题。</li>
 <li>报告处理效应和置信区间，而不是只给显著字母分组。</li>
@@ -560,8 +560,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="从随机区组设计写出模型结构">9.2 从随机区组设计写出模型结构</h2>
 <p>第 3 章的设计直接决定了模型公式。黄黄草试验是 RCBD：8 个区组，每个区组内 4 个光照水平随机分配。</p>
 <p>模型公式：<code>开花比例 ~ 光照 + 区组</code></p>
-<p>每一项的含义： - <code>光照</code>：处理因素（固定效应）——我们关心的比较 - <code>区组</code>：区组因素——控制已知的苗床南北差异</p>
-<p><strong>为什么区组要进模型？</strong> 因为区组间的差异（南段 vs 北段的含水量本底）是真实存在的，但我们对它本身不感兴趣。把它放进模型，等于把区组间的变异从误差中扣除——让处理效应的检验不被区组差异污染。</p>
+<p>每一项的含义： - <code>光照</code>：处理因素（固定效应）：我们关心的比较 - <code>区组</code>：区组因素：控制已知的苗床南北差异</p>
+<p>为什么区组要进模型？因为区组间的差异（南段 vs 北段的含水量本底）是真实存在的，但我们对它本身不感兴趣。把它放进模型，等于把区组间的变异从误差中扣除：让处理效应的检验不被区组差异污染。</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 拟合 RCBD 模型</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>plot_flower<span class="sc">$</span>light_pct <span class="ot">&lt;-</span> <span class="fu">factor</span>(plot_flower<span class="sc">$</span>light_pct)</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>plot_flower<span class="sc">$</span>block_id <span class="ot">&lt;-</span> <span class="fu">factor</span>(plot_flower<span class="sc">$</span>block_id)</span>
@@ -576,10 +576,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="方差分析如何分解可解释与剩余变异" class="level2">
 <h2 class="anchored" data-anchor-id="方差分析如何分解可解释与剩余变异">9.3 方差分析如何分解可解释与剩余变异</h2>
-<p>ANOVA 的核心思想是<strong>分解总变异</strong>：</p>
+<p>ANOVA 的主要想法是分解总变异：</p>
 <p>总变异（SST）= 处理间变异（SSA）+ 区组间变异（SSB）+ 剩余变异（SSE）</p>
-<p>F 检验比较的是：<strong>处理间变异 / 剩余变异</strong>。如果处理间的变异远大于同一处理内小区间的随机变异，说明处理效应不太可能由随机波动产生。</p>
-<p>但 F 检验的显著只是一个起点——它告诉你”至少有一组不同”，然后你必须回到预先指定的对比。</p>
+<p>F 检验比较的是：处理间变异 / 剩余变异。如果处理间的变异远大于同一处理内小区间的随机变异，说明处理效应不太可能由随机波动产生。</p>
+<p>但 F 检验的显著只是一个起点。它告诉你”至少有一组不同”，然后你必须回到预先指定的对比。</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 手动理解变异分解</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 总均值</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>grand_mean <span class="ot">&lt;-</span> <span class="fu">mean</span>(plot_flower<span class="sc">$</span>flowered)</span>
@@ -598,9 +598,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="总体检验不能替代计划对比" class="level2">
 <h2 class="anchored" data-anchor-id="总体检验不能替代计划对比">9.4 总体检验不能替代计划对比</h2>
-<p>F 检验显著后，最常见的错误是：<strong>对每对处理做 t 检验，然后用显著字母（a, b, c）标注。</strong></p>
-<p>问题： 1. <strong>多重比较膨胀第一类错误率。</strong> 4 组有 6 对比较——如果每对都用 α = 0.05，整体错误率远高于 0.05。 2. <strong>显著字母不能替代效应量。</strong> “a”和”b”不告诉你差异有多大。 3. <strong>不是所有比较都同等重要。</strong> 40% vs 100% 是预先指定的主要比较——它应该被优先报告，不管其他比较是否显著。</p>
-<p><strong>计划对比（planned contrast）：</strong> 在见到数据之前指定的比较。计划对比不需要多重比较校正（或只需要对计划对比的数量做校正），因为它们不是”从所有可能比较中挑出来的”。</p>
+<p>F 检验显著后，最常见的错误是：对每对处理做 t 检验，然后用显著字母（a, b, c）标注。</p>
+<p>问题： 1. 多重比较膨胀第一类错误率。4 组有 6 对比较。如果每对都用 α = 0.05，整体错误率远高于 0.05。 2. 显著字母不能替代效应量。“a”和”b”不告诉你差异有多大。 3. 不是所有比较都同等重要。40% vs 100% 是预先指定的主要比较。它应该被优先报告，不管其他比较是否显著。</p>
+<p>计划对比（planned contrast）：在见到数据之前指定的比较。计划对比不需要多重比较校正（或只需要对计划对比的数量做校正），因为它们不是”从所有可能比较中挑出来的”。</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 主要计划对比：40% vs 100%</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(multcomp)  <span class="co"># 如果不可用，用基础 R 的 contrast 方法</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -625,14 +625,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="交互作用改变主效应的解释" class="level2">
 <h2 class="anchored" data-anchor-id="交互作用改变主效应的解释">9.5 交互作用改变主效应的解释</h2>
-<p>如果试验同时操纵两个因素（如光照 × 浇水频率），就涉及交互作用。交互作用的含义是：<strong>一个因素的效应取决于另一个因素的水平。</strong></p>
+<p>如果试验同时操纵两个因素（如光照 × 浇水频率），就涉及交互作用。交互作用的含义是：一个因素的效应取决于另一个因素的水平。</p>
 <p>本章不要求你拟合析因模型（那是第 18 章的内容），但你必须能识别交互作用的存在，并理解为什么”只看主效应”在交互作用存在时是错的。</p>
-<p>简单示例：如果光照对开花的影响在浇水多时很强、在浇水少时很弱——那么”光照的平均效应”（主效应）掩盖了这种依赖关系。正确的做法是先检查交互作用是否显著，如果显著，主效应不能被单独解释。</p>
+<p>简单示例。如果光照对开花的影响在浇水多时很强、在浇水少时很弱：那么”光照的平均效应”（主效应）掩盖了这种依赖关系。正确的做法是先检查交互作用是否显著，如果显著，主效应不能被单独解释。</p>
 </section>
 <section id="残差方差与独立性诊断" class="level2">
 <h2 class="anchored" data-anchor-id="残差方差与独立性诊断">9.6 残差、方差与独立性诊断</h2>
-<p>ANOVA 的三个核心假设： 1. <strong>独立性：</strong> 残差之间不相关——这由设计保证（随机化） 2. <strong>方差齐性：</strong> 各处理组的方差相近 3. <strong>正态性：</strong> 残差近似正态分布</p>
-<p>诊断不是”通过/不通过”的二元判断——它是帮你理解模型在哪些地方可能不可靠。</p>
+<p>ANOVA 的三个主要假设： 1. 独立性：残差之间不相关。这由设计保证（随机化） 2. 方差齐性：各处理组的方差相近 3. 正态性：残差近似正态分布</p>
+<p>诊断不是”通过/不通过”的二元判断：它是帮你理解模型在哪些地方可能不可靠。</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 残差诊断</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">2</span>))</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(model)</span>
@@ -652,9 +652,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="mascot-note">
 <img src="../images/mascot/cat-point.svg" alt="" class="mascot" aria-hidden="true">
 <div class="mascot-note-copy">
-<strong>黑豹提醒：诊断不是”通过/不通过”</strong>
+黑豹提醒：诊断不是”通过/不通过”
 <p>
-残差图显示一个小区异常，不意味着你应该删除它——先核查：录入错误？遮阴帘破损？还是真实的极端响应？只有在确认是错误后才能修正；如果是真实响应，保留它并做敏感性分析（有它和没它的结论是否一致）。
+残差图显示一个小区异常，不意味着你应该删除它：先核查：录入错误？遮阴帘破损？还是真实的极端响应？只有在确认是错误后才能修正；如果是真实响应，保留它并做敏感性分析（有它和没它的结论是否一致）。
 </p>
 </div>
 </div>
@@ -695,35 +695,35 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"</span><span class="sc">\n</span><span class="st">=== 结论边界 ===</span><span class="sc">\n</span><span class="st">"</span>)</span>
 <span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"支持：40% 光照下开花比例显著低于 100% 光照。</span><span class="sc">\n</span><span class="st">"</span>)</span>
 <span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"不支持：所有光照水平两两不同。</span><span class="sc">\n</span><span class="st">"</span>)</span>
-<span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"不支持：野外成体的开花响应与苗圃幼苗相同——外推有损耗。</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"不支持：野外成体的开花响应与苗圃幼苗相同：外推有损耗。</span><span class="sc">\n</span><span class="st">"</span>)</span>
 <span id="cb6-35"><a href="#cb6-35" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"未分析：光照对成活率、株高和 SPAD 的影响（次要响应）。</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="key-judgment">
-<p><strong>关键判断：</strong> ANOVA 是”按设计分解变异并估计预先关心的对比”——不是”三组以上的 t 检验”。总体 F 检验只是第一步，计划对比才是回答研究问题的核心。</p>
+<p>判断：ANOVA 是”按设计分解变异并估计预先关心的对比”，不是”三组以上的 t 检验”。总体 F 检验只是第一步，计划对比才是回答研究问题的主要。</p>
 </div>
 </section>
 <section id="本章小结" class="level2">
 <h2 class="anchored" data-anchor-id="本章小结">本章小结</h2>
 <ul>
-<li><strong>ANOVA 不是”三组以上的 t 检验”。</strong> 它是按设计分解变异，并估计预先指定的对比。</li>
-<li><strong>总体 F 检验不能替代计划对比。</strong> “ANOVA 显著”只告诉你至少有一组不同——你必须回到预先指定的比较。</li>
-<li><strong>区组因素必须进入模型。</strong> 区组间的差异如果不被扣除，会污染处理效应的检验。</li>
-<li><strong>交互作用改变主效应的解释。</strong> 如果交互显著，主效应不能被单独解释。</li>
-<li><strong>诊断不是”通过/不通过”。</strong> 异常小区先核查来源，再做敏感性分析——不能自动删除。</li>
-<li><strong>显著字母不能替代效应图。</strong> 报告处理效应和置信区间，而不是只给 a、b、c 标注。</li>
+<li>ANOVA 不是”三组以上的 t 检验”。它是按设计分解变异，并估计预先指定的对比。</li>
+<li>总体 F 检验不能替代计划对比。“ANOVA 显著”只告诉你至少有一组不同：你必须回到预先指定的比较。</li>
+<li>区组因素必须进入模型。区组间的差异如果不被扣除，会污染处理效应的检验。</li>
+<li>交互作用改变主效应的解释。如果交互显著，主效应不能被单独解释。</li>
+<li>诊断不是”通过/不通过”。异常小区先核查来源，再做敏感性分析，不能自动删除。</li>
+<li>显著字母不能替代效应图。报告处理效应和置信区间，而不是只给 a、b、c 标注。</li>
 </ul>
 </section>
 <section id="练习" class="level2">
 <h2 class="anchored" data-anchor-id="练习">练习</h2>
 <ol type="1">
-<li><p><strong>识别层。</strong> 以下场景应该用 CRD 还是 RCBD 的 ANOVA？写出模型公式。</p>
+<li><p>识别层。以下场景应该用 CRD 还是 RCBD 的 ANOVA？写出模型公式。</p>
 <ol type="a">
 <li>四种光照水平，8 个区组，区组内随机分配。</li>
 <li>三种营养液，24 个独立培养皿，完全随机分配。</li>
 </ol></li>
-<li><p><strong>解释层。</strong> “ANOVA 显著（P = 0.02），说明四组之间都有显著差异。” 这句话错在哪里？</p></li>
-<li><p><strong>应用层。</strong> 为黄黄草数据写出一组计划对比：哪些比较是预先关心的？为什么这些比较不需要对全部 6 对做校正？</p></li>
-<li><p><strong>诊断层。</strong> 残差图显示 15% 光照组的残差方差明显大于其他组。这可能意味着什么？你应该怎么做？</p></li>
-<li><p><strong>综合层。</strong> 为森林病虫害四种处理（control, standard, biocontrol, integrated）的第三次调查虫口密度设计 RCBD ANOVA。写出：模型公式、主要计划对比、以及为什么不能把树木当作实验单位。</p></li>
+<li><p>解释层。“ANOVA 显著（P = 0.02），说明四组之间都有显著差异。” 这句话错在哪里？</p></li>
+<li><p>应用层。为黄黄草数据写出一组计划对比：哪些比较是预先关心的？为什么这些比较不需要对全部 6 对做校正？</p></li>
+<li><p>诊断层。残差图显示 15% 光照组的残差方差明显大于其他组。这可能意味着什么？你应该怎么做？</p></li>
+<li><p>综合层。为森林病虫害四种处理（control, standard, biocontrol, integrated）的第三次调查虫口密度设计 RCBD ANOVA。写出模型公式、主要计划对比，以及为什么不能把树木当作实验单位。</p></li>
 </ol>
 </section>
 <section id="继续学习" class="level2">

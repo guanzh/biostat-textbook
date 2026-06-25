@@ -490,48 +490,48 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div class="ch13-arrow" aria-hidden="true">→</div>
     <div class="ch13-stage s2">
       <div class="ch13-stage-h">② 划分层级</div>
-      <div class="ch13-stage-body">林分→区组→小区→树木——处理在小区，树木是观测单位</div>
+      <div class="ch13-stage-body">林分→区组→小区→树木：处理在小区，树木是观测单位</div>
     </div>
     <div class="ch13-arrow" aria-hidden="true">→</div>
     <div class="ch13-stage s3">
       <div class="ch13-stage-h">③ 连接决策</div>
-      <div class="ch13-stage-body">效果、成本、非目标影响、实施完整性——不能只看虫口</div>
+      <div class="ch13-stage-body">效果、成本、非目标影响、实施完整性，不能只看虫口</div>
     </div>
   </div>
   <div class="ch13-caveat">
-    <b>黑豹提醒：</b>四片林地各用一种处理，再把数百株树当重复——这是森林试验中最常见的致命设计错误。
+    黑豹提醒：四片林地各用一种处理，再把数百株树当重复。这是森林试验中最常见的致命设计错误。
   </div>
 </div>
 <section id="防治行动要改变什么" class="level2">
 <h2 class="anchored" data-anchor-id="防治行动要改变什么">13.1 防治行动要改变什么</h2>
-<p>第三篇教你掌握了从两组比较到 GLM 的统计方法。第四篇把这些方法放回真实的保护场景——不是再讲一遍方法，而是教你如何把保护问题写成完整的研究方案。</p>
+<p>第三篇教你掌握了从两组比较到 GLM 的统计方法。第四篇把这些方法放回真实的保护场景，不是再讲一遍方法，而是教你如何把保护问题写成完整的研究方案。</p>
 <p>本章聚焦于森林病虫害防治试验（项目 C）。假设你是一名森林保护技术员，负责评估四种防治措施的效果：对照（不处理）、标准化学防治、生物防治、综合防治（化学+生物+营林）。</p>
-<p>在开始设计试验之前，先明确：<strong>防治行动要改变什么？</strong></p>
+<p>在开始设计试验之前，先明确：防治行动要改变什么？</p>
 <ul>
-<li><strong>主要靶标：</strong> 虫口密度（pest_count）——防治措施的直接目标</li>
-<li><strong>次要响应：</strong> 受害等级（damage_class）、树木死亡率（dead）</li>
-<li><strong>非目标影响：</strong> 天敌和其他非目标生物的数量（non_target_count）</li>
-<li><strong>成本：</strong> 每小区的防治成本（cost_cny_plot）</li>
-<li><strong>实施质量：</strong> 措施是否按方案执行（implementation_score）</li>
+<li>主要靶标：虫口密度（pest_count）：防治措施的直接目标</li>
+<li>次要响应：受害等级（damage_class）、树木死亡率（dead）</li>
+<li>非目标影响：天敌和其他非目标生物的数量（non_target_count）</li>
+<li>成本：每小区的防治成本（cost_cny_plot）</li>
+<li>实施质量：措施是否按方案执行（implementation_score）</li>
 </ul>
-<p>不能只看虫口密度下降了就宣布成功——如果生物防治把害虫压下去了但把天敌也杀光了，长期来看可能更糟。</p>
+<p>不能只看虫口密度下降了就宣布成功。如果生物防治把害虫压下去了但把天敌也杀光了，长期来看可能更糟。</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>forest <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"../data/teaching/forest_pest_trial_long.csv"</span>,</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>                   <span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="chapter-route" aria-label="本章学习路线">
 <div>
-<strong>定义行动</strong><span>靶标与副作用</span>
+定义行动<span>靶标与副作用</span>
 </div>
 <div>
-<strong>划分层级</strong><span>区组→小区→树木</span>
+划分层级<span>区组→小区→树木</span>
 </div>
 <div>
-<strong>控制污染</strong><span>缓冲与边缘</span>
+控制污染<span>缓冲与边缘</span>
 </div>
 <div>
-<strong>测量多结果</strong><span>虫害/死亡/非目标/成本</span>
+测量多结果<span>虫害/死亡/非目标/成本</span>
 </div>
 <div>
-<strong>连接决策</strong><span>阈值与行动</span>
+连接决策<span>阈值与行动</span>
 </div>
 </div>
 </section>
@@ -539,11 +539,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="林分样地与树木层级">13.2 林分、样地与树木层级</h2>
 <p>森林试验的设计层级：</p>
 <ul>
-<li><strong>林分（stand）：</strong> 试验所在的整个森林区域——目标总体</li>
-<li><strong>区组（block）：</strong> 10 个区组，按地形和林分异质性划分——控制已知差异</li>
-<li><strong>小区（plot）：</strong> 40 个处理小区（每区组 4 个）——<strong>实验单位，处理施加在此层</strong></li>
-<li><strong>树木（tree）：</strong> 每小区 20 株——<strong>观测单位，不是实验单位</strong></li>
-<li><strong>调查次数（visit）：</strong> 3 次重复调查——<strong>重复测量，不是独立观测</strong></li>
+<li>林分（stand）：试验所在的整个森林区域：目标总体</li>
+<li>区组（block）：10 个区组，按地形和林分异质性划分：控制已知差异</li>
+<li>小区（plot）：40 个处理小区（每区组 4 个）：实验单位，处理施加在此层</li>
+<li>树木（tree）：每小区 20 株：观测单位，不是实验单位</li>
+<li>调查次数（visit）：3 次重复调查：重复测量，不是独立观测</li>
 </ul>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 检查设计</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"区组数:"</span>, <span class="fu">length</span>(<span class="fu">unique</span>(forest<span class="sc">$</span>block_id)), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span>
@@ -555,9 +555,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="区组缓冲与处理污染" class="level2">
 <h2 class="anchored" data-anchor-id="区组缓冲与处理污染">13.3 区组、缓冲与处理污染</h2>
-<p><strong>区组：</strong> 10 个区组按地形（坡位、坡向）和林分（树种组成、龄级）划分。区组内的 4 个小区条件尽可能接近——区组间的差异从分析中扣除。</p>
-<p><strong>缓冲与处理污染：</strong> 相邻小区之间需要缓冲带，防止： - 药剂漂移（化学防治飘到生物防治小区） - 天敌迁移（生物防治小区的天敌扩散到对照小区） - 边缘效应（小区边缘的树木受相邻处理影响）</p>
-<p><strong>反例：</strong> “四片林地各用一种处理，再把数百株树当重复。”——这不是随机区组设计。四片林地的地形、土壤、林分历史可能完全不同——处理效应和地块效应完全混杂。</p>
+<p>区组：10 个区组按地形（坡位、坡向）和林分（树种组成、龄级）划分。区组内的 4 个小区条件尽可能接近：区组间的差异从分析中扣除。</p>
+<p>缓冲与处理污染：相邻小区之间需要缓冲带，防止： - 药剂漂移（化学防治飘到生物防治小区） - 天敌迁移（生物防治小区的天敌扩散到对照小区） - 边缘效应（小区边缘的树木受相邻处理影响）</p>
+<p>反例：“四片林地各用一种处理，再把数百株树当重复。”。这不是随机区组设计。四片林地的地形、土壤、林分历史可能完全不同：处理效应和地块效应完全混杂。</p>
 </section>
 <section id="虫害林木和非目标影响" class="level2">
 <h2 class="anchored" data-anchor-id="虫害林木和非目标影响">13.4 虫害、林木和非目标影响</h2>
@@ -583,7 +583,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 <tr class="even">
 <td>受害等级（damage_class）</td>
-<td>有序分类 0–4</td>
+<td>有序分类 0-4</td>
 <td>第 10 章分类分析</td>
 </tr>
 <tr class="odd">
@@ -603,7 +603,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 </tbody>
 </table>
-<p><strong>不能把多指标随意合成总分。</strong> 虫口密度降了但树木死亡率没降——这两个指标回答不同的问题，不能加权平均成一个”综合效果分”。</p>
+<p>不能把多指标随意合成总分。虫口密度降了但树木死亡率没降。这两个指标回答不同的问题，不能加权平均成一个”综合效果分”。</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 各处理第三次调查的响应汇总</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>f3 <span class="ot">&lt;-</span> forest[forest<span class="sc">$</span>visit <span class="sc">==</span> <span class="dv">3</span>, ]</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 按小区聚合</span></span>
@@ -618,11 +618,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="重复调查与质控" class="level2">
 <h2 class="anchored" data-anchor-id="重复调查与质控">13.5 重复调查与质控</h2>
-<p>三次调查（visit 1, 2, 3）不是三次独立试验——同一小区的树木被重复测量。这引入了时间维度的设计考量：</p>
+<p>三次调查（visit 1, 2, 3）不是三次独立试验。同一小区的树木被重复测量。这引入了时间维度的设计考量：</p>
 <ul>
-<li><strong>防治效果的时滞：</strong> 第一次调查时效果可能尚未显现——主要分析应聚焦第三次调查</li>
-<li><strong>调查员一致性：</strong> 三次调查应由同一调查员或经过一致性培训的调查员完成</li>
-<li><strong>设备校准：</strong> 如果使用仪器测量，每次调查前校准</li>
+<li>防治效果的时滞：第一次调查时效果可能尚未显现：主要分析应聚焦第三次调查</li>
+<li>调查员一致性：三次调查应由同一调查员或经过一致性培训的调查员完成</li>
+<li>设备校准。如果使用仪器测量，每次调查前校准</li>
 </ul>
 </section>
 <section id="效果成本和阈值" class="level2">
@@ -689,7 +689,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="分析接口" class="level2">
 <h2 class="anchored" data-anchor-id="分析接口">13.7 分析接口</h2>
-<p>本章不重复讲授完整的 ANOVA 或 GLM——这些方法已在第 8–12 章中详细展开。本章的角色是<strong>把防治问题映射到正确的分析方法</strong>：</p>
+<p>本章不重复讲授完整的 ANOVA 或 GLM。这些方法已在第 8-12 章中详细展开。本章的角色是把防治问题映射到正确的分析方法：</p>
 <table class="caption-top table">
 <thead>
 <tr class="header">
@@ -730,21 +730,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="本章小结" class="level2">
 <h2 class="anchored" data-anchor-id="本章小结">本章小结</h2>
 <ul>
-<li><strong>防治试验的设计层级：林分→区组→小区→树木。</strong> 处理施加在小区，树木是观测单位。</li>
-<li><strong>多指标不能随意合成总分。</strong> 虫口、受害、死亡、非目标、成本——各回答不同问题。</li>
-<li><strong>区组控制已知异质性，缓冲防止处理污染。</strong> 四片林地各用一种处理是设计灾难。</li>
-<li><strong>效果、成本和副作用必须同时考虑。</strong> 统计显著不等于应该推广。</li>
-<li><strong>本章不重复讲授方法——它把保护问题映射到第 8–12 章的分析接口。</strong></li>
+<li>防治试验的设计层级：林分→区组→小区→树木。处理施加在小区，树木是观测单位。</li>
+<li>多指标不能随意合成总分。虫口、受害、死亡、非目标、成本：各回答不同问题。</li>
+<li>区组控制已知异质性，缓冲防止处理污染。四片林地各用一种处理是设计灾难。</li>
+<li>效果、成本和副作用必须同时考虑。统计显著不等于应该推广。</li>
+<li>本章不重复讲授方法。它把保护问题映射到第 8-12 章的分析接口。</li>
 </ul>
 </section>
 <section id="练习" class="level2">
 <h2 class="anchored" data-anchor-id="练习">练习</h2>
 <ol type="1">
-<li><strong>识别层。</strong> “四片林地各用一种处理”的设计至少有三个致命缺陷。列出它们。</li>
-<li><strong>解释层。</strong> 为什么不能把虫口密度、受害等级和死亡率加权平均成”综合防治效果”？</li>
-<li><strong>应用层。</strong> 为森林试验设计处理间的缓冲方案：缓冲带多宽？如何监测处理污染？</li>
-<li><strong>诊断层。</strong> implementation_score 为 0.6 的小区——虫口密度异常高。应该删除这个小区吗？</li>
-<li><strong>综合层。</strong> 为森林试验写一份分析计划：每个响应变量对应什么方法、什么设计层级、什么独立单位。</li>
+<li>识别层。“四片林地各用一种处理”的设计至少有三个致命缺陷。列出它们。</li>
+<li>解释层。为什么不能把虫口密度、受害等级和死亡率加权平均成”综合防治效果”？</li>
+<li>应用层。为森林试验设计处理间的缓冲方案：缓冲带多宽？如何监测处理污染？</li>
+<li>诊断层。implementation_score 为 0.6 的小区：虫口密度异常高。应该删除这个小区吗？</li>
+<li>综合层。为森林试验写一份分析计划：每个响应变量对应什么方法、什么设计层级、什么独立单位。</li>
 </ol>
 </section>
 <section id="继续学习" class="level2">

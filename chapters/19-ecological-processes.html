@@ -485,7 +485,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <div class="ch19-pipeline">
     <div class="ch19-stage s1">
       <div class="ch19-stage-h">① 定义状态</div>
-      <div class="ch19-stage-body">物种是否占据这个样点？——潜在生态状态，不可直接观察</div>
+      <div class="ch19-stage-body">物种是否占据这个样点？：潜在生态状态，不可直接观察</div>
     </div>
     <div class="ch19-arrow" aria-hidden="true">→</div>
     <div class="ch19-stage s2">
@@ -499,36 +499,36 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     </div>
   </div>
   <div class="ch19-caveat">
-    <b>黑豹提醒：</b>朴素检出率 ≠ 占域率。未检出 ≠ 不存在。单次调查不能同时估计占域和探测。
+    黑豹提醒：朴素检出率 ≠ 占域率。未检出 ≠ 不存在。单次调查不能同时估计占域和探测。
   </div>
 </div>
 <section id="未检出不等于不存在" class="level2">
 <h2 class="anchored" data-anchor-id="未检出不等于不存在">19.1 未检出不等于不存在</h2>
-<p>第 14 章教你设计野生动物监测。但监测数据有一个根本问题：<strong>你没有看到动物，不等于动物不存在。</strong> 它可能就在那里，只是没有被相机拍到（假阴性）。</p>
-<p>这是生态过程（物种是否占据样点）和观测过程（给定占据，是否被检出）的混淆。前面所有章节的模型都假设”你测量到的就是真实值”——这个假设在野生动物监测中不成立。</p>
+<p>第 14 章教你设计野生动物监测。但监测数据有一个根本问题：你没有看到动物，不等于动物不存在。它可能就在那里，只是没有被相机拍到（假阴性）。</p>
+<p>这是生态过程（物种是否占据样点）和观测过程（给定占据，是否被检出）的混淆。前面所有章节的模型都假设”你测量到的就是真实值”。这个假设在野生动物监测中不成立。</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>camera <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"../data/teaching/camera_monitoring_long.csv"</span>,</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>                   <span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="chapter-route" aria-label="本章学习路线">
 <div>
-<strong>定义状态</strong><span>潜在占域</span>
+定义状态<span>潜在占域</span>
 </div>
 <div>
-<strong>安排重复</strong><span>检测历史</span>
+安排重复<span>检测历史</span>
 </div>
 <div>
-<strong>估计探测</strong><span>ψ 与 p</span>
+估计探测<span>ψ 与 p</span>
 </div>
 <div>
-<strong>检查假设</strong><span>封闭与异质性</span>
+检查假设<span>封闭与异质性</span>
 </div>
 <div>
-<strong>改进监测</strong><span>设计优化</span>
+改进监测<span>设计优化</span>
 </div>
 </div>
 <div class="learning-goals">
-<p><strong>学完本章后，你能够：</strong></p>
+<p>学完本章后，你能够：</p>
 <ol type="1">
-<li>区分潜在生态状态和观测过程，解释为什么假阴性是野生动物监测的核心问题。</li>
+<li>区分潜在生态状态和观测过程，解释为什么假阴性是野生动物监测的要紧的问题。</li>
 <li>理解重复调查如何为探测概率提供信息。</li>
 <li>描述占域模型的两个子模型（状态子模型和观测子模型）。</li>
 <li>识别封闭假设和可识别性问题。</li>
@@ -539,20 +539,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="潜在生态状态" class="level2">
 <h2 class="anchored" data-anchor-id="潜在生态状态">19.2 潜在生态状态</h2>
 <p>占域模型将问题分为两层：</p>
-<p><strong>状态过程（state process）：</strong> 样点 i 是否被目标物种占据？ - z_i = 1（占据）或 0（未占据） - z_i 是潜在的——你永远无法直接观察 - ψ = P(z_i = 1)：占域概率——我们真正想知道的</p>
-<p><strong>观测过程（observation process）：</strong> 给定占据，调查 j 是否检出？ - y_ij = 1（检出）或 0（未检出） - p = P(y_ij = 1 | z_i = 1)：探测概率——给定占据，单次调查检出的概率 - 如果 z_i = 0，则 y_ij 必然为 0（没有假阳性）</p>
+<p>状态过程（state process）：样点 i 是否被目标物种占据？ - z_i = 1（占据）或 0（未占据） - z_i 是潜在的：你永远无法直接观察 - ψ = P(z_i = 1)：占域概率：我们真正想知道的</p>
+<p>观测过程（observation process）：给定占据，调查 j 是否检出？ - y_ij = 1（检出）或 0（未检出） - p = P(y_ij = 1 | z_i = 1)：探测概率：给定占据，单次调查检出的概率 - 如果 z_i = 0，则 y_ij 必然为 0（没有假阳性）</p>
 </section>
 <section id="观测过程和探测概率" class="level2">
 <h2 class="anchored" data-anchor-id="观测过程和探测概率">19.3 观测过程和探测概率</h2>
 <p>探测概率 p 受多种因素影响： - 调查努力量（相机夜数越多，p 越高） - 生境特征（密林中 p 低于开阔地） - 天气条件 - 物种行为（活动节律、种群密度）</p>
-<p><strong>关键洞察：</strong> 如果 p = 0.5，那么一个被占据的样点在单次调查中有 50% 的概率被”错过”。6 次调查全部错过的概率 = (1 − 0.5)⁶ ≈ 1.6%——重复调查大幅降低了假阴性的概率。</p>
+<p>关键洞察：如果 p = 0.5，那么一个被占据的样点在单次调查中有 50% 的概率被”错过”。6 次调查全部错过的概率 = (1 − 0.5)⁶ ≈ 1.6%：重复调查大幅降低了假阴性的概率。</p>
 </section>
 <section id="重复调查为何提供信息" class="level2">
 <h2 class="anchored" data-anchor-id="重复调查为何提供信息">19.4 重复调查为何提供信息</h2>
 <p>假设一个样点的 6 次调查结果是：0, 1, 0, 0, 1, 0（检出 2 次）。</p>
 <ul>
 <li>朴素解释：检出率 = 2/6 = 33%</li>
-<li>占域解释：这个样点肯定被占据（因为至少有 1 次检出），但探测概率较低</li>
+<li>占域解释。这个样点肯定被占据（因为至少有 1 次检出），但探测概率较低</li>
 </ul>
 <p>对于从未检出的样点（0, 0, 0, 0, 0, 0）： - 可能未被占据（z = 0） - 可能被占据但 6 次都错过了（概率 = (1−p)⁶）</p>
 <p>重复调查的作用就是区分这两种情况。</p>
@@ -566,13 +566,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">FUN =</span> max</span>
 <span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"朴素占域率:"</span>, <span class="fu">round</span>(<span class="fu">mean</span>(naive_occ<span class="sc">$</span>detected), <span class="dv">3</span>), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"注意：这低估了真实占域率，因为探测概率 &lt; 1。</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"注意。这低估了真实占域率，因为探测概率 &lt; 1。</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="占域模型的两个子模型" class="level2">
 <h2 class="anchored" data-anchor-id="占域模型的两个子模型">19.5 占域模型的两个子模型</h2>
-<p><strong>状态子模型：</strong> logit(ψ_i) = β₀ + β₁ × 森林覆盖度_i</p>
-<p><strong>观测子模型：</strong> logit(p_ij) = α₀ + α₁ × 努力量_ij</p>
-<p>似然函数同时包含 ψ 和 p——通过重复调查的数据来同时估计两者。</p>
+<p>状态子模型：logit(ψ_i) = β₀ + β₁ × 森林覆盖度_i</p>
+<p>观测子模型：logit(p_ij) = α₀ + α₁ × 努力量_ij</p>
+<p>似然函数同时包含 ψ 和 p：通过重复调查的数据来同时估计两者。</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 用基础 R 的 optim() 拟合简单占域模型</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 构造检测历史矩阵：60 样点 × 6 occasion</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">0</span>, <span class="dv">60</span>, <span class="dv">6</span>)</span>
@@ -608,34 +608,34 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"估计占域率 ψ:"</span>, <span class="fu">round</span>(psi_hat, <span class="dv">3</span>), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span>
 <span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"估计探测概率 p:"</span>, <span class="fu">round</span>(p_hat, <span class="dv">3</span>), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span>
 <span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"朴素占域率:"</span>, <span class="fu">round</span>(<span class="fu">mean</span>(naive_occ<span class="sc">$</span>detected), <span class="dv">3</span>), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span>
-<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"</span><span class="sc">\n</span><span class="st">ψ &gt; 朴素占域率——因为模型考虑了假阴性。</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"</span><span class="sc">\n</span><span class="st">ψ &gt; 朴素占域率，因为模型考虑了假阴性。</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="封闭异质性与可识别性" class="level2">
 <h2 class="anchored" data-anchor-id="封闭异质性与可识别性">19.6 封闭、异质性与可识别性</h2>
-<p><strong>封闭假设（closure assumption）：</strong> 在 6 次重复调查期间，样点的占域状态不变。如果物种在调查期间迁入或迁出，这个假设被违反。</p>
-<p><strong>探测异质性：</strong> 不同样点的探测概率不同（如密林 vs 开阔地）。如果忽略探测异质性，ψ 的估计可能偏差。</p>
-<p><strong>可识别性（identifiability）：</strong> 如果只有 1 次调查，无法同时估计 ψ 和 p——模型不可识别。至少需要 2 次重复调查（部分样点至少 3 次更好）。</p>
+<p>封闭假设（closure assumption）：在 6 次重复调查期间，样点的占域状态不变。如果物种在调查期间迁入或迁出，这个假设被违反。</p>
+<p>探测异质性：不同样点的探测概率不同（如密林 vs 开阔地）。如果忽略探测异质性，ψ 的估计可能偏差。</p>
+<p>可识别性（identifiability）。如果只有 1 次调查，无法同时估计 ψ 和 p。模型不可识别。至少需要 2 次重复调查（部分样点至少 3 次更好）。</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 演示：移除重复访问导致不可识别</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 只用第一次 occasion</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>y_single <span class="ot">&lt;-</span> y[, <span class="dv">1</span>, drop <span class="ot">=</span> <span class="cn">FALSE</span>]</span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"单次调查：检出率 ="</span>, <span class="fu">round</span>(<span class="fu">mean</span>(y_single), <span class="dv">3</span>), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"问题：这个数字是 ψ×p 的乘积——无法拆开。</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"问题。这个数字是 ψ×p 的乘积：无法拆开。</span><span class="sc">\n</span><span class="st">"</span>)</span>
 <span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"可能是 ψ=0.5, p=0.6，也可能是 ψ=0.3, p=1.0……</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="从模型回到监测改进" class="level2">
 <h2 class="anchored" data-anchor-id="从模型回到监测改进">19.7 从模型回到监测改进</h2>
 <p>占域模型的输出直接指导监测设计：</p>
 <ul>
-<li><strong>p 太低（&lt; 0.3）：</strong> 增加每次调查的努力量或改进设备</li>
-<li><strong>p 的变异太大：</strong> 记录并建模探测协变量（努力量、天气、调查员）</li>
-<li><strong>ψ 的区间太宽：</strong> 增加样点数量或重复调查次数</li>
-<li><strong>封闭假设可能违反：</strong> 缩短重复调查的时间窗口</li>
+<li>p 太低（&lt; 0.3）：增加每次调查的努力量或改进设备</li>
+<li>p 的变异太大：记录并建模探测协变量（努力量、天气、调查员）</li>
+<li>ψ 的区间太宽：增加样点数量或重复调查次数</li>
+<li>封闭假设可能违反：缩短重复调查的时间窗口</li>
 </ul>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"=== 占域分析报告 ===</span><span class="sc">\n\n</span><span class="st">"</span>)</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"估计占域率 ψ:"</span>, <span class="fu">round</span>(psi_hat, <span class="dv">3</span>), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"估计探测概率 p:"</span>, <span class="fu">round</span>(p_hat, <span class="dv">3</span>), <span class="st">"</span><span class="sc">\n\n</span><span class="st">"</span>)</span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"结论边界：</span><span class="sc">\n</span><span class="st">"</span>)</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"- 占域率估计高于朴素检出率——模型分离了生态和观测过程。</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"- 占域率估计高于朴素检出率。模型分离了生态和观测过程。</span><span class="sc">\n</span><span class="st">"</span>)</span>
 <span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"- 假设：6 次调查期间占域状态不变（封闭）。</span><span class="sc">\n</span><span class="st">"</span>)</span>
 <span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"- 假设：所有样点的探测概率相同（无异质性）。</span><span class="sc">\n</span><span class="st">"</span>)</span>
 <span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"- 未分析：生境协变量对 ψ 和 p 的影响。</span><span class="sc">\n</span><span class="st">"</span>)</span>
@@ -644,27 +644,27 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="本章小结" class="level2">
 <h2 class="anchored" data-anchor-id="本章小结">本章小结</h2>
 <ul>
-<li><strong>未检出 ≠ 不存在。</strong> 假阴性是野生动物监测的核心问题——占域模型通过重复调查来分离生态过程和观测过程。</li>
-<li><strong>ψ 是占域概率，p 是探测概率。</strong> 朴素检出率 = ψ × p（近似）——低估了真实占域。</li>
-<li><strong>重复调查是关键。</strong> 6 次调查检出 2 次 → 肯定占据但 p 低。0 次检出 → 可能未占据，也可能占据但运气差。</li>
-<li><strong>单次调查不能同时估计 ψ 和 p。</strong> 模型不可识别——至少需要重复调查。</li>
-<li><strong>封闭假设：</strong> 重复调查期间占域状态不变。如果违反，需要动态占域模型。</li>
+<li>未检出 ≠ 不存在。假阴性是野生动物监测的要紧的问题：占域模型通过重复调查来分离生态过程和观测过程。</li>
+<li>ψ 是占域概率，p 是探测概率。朴素检出率 = ψ × p（近似）：低估了真实占域。</li>
+<li>重复调查是关键。6 次调查检出 2 次 → 肯定占据但 p 低。0 次检出 → 可能未占据，也可能占据但运气差。</li>
+<li>单次调查不能同时估计 ψ 和 p。模型不可识别：至少需要重复调查。</li>
+<li>封闭假设：重复调查期间占域状态不变。如果违反，需要动态占域模型。</li>
 </ul>
 </section>
 <section id="练习" class="level2">
 <h2 class="anchored" data-anchor-id="练习">练习</h2>
 <ol type="1">
-<li><p><strong>识别层。</strong> 以下变量各属于状态过程还是观测过程？</p>
+<li><p>识别层。以下变量各属于状态过程还是观测过程？</p>
 <ol type="a">
 <li>样点是否被目标物种占据</li>
 <li>相机是否拍到目标物种</li>
 <li>森林覆盖度对占域的影响</li>
 <li>调查努力量对检出概率的影响</li>
 </ol></li>
-<li><p><strong>解释层。</strong> 为什么朴素检出率（至少一次检出的样点比例）低估了真实占域率？</p></li>
-<li><p><strong>应用层。</strong> 如果探测概率 p = 0.3，一个被占据的样点在 6 次调查中至少被检出 1 次的概率是多少？</p></li>
-<li><p><strong>诊断层。</strong> 一个样点 6 次调查全部未检出。它未被占据的概率是多少？（用 ψ = 0.5, p = 0.4 计算）</p></li>
-<li><p><strong>综合层。</strong> 设计一个监测方案改进计划：当前 p ≈ 0.3，你想把 p 提高到 0.5 以上。有哪些可行的方法？各有什么代价？</p></li>
+<li><p>解释层。为什么朴素检出率（至少一次检出的样点比例）低估了真实占域率？</p></li>
+<li><p>应用层。如果探测概率 p = 0.3，一个被占据的样点在 6 次调查中至少被检出 1 次的概率是多少？</p></li>
+<li><p>诊断层。一个样点 6 次调查全部未检出。它未被占据的概率是多少？（用 ψ = 0.5, p = 0.4 计算）</p></li>
+<li><p>综合层。设计一个监测方案改进计划：当前 p ≈ 0.3，你想把 p 提高到 0.5 以上。有哪些可行的方法？各有什么代价？</p></li>
 </ol>
 </section>
 <section id="继续学习" class="level2">

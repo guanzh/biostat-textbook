@@ -490,28 +490,28 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div class="ch15-arrow" aria-hidden="true">→</div>
     <div class="ch15-stage s2">
       <div class="ch15-stage-h">② 统一努力</div>
-      <div class="ch15-stage-body">调查 20 个样方 vs 5 个样方——丰富度差异可能只是努力量差异</div>
+      <div class="ch15-stage-body">调查 20 个样方 vs 5 个样方：丰富度差异可能只是努力量差异</div>
     </div>
     <div class="ch15-arrow" aria-hidden="true">→</div>
     <div class="ch15-stage s3">
       <div class="ch15-stage-h">③ 限制行动</div>
-      <div class="ch15-stage-body">Shannon 更高 ≠ 修复成功——同一指数可以来自完全不同的群落</div>
+      <div class="ch15-stage-body">Shannon 更高 ≠ 修复成功。同一指数可以来自完全不同的群落</div>
     </div>
   </div>
   <div class="ch15-caveat">
-    <b>黑豹提醒：</b>修复地 20 个样方、对照 5 个样方，直接比较总物种数——这是在比较努力量，不是在比较多样性。
+    黑豹提醒：修复地 20 个样方、对照 5 个样方，直接比较总物种数。这是在比较努力量，不是在比较多样性。
   </div>
 </div>
 <section id="多样性是哪种变化" class="level2">
 <h2 class="anchored" data-anchor-id="多样性是哪种变化">15.1 “多样性”是哪种变化</h2>
 <p>“生物多样性”可能是保护生物学中最常用也最模糊的词。它可以指：</p>
 <ul>
-<li><strong>物种丰富度（species richness）：</strong> 有多少种——最简单的指标</li>
-<li><strong>均匀度（evenness）：</strong> 各物种的个体数是否均匀分布</li>
-<li><strong>组成（composition）：</strong> 具体是哪些物种——两个样方可能丰富度相同但物种完全不同</li>
-<li><strong>功能多样性（functional diversity）：</strong> 物种在生态系统中的角色是否多样</li>
+<li>物种丰富度（species richness），有多少种：最简单的指标</li>
+<li>均匀度（evenness）：各物种的个体数是否均匀分布</li>
+<li>组成（composition）：具体是哪些物种：两个样方可能丰富度相同但物种完全不同</li>
+<li>功能多样性（functional diversity）：物种在生态系统中的角色是否多样</li>
 </ul>
-<p>在开始计算任何指数之前，先明确：<strong>你要回答的保护问题是什么？</strong></p>
+<p>在开始计算任何指数之前，先明确：你要回答的保护问题是什么？</p>
 <ul>
 <li>“修复是否增加了物种数？” → 丰富度</li>
 <li>“修复是否改变了优势种？” → 均匀度 + 组成</li>
@@ -523,27 +523,27 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>                 <span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="chapter-route" aria-label="本章学习路线">
 <div>
-<strong>定义问题</strong><span>哪种多样性</span>
+定义问题<span>哪种多样性</span>
 </div>
 <div>
-<strong>统一努力</strong><span>积累与稀释</span>
+统一努力<span>积累与稀释</span>
 </div>
 <div>
-<strong>计算指标</strong><span>丰富度/Shannon/均匀度</span>
+计算指标<span>丰富度/Shannon/均匀度</span>
 </div>
 <div>
-<strong>比较组成</strong><span>距离与排序</span>
+比较组成<span>距离与排序</span>
 </div>
 <div>
-<strong>限制行动</strong><span>指数≠修复成功</span>
+限制行动<span>指数≠修复成功</span>
 </div>
 </div>
 </section>
 <section id="丰富度与努力量" class="level2">
 <h2 class="anchored" data-anchor-id="丰富度与努力量">15.2 丰富度与努力量</h2>
-<p>丰富度是最直观的多样性指标——但它对调查努力量极度敏感。调查 20 个样方发现的物种数必然多于调查 5 个样方——这不意味着多样性更高，只意味着你花了更多努力。</p>
-<p><strong>物种积累曲线（species accumulation curve）：</strong> 随着样方数增加，累计发现的物种数如何增长。如果曲线趋于平缓，说明努力量基本足够；如果仍在快速上升，说明还有大量物种未被发现。</p>
-<p><strong>稀释法（rarefaction）：</strong> 将不同样本的丰富度标准化到相同的个体数或样方数，使它们可比。</p>
+<p>丰富度是最直观的多样性指标，但它对调查努力量极度敏感。调查 20 个样方发现的物种数必然多于调查 5 个样方。这不意味着多样性更高，只意味着你花了更多努力。</p>
+<p>物种积累曲线（species accumulation curve）：随着样方数增加，累计发现的物种数如何增长。如果曲线趋于平缓，说明努力量基本足够；如果仍在快速上升，说明还有大量物种未被发现。</p>
+<p>稀释法（rarefaction）：将不同样本的丰富度标准化到相同的个体数或样方数，使它们可比。</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 从群落长表重建群落矩阵</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>comm_present <span class="ot">&lt;-</span> comm[comm<span class="sc">$</span>abundance <span class="sc">&gt;</span> <span class="dv">0</span>, ]</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -568,9 +568,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="shannon-与均匀度" class="level2">
 <h2 class="anchored" data-anchor-id="shannon-与均匀度">15.3 Shannon 与均匀度</h2>
-<p><strong>Shannon 指数（H’）：</strong> H’ = −Σ pᵢ ln(pᵢ)，其中 pᵢ 是物种 i 的相对丰度。H’ 同时反映丰富度和均匀度——物种越多、分布越均匀，H’ 越高。</p>
-<p><strong>Pielou 均匀度（J’）：</strong> J’ = H’ / ln(S)，其中 S 是丰富度。J’ 接近 1 表示各物种丰度相近，接近 0 表示少数物种占绝对优势。</p>
-<p><strong>关键局限：</strong> 相同的 Shannon 指数可以来自完全不同的群落——10 种各 10 个个体，和 5 种各 20 个个体 + 5 种各 0 个（不可能），H’ 完全不同。但两个不同的群落也可能碰巧有相同的 H’。</p>
+<p>Shannon 指数（H’）：H’ = −Σ pᵢ ln(pᵢ)，其中 pᵢ 是物种 i 的相对丰度。H’ 同时反映丰富度和均匀度：物种越多、分布越均匀，H’ 越高。</p>
+<p>Pielou 均匀度（J’）：J’ = H’ / ln(S)，其中 S 是丰富度。J’ 接近 1 表示各物种丰度相近，接近 0 表示少数物种占绝对优势。</p>
+<p>关键局限：相同的 Shannon 指数可以来自完全不同的群落：10 种各 10 个个体，和 5 种各 20 个个体 + 5 种各 0 个（不可能），H’ 完全不同。但两个不同的群落也可能碰巧有相同的 H’。</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 计算一个样方的 Shannon 指数（示例）</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 取第一个样方的数据</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>sample_quadrat <span class="ot">&lt;-</span> comm[</span>
@@ -593,9 +593,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="α-与-β" class="level2">
 <h2 class="anchored" data-anchor-id="α-与-β">15.4 α 与 β</h2>
 <ul>
-<li><strong>α 多样性：</strong> 单个样方或单个地点内的多样性——“这个样方有多少种？”</li>
-<li><strong>β 多样性：</strong> 样方之间的物种组成变化——“修复地和对照地的物种组成有多不同？”</li>
-<li><strong>γ 多样性：</strong> 整个景观或区域的总多样性——“整个保护区有多少种？”</li>
+<li>α 多样性：单个样方或单个地点内的多样性：“这个样方有多少种？”</li>
+<li>β 多样性：样方之间的物种组成变化：“修复地和对照地的物种组成有多不同？”</li>
+<li>γ 多样性：整个景观或区域的总多样性：“整个保护区有多少种？”</li>
 </ul>
 <p>α 和 β 回答不同尺度的问题。修复可能提高了 α（每个样方种类增加），但如果所有样方都变成相同的物种，β 反而下降了。</p>
 </section>
@@ -633,10 +633,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="群落矩阵距离排序与置换" class="level2">
 <h2 class="anchored" data-anchor-id="群落矩阵距离排序与置换">15.6 群落矩阵、距离、排序与置换</h2>
-<p><strong>群落矩阵：</strong> 行 = 样方，列 = 物种，值 = 丰度。这是群落分析的标准数据格式。</p>
-<p><strong>距离矩阵：</strong> 每对样方之间的相异度。Jaccard 距离基于存在/不存在；Bray-Curtis 距离基于丰度。选择哪个距离取决于你关心”物种是否出现”还是”丰度是否变化”。</p>
-<p><strong>排序（ordination）：</strong> 将高维群落数据降维到 2–3 维，可视化样方之间的相似关系。排序只展示结构——不检验假设。</p>
-<p><strong>置换检验：</strong> 在群落分析中，置换必须尊重设计结构——不能随机交换不同景观或不同时期的样方。置换单位是样方，限制在 BACI 设计允许的交换范围内。</p>
+<p>群落矩阵：行 = 样方，列 = 物种，值 = 丰度。这是群落分析的标准数据格式。</p>
+<p>距离矩阵：每对样方之间的相异度。Jaccard 距离基于存在/不存在；Bray-Curtis 距离基于丰度。选择哪个距离取决于你关心”物种是否出现”还是”丰度是否变化”。</p>
+<p>排序（ordination）：将高维群落数据降维到 2-3 维，可视化样方之间的相似关系。排序只展示结构：不检验假设。</p>
+<p>置换检验：在群落分析中，置换必须尊重设计结构，不能随机交换不同景观或不同时期的样方。置换单位是样方，限制在 BACI 设计允许的交换范围内。</p>
 </section>
 <section id="回到修复行动" class="level2">
 <h2 class="anchored" data-anchor-id="回到修复行动">15.7 回到修复行动</h2>
@@ -650,35 +650,35 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"</span><span class="sc">\n</span><span class="st">结论边界：</span><span class="sc">\n</span><span class="st">"</span>)</span>
 <span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"支持：修复后修复地样方平均丰富度高于修复前。</span><span class="sc">\n</span><span class="st">"</span>)</span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"不支持：丰富度增加等同于'修复成功'——</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"不支持：丰富度增加等同于'修复成功'：</span><span class="sc">\n</span><span class="st">"</span>)</span>
 <span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"        还需要看本地种比例、功能群组成和均匀度。</span><span class="sc">\n</span><span class="st">"</span>)</span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"不支持：Shannon 更高就必然修复成功——</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"不支持：Shannon 更高就必然修复成功：</span><span class="sc">\n</span><span class="st">"</span>)</span>
 <span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"        同一指数可以来自完全不同的群落。</span><span class="sc">\n</span><span class="st">"</span>)</span>
 <span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"未分析：β 多样性和群落组成的统计检验。</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="本章小结" class="level2">
 <h2 class="anchored" data-anchor-id="本章小结">本章小结</h2>
 <ul>
-<li><strong>“多样性”必须被拆解。</strong> 丰富度、均匀度、组成、功能——不同指标回答不同问题。</li>
-<li><strong>丰富度对努力量敏感。</strong> 调查 20 个样方 vs 5 个样方——差异可能来自努力量而非生态。</li>
-<li><strong>同一指数可以来自不同群落。</strong> Shannon 更高 ≠ 修复成功——必须同时看组成。</li>
-<li><strong>排序只展示结构，不检验假设。</strong> 置换检验必须尊重设计结构（景观、BACI）。</li>
-<li><strong>不超过三个互补指标。</strong> 丰富度 + 本地种比例 + 一个组成指标——就够了。</li>
+<li>“多样性”必须被拆解。丰富度、均匀度、组成、功能：不同指标回答不同问题。</li>
+<li>丰富度对努力量敏感。调查 20 个样方 vs 5 个样方：差异可能来自努力量而非生态。</li>
+<li>同一指数可以来自不同群落。Shannon 更高 ≠ 修复成功：必须同时看组成。</li>
+<li>排序只展示结构，不检验假设。置换检验必须尊重设计结构（景观、BACI）。</li>
+<li>不超过三个互补指标。丰富度 + 本地种比例 + 一个组成指标：就够了。</li>
 </ul>
 </section>
 <section id="练习" class="level2">
 <h2 class="anchored" data-anchor-id="练习">练习</h2>
 <ol type="1">
-<li><p><strong>识别层。</strong> 以下问题各适合什么多样性指标？</p>
+<li><p>识别层。以下问题各适合什么多样性指标？</p>
 <ol type="a">
 <li>“修复地是否比对照地有更多物种？”</li>
 <li>“修复地群落是否变得更像天然参照群落？”</li>
 <li>“修复是否减少了优势种的占比？”</li>
 </ol></li>
-<li><p><strong>解释层。</strong> 为什么”修复地 20 个样方、对照 5 个样方，直接比较总物种数”是错的？</p></li>
-<li><p><strong>应用层。</strong> 用群落长表计算修复后修复地和对照地的 Shannon 指数均值。它们有差异吗？这个差异能说明什么、不能说明什么？</p></li>
-<li><p><strong>诊断层。</strong> 两个样方的 Shannon 指数都是 2.0。它们的群落一定相似吗？为什么？</p></li>
-<li><p><strong>综合层。</strong> 为修复项目选择不超过三个互补的多样性指标。说明每个指标回答什么问题，以及它们的局限性。</p></li>
+<li><p>解释层。为什么”修复地 20 个样方、对照 5 个样方，直接比较总物种数”是错的？</p></li>
+<li><p>应用层。用群落长表计算修复后修复地和对照地的 Shannon 指数均值。它们有差异吗？这个差异能说明什么、不能说明什么？</p></li>
+<li><p>诊断层。两个样方的 Shannon 指数都是 2.0。它们的群落一定相似吗？为什么？</p></li>
+<li><p>综合层。为修复项目选择不超过三个互补的多样性指标。说明每个指标回答什么问题，以及它们的局限性。</p></li>
 </ol>
 </section>
 <section id="继续学习" class="level2">

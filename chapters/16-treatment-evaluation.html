@@ -485,49 +485,49 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <div class="ch16-pipeline">
     <div class="ch16-stage s1">
       <div class="ch16-stage-h">① 定义反事实</div>
-      <div class="ch16-stage-body">如果没有修复，丰富度会是多少？——这个数字你永远看不到</div>
+      <div class="ch16-stage-body">如果没有修复，丰富度会是多少？。这个数字你永远看不到</div>
     </div>
     <div class="ch16-arrow" aria-hidden="true">→</div>
     <div class="ch16-stage s2">
       <div class="ch16-stage-h">② 选择对照</div>
-      <div class="ch16-stage-body">随机对照→BACI→匹配→DID——不同设计排除不同的替代解释</div>
+      <div class="ch16-stage-body">随机对照→BACI→匹配→DID：不同设计排除不同的替代解释</div>
     </div>
     <div class="ch16-arrow" aria-hidden="true">→</div>
     <div class="ch16-stage s3">
       <div class="ch16-stage-h">③ 预设行动</div>
-      <div class="ch16-stage-body">效果多大算成功？副作用多大算不可接受？——标准必须在看到结果前定</div>
+      <div class="ch16-stage-body">效果多大算成功？副作用多大算不可接受？：标准必须在看到结果前定</div>
     </div>
   </div>
   <div class="ch16-caveat">
-    <b>黑豹提醒：</b>修复地丰富度 10→14，宣称增加 40%；同期对照 8→13——BACI 对比告诉你真相。
+    黑豹提醒：修复地丰富度 10→14，宣称增加 40%；同期对照 8→13：BACI 对比告诉你真相。
   </div>
 </div>
 <section id="看不见的反事实" class="level2">
 <h2 class="anchored" data-anchor-id="看不见的反事实">16.1 看不见的反事实</h2>
-<p>保护措施评估的核心难题：<strong>你永远看不到”如果没有措施会怎样”。</strong> 这个看不见的”反事实”（counterfactual）是所有效果评估的逻辑起点。</p>
+<p>保护措施评估的主要难题：你永远看不到”如果没有措施会怎样”。这个看不见的”反事实”（counterfactual）是所有效果评估的逻辑起点。</p>
 <ul>
 <li>修复地丰富度从 10 升到 14 → 增加了 4 种</li>
 <li>但如果没有修复，丰富度可能从 10 升到 13（自然恢复趋势）</li>
-<li>修复的真实效果 = (14 − 10) − (13 − 10) = 1 种——不是 4 种</li>
+<li>修复的真实效果 = (14 − 10) − (13 − 10) = 1 种，不是 4 种</li>
 </ul>
-<p>没有对照组的”前后比较”隐含了一个强假设：<strong>没有措施的情况下，结果不会变化。</strong> 在生态系统中，这个假设几乎从不成立——植被会自然演替、气候会波动、动物会迁移。</p>
+<p>没有对照组的”前后比较”隐含了一个强假设，没有措施的情况下，结果不会变化。在生态系统中，这个假设几乎从不成立：植被会自然演替、气候会波动、动物会迁移。</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>rest <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"../data/teaching/restoration_site_period.csv"</span>,</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>                 <span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="chapter-route" aria-label="本章学习路线">
 <div>
-<strong>定义反事实</strong><span>看不见的对照</span>
+定义反事实<span>看不见的对照</span>
 </div>
 <div>
-<strong>选择对照</strong><span>随机/BACI/匹配</span>
+选择对照<span>随机/BACI/匹配</span>
 </div>
 <div>
-<strong>计算交互</strong><span>变化之差</span>
+计算交互<span>变化之差</span>
 </div>
 <div>
-<strong>检查破坏</strong><span>平行趋势/溢出/失访</span>
+检查破坏<span>平行趋势/溢出/失访</span>
 </div>
 <div>
-<strong>预设行动</strong><span>成功标准与停止规则</span>
+预设行动<span>成功标准与停止规则</span>
 </div>
 </div>
 </section>
@@ -535,18 +535,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="随机与观察性评估边界">16.2 随机与观察性评估边界</h2>
 <p>效果评估设计从强到弱：</p>
 <ol type="1">
-<li><strong>随机对照试验（RCT）：</strong> 随机分配处理/对照——最强因果推断。森林病虫害试验属于此类。</li>
-<li><strong>BACI（Before-After-Control-Impact）：</strong> 处理前后 + 对照——控制共同时间趋势。修复地监测属于此类。</li>
-<li><strong>匹配（Matching）：</strong> 为每个处理单元找一个”相似”的对照单元——只平衡已测变量。</li>
-<li><strong>差异中的差异（DID）：</strong> 比较处理组和对照组在政策前后的变化差——假设平行趋势。</li>
-<li><strong>单纯前后比较：</strong> 没有对照组——最弱，几乎不能排除任何替代解释。</li>
+<li>随机对照试验（RCT）：随机分配处理/对照：最强因果推断。森林病虫害试验属于此类。</li>
+<li>BACI（Before-After-Control-Impact）：处理前后 + 对照：控制共同时间趋势。修复地监测属于此类。</li>
+<li>匹配（Matching）：为每个处理单元找一个”相似”的对照单元：只平衡已测变量。</li>
+<li>差异中的差异（DID）：比较处理组和对照组在政策前后的变化差：假设平行趋势。</li>
+<li>单纯前后比较，没有对照组：最弱，几乎不能排除任何替代解释。</li>
 </ol>
-<p><strong>随机化增强可比性，但不保证可比性。</strong> 即使随机分配，小样本下两组基线仍可能偶然不同——这就是为什么需要检查基线平衡。</p>
+<p>随机化增强可比性，但不保证可比性。即使随机分配，小样本下两组基线仍可能偶然不同。这就是为什么需要检查基线平衡。</p>
 </section>
 <section id="单纯前后比较为何不够" class="level2">
 <h2 class="anchored" data-anchor-id="单纯前后比较为何不够">16.3 单纯前后比较为何不够</h2>
-<p><strong>反例（本章核心反例）：</strong> “修复地丰富度从 10 升到 14，增加了 40%。”</p>
-<p>这个结论假设了：如果没有修复，丰富度会保持在 10。但同期对照地从 8 升到 13——说明存在一个区域性的丰富度上升趋势（可能是降水增加、气温变化、或其他未测量的因素）。</p>
+<p>反例（本章主要反例）：“修复地丰富度从 10 升到 14，增加了 40%。”</p>
+<p>这个结论假设了：如果没有修复，丰富度会保持在 10。但同期对照地从 8 升到 13：说明存在一个区域性的丰富度上升趋势（可能是降水增加、气温变化、或其他未测量的因素）。</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 计算各组前后变化</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>rest_agg <span class="ot">&lt;-</span> <span class="fu">aggregate</span>(</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  species_richness <span class="sc">~</span> landscape_id <span class="sc">+</span> site_id <span class="sc">+</span> status <span class="sc">+</span> period,</span>
@@ -570,12 +570,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="baci-的交互差异" class="level2">
 <h2 class="anchored" data-anchor-id="baci-的交互差异">16.4 BACI 的交互差异</h2>
-<p>BACI 的核心是<strong>处理 × 时期的交互作用</strong>。统计模型：</p>
+<p>BACI 的主要是处理 × 时期的交互作用。统计模型：</p>
 <p>Y = β₀ + β₁×Status + β₂×Period + β₃×Status×Period + ε</p>
 <ul>
 <li>β₁：修复前的处理-对照差异（基线不平衡）</li>
 <li>β₂：对照组的时期变化（共同时间趋势）</li>
-<li>β₃：<strong>BACI 效果——修复的额外变化</strong>（我们关心的）</li>
+<li>β₃：BACI 效果：修复的额外变化（我们关心的）</li>
 </ul>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 拟合 BACI 模型（简化版：按地点聚合后）</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>rest_site <span class="ot">&lt;-</span> <span class="fu">aggregate</span>(</span>
@@ -598,22 +598,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="匹配差异中的差异与假设" class="level2">
 <h2 class="anchored" data-anchor-id="匹配差异中的差异与假设">16.5 匹配、差异中的差异与假设</h2>
-<p>BACI 的强假设：<strong>平行趋势</strong>——如果没有修复，修复地和对照地的变化趋势相同。这个假设无法直接检验（因为你永远看不到修复地的反事实），但可以通过以下方式间接评估：</p>
+<p>BACI 的强假设：平行趋势。如果没有修复，修复地和对照地的变化趋势相同。这个假设无法直接检验（因为你永远看不到修复地的反事实），但可以通过以下方式间接评估：</p>
 <ul>
 <li>修复前两组的轨迹是否平行？</li>
 <li>对照地是否受到修复的间接影响（溢出）？</li>
 <li>是否有其他事件在修复前后同时发生（混杂）？</li>
 </ul>
-<p><strong>匹配</strong>可以增强可比性，但只平衡<strong>已测量</strong>的变量。如果未测量的变量同时影响处理分配和结果，匹配也无能为力。</p>
+<p>匹配可以增强可比性，但只平衡已测量的变量。如果未测量的变量同时影响处理分配和结果，匹配也无能为力。</p>
 </section>
 <section id="实施完整性溢出失访和附带伤害" class="level2">
 <h2 class="anchored" data-anchor-id="实施完整性溢出失访和附带伤害">16.6 实施完整性、溢出、失访和附带伤害</h2>
-<p>效果评估不只是”处理组 vs 对照组”——还需要检查：</p>
+<p>效果评估不只是”处理组 vs 对照组”：还需要检查：</p>
 <ul>
-<li><strong>实施完整性：</strong> 修复措施是否按方案执行？如果只执行了 60%，效果打折扣是预期的。</li>
-<li><strong>溢出（spillover）：</strong> 修复地的效果是否”溢出”到邻近的对照地？（如种子扩散）</li>
-<li><strong>失访（attrition）：</strong> 是否有样方在修复后被破坏或无法调查？</li>
-<li><strong>附带伤害：</strong> 修复是否带来了非预期的负面影响？（如外来种入侵）</li>
+<li>实施完整性：修复措施是否按方案执行？如果只执行了 60%，效果打折扣是预期的。</li>
+<li>溢出（spillover）：修复地的效果是否”溢出”到邻近的对照地？（如种子扩散）</li>
+<li>失访（attrition）：是否有样方在修复后被破坏或无法调查？</li>
+<li>附带伤害：修复是否带来了非预期的负面影响？（如外来种入侵）</li>
 </ul>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 检查各景观的 BACI 效果异质性</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>baci_by_landscape <span class="ot">&lt;-</span> <span class="fu">aggregate</span>(</span>
@@ -633,33 +633,33 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="成功标准与停止规则" class="level2">
 <h2 class="anchored" data-anchor-id="成功标准与停止规则">16.7 成功标准与停止规则</h2>
-<p>效果评估的最后一步：<strong>在见到结果之前，定义”成功”和”失败”。</strong></p>
-<p>成功标准应包含： - <strong>主要效果：</strong> 丰富度增加 ≥ X 种（最小有意义效应） - <strong>不确定性：</strong> 95% CI 的下限 &gt; 0（效果不太可能为零或负） - <strong>副作用：</strong> 非本地种比例没有显著增加 - <strong>成本：</strong> 每增加 1 种的成本 ≤ Y 元 - <strong>实施：</strong> 方案执行完整度 ≥ 80%</p>
-<p>停止规则：如果中期评估显示效果远低于预期或副作用超出可接受范围——停止并重新设计方案。<strong>不能因为”已经投入了很多”而继续一个无效或有害的措施。</strong></p>
+<p>效果评估的最后一步：在见到结果之前，定义”成功”和”失败”。</p>
+<p>成功标准应包含： - 主要效果：丰富度增加 ≥ X 种（最小有意义效应） - 不确定性：95% CI 的下限 &gt; 0（效果不太可能为零或负） - 副作用：非本地种比例没有显著增加 - 成本：每增加 1 种的成本 ≤ Y 元 - 实施：方案执行完整度 ≥ 80%</p>
+<p>停止规则。如果中期评估显示效果远低于预期或副作用超出可接受范围：停止并重新设计方案。不能因为”已经投入了很多”而继续一个无效或有害的措施。</p>
 </section>
 <section id="本章小结" class="level2">
 <h2 class="anchored" data-anchor-id="本章小结">本章小结</h2>
 <ul>
-<li><strong>反事实是效果评估的逻辑起点。</strong> 你永远看不到”如果没有措施会怎样”——对照组的全部意义就是近似这个反事实。</li>
-<li><strong>单纯前后比较几乎从不成立。</strong> 生态系统有自然趋势——没有对照组的变化不能归因于措施。</li>
-<li><strong>BACI 的核心是交互作用。</strong> 修复效果 = (修复后 − 修复前) − (对照后 − 对照前)。</li>
-<li><strong>平行趋势是 BACI 的关键假设。</strong> 它不能被直接检验，但可以通过修复前轨迹间接评估。</li>
-<li><strong>成功标准必须在看到结果之前定义。</strong> 效果大小、不确定性、副作用、成本——全部预先规定。</li>
+<li>反事实是效果评估的逻辑起点。你永远看不到”如果没有措施会怎样”：对照组的全部意义就是近似这个反事实。</li>
+<li>单纯前后比较几乎从不成立。生态系统有自然趋势，没有对照组的变化不能归因于措施。</li>
+<li>BACI 的主要是交互作用。修复效果 = (修复后 − 修复前) − (对照后 − 对照前)。</li>
+<li>平行趋势是 BACI 的关键假设。它不能被直接检验，但可以通过修复前轨迹间接评估。</li>
+<li>成功标准必须在看到结果之前定义。效果大小、不确定性、副作用、成本：全部预先规定。</li>
 </ul>
 </section>
 <section id="练习" class="level2">
 <h2 class="anchored" data-anchor-id="练习">练习</h2>
 <ol type="1">
-<li><p><strong>识别层。</strong> 以下评估设计各属于什么类型？各能排除什么替代解释？</p>
+<li><p>识别层。以下评估设计各属于什么类型？各能排除什么替代解释？</p>
 <ol type="a">
 <li>修复地前后比较，无对照组</li>
 <li>修复地 + 对照地，前后各一次调查</li>
 <li>随机分配 20 个样地，10 个修复、10 个对照</li>
 </ol></li>
-<li><p><strong>解释层。</strong> “修复地丰富度增加 40%”——如果同期对照地增加了 30%，修复的真实效果是多少？</p></li>
-<li><p><strong>应用层。</strong> 用修复地数据计算每个景观的 BACI 效果。哪些景观效果最强？哪些最弱？这种异质性意味着什么？</p></li>
-<li><p><strong>诊断层。</strong> 修复前，修复地的平均丰富度比对照地高 3 种。这会影响 BACI 分析吗？如何影响？</p></li>
-<li><p><strong>综合层。</strong> 为森林防治试验写一份预先成功标准。包含：主要效果阈值、副作用上限、成本上限、以及什么情况下应该停止。</p></li>
+<li><p>解释层。“修复地丰富度增加 40%”。如果同期对照地增加了 30%，修复的真实效果是多少？</p></li>
+<li><p>应用层。用修复地数据计算每个景观的 BACI 效果。哪些景观效果最强？哪些最弱？这种异质性意味着什么？</p></li>
+<li><p>诊断层。修复前，修复地的平均丰富度比对照地高 3 种。这会影响 BACI 分析吗？如何影响？</p></li>
+<li><p>综合层。为森林防治试验写一份预先成功标准。包含：主要效果阈值、副作用上限、成本上限、以及什么情况下应该停止。</p></li>
 </ol>
 </section>
 <section id="继续学习" class="level2">
