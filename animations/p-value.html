@@ -9,6 +9,7 @@
   body{background:#0d1117;display:flex;justify-content:center;align-items:center;min-height:100vh;overflow:hidden;font-family:"Microsoft YaHei","PingFang SC","Noto Sans SC",sans-serif}
   .stage-wrap{position:relative;box-shadow:0 0 80px rgba(0,0,0,0.5);border-radius:4px;overflow:hidden}
   canvas{display:block}
+  .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
   .controls{position:fixed;bottom:0;left:0;right:0;background:rgba(13,17,23,0.92);backdrop-filter:blur(12px);padding:14px 24px;display:flex;align-items:center;gap:16px;color:#e0e4e8;font-size:13px;z-index:100;border-top:1px solid rgba(255,255,255,0.06)}
   .controls button{background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);color:#d0d8e0;padding:7px 16px;border-radius:5px;cursor:pointer;font-size:13px;font-family:inherit;transition:background 0.15s}
   .controls button:hover{background:rgba(255,255,255,0.15)}
@@ -24,7 +25,8 @@
 <body>
 
 <div class="stage-wrap" id="stageWrap">
-  <canvas id="mainCanvas"></canvas>
+  <canvas id="mainCanvas" aria-label="双侧 P 值动画。零假设分布两端从正负 2.15 起的总面积为 0.0316。"></canvas>
+  <p class="sr-only">双侧 P 值是在零假设及模型条件成立时，检验统计量达到正负 2.15 或同样或更极端位置的总概率。它不是零假设为真的概率，也不表示效应大小。</p>
   <div class="title-overlay" id="titleOverlay">
     <h1>双侧 p 值</h1>
     <p>Two-tailed test  ·  α = 0.05</p>
@@ -329,12 +331,12 @@
 
       ctx.font='bold 22px "Georgia","Times New Roman",serif';
       ctx.fillStyle='#e0c0b0'; ctx.textAlign='center'; ctx.textBaseline='middle';
-      ctx.fillText('p = 0.0316  <  α = 0.05   →   拒绝 H₀',W/2,by-10);
+      ctx.fillText('p = P(|Z| ≥ 2.15 | H₀) = 0.0316',W/2,by-10);
 
       // Smaller explanation
       ctx.font='17px "Microsoft YaHei","PingFang SC",sans-serif';
       ctx.fillStyle='#998880';
-      ctx.fillText('观测结果落在拒绝域内，有统计学显著性',W/2,by+24);
+      ctx.fillText('与 |z| = 2.15 同样或更极端；P 值不表示效应大小',W/2,by+24);
 
       ctx.restore();
     }
