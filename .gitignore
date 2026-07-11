@@ -18,3 +18,4 @@ renv/staging/
 Thumbs.db
 
 **/*.quarto_ipynb
+/.worktrees/
