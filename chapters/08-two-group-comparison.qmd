@@ -280,6 +280,17 @@ abline(v = obs_diff, col = "#c86652", lwd = 2)
 判断：置换检验不假设正态，但需要零假设下的可交换性。在配对设计中，标签只能在区组内交换。秩和检验关注相对位置或随机优势；只有增加分布形状相同等条件，才能把它解释为中位数差异。
 :::
 
+下面的动画把双侧 P 值画成零分布两端的面积。观看时注意，尾部从观测统计量开始，而不是只从固定的 0.05 临界线开始。
+
+<div class="teaching-animation">
+  <div class="teaching-animation-frame">
+    <iframe src="../animations/p-value.html" title="双侧 P 值尾部面积动画" loading="lazy" allowfullscreen></iframe>
+  </div>
+  <p class="teaching-animation-link"><a href="../animations/p-value.html" target="_blank" rel="noopener">在新窗口打开动画</a></p>
+</div>
+
+动画使用标准正态统计量说明几何关系。实际检验的零分布由统计量和研究设计决定，P 值也不能替代效应量。
+
 ## 8.6 从诊断、效应量和区间解释结果
 
 统计推断的终点不是 P 值。一个完整的分析报告至少包含：

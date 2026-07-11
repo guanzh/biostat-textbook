@@ -186,6 +186,17 @@ mean(large_sample)  # 非常接近 0.6，而不是 0.5
 
 对独立同分布观测的简单样本均值，标准误可估计为 SE = SD / √n。标准误随样本量的平方根减小。要把标准误减半，需要 4 倍的独立样本。聚类、重复测量或不等概率抽样必须按设计计算，不能只把数据表的行数代入 n。
 
+观看动画时，比较 n = 4、16 和 64 三种抽样分布。原始个体的离散程度没有改变，收窄的是样本均值的分布。
+
+<div class="teaching-animation">
+  <div class="teaching-animation-frame">
+    <iframe src="../animations/sampling-distribution.html" title="抽样分布与标准误动画" loading="lazy" allowfullscreen></iframe>
+  </div>
+  <p class="teaching-animation-link"><a href="../animations/sampling-distribution.html" target="_blank" rel="noopener">在新窗口打开动画</a></p>
+</div>
+
+动画使用独立同分布的理想情形。分层、聚类和重复测量数据不能直接照搬其中的 SD/√n。
+
 置信区间（confidence interval）可以用标准误构造。在模型和抽样条件成立时，如果从同一总体反复抽样，并且每次都用同一方法构造 95% 置信区间，长期来看约 95% 的区间会覆盖真实参数。对已经得到的这一个区间，不能解释为真实参数有 95% 的概率落在其中。第 20 章会比较这种覆盖率陈述与贝叶斯可信区间。
 
 ```r

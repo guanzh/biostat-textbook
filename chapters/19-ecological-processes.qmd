@@ -137,6 +137,17 @@ camera <- read.csv("../data/teaching/camera_monitoring_long.csv",
 
 关键洞察：如果 p = 0.5，那么一个被占据的样点在单次调查中有 50% 的概率被"错过"。6 次调查全部错过的概率 = (1 − 0.5)⁶ ≈ 1.6%：重复调查大幅降低了假阴性的概率。
 
+观看动画时，把始终存在的动物与相机每次记录到的 0 或 1 分开。潜在状态没有改变，观测结果仍会波动。
+
+<div class="teaching-animation">
+  <div class="teaching-animation-frame">
+    <iframe src="../animations/occupancy-detection.html" title="占域状态与重复探测动画" loading="lazy" allowfullscreen></iframe>
+  </div>
+  <p class="teaching-animation-link"><a href="../animations/occupancy-detection.html" target="_blank" rel="noopener">在新窗口打开动画</a></p>
+</div>
+
+重复调查降低的是持续漏检的概率，不保证每次都能检出，也不能修复假阳性或封闭假设被破坏的问题。
+
 ## 19.4 重复调查为何提供信息
 
 假设一个样点的 6 次调查结果是：0, 1, 0, 0, 1, 0（检出 2 次）。

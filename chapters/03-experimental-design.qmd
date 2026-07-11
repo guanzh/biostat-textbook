@@ -324,6 +324,17 @@ code-tools: false
 判断：处理在哪一级被独立随机分配，哪一级通常就是实验单位。样本量 n 首先数实验单位，不数测量次数。
 :::
 
+观看下面的动画时，先数独立接受处理的小区，再看每个小区内增加了多少观测。两种计数回答的不是同一个问题。
+
+<div class="teaching-animation">
+  <div class="teaching-animation-frame">
+    <iframe src="../animations/experimental-unit.html" title="实验单位与伪重复动画" loading="lazy" allowfullscreen></iframe>
+  </div>
+  <p class="teaching-animation-link"><a href="../animations/experimental-unit.html" target="_blank" rel="noopener">在新窗口打开动画</a></p>
+</div>
+
+动画中的 160 株幼苗提供了小区内信息，但处理只在 32 个小区上独立分配。若处理层级改变，实验单位也可能改变。
+
 ## 3.3 处理、对照与随机化
 
 层级理清了，现在来回答另外两个问题：比什么 vs 比什么，以及谁分到哪里。

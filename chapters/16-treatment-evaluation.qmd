@@ -158,6 +158,17 @@ Y = β₀ + β₁×Status + β₂×Period + β₃×Status×Period + ε
 - β₂：对照组的时期变化（共同时间趋势）
 - β₃：BACI 效果：修复的额外变化（我们关心的）
 
+观看动画时，先找到两组共有的时间变化，再看修复地多出来的部分。后者才是 BACI 试图识别的措施效果。
+
+<div class="teaching-animation">
+  <div class="teaching-animation-frame">
+    <iframe src="../animations/baci-interaction.html" title="BACI 变化之差动画" loading="lazy" allowfullscreen></iframe>
+  </div>
+  <p class="teaching-animation-link"><a href="../animations/baci-interaction.html" target="_blank" rel="noopener">在新窗口打开动画</a></p>
+</div>
+
+变化之差只有在对照地能够近似修复地的反事实趋势时才有因果解释。公式本身不能保证平行趋势。
+
 ```r
 # 拟合 BACI 模型（简化版：按地点聚合后）
 rest_site <- aggregate(

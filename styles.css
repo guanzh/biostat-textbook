@@ -520,6 +520,30 @@ main.content h2 {
 .chapter-next a { color: var(--forest); text-decoration: none; }
 .chapter-next a:hover { text-decoration: underline; }
 
+/* 教学动画：16:9 响应式嵌入，正文始终保留独立解释 */
+.teaching-animation {
+  margin: 1.5rem 0;
+}
+.teaching-animation-frame {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background: #1a1d20;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+}
+.teaching-animation iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+.teaching-animation-link {
+  margin: 0.45rem 0 0;
+  color: var(--ink-muted);
+  font-size: 0.88rem;
+}
+
 @media (min-width: 721px) and (max-width: 1099px) {
   .chapter-route {
     grid-template-columns: repeat(2, minmax(0, 1fr));

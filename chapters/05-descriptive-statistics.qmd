@@ -278,6 +278,17 @@ boxplot(species_richness ~ status,
 
 正态分布是某些统计模型对误差项的假设。t 检验、ANOVA 和线性回归通常关心模型残差是否与这一假设严重冲突，而不是要求所有原始观测都呈钟形。正态分布不是数据的天然目标。分析前要先问分布假设针对哪一层随机量，再选择与数据生成过程相符的模型。
 
+观看动画时，分别观察 μ、σ 和曲线下面积怎样改变。动画展示的是一个概率模型，不是要求真实数据必须长成这条曲线。
+
+<div class="teaching-animation">
+  <div class="teaching-animation-frame">
+    <iframe src="../animations/normal-distribution.html" title="正态分布位置、尺度与面积动画" loading="lazy" allowfullscreen></iframe>
+  </div>
+  <p class="teaching-animation-link"><a href="../animations/normal-distribution.html" target="_blank" rel="noopener">在新窗口打开动画</a></p>
+</div>
+
+使用正态假设前，要说明它针对原始响应、样本均值还是模型误差。三者不能混写。
+
 保护数据中常见的非正态模式：
 
 - 计数数据（物种数、虫口数、照片数）→ Poisson 或负二项分布（第 12 章）
