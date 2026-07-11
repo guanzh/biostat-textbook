@@ -48,6 +48,15 @@ class TeachingAnimationSourceTests(unittest.TestCase):
             self.assertRegex(html, r'<canvas[^>]+aria-label="[^"]+"')
             self.assertIn('class="sr-only"', html)
 
+    def test_scrubbing_does_not_reset_existing_animations_to_blank_frame(self):
+        for filename in ("normal-distribution.html", "p-value.html"):
+            html = (ROOT / "animations" / filename).read_text(encoding="utf-8")
+            self.assertNotRegex(
+                html,
+                r"if\s*\(lastTick\s*===\s*null\)\s*\{[^}]*draw\s*\(0\)",
+                f"{filename}: the next animation frame must redraw the selected time",
+            )
+
     def test_each_target_chapter_has_one_responsive_embed(self):
         for chapter, filename in EMBEDS.items():
             source = (ROOT / chapter).read_text(encoding="utf-8")

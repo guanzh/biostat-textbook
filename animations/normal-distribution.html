@@ -369,8 +369,8 @@
       ctx.fillStyle = '#d8c0b5';
       ctx.font = '600 24px "Microsoft YaHei", "PingFang SC", sans-serif';
       ctx.textAlign = 'center';
-      ctx.textBaseline = 'bottom';
-      ctx.fillText('先问清：分布假设针对原始值，还是模型残差？', W/2, H - 106);
+      ctx.textBaseline = 'top';
+      ctx.fillText('先问清：分布假设针对原始值，还是模型残差？', W/2, 72);
       ctx.restore();
     }
   }
@@ -409,8 +409,9 @@
     if (lastTick === null) {
       lastTick = now;
       window.__ready = true;
-      draw(0);
-      updateTitleOverlay(0);
+      draw(time);
+      updateTitleOverlay(time);
+      updateControls(time);
       requestAnimationFrame(tick);
       return;
     }

@@ -240,9 +240,11 @@
 
       // ±1.96 labels
       ctx.font='bold 18px "Georgia","Times New Roman",serif';
-      ctx.fillStyle='#7db5e0'; ctx.textAlign='center'; ctx.textBaseline='bottom';
-      ctx.fillText('+1.96',xToPx(Z_CRIT),yToPx(normalPDF(Z_CRIT))-10);
-      ctx.fillText('−1.96',xToPx(-Z_CRIT),yToPx(normalPDF(Z_CRIT))-10);
+      ctx.fillStyle='#7db5e0'; ctx.textBaseline='bottom';
+      ctx.textAlign='right';
+      ctx.fillText('+1.96',xToPx(Z_CRIT)-14,yToPx(normalPDF(Z_CRIT))-28);
+      ctx.textAlign='left';
+      ctx.fillText('−1.96',xToPx(-Z_CRIT)+14,yToPx(normalPDF(Z_CRIT))-28);
 
       // α/2 labels below axis
       ctx.font='16px "Georgia","Times New Roman",serif';
@@ -272,13 +274,13 @@
 
       // "z = 2.15" label
       ctx.font='bold 24px "Georgia","Times New Roman",serif';
-      ctx.fillStyle='#e07b5a'; ctx.textAlign='center'; ctx.textBaseline='bottom';
-      ctx.fillText('z = 2.15',zx,yToPx(normalPDF(Z_OBS))-20);
+      ctx.fillStyle='#e07b5a'; ctx.textAlign='left'; ctx.textBaseline='bottom';
+      ctx.fillText('z = 2.15',zx+22,yToPx(normalPDF(Z_OBS))-20);
 
       // "观测值" annotation
       ctx.font='italic 19px "Microsoft YaHei","PingFang SC",sans-serif';
       ctx.fillStyle='#c09080';
-      ctx.fillText('观测值',zx,yToPx(normalPDF(Z_OBS))-50);
+      ctx.fillText('观测值',zx+22,yToPx(normalPDF(Z_OBS))-50);
 
       ctx.restore();
     }
@@ -295,8 +297,8 @@
       // Left mirror label
       ctx.save(); ctx.globalAlpha=pp;
       ctx.font='bold 18px "Georgia","Times New Roman",serif';
-      ctx.fillStyle='rgba(224,123,90,0.7)'; ctx.textAlign='center'; ctx.textBaseline='bottom';
-      ctx.fillText('−2.15',xToPx(-Z_OBS),yToPx(normalPDF(Z_OBS))-10);
+      ctx.fillStyle='rgba(224,123,90,0.7)'; ctx.textAlign='right'; ctx.textBaseline='bottom';
+      ctx.fillText('−2.15',xToPx(-Z_OBS)-22,yToPx(normalPDF(Z_OBS))-10);
 
       // p-value annotation — pill badge
       const px=xToPx(0);
@@ -366,7 +368,7 @@
   // TICK
   // ═══════════════════════════════════════════════════════
   function tick(now){
-    if(lastTick===null){lastTick=now;window.__ready=true;draw(0);updateOverlay(0);requestAnimationFrame(tick);return}
+    if(lastTick===null){lastTick=now;window.__ready=true;draw(time);updateOverlay(time);updateControls(time);requestAnimationFrame(tick);return}
     const dt=(now-lastTick)/1000; lastTick=now;
     if(playing){
       let nt=time+dt;
