@@ -284,7 +284,7 @@ abline(v = obs_diff, col = "#c86652", lwd = 2)
 
 <div class="teaching-animation">
   <div class="teaching-animation-frame">
-    <iframe src="../animations/p-value.html" title="双侧 P 值尾部面积动画" loading="lazy" allowfullscreen></iframe>
+  <iframe src="../animations/p-value.html" title="双侧 P 值尾部面积动画" loading="lazy" allowfullscreen></iframe>
   </div>
   <p class="teaching-animation-link"><a href="../animations/p-value.html" target="_blank" rel="noopener">在新窗口打开动画</a></p>
 </div>

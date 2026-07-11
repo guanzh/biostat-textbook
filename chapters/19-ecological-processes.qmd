@@ -141,7 +141,7 @@ camera <- read.csv("../data/teaching/camera_monitoring_long.csv",
 
 <div class="teaching-animation">
   <div class="teaching-animation-frame">
-    <iframe src="../animations/occupancy-detection.html" title="占域状态与重复探测动画" loading="lazy" allowfullscreen></iframe>
+  <iframe src="../animations/occupancy-detection.html" title="占域状态与重复探测动画" loading="lazy" allowfullscreen></iframe>
   </div>
   <p class="teaching-animation-link"><a href="../animations/occupancy-detection.html" target="_blank" rel="noopener">在新窗口打开动画</a></p>
 </div>

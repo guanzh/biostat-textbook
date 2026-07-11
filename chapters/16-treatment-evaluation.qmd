@@ -162,7 +162,7 @@ Y = β₀ + β₁×Status + β₂×Period + β₃×Status×Period + ε
 
 <div class="teaching-animation">
   <div class="teaching-animation-frame">
-    <iframe src="../animations/baci-interaction.html" title="BACI 变化之差动画" loading="lazy" allowfullscreen></iframe>
+  <iframe src="../animations/baci-interaction.html" title="BACI 变化之差动画" loading="lazy" allowfullscreen></iframe>
   </div>
   <p class="teaching-animation-link"><a href="../animations/baci-interaction.html" target="_blank" rel="noopener">在新窗口打开动画</a></p>
 </div>

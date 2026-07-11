@@ -282,7 +282,7 @@ boxplot(species_richness ~ status,
 
 <div class="teaching-animation">
   <div class="teaching-animation-frame">
-    <iframe src="../animations/normal-distribution.html" title="正态分布位置、尺度与面积动画" loading="lazy" allowfullscreen></iframe>
+  <iframe src="../animations/normal-distribution.html" title="正态分布位置、尺度与面积动画" loading="lazy" allowfullscreen></iframe>
   </div>
   <p class="teaching-animation-link"><a href="../animations/normal-distribution.html" target="_blank" rel="noopener">在新窗口打开动画</a></p>
 </div>

@@ -57,6 +57,11 @@ class TeachingAnimationSourceTests(unittest.TestCase):
                 source,
                 rf'<iframe[^>]+src="\.\./animations/{re.escape(filename)}"[^>]+title="[^"]+"',
             )
+            self.assertNotIn(
+                f'    <iframe src="../animations/{filename}"',
+                source,
+                f"{chapter}: four-space indentation makes Pandoc render the iframe as code",
+            )
 
     def test_global_styles_define_responsive_animation_frame(self):
         css = (ROOT / "styles.css").read_text(encoding="utf-8")

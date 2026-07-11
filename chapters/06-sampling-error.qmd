@@ -190,7 +190,7 @@ mean(large_sample)  # 非常接近 0.6，而不是 0.5
 
 <div class="teaching-animation">
   <div class="teaching-animation-frame">
-    <iframe src="../animations/sampling-distribution.html" title="抽样分布与标准误动画" loading="lazy" allowfullscreen></iframe>
+  <iframe src="../animations/sampling-distribution.html" title="抽样分布与标准误动画" loading="lazy" allowfullscreen></iframe>
   </div>
   <p class="teaching-animation-link"><a href="../animations/sampling-distribution.html" target="_blank" rel="noopener">在新窗口打开动画</a></p>
 </div>
