@@ -119,7 +119,7 @@ camera <- read.csv("../data/teaching/camera_monitoring_long.csv",
 
 状态过程（state process）：样点 i 是否被目标物种占据？
 - z_i = 1（占据）或 0（未占据）
-- z_i 是潜在的：你永远无法直接观察
+- z_i 是潜在状态，不是每个样点都能由观测完全确定。在没有假阳性的假设下，一旦至少一次检出，就能确定该样点在调查期内被占据；始终未检出的样点仍有两种可能
 - ψ = P(z_i = 1)：占域概率：我们真正想知道的
 
 观测过程（observation process）：给定占据，调查 j 是否检出？

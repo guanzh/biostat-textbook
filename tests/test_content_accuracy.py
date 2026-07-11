@@ -66,6 +66,23 @@ class ContentAccuracyTests(unittest.TestCase):
         self.assertIn("1.01", chapter)
         self.assertNotIn("频率学派不能回答这个问题", chapter)
 
+    def test_cluster_bootstrap_preserves_resampled_station_duplicates(self):
+        chapter = read("chapters/06-sampling-error.qmd")
+        self.assertNotIn("camera$station_id %in% idx_stations", chapter)
+        self.assertIn("boot_station", chapter)
+        self.assertIn("seq_along(idx_stations)", chapter)
+
+    def test_bayesian_example_uses_existing_damage_class_column(self):
+        chapter = read("chapters/20-bayesian-intro.qmd")
+        self.assertNotIn("damaged ~ block_id", chapter)
+        self.assertIn("damage_class ~ block_id", chapter)
+        self.assertIn('plot_damage$damage_class[, "damaged"]', chapter)
+
+    def test_occupancy_state_is_not_described_as_never_knowable(self):
+        chapter = read("chapters/19-ecological-processes.qmd")
+        self.assertNotIn("你永远无法直接观察", chapter)
+        self.assertIn("一旦至少一次检出", chapter)
+
     def test_every_reader_file_appears_in_audit_report(self):
         report = read("docs/reviews/2026-07-11-textbook-content-audit.md")
         reader_files = [ROOT / "index.qmd"]

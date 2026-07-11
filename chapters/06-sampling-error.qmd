@@ -232,8 +232,12 @@ quantile(boot_means_wrong, c(0.025, 0.975))
 stations <- unique(camera$station_id)
 boot_means_right <- replicate(n_boot, {
   idx_stations <- sample(stations, replace = TRUE)
-  # 对每个抽中的样点，取其所有 occasion 的均值
-  samp <- camera[camera$station_id %in% idx_stations, ]
+  # 保留重复抽中的样点，并给每次抽中建立新的 bootstrap ID
+  samp <- do.call(rbind, lapply(seq_along(idx_stations), function(i) {
+    block <- camera[camera$station_id == idx_stations[i], ]
+    block$boot_station <- i
+    block
+  }))
   mean(samp$detected)
 })
 # 区间会更宽，因为正确反映了样点间的变异

@@ -146,13 +146,13 @@ forest <- read.csv("../data/teaching/forest_pest_trial_long.csv",
 # 定义"成功"：小区受害率 < 30%
 f3 <- forest[forest$visit == 3, ]
 plot_damage <- aggregate(
-  damaged ~ block_id + plot_id + treatment,
+  damage_class ~ block_id + plot_id + treatment,
   data = f3,
   FUN = function(x) c(n = length(x), damaged = sum(x >= 3))
 )
-plot_damage$n <- plot_damage$damaged[, "n"]
-plot_damage$damaged_count <- plot_damage$damaged[, "damaged"]
-plot_damage$damaged <- NULL
+plot_damage$n <- plot_damage$damage_class[, "n"]
+plot_damage$damaged_count <- plot_damage$damage_class[, "damaged"]
+plot_damage$damage_class <- NULL
 
 # 综合防治的小区
 int_plots <- plot_damage[plot_damage$treatment == "integrated", ]
