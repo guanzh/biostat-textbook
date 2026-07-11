@@ -577,6 +577,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>β₂：对照组的时期变化（共同时间趋势）</li>
 <li>β₃：BACI 效果：修复的额外变化（我们关心的）</li>
 </ul>
+<p>观看动画时，先找到两组共有的时间变化，再看修复地多出来的部分。后者才是 BACI 试图识别的措施效果。</p>
+<div class="teaching-animation">
+<div class="teaching-animation-frame">
+<iframe src="../animations/baci-interaction.html" title="BACI 变化之差动画" loading="lazy" allowfullscreen=""></iframe>
+</div>
+<p class="teaching-animation-link">
+<a href="../animations/baci-interaction.html" target="_blank" rel="noopener">在新窗口打开动画</a>
+</p>
+</div>
+<p>变化之差只有在对照地能够近似修复地的反事实趋势时才有因果解释。公式本身不能保证平行趋势。</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 拟合 BACI 模型（简化版：按地点聚合后）</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>rest_site <span class="ot">&lt;-</span> <span class="fu">aggregate</span>(</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  species_richness <span class="sc">~</span> landscape_id <span class="sc">+</span> site_id <span class="sc">+</span> status <span class="sc">+</span> period,</span>
@@ -634,7 +644,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="成功标准与停止规则" class="level2">
 <h2 class="anchored" data-anchor-id="成功标准与停止规则">16.7 成功标准与停止规则</h2>
 <p>效果评估的最后一步：在见到结果之前，定义”成功”和”失败”。</p>
-<p>成功标准应包含： - 主要效果：丰富度增加 ≥ X 种（最小有意义效应） - 不确定性：95% CI 的下限 &gt; 0（效果不太可能为零或负） - 副作用：非本地种比例没有显著增加 - 成本：每增加 1 种的成本 ≤ Y 元 - 实施：方案执行完整度 ≥ 80%</p>
+<p>成功标准应包含： - 主要效果：最小有意义效应预设为丰富度增加 X 种 - 不确定性：主要效果 95% CI 的下限 ≥ X，表明区间整体达到预设标准 - 副作用：非本地种比例增加的 95% CI 上限 ≤ 预设容忍值 - 成本：每增加 1 种的成本 ≤ Y 元 - 实施：方案执行完整度 ≥ 80%</p>
 <p>停止规则。如果中期评估显示效果远低于预期或副作用超出可接受范围：停止并重新设计方案。不能因为”已经投入了很多”而继续一个无效或有害的措施。</p>
 </section>
 <section id="本章小结" class="level2">

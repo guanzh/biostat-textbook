@@ -541,9 +541,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="丰富度与努力量" class="level2">
 <h2 class="anchored" data-anchor-id="丰富度与努力量">15.2 丰富度与努力量</h2>
-<p>丰富度是最直观的多样性指标，但它对调查努力量极度敏感。调查 20 个样方发现的物种数必然多于调查 5 个样方。这不意味着多样性更高，只意味着你花了更多努力。</p>
+<p>丰富度是最直观的多样性指标，但它对调查努力量很敏感。在同一批样方中逐步增加调查努力，累计物种数不会下降，但新增样方未必带来新物种。比较不同地点时，调查 20 个样方通常比调查 5 个样方记录到更多物种，因此原始丰富度不能脱离努力量解释。</p>
 <p>物种积累曲线（species accumulation curve）：随着样方数增加，累计发现的物种数如何增长。如果曲线趋于平缓，说明努力量基本足够；如果仍在快速上升，说明还有大量物种未被发现。</p>
-<p>稀释法（rarefaction）：将不同样本的丰富度标准化到相同的个体数或样方数，使它们可比。</p>
+<p>稀释法（rarefaction）把样本下采样到共同的个体数、样方数或样本覆盖度，比较标准化后的期望丰富度。它可以减少努力量不等造成的差异，但不能修复样本代表性、生境异质性或探测概率不同。</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 从群落长表重建群落矩阵</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>comm_present <span class="ot">&lt;-</span> comm[comm<span class="sc">$</span>abundance <span class="sc">&gt;</span> <span class="dv">0</span>, ]</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -570,7 +570,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="shannon-与均匀度">15.3 Shannon 与均匀度</h2>
 <p>Shannon 指数（H’）：H’ = −Σ pᵢ ln(pᵢ)，其中 pᵢ 是物种 i 的相对丰度。H’ 同时反映丰富度和均匀度：物种越多、分布越均匀，H’ 越高。</p>
 <p>Pielou 均匀度（J’）：J’ = H’ / ln(S)，其中 S 是丰富度。J’ 接近 1 表示各物种丰度相近，接近 0 表示少数物种占绝对优势。</p>
-<p>关键局限：相同的 Shannon 指数可以来自完全不同的群落：10 种各 10 个个体，和 5 种各 20 个个体 + 5 种各 0 个（不可能），H’ 完全不同。但两个不同的群落也可能碰巧有相同的 H’。</p>
+<p>Shannon 指数把物种数和相对丰度压缩成一个数，因此不能恢复物种身份。群落 A 由物种甲、乙各占一半，群落 B 由物种丙、丁各占一半。两者的 H’ 都是 ln(2)，物种组成却完全不同。指数相同不能推出群落相似，也不能单独证明修复成功。</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 计算一个样方的 Shannon 指数（示例）</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 取第一个样方的数据</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>sample_quadrat <span class="ot">&lt;-</span> comm[</span>

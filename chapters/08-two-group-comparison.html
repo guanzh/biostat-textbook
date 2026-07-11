@@ -667,7 +667,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="置换与秩方法并非免假设通行证">8.5 置换与秩方法并非免假设通行证</h2>
 <p>当数据不满足正态假设时，常有人建议”改用非参数检验”。但非参数检验不是免费的。它们改变了被检验的对象。</p>
 <p>置换检验（permutation test）：在零假设下，处理标签是可交换的。通过反复随机打乱标签并计算统计量，得到统计量的零分布。置换检验不假设正态分布，但它假设可交换性：即零假设下，任何分配方案都是等可能的。在配对设计中，可交换性意味着在区组内随机交换处理标签。这与随机区组设计的随机化方案完全一致。</p>
-<p>Mann-Whitney U 检验（Wilcoxon 秩和检验）：检验的是两组的中位数是否相等：或者说，从一组随机抽取的观测值大于从另一组随机抽取的观测值的概率是否为 0.5。它不检验均值差。如果你的研究问题确实是”均值是否有差异”，秩检验回答的是一个不同的问题。</p>
+<p>Mann-Whitney U 检验（Wilcoxon 秩和检验）比较两组观测的相对位置。连续分布下，它可以用随机优势概率来解释，也就是从一组随机抽取的值大于另一组随机值的概率是否偏离 0.5。只有再假设两组分布形状相同、主要差别是位置平移时，才适合把结果解释为位置或中位数差异。它不直接检验均值差。如果研究问题是均值差，秩检验回答的是另一个问题。</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 配对置换检验（区组内交换标签）</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">20260620</span>)</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>n_perm <span class="ot">&lt;-</span> <span class="dv">9999</span></span>
@@ -687,7 +687,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>})</span>
 <span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a><span class="co"># 双侧 P 值</span></span>
-<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>p_perm <span class="ot">&lt;-</span> <span class="fu">mean</span>(<span class="fu">abs</span>(perm_diffs) <span class="sc">&gt;=</span> <span class="fu">abs</span>(obs_diff))</span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>p_perm <span class="ot">&lt;-</span> (<span class="fu">sum</span>(<span class="fu">abs</span>(perm_diffs) <span class="sc">&gt;=</span> <span class="fu">abs</span>(obs_diff)) <span class="sc">+</span> <span class="dv">1</span>) <span class="sc">/</span> (n_perm <span class="sc">+</span> <span class="dv">1</span>)</span>
 <span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"置换检验 P 值:"</span>, p_perm, <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span>
 <span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"配对 t 检验 P 值:"</span>, t_test_paired<span class="sc">$</span>p.value, <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span>
 <span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a></span>
@@ -696,8 +696,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">"置换零分布"</span>, <span class="at">xlab =</span> <span class="st">"平均差值"</span>)</span>
 <span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v =</span> obs_diff, <span class="at">col =</span> <span class="st">"#c86652"</span>, <span class="at">lwd =</span> <span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="key-judgment">
-<p>判断：置换检验不假设正态，但假设可交换性：在配对设计中，这意味着区组内随机交换标签。秩检验改变了被检验的对象。它检验中位数差异，不是均值差异。</p>
+<p>判断：置换检验不假设正态，但需要零假设下的可交换性。在配对设计中，标签只能在区组内交换。秩和检验关注相对位置或随机优势；只有增加分布形状相同等条件，才能把它解释为中位数差异。</p>
 </div>
+<p>下面的动画把双侧 P 值画成零分布两端的面积。观看时注意，尾部从观测统计量开始，而不是只从固定的 0.05 临界线开始。</p>
+<div class="teaching-animation">
+<div class="teaching-animation-frame">
+<iframe src="../animations/p-value.html" title="双侧 P 值尾部面积动画" loading="lazy" allowfullscreen=""></iframe>
+</div>
+<p class="teaching-animation-link">
+<a href="../animations/p-value.html" target="_blank" rel="noopener">在新窗口打开动画</a>
+</p>
+</div>
+<p>动画使用标准正态统计量说明几何关系。实际检验的零分布由统计量和研究设计决定，P 值也不能替代效应量。</p>
 </section>
 <section id="从诊断效应量和区间解释结果" class="level2">
 <h2 class="anchored" data-anchor-id="从诊断效应量和区间解释结果">8.6 从诊断、效应量和区间解释结果</h2>
@@ -740,7 +750,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="mascot-note-copy">
 黑豹提醒：P 值不是效应大小
 <p>
-P = 0.01 不意味着”效应很大”。它只意味着”如果零假设为真，观察到当前数据的概率很小”。效应大小、置信区间和实际意义必须单独报告。一个很小的效应在大样本下也能 P &lt; 0.001。
+P = 0.01 不意味着效应很大。在零假设和模型条件成立时，它表示得到与当前检验统计量同样或更极端结果的概率为 0.01。效应大小、置信区间和实际意义必须单独报告。样本量很大时，很小的效应也可能得到很小的 P 值。
 </p>
 </div>
 </div>
@@ -792,7 +802,7 @@ P = 0.01 不意味着”效应很大”。它只意味着”如果零假设为�
 <li>“有两组”不足以选择方法。独立、配对和重复测量对应完全不同的分析：方法首先由设计关系决定。</li>
 <li>Welch t 检验是独立两组比较的合理默认选择。不需要先做方差齐性检验：Welch t 在方差不齐时仍然稳健。</li>
 <li>配对来自设计，不是来自数值相近。区组内的处理小区是配对的，因为它们在同一个区组内被随机分配。</li>
-<li>置换检验不假设正态，但假设可交换性。秩检验改变了被检验的对象。它检验中位数差异，不是均值差异。</li>
+<li>置换检验不假设正态，但需要可交换性。秩和检验关注相对位置或随机优势，不能不加条件地解释为中位数检验。</li>
 <li>P 值不是效应大小。效应量、置信区间和实际意义必须单独报告。</li>
 <li>伪重复是两组比较中最致命的错误。把树木当作独立处理重复，等于把 20 个实验单位冒充为 400 个：标准误被人为缩小，P 值被人为夸小。</li>
 </ul>

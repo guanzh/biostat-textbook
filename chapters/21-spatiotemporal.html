@@ -510,7 +510,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>相邻两个相机样点的检出率比远距离样点更相似：空间自相关</li>
 <li>同一景观内修复地和对照地的变化趋势相关：空间共享</li>
 </ul>
-<p>忽视时空依赖的后果与忽视层级结构相同：标准误过小，置信区间过窄，P 值过小。你以为你有 1080 个独立观测：实际上相邻观测共享信息，有效样本量远小于 1080。</p>
+<p>忽视时空依赖与忽视层级结构有同一个根源，也就是把共享信息的观测当作独立证据。在常见的正自相关下，标准误往往被低估，置信区间过窄，P 值偏小；偏差方向仍取决于相关结构。1080 行记录不等于 1080 份独立信息。</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>camera <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"../data/teaching/camera_monitoring_long.csv"</span>,</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>                   <span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span>)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>rest <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"../data/teaching/restoration_site_period.csv"</span>,</span>
@@ -549,7 +549,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>趋势（trend）：长期的系统性变化：“三年间检出率是否在下降？”</p>
 <p>季节（seasonality）：周期性波动：“每年第三 occasion（雨季）检出率是否系统性偏低？”</p>
 <p>自相关（autocorrelation）：相邻时间点的残差相关：“今年的高检出率增加了明年也高的概率。”</p>
-<p>如果忽视自相关，趋势检验的标准误会偏小：你以为是独立的三年的独立证据，实际上它们共享信息。</p>
+<p>如果存在正自相关却按独立观测分析，趋势检验的标准误往往偏小。三年的记录不是三份彼此无关的证据，它们共享时间过程。</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 按年份聚合检出率</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>yearly_detection <span class="ot">&lt;-</span> <span class="fu">aggregate</span>(</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  detected <span class="sc">~</span> year <span class="sc">+</span> station_id,</span>

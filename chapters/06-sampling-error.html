@@ -582,9 +582,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="标准误和区间描述哪一种不确定性" class="level2">
 <h2 class="anchored" data-anchor-id="标准误和区间描述哪一种不确定性">6.4 标准误和区间描述哪一种不确定性</h2>
-<p>标准误（standard error, SE）可能是统计入门中最容易被误解的概念。它不是”数据的变异程度”：那是标准差（SD）。标准误是样本均值的变异程度。如果你从同一个总体中反复抽取同样大小的样本，这些样本均值之间的标准差就是标准误。</p>
-<p>SE = SD / √n。这个公式揭示了一个关键关系：标准误随样本量的平方根减小。要把标准误减半，你需要 4 倍的样本量。</p>
-<p>置信区间（confidence interval）是标准误的直接应用。一个 95% 置信区间的正确解释是。如果从同一个总体中反复抽样并计算区间，95% 的区间会包含真实参数。它不表示”真实参数有 95% 的概率落在这个区间内”：参数是固定的，不是随机的。这是频率学派和贝叶斯学派（第 20 章）的根本分歧。</p>
+<p>标准误（standard error, SE）可能是统计入门中最容易被误解的概念。它不是数据的变异程度，那是标准差（SD）。标准误描述估计量在重复抽样中的变异。以样本均值为例，如果从同一个总体反复抽取同样大小的样本，这些样本均值的标准差就是均值的标准误。</p>
+<p>对独立同分布观测的简单样本均值，标准误可估计为 SE = SD / √n。标准误随样本量的平方根减小。要把标准误减半，需要 4 倍的独立样本。聚类、重复测量或不等概率抽样必须按设计计算，不能只把数据表的行数代入 n。</p>
+<p>观看动画时，比较 n = 4、16 和 64 三种抽样分布。原始个体的离散程度没有改变，收窄的是样本均值的分布。</p>
+<div class="teaching-animation">
+<div class="teaching-animation-frame">
+<iframe src="../animations/sampling-distribution.html" title="抽样分布与标准误动画" loading="lazy" allowfullscreen=""></iframe>
+</div>
+<p class="teaching-animation-link">
+<a href="../animations/sampling-distribution.html" target="_blank" rel="noopener">在新窗口打开动画</a>
+</p>
+</div>
+<p>动画使用独立同分布的理想情形。分层、聚类和重复测量数据不能直接照搬其中的 SD/√n。</p>
+<p>置信区间（confidence interval）可以用标准误构造。在模型和抽样条件成立时，如果从同一总体反复抽样，并且每次都用同一方法构造 95% 置信区间，长期来看约 95% 的区间会覆盖真实参数。对已经得到的这一个区间，不能解释为真实参数有 95% 的概率落在其中。第 20 章会比较这种覆盖率陈述与贝叶斯可信区间。</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 演示：标准误 vs 标准差</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 以相机样点的森林覆盖度为例</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>forest_cover <span class="ot">&lt;-</span> <span class="fu">aggregate</span>(forest_cover <span class="sc">~</span> station_id, <span class="at">data =</span> camera, <span class="at">FUN =</span> mean)</span>
@@ -623,18 +633,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>stations <span class="ot">&lt;-</span> <span class="fu">unique</span>(camera<span class="sc">$</span>station_id)</span>
 <span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>boot_means_right <span class="ot">&lt;-</span> <span class="fu">replicate</span>(n_boot, {</span>
 <span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>  idx_stations <span class="ot">&lt;-</span> <span class="fu">sample</span>(stations, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 对每个抽中的样点，取其所有 occasion 的均值</span></span>
-<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>  samp <span class="ot">&lt;-</span> camera[camera<span class="sc">$</span>station_id <span class="sc">%in%</span> idx_stations, ]</span>
-<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mean</span>(samp<span class="sc">$</span>detected)</span>
-<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>})</span>
-<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a><span class="co"># 区间会更宽，因为正确反映了样点间的变异</span></span>
-<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a><span class="fu">quantile</span>(boot_means_right, <span class="fu">c</span>(<span class="fl">0.025</span>, <span class="fl">0.975</span>))</span>
-<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a><span class="co"># 比较两种方法的区间宽度</span></span>
-<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"错误方法区间宽度:"</span>,</span>
-<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>    <span class="fu">diff</span>(<span class="fu">quantile</span>(boot_means_wrong, <span class="fu">c</span>(<span class="fl">0.025</span>, <span class="fl">0.975</span>))), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span>
-<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"正确方法区间宽度:"</span>,</span>
-<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>    <span class="fu">diff</span>(<span class="fu">quantile</span>(boot_means_right, <span class="fu">c</span>(<span class="fl">0.025</span>, <span class="fl">0.975</span>))), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 保留重复抽中的样点，并给每次抽中建立新的 bootstrap ID</span></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>  samp <span class="ot">&lt;-</span> <span class="fu">do.call</span>(rbind, <span class="fu">lapply</span>(<span class="fu">seq_along</span>(idx_stations), <span class="cf">function</span>(i) {</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>    block <span class="ot">&lt;-</span> camera[camera<span class="sc">$</span>station_id <span class="sc">==</span> idx_stations[i], ]</span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>    block<span class="sc">$</span>boot_station <span class="ot">&lt;-</span> i</span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>    block</span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>  }))</span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mean</span>(samp<span class="sc">$</span>detected)</span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a><span class="co"># 区间会更宽，因为正确反映了样点间的变异</span></span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a><span class="fu">quantile</span>(boot_means_right, <span class="fu">c</span>(<span class="fl">0.025</span>, <span class="fl">0.975</span>))</span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a><span class="co"># 比较两种方法的区间宽度</span></span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"错误方法区间宽度:"</span>,</span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a>    <span class="fu">diff</span>(<span class="fu">quantile</span>(boot_means_wrong, <span class="fu">c</span>(<span class="fl">0.025</span>, <span class="fl">0.975</span>))), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"正确方法区间宽度:"</span>,</span>
+<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a>    <span class="fu">diff</span>(<span class="fu">quantile</span>(boot_means_right, <span class="fu">c</span>(<span class="fl">0.025</span>, <span class="fl">0.975</span>))), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="key-judgment">
 <p>判断：Bootstrap 的重抽样单位必须与研究设计中的独立单位一致。对 1080 行重抽样假设行间独立。这等于把同一样点的 18 次重复调查当作 18 个独立样点。</p>
 </div>
@@ -740,7 +754,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li>样本要代表目标总体，首先取决于抽样框。如果某些生境类型没有样点，无论样本多大，结论都不能推广到那些生境。</li>
 <li>随机误差和系统偏差需要完全不同的应对策略。增加样本量减小随机误差，但不能修复系统偏差。更多的有偏样本只产生更窄的错误区间。</li>
-<li>标准误描述样本均值的变异，不描述数据的变异。SE = SD/√n；置信区间只反映特定模型下的随机抽样误差。</li>
+<li>标准误描述估计量在重复抽样中的变异，不描述原始数据的变异。SD/√n 只适用于独立同分布观测的简单样本均值；置信区间的覆盖率还依赖抽样和模型条件。</li>
 <li>Bootstrap 的重抽样单位必须与独立单位一致。对观测行重抽样等于制造伪重复：区间会被人为缩窄。</li>
 <li>不确定性预算是一份系统性的误差清单。覆盖偏差、测量误差、探测失败、模型假设：每类误差需要不同的缓解措施。</li>
 <li>不同来源的不确定性需要不同的行动。扩大样点覆盖、增加独立样点、增加重复调查、改进设备、做敏感性分析。它们不能互相替代。</li>

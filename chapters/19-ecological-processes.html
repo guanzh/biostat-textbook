@@ -539,13 +539,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="潜在生态状态" class="level2">
 <h2 class="anchored" data-anchor-id="潜在生态状态">19.2 潜在生态状态</h2>
 <p>占域模型将问题分为两层：</p>
-<p>状态过程（state process）：样点 i 是否被目标物种占据？ - z_i = 1（占据）或 0（未占据） - z_i 是潜在的：你永远无法直接观察 - ψ = P(z_i = 1)：占域概率：我们真正想知道的</p>
+<p>状态过程（state process）：样点 i 是否被目标物种占据？ - z_i = 1（占据）或 0（未占据） - z_i 是潜在状态，不是每个样点都能由观测完全确定。在没有假阳性的假设下，一旦至少一次检出，就能确定该样点在调查期内被占据；始终未检出的样点仍有两种可能 - ψ = P(z_i = 1)：占域概率：我们真正想知道的</p>
 <p>观测过程（observation process）：给定占据，调查 j 是否检出？ - y_ij = 1（检出）或 0（未检出） - p = P(y_ij = 1 | z_i = 1)：探测概率：给定占据，单次调查检出的概率 - 如果 z_i = 0，则 y_ij 必然为 0（没有假阳性）</p>
 </section>
 <section id="观测过程和探测概率" class="level2">
 <h2 class="anchored" data-anchor-id="观测过程和探测概率">19.3 观测过程和探测概率</h2>
 <p>探测概率 p 受多种因素影响： - 调查努力量（相机夜数越多，p 越高） - 生境特征（密林中 p 低于开阔地） - 天气条件 - 物种行为（活动节律、种群密度）</p>
-<p>关键洞察：如果 p = 0.5，那么一个被占据的样点在单次调查中有 50% 的概率被”错过”。6 次调查全部错过的概率 = (1 − 0.5)⁶ ≈ 1.6%：重复调查大幅降低了假阴性的概率。</p>
+<p>如果 p = 0.5，一个被占据的样点在单次调查中有 50% 的概率被”错过”。6 次调查全部错过的概率 = (1 − 0.5)⁶ ≈ 1.6%。重复调查降低了假阴性的概率。</p>
+<p>观看动画时，把始终存在的动物与相机每次记录到的 0 或 1 分开。潜在状态没有改变，观测结果仍会波动。</p>
+<div class="teaching-animation">
+<div class="teaching-animation-frame">
+<iframe src="../animations/occupancy-detection.html" title="占域状态与重复探测动画" loading="lazy" allowfullscreen=""></iframe>
+</div>
+<p class="teaching-animation-link">
+<a href="../animations/occupancy-detection.html" target="_blank" rel="noopener">在新窗口打开动画</a>
+</p>
+</div>
+<p>重复调查降低的是持续漏检的概率，不保证每次都能检出，也不能修复假阳性或封闭假设被破坏的问题。</p>
 </section>
 <section id="重复调查为何提供信息" class="level2">
 <h2 class="anchored" data-anchor-id="重复调查为何提供信息">19.4 重复调查为何提供信息</h2>

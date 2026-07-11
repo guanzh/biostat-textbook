@@ -754,6 +754,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="key-judgment">
 <p>判断：处理在哪一级被独立随机分配，哪一级通常就是实验单位。样本量 n 首先数实验单位，不数测量次数。</p>
 </div>
+<p>观看下面的动画时，先数独立接受处理的小区，再看每个小区内增加了多少观测。两种计数回答的不是同一个问题。</p>
+<div class="teaching-animation">
+<div class="teaching-animation-frame">
+<iframe src="../animations/experimental-unit.html" title="实验单位与伪重复动画" loading="lazy" allowfullscreen=""></iframe>
+</div>
+<p class="teaching-animation-link">
+<a href="../animations/experimental-unit.html" target="_blank" rel="noopener">在新窗口打开动画</a>
+</p>
+</div>
+<p>动画中的 160 株幼苗提供了小区内信息，但处理只在 32 个小区上独立分配。若处理层级改变，实验单位也可能改变。</p>
 </section>
 <section id="处理对照与随机化" class="level2">
 <h2 class="anchored" data-anchor-id="处理对照与随机化">3.3 处理、对照与随机化</h2>
@@ -1051,7 +1061,7 @@ n 这个数字数的是处理被独立分配过几次，不是你拿仪器读了
 <p>不要拿先导试验的”效应估计”当稳定真值：先导样本太小，估计的效应是高度不稳定的。把先导效应直接套进正式样本量计算，会严重低估你需要的 n。</p>
 <p>本章不要求你算具体的样本量公式：P 值和模型都还没学。但章末综合任务里你必须写出一段”样本量论证链”：</p>
 <blockquote class="blockquote">
-<p>“我希望检测的最小有意义效应是 X；先导试验给出的小区间标准差是 σ ≈ Y；按 α = 0.05、功效 0.8 计算（具体公式留待第 8 章），需要每组 n ≈ Z 个小区；考虑 15% 损耗，最终每组 n = ⌈Z/0.85⌉ 个小区。”</p>
+<p>“我希望检测的最小有意义效应是 X；先导试验给出的小区间标准差是 σ ≈ Y；按 α = 0.05、功效 0.8，并使用与目标量和最终模型相符的样本量方法计算，需要每组 n ≈ Z 个小区；考虑 15% 损耗，最终每组 n = ⌈Z/0.85⌉ 个小区。”</p>
 </blockquote>
 <p>这段话每个数字都必须有来源，不能凭空说”每组 10 个差不多吧”。</p>
 <div class="observation-question">
@@ -1259,7 +1269,7 @@ n 这个数字数的是处理被独立分配过几次，不是你拿仪器读了
 </tr>
 <tr class="odd">
 <td>7</td>
-<td>n = ⌈待定／0.85⌉ 个小区。论证链待先导试验提供小区间标准差 σ 估计、最小有意义效应取 10 个百分点开花比例后，按 α = 0.05、功效 0.8 计算 → 第 8 章详述。每小区子抽样 5 株幼苗、每株 3 片叶子。</td>
+<td>n = ⌈待定／0.85⌉ 个小区。先导试验用于估计小区间标准差 σ，最小有意义效应暂定为 10 个百分点的开花比例差。样本量按 α = 0.05、功效 0.8，并使用与最终模型相符的方法计算。每小区子抽样 5 株幼苗、每株 3 片叶子。</td>
 </tr>
 <tr class="even">
 <td>8</td>

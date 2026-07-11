@@ -504,10 +504,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <section id="概率更新服务哪个决策" class="level2">
 <h2 class="anchored" data-anchor-id="概率更新服务哪个决策">20.1 概率更新服务哪个决策</h2>
-<p>前面 19 章使用的是频率学派（frequentist）框架：参数是固定的未知数，数据是随机的，P 值是”如果零假设为真，观察到当前数据的概率”。</p>
+<p>前面 19 章主要使用频率学派（frequentist）框架。参数被看作固定的未知数，数据随重复抽样而变化。P 值是在零假设和模型条件成立时，得到与当前检验统计量同样或更极端结果的概率。</p>
 <p>贝叶斯框架翻转了这个逻辑：参数是随机的（表达我们的不确定性），数据是固定的（已经观察到的）。我们从先验信念出发，用数据更新信念，得到后验信念。</p>
 <p>贝叶斯框架直接回答管理者真正关心的问题： - “综合防治效果超过阈值的概率是多少？” → P(效果 &gt; 阈值 | 数据) - “下一个样方的丰富度会落在什么范围？” → 后验预测分布</p>
-<p>频率学派不能直接回答这些问题。它只能回答”如果零假设为真，数据的概率”。</p>
+<p>标准频率学派置信区间不直接给出参数的后验概率。频率学派仍可以估计效应、构造具有长期覆盖率的区间，并在预先规定的损失函数下形成决策规则。贝叶斯方法的区别是把先验和似然合并为参数的后验分布，从而直接计算上述后验概率。</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>forest <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"../data/teaching/forest_pest_trial_long.csv"</span>,</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>                   <span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="chapter-route" aria-label="本章学习路线">
@@ -543,7 +543,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>贝叶斯定理：P(参数 | 数据) ∝ P(数据 | 参数) × P(参数)</p>
 <ul>
 <li>先验 P(参数)：在看到数据之前，我们对参数的信念</li>
-<li>似然 P(数据 | 参数)：给定参数，观察到当前数据的概率：与频率学派相同</li>
+<li>似然 P(数据 | 参数)：给定参数后，似然函数表示当前数据对不同参数值的相对支持；连续数据中对应的是密度，不是单个数据点的概率</li>
 <li>后验 P(参数 | 数据)：在看到数据之后，我们对参数的更新信念</li>
 </ul>
 <p>共轭先验：当先验和后验属于同一分布族时，后验有解析解。Beta-Binomial 是最经典的例子：适合演示贝叶斯更新的主要逻辑。</p>
@@ -559,13 +559,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 定义"成功"：小区受害率 &lt; 30%</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>f3 <span class="ot">&lt;-</span> forest[forest<span class="sc">$</span>visit <span class="sc">==</span> <span class="dv">3</span>, ]</span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>plot_damage <span class="ot">&lt;-</span> <span class="fu">aggregate</span>(</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  damaged <span class="sc">~</span> block_id <span class="sc">+</span> plot_id <span class="sc">+</span> treatment,</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  damage_class <span class="sc">~</span> block_id <span class="sc">+</span> plot_id <span class="sc">+</span> treatment,</span>
 <span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> f3,</span>
 <span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">FUN =</span> <span class="cf">function</span>(x) <span class="fu">c</span>(<span class="at">n =</span> <span class="fu">length</span>(x), <span class="at">damaged =</span> <span class="fu">sum</span>(x <span class="sc">&gt;=</span> <span class="dv">3</span>))</span>
 <span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>plot_damage<span class="sc">$</span>n <span class="ot">&lt;-</span> plot_damage<span class="sc">$</span>damaged[, <span class="st">"n"</span>]</span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>plot_damage<span class="sc">$</span>damaged_count <span class="ot">&lt;-</span> plot_damage<span class="sc">$</span>damaged[, <span class="st">"damaged"</span>]</span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>plot_damage<span class="sc">$</span>damaged <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>plot_damage<span class="sc">$</span>n <span class="ot">&lt;-</span> plot_damage<span class="sc">$</span>damage_class[, <span class="st">"n"</span>]</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>plot_damage<span class="sc">$</span>damaged_count <span class="ot">&lt;-</span> plot_damage<span class="sc">$</span>damage_class[, <span class="st">"damaged"</span>]</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>plot_damage<span class="sc">$</span>damage_class <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
 <span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="co"># 综合防治的小区</span></span>
 <span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>int_plots <span class="ot">&lt;-</span> plot_damage[plot_damage<span class="sc">$</span>treatment <span class="sc">==</span> <span class="st">"integrated"</span>, ]</span>
@@ -627,8 +627,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="可信区间与决策概率" class="level2">
 <h2 class="anchored" data-anchor-id="可信区间与决策概率">20.4 可信区间与决策概率</h2>
-<p>可信区间（credible interval）：“给定数据和先验，参数有 95% 的概率落在这个区间内。”。这是管理者能直接理解的表述。</p>
-<p>决策概率：“综合防治成功率超过 70% 的概率是多少？”：贝叶斯后验直接给出答案。频率学派不能回答这个问题。</p>
+<p>可信区间（credible interval）可以解释为：给定模型、数据和先验，参数落在这个区间内的后验概率为 95%。这句话依赖所用的似然和先验，不能只保留概率数字而省略条件。</p>
+<p>对于”综合防治成功率超过 70% 的后验概率是多少”这类问题，贝叶斯后验可以直接计算。标准频率学派置信区间不把参数当作随机变量，因此不提供同一种后验概率；频率学派决策分析则可以在明确的损失函数下比较行动。</p>
 <p>与频率学派置信区间的区别： - 95% CI：“如果重复抽样，95% 的区间会包含真实参数。”（关于程序的陈述） - 95% CrI：“参数有 95% 的概率在这个区间内。”（关于参数的陈述）</p>
 </section>
 <section id="后验预测检查" class="level2">
@@ -640,7 +640,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="收敛有效样本量与链诊断" class="level2">
 <h2 class="anchored" data-anchor-id="收敛有效样本量与链诊断">20.6 收敛、有效样本量与链诊断</h2>
 <p>复杂模型（如层级模型、占域模型）的后验通常没有解析解：需要用 MCMC（马尔可夫链蒙特卡洛）采样。</p>
-<p>MCMC 诊断： - R-hat：多条链之间的收敛诊断。R-hat ≈ 1 表示链已混合，&gt; 1.1 表示未收敛。 - 有效样本量（ESS）：MCMC 样本不是独立的：ESS 告诉你”这些样本等价于多少个独立样本”。ESS 太低说明混合差。 - 链图（trace plot）：可视化链的轨迹：应该像”毛毛虫”，没有明显的趋势或跳跃。</p>
+<p>MCMC 诊断： - R-hat：比较链内和链间变异。它接近 1 是必要条件，不是收敛证明。实践中可把 1.01 左右作为警戒线，并结合秩标准化 R-hat、有效样本量、链图和发散诊断判断。 - 有效样本量（ESS）：MCMC 样本不是独立的：ESS 告诉你”这些样本等价于多少个独立样本”。ESS 太低说明混合差。 - 链图（trace plot）：可视化链的轨迹：应该像”毛毛虫”，没有明显的趋势或跳跃。</p>
 <p>本章不伪造 MCMC 输出：只解释这些诊断工具的用途和判读标准。</p>
 </section>
 <section id="敏感性和行动边界" class="level2">
@@ -663,7 +663,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="本章小结">本章小结</h2>
 <ul>
 <li>贝叶斯更新：先验 × 似然 → 后验。从已有信念出发，用数据更新，得到新信念。</li>
-<li>可信区间直接回答管理者的问题。“参数有 95% 的概率在这个区间内”：不需要绕弯解释。</li>
+<li>可信区间给出模型、数据和先验条件下的参数后验概率。解释时不能省略这些条件。</li>
 <li>先验必须可解释和可检查。不能因为想要某个结论而选择相应的先验：先验预测检查可以暴露不合理的先验。</li>
 <li>后验预测检查。模型生成的数据是否像真实数据？比残差图更直观的诊断工具。</li>
 <li>MCMC 需要诊断。R-hat、ESS、链图：不收敛的链给出的后验不可信。</li>
@@ -675,7 +675,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol type="1">
 <li><p>识别层。以下陈述各属于频率学派还是贝叶斯框架？</p>
 <ol type="a">
-<li>“如果零假设为真，观察到当前数据的概率是 0.03。”</li>
+<li>“如果零假设和模型条件成立，得到当前检验统计量或更极端结果的概率是 0.03。”</li>
 <li>“给定数据，效应 &gt; 0 的概率是 0.97。”</li>
 </ol></li>
 <li><p>解释层。为什么”贝叶斯自动解决小样本问题”是错的？</p></li>

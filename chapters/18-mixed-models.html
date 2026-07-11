@@ -510,7 +510,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>同一植株在 3 个时间点被重复测量：时间点之间相关</li>
 <li>同一景观内的修复地和对照地共享气候，不是独立的两个地点</li>
 </ul>
-<p>忽视层级结构的后果：标准误被人为缩小，置信区间过窄，P 值过小：你以为是 480 个独立观测，实际上只有 32 个独立实验单位。这就是第 3 章反复强调的伪重复问题，现在用模型语言来正式处理它。</p>
+<p>忽视层级结构会把 480 行误当作 480 个独立观测，尽管处理只在 32 个小区上独立分配。在常见的组内正相关下，这往往低估标准误，使置信区间过窄、P 值偏小；具体偏差方向仍取决于相关结构和设计。这就是第 3 章反复强调的伪重复问题，现在用模型语言来处理。</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>hh <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"../data/teaching/huanghuang_light_long.csv"</span>,</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>               <span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="chapter-route" aria-label="本章学习路线">
@@ -544,7 +544,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="完全合并完全分开与部分汇聚" class="level2">
 <h2 class="anchored" data-anchor-id="完全合并完全分开与部分汇聚">18.2 完全合并、完全分开与部分汇聚</h2>
 <p>处理层级数据有三种策略：</p>
-<p>完全合并（complete pooling）：忽略层级，把所有观测当作独立的。→ 伪重复，标准误过小。</p>
+<p>完全合并（complete pooling）：忽略层级，把所有观测当作独立的。在组内正相关的常见情形下，这会制造伪重复并低估标准误。</p>
 <p>完全分开（no pooling）：为每个小区单独拟合一个模型。→ 每个小区只有 15 个观测（5 株 × 3 时间点），估计极不稳定。</p>
 <p>部分汇聚（partial pooling）：混合模型的主要想法。每个小区的效应被建模为来自一个共同分布：小区效应向总体均值”收缩”。样本量小的小区收缩得多（向总体借力），样本量大的小区收缩得少（相信自己的数据）。</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 反例：完全合并：把 480 行当独立观测</span></span>

@@ -396,7 +396,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#按研究目的选择" id="toc-按研究目的选择" class="nav-link" data-scroll-target="#按研究目的选择">按研究目的选择</a></li>
   <li><a href="#按数据类型选择" id="toc-按数据类型选择" class="nav-link" data-scroll-target="#按数据类型选择">按数据类型选择</a></li>
   <li><a href="#按研究设计选择" id="toc-按研究设计选择" class="nav-link" data-scroll-target="#按研究设计选择">按研究设计选择</a></li>
-  <li><a href="#常用非参数替代方法" id="toc-常用非参数替代方法" class="nav-link" data-scroll-target="#常用非参数替代方法">常用非参数替代方法</a></li>
+  <li><a href="#秩方法与置换方法" id="toc-秩方法与置换方法" class="nav-link" data-scroll-target="#秩方法与置换方法">秩方法与置换方法</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -528,36 +528,42 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tbody>
 </table>
 </section>
-<section id="常用非参数替代方法" class="level2">
-<h2 class="anchored" data-anchor-id="常用非参数替代方法">常用非参数替代方法</h2>
+<section id="秩方法与置换方法" class="level2">
+<h2 class="anchored" data-anchor-id="秩方法与置换方法">秩方法与置换方法</h2>
+<p>秩方法不是参数方法在数据偏态时的自动替代。先写清目标量和设计允许怎样交换，再选择检验。</p>
 <table class="caption-top table">
+<colgroup>
+<col style="width: 31%">
+<col style="width: 37%">
+<col style="width: 31%">
+</colgroup>
 <thead>
 <tr class="header">
-<th>参数方法</th>
-<th>非参数替代</th>
-<th>适用场景</th>
+<th>研究目标</th>
+<th>可选方法</th>
+<th>解释条件</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>独立t检验</td>
-<td>Mann-Whitney U检验</td>
-<td>数据严重偏态</td>
+<td>独立两组的位置或随机优势</td>
+<td>Mann-Whitney U / 置换方法</td>
+<td>只有分布形状相近时，才适合把秩和结果解释为位置差异</td>
 </tr>
 <tr class="even">
-<td>配对t检验</td>
-<td>Wilcoxon符号秩检验</td>
-<td>配对数据不满足正态</td>
+<td>配对差值的位置</td>
+<td>Wilcoxon 符号秩 / 配对置换</td>
+<td>符号秩检验要求差值分布近似对称；配对置换必须尊重区组内交换结构</td>
 </tr>
 <tr class="odd">
-<td>单因素ANOVA</td>
-<td>Kruskal-Wallis检验</td>
-<td>多组非正态</td>
+<td>多组的分布位置</td>
+<td>Kruskal-Wallis / 受限置换</td>
+<td>组间分布形状不同时，不能简化为中位数比较</td>
 </tr>
 <tr class="even">
-<td>Pearson相关</td>
-<td>Spearman秩相关</td>
-<td>非线性单调关系</td>
+<td>两个变量的单调关系</td>
+<td>Spearman 秩相关</td>
+<td>描述单调关联，不等于线性斜率，也不支持因果解释</td>
 </tr>
 </tbody>
 </table>
@@ -1077,14 +1083,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 重复测量 <span class="pp">|</span> 重复测量ANOVA / 线性混合模型 <span class="pp">|</span></span>
 <span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 样线/样点调查 <span class="pp">|</span> 根据变量类型选择，注意调查努力量标准化 <span class="pp">|</span></span>
 <span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a><span class="fu">## 常用非参数替代方法</span></span>
+<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a><span class="fu">## 秩方法与置换方法</span></span>
 <span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 参数方法 <span class="pp">|</span> 非参数替代 <span class="pp">|</span> 适用场景 <span class="pp">|</span></span>
-<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a><span class="pp">|---------|-----------|---------|</span></span>
-<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 独立t检验 <span class="pp">|</span> Mann-Whitney U检验 <span class="pp">|</span> 数据严重偏态 <span class="pp">|</span></span>
-<span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 配对t检验 <span class="pp">|</span> Wilcoxon符号秩检验 <span class="pp">|</span> 配对数据不满足正态 <span class="pp">|</span></span>
-<span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 单因素ANOVA <span class="pp">|</span> Kruskal-Wallis检验 <span class="pp">|</span> 多组非正态 <span class="pp">|</span></span>
-<span id="cb2-53"><a href="#cb2-53" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Pearson相关 <span class="pp">|</span> Spearman秩相关 <span class="pp">|</span> 非线性单调关系 <span class="pp">|</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a>秩方法不是参数方法在数据偏态时的自动替代。先写清目标量和设计允许怎样交换，再选择检验。</span>
+<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 研究目标 <span class="pp">|</span> 可选方法 <span class="pp">|</span> 解释条件 <span class="pp">|</span></span>
+<span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a><span class="pp">|---------|-----------|---------|</span></span>
+<span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 独立两组的位置或随机优势 <span class="pp">|</span> Mann-Whitney U / 置换方法 <span class="pp">|</span> 只有分布形状相近时，才适合把秩和结果解释为位置差异 <span class="pp">|</span></span>
+<span id="cb2-53"><a href="#cb2-53" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 配对差值的位置 <span class="pp">|</span> Wilcoxon 符号秩 / 配对置换 <span class="pp">|</span> 符号秩检验要求差值分布近似对称；配对置换必须尊重区组内交换结构 <span class="pp">|</span></span>
+<span id="cb2-54"><a href="#cb2-54" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 多组的分布位置 <span class="pp">|</span> Kruskal-Wallis / 受限置换 <span class="pp">|</span> 组间分布形状不同时，不能简化为中位数比较 <span class="pp">|</span></span>
+<span id="cb2-55"><a href="#cb2-55" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 两个变量的单调关系 <span class="pp">|</span> Spearman 秩相关 <span class="pp">|</span> 描述单调关联，不等于线性斜率，也不支持因果解释 <span class="pp">|</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 

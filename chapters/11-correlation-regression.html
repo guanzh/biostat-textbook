@@ -637,7 +637,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="预测区间外推与交叉验证" class="level2">
 <h2 class="anchored" data-anchor-id="预测区间外推与交叉验证">11.6 预测区间、外推与交叉验证</h2>
-<p>置信区间（CI）：回归线的平均位置的不确定性：“如果在这个 X 值处重复抽样，回归线均值的范围”。</p>
+<p>置信区间（CI）描述给定 X 时条件均值估计的不确定性。在模型条件成立并重复获得同类数据时，用同一方法构造的 95% 区间约有 95% 会覆盖真实的条件均值。它不是单个新观测的取值范围。</p>
 <p>预测区间（PI）：单个新观测值的不确定性：“在这个 X 值处，一个新样方的 Y 值可能落在什么范围”。PI 总是比 CI 宽，因为它包含了观测层面的随机变异。</p>
 <p>外推：在数据范围之外做预测。X 的范围是 [min, max]：在这个范围之外的预测是外推，假设线性关系延伸到未知区域。保护研究中，外推是常见的（预测未来、预测未调查区域），但必须明确标注并讨论风险。</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 置信区间 vs 预测区间</span></span>
