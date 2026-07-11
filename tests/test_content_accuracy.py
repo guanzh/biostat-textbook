@@ -83,6 +83,21 @@ class ContentAccuracyTests(unittest.TestCase):
         self.assertNotIn("你永远无法直接观察", chapter)
         self.assertIn("一旦至少一次检出", chapter)
 
+    def test_cross_chapter_references_match_actual_scope(self):
+        design = read("chapters/03-experimental-design.qmd")
+        anova = read("chapters/09-anova.qmd")
+        self.assertNotIn("具体公式留待第 8 章", design)
+        self.assertNotIn("第 8 章详述", design)
+        self.assertNotIn("那是第 18 章的内容", anova)
+        self.assertIn("含交互项的固定效应模型", anova)
+
+    def test_baci_success_standard_uses_meaningful_effect_and_harm_bounds(self):
+        chapter = read("chapters/16-treatment-evaluation.qmd")
+        self.assertNotIn("95% CI 的下限 > 0", chapter)
+        self.assertNotIn("没有显著增加", chapter)
+        self.assertIn("95% CI 的下限 ≥ X", chapter)
+        self.assertIn("预设容忍值", chapter)
+
     def test_every_reader_file_appears_in_audit_report(self):
         report = read("docs/reviews/2026-07-11-textbook-content-audit.md")
         reader_files = [ROOT / "index.qmd"]
