@@ -933,11 +933,22 @@
     ]
   },
   {
+    "objectID": "chapters/08-two-group-comparison.html#两类错误与检验功效",
+    "href": "chapters/08-two-group-comparison.html#两类错误与检验功效",
+    "title": "第 8 章 两组比较",
+    "section": "8.6 两类错误与检验功效",
+    "text": "8.6 两类错误与检验功效\nP 值回答的是”如果 H₀ 为真，观察到当前结果或更极端结果的概率”。但一次检验可能犯两种错误：第一类错误和第二类错误。把这两个概念放在一起看，才能理解为什么单看 P 值不够。\n\n第一类错误（α）：H₀ 实际为真，但我们拒绝了它。α 由研究者事先设定（通常 0.05），与数据无关。\n第二类错误（β）：H₁ 实际为真，但我们未能拒绝 H₀。β 取决于 α、真实效应量和样本量。\n检验功效（1−β）：H₁ 为真时正确拒绝 H₀ 的概率。\n\n下面的动画把两个分布放在一起。红色区域是 α，蓝色区域是 β。后半段展示样本量增大后真实效应量在标准化尺度上分离，β 如何大幅缩小。\n\n\n\n\n\n在新窗口打开动画\n\n\n动画使用标准化尺度演示概念。实际研究中 H₁ 分布的位置由真实效应量和标准误共同决定。唯一同时降低两类错误的途径是增加样本量，这同时压缩标准误和分离分布。",
+    "crumbs": [
+      "第三篇：回答常见保护问题",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>第 8 章 两组比较</span>"
+    ]
+  },
+  {
     "objectID": "chapters/08-two-group-comparison.html#从诊断效应量和区间解释结果",
     "href": "chapters/08-two-group-comparison.html#从诊断效应量和区间解释结果",
     "title": "第 8 章 两组比较",
-    "section": "8.6 从诊断、效应量和区间解释结果",
-    "text": "8.6 从诊断、效应量和区间解释结果\n统计推断的终点不是 P 值。一个完整的分析报告至少包含：\n\n效应量：综合防治比对照平均减少多少虫口密度？单位是什么？\n置信区间。这个效应的合理范围是多少？\n诊断：模型假设是否合理？是否有异常区组？\n实际意义。这个效应在管理上是否重要？\n\n# 完整分析报告\n\n# 1. 效应量\ncat(\"=== 对照 vs 综合防治：第三次调查虫口密度 ===\\n\\n\")\ncat(\"平均区组内差：\", round(mean_diff, 2), \"头/株\\n\")\ncat(\"对照均值：\", round(mean(plot_wide$control), 2), \"头/株\\n\")\ncat(\"综合防治均值：\", round(mean(plot_wide$integrated), 2), \"头/株\\n\")\ncat(\"相对降低：\", round(100 * (1 - mean(plot_wide$integrated) /\n                                mean(plot_wide$control)), 1), \"%\\n\\n\")\n\n# 2. 置信区间\ncat(\"95% 置信区间：[\", round(t_test_paired$conf.int[1], 2), \",\",\n    round(t_test_paired$conf.int[2], 2), \"] 头/株\\n\\n\")\n\n# 3. 诊断：检查差值的分布\ncat(\"差值 Shapiro-Wilk 正态性检验 P =\",\n    round(shapiro.test(plot_wide$diff)$p.value, 3), \"\\n\")\n# 注意：n=10 时正态性检验功效很低：不显著不等于正态\n\n# 检查是否有异常区组\nplot_wide$abs_diff &lt;- abs(plot_wide$diff)\nplot_wide[order(-plot_wide$abs_diff), c(\"block_id\", \"control\", \"integrated\", \"diff\")]\n\n# 4. 区组间异质性\ncat(\"\\n区组间差值的标准差：\", round(sd(plot_wide$diff), 2), \"\\n\")\ncat(\"这表明不同区组的防治效果存在差异：\\n\")\ncat(\"不能假设综合防治在所有区组中效果相同。\\n\")\n\n\n\n黑豹提醒：P 值不是效应大小\n\nP = 0.01 不意味着效应很大。在零假设和模型条件成立时，它表示得到与当前检验统计量同样或更极端结果的概率为 0.01。效应大小、置信区间和实际意义必须单独报告。样本量很大时，很小的效应也可能得到很小的 P 值。",
+    "section": "8.7 从诊断、效应量和区间解释结果",
+    "text": "8.7 从诊断、效应量和区间解释结果\n统计推断的终点不是 P 值。一个完整的分析报告至少包含：\n\n效应量：综合防治比对照平均减少多少虫口密度？单位是什么？\n置信区间。这个效应的合理范围是多少？\n诊断：模型假设是否合理？是否有异常区组？\n实际意义。这个效应在管理上是否重要？\n\n# 完整分析报告\n\n# 1. 效应量\ncat(\"=== 对照 vs 综合防治：第三次调查虫口密度 ===\\n\\n\")\ncat(\"平均区组内差：\", round(mean_diff, 2), \"头/株\\n\")\ncat(\"对照均值：\", round(mean(plot_wide$control), 2), \"头/株\\n\")\ncat(\"综合防治均值：\", round(mean(plot_wide$integrated), 2), \"头/株\\n\")\ncat(\"相对降低：\", round(100 * (1 - mean(plot_wide$integrated) /\n                                mean(plot_wide$control)), 1), \"%\\n\\n\")\n\n# 2. 置信区间\ncat(\"95% 置信区间：[\", round(t_test_paired$conf.int[1], 2), \",\",\n    round(t_test_paired$conf.int[2], 2), \"] 头/株\\n\\n\")\n\n# 3. 诊断：检查差值的分布\ncat(\"差值 Shapiro-Wilk 正态性检验 P =\",\n    round(shapiro.test(plot_wide$diff)$p.value, 3), \"\\n\")\n# 注意：n=10 时正态性检验功效很低：不显著不等于正态\n\n# 检查是否有异常区组\nplot_wide$abs_diff &lt;- abs(plot_wide$diff)\nplot_wide[order(-plot_wide$abs_diff), c(\"block_id\", \"control\", \"integrated\", \"diff\")]\n\n# 4. 区组间异质性\ncat(\"\\n区组间差值的标准差：\", round(sd(plot_wide$diff), 2), \"\\n\")\ncat(\"这表明不同区组的防治效果存在差异：\\n\")\ncat(\"不能假设综合防治在所有区组中效果相同。\\n\")\n\n\n\n黑豹提醒：P 值不是效应大小\n\nP = 0.01 不意味着效应很大。在零假设和模型条件成立时，它表示得到与当前检验统计量同样或更极端结果的概率为 0.01。效应大小、置信区间和实际意义必须单独报告。样本量很大时，很小的效应也可能得到很小的 P 值。",
     "crumbs": [
       "第三篇：回答常见保护问题",
       "<span class='chapter-number'>9</span>  <span class='chapter-title'>第 8 章 两组比较</span>"
@@ -947,8 +958,8 @@
     "objectID": "chapters/08-two-group-comparison.html#两组证据怎样进入防治决策",
     "href": "chapters/08-two-group-comparison.html#两组证据怎样进入防治决策",
     "title": "第 8 章 两组比较",
-    "section": "8.7 两组证据怎样进入防治决策",
-    "text": "8.7 两组证据怎样进入防治决策\n统计分析的终点是回答”这些证据对防治决策意味着什么”。对于对照 vs 综合防治的比较：\n证据支持：综合防治在第三次调查时平均降低虫口密度约 X 头/株（95% CI [下限, 上限]）。在 10 个区组中，有 Y 个区组显示综合防治优于对照。\n证据不支持：综合防治在所有区组中效果一致：区组间差值存在异质性（SD = Z）。不能假设在新区组中效果完全相同。\n尚未进入本章分析的因素： - 非目标生物影响（non_target_count）：综合防治是否伤害了天敌？ - 防治成本（cost_cny_plot）：效果是否值得投入？ - 实施完整性（implementation_score）：效果是否依赖于执行质量？ - 这些因素将在第 13、16、17 章中逐步纳入。\n反例（树级伪重复）：现在来演示本章最重要的反例：把树木当作独立处理重复。\n# ⚠️ 错误做法：树级独立 t 检验（伪重复）\n# 这是本章最重要的反例：请仔细阅读为什么它是错的\n\n# 提取对照和综合防治的树级数据（第三次调查）\ntrees_ctrl &lt;- f2_visit3$pest_count[f2_visit3$treatment == \"control\"]\ntrees_int &lt;- f2_visit3$pest_count[f2_visit3$treatment == \"integrated\"]\n\n# 错误的树级 t 检验\nt_wrong &lt;- t.test(trees_int, trees_ctrl)\ncat(\"=== 错误分析：树级独立 t 检验 ===\\n\")\ncat(\"P 值:\", format.pval(t_wrong$p.value, digits = 4), \"\\n\")\ncat(\"均值差:\", round(mean(trees_ctrl) - mean(trees_int), 2), \"\\n\")\ncat(\"95% CI: [\", round(t_wrong$conf.int[1], 2), \",\",\n    round(t_wrong$conf.int[2], 2), \"]\\n\")\ncat(\"\\n样本量：对照\", length(trees_ctrl), \"株，综合防治\",\n    length(trees_int), \"株\\n\")\n\ncat(\"\\n=== 正确分析：区组内配对 t 检验 ===\\n\")\ncat(\"P 值:\", format.pval(t_test_paired$p.value, digits = 4), \"\\n\")\ncat(\"均值差:\", round(mean_diff, 2), \"\\n\")\ncat(\"95% CI: [\", round(t_test_paired$conf.int[1], 2), \",\",\n    round(t_test_paired$conf.int[2], 2), \"]\\n\")\ncat(\"\\n样本量：\", nrow(plot_wide), \"个区组\\n\")\n\ncat(\"\\n=== 为什么树级检验是错的？===\\n\")\ncat(\"1. 处理施加在小区，不是树木。同一小区的 20 株树共享处理。\\n\")\ncat(\"2. 树级检验假设 400 个独立观测：实际只有 20 个独立实验单位。\\n\")\ncat(\"3. 伪重复人为缩小了标准误：区间太窄，P 值太小。\\n\")\ncat(\"4. 比较两个 P 值：树级检验的 P 值通常远小于配对检验。\\n\")\ncat(\"   这不是因为'树级检验更灵敏'：是因为它在数学上作弊。\\n\")\n\n判断：树级 t 检验的 P 值更小，不是因为”方法更灵敏”：是因为伪重复人为缩小了标准误。正确的分析以小区为实验单位，在区组内配对比较。",
+    "section": "8.8 两组证据怎样进入防治决策",
+    "text": "8.8 两组证据怎样进入防治决策\n统计分析的终点是回答”这些证据对防治决策意味着什么”。对于对照 vs 综合防治的比较：\n证据支持：综合防治在第三次调查时平均降低虫口密度约 X 头/株（95% CI [下限, 上限]）。在 10 个区组中，有 Y 个区组显示综合防治优于对照。\n证据不支持：综合防治在所有区组中效果一致：区组间差值存在异质性（SD = Z）。不能假设在新区组中效果完全相同。\n尚未进入本章分析的因素： - 非目标生物影响（non_target_count）：综合防治是否伤害了天敌？ - 防治成本（cost_cny_plot）：效果是否值得投入？ - 实施完整性（implementation_score）：效果是否依赖于执行质量？ - 这些因素将在第 13、16、17 章中逐步纳入。\n反例（树级伪重复）：现在来演示本章最重要的反例：把树木当作独立处理重复。\n# ⚠️ 错误做法：树级独立 t 检验（伪重复）\n# 这是本章最重要的反例：请仔细阅读为什么它是错的\n\n# 提取对照和综合防治的树级数据（第三次调查）\ntrees_ctrl &lt;- f2_visit3$pest_count[f2_visit3$treatment == \"control\"]\ntrees_int &lt;- f2_visit3$pest_count[f2_visit3$treatment == \"integrated\"]\n\n# 错误的树级 t 检验\nt_wrong &lt;- t.test(trees_int, trees_ctrl)\ncat(\"=== 错误分析：树级独立 t 检验 ===\\n\")\ncat(\"P 值:\", format.pval(t_wrong$p.value, digits = 4), \"\\n\")\ncat(\"均值差:\", round(mean(trees_ctrl) - mean(trees_int), 2), \"\\n\")\ncat(\"95% CI: [\", round(t_wrong$conf.int[1], 2), \",\",\n    round(t_wrong$conf.int[2], 2), \"]\\n\")\ncat(\"\\n样本量：对照\", length(trees_ctrl), \"株，综合防治\",\n    length(trees_int), \"株\\n\")\n\ncat(\"\\n=== 正确分析：区组内配对 t 检验 ===\\n\")\ncat(\"P 值:\", format.pval(t_test_paired$p.value, digits = 4), \"\\n\")\ncat(\"均值差:\", round(mean_diff, 2), \"\\n\")\ncat(\"95% CI: [\", round(t_test_paired$conf.int[1], 2), \",\",\n    round(t_test_paired$conf.int[2], 2), \"]\\n\")\ncat(\"\\n样本量：\", nrow(plot_wide), \"个区组\\n\")\n\ncat(\"\\n=== 为什么树级检验是错的？===\\n\")\ncat(\"1. 处理施加在小区，不是树木。同一小区的 20 株树共享处理。\\n\")\ncat(\"2. 树级检验假设 400 个独立观测：实际只有 20 个独立实验单位。\\n\")\ncat(\"3. 伪重复人为缩小了标准误：区间太窄，P 值太小。\\n\")\ncat(\"4. 比较两个 P 值：树级检验的 P 值通常远小于配对检验。\\n\")\ncat(\"   这不是因为'树级检验更灵敏'：是因为它在数学上作弊。\\n\")\n\n判断：树级 t 检验的 P 值更小，不是因为”方法更灵敏”：是因为伪重复人为缩小了标准误。正确的分析以小区为实验单位，在区组内配对比较。",
     "crumbs": [
       "第三篇：回答常见保护问题",
       "<span class='chapter-number'>9</span>  <span class='chapter-title'>第 8 章 两组比较</span>"
@@ -959,7 +970,7 @@
     "href": "chapters/08-two-group-comparison.html#本章小结",
     "title": "第 8 章 两组比较",
     "section": "本章小结",
-    "text": "本章小结\n\n“有两组”不足以选择方法。独立、配对和重复测量对应完全不同的分析：方法首先由设计关系决定。\nWelch t 检验是独立两组比较的合理默认选择。不需要先做方差齐性检验：Welch t 在方差不齐时仍然稳健。\n配对来自设计，不是来自数值相近。区组内的处理小区是配对的，因为它们在同一个区组内被随机分配。\n置换检验不假设正态，但需要可交换性。秩和检验关注相对位置或随机优势，不能不加条件地解释为中位数检验。\nP 值不是效应大小。效应量、置信区间和实际意义必须单独报告。\n伪重复是两组比较中最致命的错误。把树木当作独立处理重复，等于把 20 个实验单位冒充为 400 个：标准误被人为缩小，P 值被人为夸小。",
+    "text": "本章小结\n\n“有两组”不足以选择方法。独立、配对和重复测量对应完全不同的分析：方法首先由设计关系决定。\nWelch t 检验是独立两组比较的合理默认选择。不需要先做方差齐性检验：Welch t 在方差不齐时仍然稳健。\n配对来自设计，不是来自数值相近。区组内的处理小区是配对的，因为它们在同一个区组内被随机分配。\n置换检验不假设正态，但需要可交换性。秩和检验关注相对位置或随机优势，不能不加条件地解释为中位数检验。\nP 值不是效应大小。效应量、置信区间和实际意义必须单独报告。\n伪重复是两组比较中最致命的错误。把树木当作独立处理重复，等于把 20 个实验单位冒充为 400 个：标准误被人为缩小，P 值被人为夸小。\n两类错误此消彼长。α 由研究者设定，β 由 α、效应量和样本量共同决定；唯一同时降低两者的途径是增加样本量。",
     "crumbs": [
       "第三篇：回答常见保护问题",
       "<span class='chapter-number'>9</span>  <span class='chapter-title'>第 8 章 两组比较</span>"
@@ -970,7 +981,7 @@
     "href": "chapters/08-two-group-comparison.html#练习",
     "title": "第 8 章 两组比较",
     "section": "练习",
-    "text": "练习\n\n识别层。以下场景中，应该用独立 t 检验还是配对 t 检验？为什么？\n\n10 个区组，每个区组内随机分配对照和处理。\n20 个独立温室，10 个控温 22°C，10 个控温 28°C。\n同一批幼苗，先在光照 A 下测量，再移到光照 B 下测量。\n\n解释层。为什么树级 t 检验的 P 值比配对 t 检验更小？这是好事还是坏事？\n应用层。用森林病虫害数据，比较标准防治（standard）和生物防治（biocontrol）在第三次调查时的虫口密度。使用正确的配对设计，报告效应量、置信区间和诊断。\n诊断层。配对 t 检验的 95% 置信区间为 [−3.2, −0.4]。请用一句话解释这个区间的含义，并说明它是否支持”综合防治有效”。\n综合层。为黄黄草光照试验设计一个两组比较：比较 100% 光照和 40% 光照在第六个月的开花比例。写出：实验单位、比较结构（独立还是配对？）、目标量、以及为什么不能把植株当作独立重复。",
+    "text": "练习\n\n识别层。以下场景中，应该用独立 t 检验还是配对 t 检验？为什么？\n\n10 个区组，每个区组内随机分配对照和处理。\n20 个独立温室，10 个控温 22°C，10 个控温 28°C。\n同一批幼苗，先在光照 A 下测量，再移到光照 B 下测量。\n\n解释层。为什么树级 t 检验的 P 值比配对 t 检验更小？这是好事还是坏事？\n应用层。用森林病虫害数据，比较标准防治（standard）和生物防治（biocontrol）在第三次调查时的虫口密度。使用正确的配对设计，报告效应量、置信区间和诊断。\n诊断层。配对 t 检验的 95% 置信区间为 [−3.2, −0.4]。请用一句话解释这个区间的含义，并说明它是否支持”综合防治有效”。\n综合层。为黄黄草光照试验设计一个两组比较：比较 100% 光照和 40% 光照在第六个月的开花比例。写出：实验单位、比较结构（独立还是配对？）、目标量、以及为什么不能把植株当作独立重复。\n判断层。某研究设 α=0.05，实际功效 1−β=0.80。如果研究者把 α 降到 0.01 但不改变样本量，第二类错误 β 会变大还是变小？为什么？这说明了两类错误的什么关系？",
     "crumbs": [
       "第三篇：回答常见保护问题",
       "<span class='chapter-number'>9</span>  <span class='chapter-title'>第 8 章 两组比较</span>"

@@ -79,7 +79,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-aafe154f14b83768199b70e6209de778.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-276f18cc39b193f63b012a32496d79e1.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -396,8 +396,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#独立两组为什么优先考虑-welch-方法" id="toc-独立两组为什么优先考虑-welch-方法" class="nav-link" data-scroll-target="#独立两组为什么优先考虑-welch-方法">8.3 独立两组：为什么优先考虑 Welch 方法</a></li>
   <li><a href="#配对设计分析的是组内差值" id="toc-配对设计分析的是组内差值" class="nav-link" data-scroll-target="#配对设计分析的是组内差值">8.4 配对设计：分析的是组内差值</a></li>
   <li><a href="#置换与秩方法并非免假设通行证" id="toc-置换与秩方法并非免假设通行证" class="nav-link" data-scroll-target="#置换与秩方法并非免假设通行证">8.5 置换与秩方法并非免假设通行证</a></li>
-  <li><a href="#从诊断效应量和区间解释结果" id="toc-从诊断效应量和区间解释结果" class="nav-link" data-scroll-target="#从诊断效应量和区间解释结果">8.6 从诊断、效应量和区间解释结果</a></li>
-  <li><a href="#两组证据怎样进入防治决策" id="toc-两组证据怎样进入防治决策" class="nav-link" data-scroll-target="#两组证据怎样进入防治决策">8.7 两组证据怎样进入防治决策</a></li>
+  <li><a href="#两类错误与检验功效" id="toc-两类错误与检验功效" class="nav-link" data-scroll-target="#两类错误与检验功效">8.6 两类错误与检验功效</a></li>
+  <li><a href="#从诊断效应量和区间解释结果" id="toc-从诊断效应量和区间解释结果" class="nav-link" data-scroll-target="#从诊断效应量和区间解释结果">8.7 从诊断、效应量和区间解释结果</a></li>
+  <li><a href="#两组证据怎样进入防治决策" id="toc-两组证据怎样进入防治决策" class="nav-link" data-scroll-target="#两组证据怎样进入防治决策">8.8 两组证据怎样进入防治决策</a></li>
   <li><a href="#本章小结" id="toc-本章小结" class="nav-link" data-scroll-target="#本章小结">本章小结</a></li>
   <li><a href="#练习" id="toc-练习" class="nav-link" data-scroll-target="#练习">练习</a></li>
   <li><a href="#继续学习" id="toc-继续学习" class="nav-link" data-scroll-target="#继续学习">继续学习</a></li>
@@ -709,8 +710,27 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>动画使用标准正态统计量说明几何关系。实际检验的零分布由统计量和研究设计决定，P 值也不能替代效应量。</p>
 </section>
+<section id="两类错误与检验功效" class="level2">
+<h2 class="anchored" data-anchor-id="两类错误与检验功效">8.6 两类错误与检验功效</h2>
+<p>P 值回答的是”如果 H₀ 为真，观察到当前结果或更极端结果的概率”。但一次检验可能犯两种错误：第一类错误和第二类错误。把这两个概念放在一起看，才能理解为什么单看 P 值不够。</p>
+<ul>
+<li><strong>第一类错误（α）</strong>：H₀ 实际为真，但我们拒绝了它。α 由研究者事先设定（通常 0.05），与数据无关。</li>
+<li><strong>第二类错误（β）</strong>：H₁ 实际为真，但我们未能拒绝 H₀。β 取决于 α、真实效应量和样本量。</li>
+<li><strong>检验功效（1−β）</strong>：H₁ 为真时正确拒绝 H₀ 的概率。</li>
+</ul>
+<p>下面的动画把两个分布放在一起。红色区域是 α，蓝色区域是 β。后半段展示样本量增大后真实效应量在标准化尺度上分离，β 如何大幅缩小。</p>
+<div class="teaching-animation">
+<div class="teaching-animation-frame">
+<iframe src="../animations/type-i-ii-errors.html" title="两类错误与检验功效动画" loading="lazy" allowfullscreen=""></iframe>
+</div>
+<p class="teaching-animation-link">
+<a href="../animations/type-i-ii-errors.html" target="_blank" rel="noopener">在新窗口打开动画</a>
+</p>
+</div>
+<p>动画使用标准化尺度演示概念。实际研究中 H₁ 分布的位置由真实效应量和标准误共同决定。唯一同时降低两类错误的途径是增加样本量，这同时压缩标准误和分离分布。</p>
+</section>
 <section id="从诊断效应量和区间解释结果" class="level2">
-<h2 class="anchored" data-anchor-id="从诊断效应量和区间解释结果">8.6 从诊断、效应量和区间解释结果</h2>
+<h2 class="anchored" data-anchor-id="从诊断效应量和区间解释结果">8.7 从诊断、效应量和区间解释结果</h2>
 <p>统计推断的终点不是 P 值。一个完整的分析报告至少包含：</p>
 <ol type="1">
 <li>效应量：综合防治比对照平均减少多少虫口密度？单位是什么？</li>
@@ -756,7 +776,7 @@ P = 0.01 不意味着效应很大。在零假设和模型条件成立时，它�
 </div>
 </section>
 <section id="两组证据怎样进入防治决策" class="level2">
-<h2 class="anchored" data-anchor-id="两组证据怎样进入防治决策">8.7 两组证据怎样进入防治决策</h2>
+<h2 class="anchored" data-anchor-id="两组证据怎样进入防治决策">8.8 两组证据怎样进入防治决策</h2>
 <p>统计分析的终点是回答”这些证据对防治决策意味着什么”。对于对照 vs 综合防治的比较：</p>
 <p>证据支持：综合防治在第三次调查时平均降低虫口密度约 X 头/株（95% CI [下限, 上限]）。在 10 个区组中，有 Y 个区组显示综合防治优于对照。</p>
 <p>证据不支持：综合防治在所有区组中效果一致：区组间差值存在异质性（SD = Z）。不能假设在新区组中效果完全相同。</p>
@@ -805,6 +825,7 @@ P = 0.01 不意味着效应很大。在零假设和模型条件成立时，它�
 <li>置换检验不假设正态，但需要可交换性。秩和检验关注相对位置或随机优势，不能不加条件地解释为中位数检验。</li>
 <li>P 值不是效应大小。效应量、置信区间和实际意义必须单独报告。</li>
 <li>伪重复是两组比较中最致命的错误。把树木当作独立处理重复，等于把 20 个实验单位冒充为 400 个：标准误被人为缩小，P 值被人为夸小。</li>
+<li>两类错误此消彼长。α 由研究者设定，β 由 α、效应量和样本量共同决定；唯一同时降低两者的途径是增加样本量。</li>
 </ul>
 </section>
 <section id="练习" class="level2">
@@ -820,6 +841,7 @@ P = 0.01 不意味着效应很大。在零假设和模型条件成立时，它�
 <li><p>应用层。用森林病虫害数据，比较标准防治（standard）和生物防治（biocontrol）在第三次调查时的虫口密度。使用正确的配对设计，报告效应量、置信区间和诊断。</p></li>
 <li><p>诊断层。配对 t 检验的 95% 置信区间为 [−3.2, −0.4]。请用一句话解释这个区间的含义，并说明它是否支持”综合防治有效”。</p></li>
 <li><p>综合层。为黄黄草光照试验设计一个两组比较：比较 100% 光照和 40% 光照在第六个月的开花比例。写出：实验单位、比较结构（独立还是配对？）、目标量、以及为什么不能把植株当作独立重复。</p></li>
+<li><p>判断层。某研究设 α=0.05，实际功效 1−β=0.80。如果研究者把 α 降到 0.01 但不改变样本量，第二类错误 β 会变大还是变小？为什么？这说明了两类错误的什么关系？</p></li>
 </ol>
 </section>
 <section id="继续学习" class="level2">
