@@ -108,6 +108,35 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="../styles.css">
 </head>
@@ -563,6 +592,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>ANOVA 的主要想法是分解总变异：</p>
 <p>总变异（SST）= 处理间变异（SSA）+ 区组间变异（SSB）+ 剩余变异（SSE）</p>
 <p>F 检验比较的是：处理间变异 / 剩余变异。如果处理间的变异远大于同一处理内小区间的随机变异，说明处理效应不太可能由随机波动产生。</p>
+<details class="why-derivation">
+<summary>
+为什么 F 检验是”组间变异 / 组内变异”？
+</summary>
+<p>先看简化设定：<span class="math inline">\(k\)</span> 组，第 <span class="math inline">\(i\)</span> 组有 <span class="math inline">\(n_i\)</span> 个观测 <span class="math inline">\(y_{i1}, \ldots, y_{in_i}\)</span>，组均值 <span class="math inline">\(\bar{y}_i\)</span>，总均值 <span class="math inline">\(\bar{y}\)</span>。区组项（本章的 RCBD）是同一原理的推广，先放一边。</p>
+<p><strong>第一步：总离差拆成两层。</strong> 任何一个观测离总均值的距离，可以拆成”它所在组的均值离总均值的距离”加”它自己离本组均值的距离”：</p>
+<p><span class="math display">\[y_{ij} - \bar{y} = (\bar{y}_i - \bar{y}) + (y_{ij} - \bar{y}_i)\]</span></p>
+<p><strong>第二步：平方后求和，交叉项自动消失。</strong> 把上式平方再对所有 <span class="math inline">\(i,j\)</span> 求和，会多出一个交叉项 <span class="math inline">\(2\sum_{i,j}(\bar{y}_i - \bar{y})(y_{ij} - \bar{y}_i)\)</span>。它等于零，因为每个组内部的残差之和为零：<span class="math inline">\(\sum_j (y_{ij} - \bar{y}_i) = 0\)</span>（组均值使组内残差抵消）。所以：</p>
+<p><span class="math display">\[\underbrace{\sum_{i,j}(y_{ij} - \bar{y})^2}_{\mathrm{SST}} = \underbrace{\sum_i n_i(\bar{y}_i - \bar{y})^2}_{\mathrm{SSB}} + \underbrace{\sum_{i,j}(y_{ij} - \bar{y}_i)^2}_{\mathrm{SSW}}\]</span></p>
+<p>这是纯代数恒等式，对任何数据都成立，不依赖任何分布假设。</p>
+<p><strong>第三步：数自由度。</strong> <span class="math inline">\(N\)</span> 个观测的自由度是 <span class="math inline">\(N-1\)</span>（被总均值 <span class="math inline">\(\bar{y}\)</span> 消耗一个）。右边的两部分分别是 <span class="math inline">\(k-1\)</span>（<span class="math inline">\(k\)</span> 个组均值，被总均值约束一个）和 <span class="math inline">\(N-k\)</span>（每组内部 <span class="math inline">\(n_i - 1\)</span> 个，合计）。三部分对得上：<span class="math inline">\((k-1) + (N-k) = N-1\)</span>。</p>
+<p><strong>第四步：取期望，看 H₀ 下两个均方估计什么。</strong> 定义均方 <span class="math inline">\(\mathrm{MSB} = \mathrm{SSB}/(k-1)\)</span>，<span class="math inline">\(\mathrm{MSW} = \mathrm{SSW}/(N-k)\)</span>。可以严格证明（逐组套用第 5 章推导块的平方和技巧）：</p>
+<p><span class="math display">\[E[\mathrm{MSW}] = \sigma^2 \quad \text{恒成立}, \qquad E[\mathrm{MSB}] = \sigma^2 + \frac{\sum_i n_i(\mu_i - \bar{\mu})^2}{k-1}\]</span></p>
+<p><strong>结论。</strong> 若所有组均值相等（<span class="math inline">\(H_0\)</span>），第二项为零，<span class="math inline">\(E[\mathrm{MSB}] = E[\mathrm{MSW}] = \sigma^2\)</span>——两个均方估计同一个东西，比值围绕 1 波动，波动的分布就是 <span class="math inline">\(F(k-1, N-k)\)</span>。若处理效应真实存在，分子的期望被抬高，<span class="math inline">\(F\)</span> 系统性大于 1。</p>
+<div class="key-judgment">
+<p>判断：平方和分解是代数（任何数据都成立），<span class="math inline">\(F\)</span> 的分布是概率（需要独立同分布正态误差）。把这两层分开，ANOVA 就不神秘了。区组项（SSB）与处理项（SSA）地位不同：区组进模型是为了从误差里扣除已知的变异，让处理检验更灵敏，原理还是同一套分解。</p>
+</div>
+</details>
 <p>但 F 检验的显著只是一个起点。它告诉你”至少有一组不同”，然后你必须回到预先指定的对比。</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 手动理解变异分解</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 总均值</span></span>

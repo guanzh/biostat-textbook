@@ -108,6 +108,35 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="../styles.css">
 </head>
@@ -554,6 +583,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>简单线性回归模型：Y = β₀ + β₁X + ε</p>
 <p>β₁（斜率）的含义：当 X 增加 1 个单位时，Y 平均变化 β₁ 个单位：在模型中的其他变量保持不变的前提下。</p>
 <p>这个”在其他变量保持不变的前提下”是回归解释的主要。在简单回归中，没有其他变量，所以斜率就是”X 和 Y 的伴随变化”。在多元回归中，斜率变成”在控制其他变量后，X 与 Y 的条件关联”。</p>
+<details class="why-derivation">
+<summary>
+为什么回归的残差自由度是 n−2？
+</summary>
+<p><strong>先看残差是什么。</strong> 最小二乘回归拟合 <span class="math inline">\(\hat{y}_i = \hat{\beta}_0 + \hat{\beta}_1 x_i\)</span>，残差是每个观测没被模型解释的部分：<span class="math inline">\(e_i = y_i - \hat{y}_i\)</span>。<span class="math inline">\(n\)</span> 个观测有 <span class="math inline">\(n\)</span> 个残差，但它们不是 <span class="math inline">\(n\)</span> 个自由变量——它们必须满足两个线性约束。</p>
+<p><strong>约束从哪来？最小二乘的一阶条件。</strong> 最小二乘就是让 <span class="math inline">\(\mathrm{SSE} = \sum e_i^2\)</span> 最小。对截距和斜率分别求导并令其为零：</p>
+<p><span class="math display">\[\frac{\partial\,\mathrm{SSE}}{\partial \hat{\beta}_0} = 0 \;\Rightarrow\; \sum_i e_i = 0, \qquad \frac{\partial\,\mathrm{SSE}}{\partial \hat{\beta}_1} = 0 \;\Rightarrow\; \sum_i x_i e_i = 0\]</span></p>
+<p>第一个约束：残差之和为零（拟合线穿过数据重心）。第二个约束：残差与 <span class="math inline">\(x\)</span> 不相关（<span class="math inline">\(x\)</span> 的信息被斜率榨干了）。两个线性方程把 <span class="math inline">\(n\)</span> 个残差钉在 <span class="math inline">\(n-2\)</span> 维空间里，这就是自由度 <span class="math inline">\(n-2\)</span> 的来源。</p>
+<p><strong>和第 5 章推导块是同一笔账。</strong> 第 5 章里样本均值的残差（<span class="math inline">\(x_i - \bar{x}\)</span>）满足一个约束 <span class="math inline">\(\sum(x_i - \bar{x}) = 0\)</span>，自由度 <span class="math inline">\(n-1\)</span>。样本均值其实就是一个”只含截距的模型”的最小二乘拟合：<span class="math inline">\(\hat{y}_i = \hat{\beta}_0\)</span>。回归多了个斜率，就多一个约束，自由度从 <span class="math inline">\(n-1\)</span> 变成 <span class="math inline">\(n-2\)</span>。一般规则：</p>
+<p><span class="math display">\[\text{残差自由度} = n - \text{估计的参数个数}\]</span></p>
+<p>每估计一个参数，就消耗一个自由度。</p>
+<p><strong>期望层面。</strong> 可以严格证明（固定 <span class="math inline">\(X\)</span>、正态误差假设下）：<span class="math inline">\(E[\mathrm{SSE}] = (n-2)\sigma^2\)</span>，所以 <span class="math inline">\(s^2 = \mathrm{SSE}/(n-2)\)</span> 才是 <span class="math inline">\(\sigma^2\)</span> 的无偏估计——与第 5 章”除以 <span class="math inline">\(n-1\)</span> 才无偏”完全同构，只是参数个数从 1 变成 2。</p>
+<div class="key-judgment">
+<p>判断：本章代码注释里”景观作为固定效应会消耗自由度”说的就是这件事。每加一个自变量（或一个分类水平），分母就多减 1——你为模型多付的代价是看得见的。样本量很小、变量很多时，自由度被迅速消耗，这也是为什么小样本回归要克制加变量。</p>
+</div>
+</details>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 简单线性回归</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>model_simple <span class="ot">&lt;-</span> <span class="fu">lm</span>(native_cover <span class="sc">~</span> soil_moisture, <span class="at">data =</span> rest_ra)</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model_simple)</span>

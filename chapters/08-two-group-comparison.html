@@ -108,6 +108,35 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="../styles.css">
 </head>
@@ -600,6 +629,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tbody>
 </table>
 <p>结论：Welch t 在方差齐时几乎不损失功效，在方差不齐时远更可靠。它应该是默认选择。</p>
+<details class="why-derivation">
+<summary>
+为什么小样本时 t 分布比正态分布胖尾？
+</summary>
+<p><strong>出发点：<span class="math inline">\(\sigma\)</span> 已知时的情形。</strong> 假设总体标准差 <span class="math inline">\(\sigma\)</span> 已知，样本均值 <span class="math inline">\(\bar{x}\)</span> 的标准误是 <span class="math inline">\(\sigma/\sqrt{n}\)</span>（第 6 章的推导）。把均值偏离总体均值 <span class="math inline">\(\mu\)</span> 的距离用标准误归一化：</p>
+<p><span class="math display">\[Z = \frac{\bar{x} - \mu}{\sigma/\sqrt{n}} \sim N(0,1)\]</span></p>
+<p>如果数据本身接近正态（或样本量够大），<span class="math inline">\(Z\)</span> 服从标准正态分布——它的尾巴多胖是固定的，与样本量无关。</p>
+<p><strong>问题：<span class="math inline">\(\sigma\)</span> 实际上不知道。</strong> 野外数据里 <span class="math inline">\(\sigma\)</span> 几乎永远是未知的，只能用样本标准差 <span class="math inline">\(s\)</span> 代替：</p>
+<p><span class="math display">\[t = \frac{\bar{x} - \mu}{s/\sqrt{n}}\]</span></p>
+<p>问题在于 <span class="math inline">\(s\)</span> 自己也是随机变量。它时大时小，而 <span class="math inline">\(t\)</span> 的分母里有它。这就让 <span class="math inline">\(t\)</span> 的分布和 <span class="math inline">\(Z\)</span> 的分布不一样了。</p>
+<p><strong><span class="math inline">\(t\)</span> 的精确结构。</strong> 数学上可以证明（需要正态假设 + 一个正交变换，这里给结论）：在 <span class="math inline">\(H_0\)</span> 下，</p>
+<p><span class="math display">\[t = \frac{Z}{\sqrt{\chi^2_{n-1}/(n-1)}} \sim t_{n-1}\]</span></p>
+<p>其中 <span class="math inline">\(\chi^2_{n-1}\)</span> 是自由度为 <span class="math inline">\(n-1\)</span> 的卡方分布，它与分子 <span class="math inline">\(Z\)</span> 独立。这里的 <span class="math inline">\(n-1\)</span> 不是随便写的——它就是第 5 章推导块里”除以 <span class="math inline">\(n-1\)</span> 才无偏”的那个 <span class="math inline">\(n-1\)</span>：估计了一个均值 <span class="math inline">\(\bar{x}\)</span>，就少了一个自由度。</p>
+<p><strong>胖尾的机制。</strong> 分母 <span class="math inline">\(\sqrt{\chi^2_{n-1}/(n-1)}\)</span> 在 1 附近波动。当它碰巧小于 1（样本方差低估了真实 <span class="math inline">\(\sigma^2\)</span>）时，<span class="math inline">\(t\)</span> 的绝对值被放大，比 <span class="math inline">\(Z\)</span> 更容易跑出很远——尾巴比正态胖。<span class="math inline">\(n\)</span> 越小，<span class="math inline">\(\chi^2\)</span> 的波动越大，尾巴越胖；<span class="math inline">\(n \to \infty\)</span> 时 <span class="math inline">\(\chi^2_{n-1}/(n-1) \to 1\)</span>（大数定律），<span class="math inline">\(t\)</span> 收敛回 <span class="math inline">\(Z\)</span>。</p>
+<p><strong>胖尾的实际含义。</strong> 小样本时 t 分布的尾巴更胖，意味着要拒绝 <span class="math inline">\(H_0\)</span> 需要更极端的观测值。这解释了为什么 <span class="math inline">\(n=4\)</span> 时要查 t 表而不是用 1.96：不是软件在刁难你，而是 <span class="math inline">\(s\)</span> 的不确定性让证据标准变严了。</p>
+<div class="key-judgment">
+<p>判断：t 分布的自由度就是”用来估计方差的样本量减去估计掉的参数个数”。Welch t 的自由度不是整数，是因为它用两个样本方差拼出了一个近似自由度（Satterthwaite 近似）——本质上还是同一笔账：方差估计得越不稳，自由度越小，尾巴越胖。</p>
+</div>
+</details>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 注意：以下演示的是独立两组的 Welch t 检验</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 但本章的主案例是配对设计，所以这只是方法演示，</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 实际分析见 8.4 节</span></span>

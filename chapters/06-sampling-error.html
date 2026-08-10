@@ -108,6 +108,35 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="../styles.css">
 </head>
@@ -583,6 +612,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="标准误和区间描述哪一种不确定性">6.4 标准误和区间描述哪一种不确定性</h2>
 <p>标准误（standard error, SE）可能是统计入门中最容易被误解的概念。它不是数据的变异程度，那是标准差（SD）。标准误描述估计量在重复抽样中的变异。以样本均值为例，如果从同一个总体反复抽取同样大小的样本，这些样本均值的标准差就是均值的标准误。</p>
 <p>对独立同分布观测的简单样本均值，标准误可估计为 SE = SD / √n。标准误随样本量的平方根减小。要把标准误减半，需要 4 倍的独立样本。聚类、重复测量或不等概率抽样必须按设计计算，不能只把数据表的行数代入 n。</p>
+<details class="why-derivation">
+<summary>
+为什么标准误等于 SD/√n？
+</summary>
+<p>标准误的定义是估计量在重复抽样中的标准差。对样本均值 <span class="math inline">\(\bar{x}\)</span> 来说，它就是 <span class="math inline">\(\bar{x}\)</span> 这个随机变量自身的标准差：</p>
+<p><span class="math display">\[\mathrm{SE}(\bar{x}) = \sqrt{\mathrm{Var}(\bar{x})}\]</span></p>
+<p>所以问题变成：样本均值的方差 <span class="math inline">\(\mathrm{Var}(\bar{x})\)</span> 等于多少？推导分三步。</p>
+<p><strong>第一步：常数提出平方。</strong> 样本均值是 <span class="math inline">\(\bar{x} = \frac{1}{n}\sum x_i\)</span>。把 <span class="math inline">\(\frac{1}{n}\)</span> 提到方差符号外面时，要平方。这是方差的定义直接推出的：<span class="math inline">\(\mathrm{Var}(cX) = E[(cX - c\mu)^2] = c^2E[(X-\mu)^2] = c^2\,\mathrm{Var}(X)\)</span>。</p>
+<p><span class="math display">\[\mathrm{Var}(\bar{x}) = \mathrm{Var}\Big(\frac{1}{n}\sum x_i\Big) = \frac{1}{n^2}\,\mathrm{Var}\Big(\sum x_i\Big)\]</span></p>
+<p><strong>第二步：和的方差等于方差的和。</strong> 这一步只在观测独立（或不相关）时成立，是整条推导唯一的假设：</p>
+<p><span class="math display">\[\mathrm{Var}\Big(\sum x_i\Big) = \sum \mathrm{Var}(x_i) = n\sigma^2\]</span></p>
+<p>如果观测相关——同一个样点的重复测量、空间上相邻的样方——这一步右边会多出协方差项，标准误就不再等于 SD/√n。这就是本章末尾”聚类、重复测量必须按设计计算”那句话的数学根源。</p>
+<p><strong>第三步：合并两式。</strong></p>
+<p><span class="math display">\[\mathrm{Var}(\bar{x}) = \frac{1}{n^2}\cdot n\sigma^2 = \frac{\sigma^2}{n}, \qquad \text{所以} \quad \mathrm{SE}(\bar{x}) = \frac{\sigma}{\sqrt{n}}\]</span></p>
+<p>用样本标准差 <span class="math inline">\(s\)</span> 估计未知的 <span class="math inline">\(\sigma\)</span>，得到 <span class="math inline">\(\widehat{\mathrm{SE}} = s/\sqrt{n}\)</span>。</p>
+<p><strong>为什么是 <span class="math inline">\(\sqrt{n}\)</span> 而不是 <span class="math inline">\(n\)</span>？</strong> 方差是”平方”的量，按 <span class="math inline">\(n\)</span> 平均；标准差是方差的平方根，只能按 <span class="math inline">\(\sqrt{n}\)</span> 缩小。样本量增加到 4 倍，方差缩小 4 倍，标准差只缩小 2 倍——“要把标准误减半需要 4 倍样本”就是从这一步直接读出来的，不需要记忆。</p>
+<div class="key-judgment">
+<p>判断：这条推导只用方差的性质，没有用到中心极限定理。CLT 管的是 <span class="math inline">\(\bar{x}\)</span> 的分布形状是否接近正态，SE 管的是 <span class="math inline">\(\bar{x}\)</span> 的散布宽度，两件事互相独立。唯一的假设是观测独立；样点相关的数据（空间自相关、重复测量）不能直接套用 SD/√n。</p>
+</div>
+</details>
 <p>观看动画时，比较 n = 4、16 和 64 三种抽样分布。原始个体的离散程度没有改变，收窄的是样本均值的分布。</p>
 <div class="teaching-animation">
 <div class="teaching-animation-frame">
