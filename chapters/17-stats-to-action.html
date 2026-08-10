@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.9.37">
+<meta name="generator" content="quarto-1.9.38">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -41,10 +41,10 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-276f18cc39b193f63b012a32496d79e1.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-832e3d7b6b94ddcc90a000f8fabe51a9.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -103,23 +103,7 @@ ul.task-list li input[type="checkbox"] {
     <div class="sidebar-title mb-0 py-0">
       <a href="../">从样地到结论：保护生物学数据实战</a> 
         <div class="sidebar-tools-main">
-    <div class="dropdown">
-      <a href="" title="Download" id="quarto-navigation-tool-dropdown-0" class="quarto-navigation-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false" role="link" aria-label="Download"><i class="bi bi-download"></i></a>
-      <ul class="dropdown-menu" aria-labelledby="quarto-navigation-tool-dropdown-0">
-          <li>
-            <a class="dropdown-item sidebar-tools-main-item" href="../从样地到结论：保护生物学数据实战.pdf">
-              <i class="bi bi-file-pdf pe-1"></i>
-            Download PDF
-            </a>
-          </li>
-          <li>
-            <a class="dropdown-item sidebar-tools-main-item" href="../从样地到结论：保护生物学数据实战.epub">
-              <i class="bi bi-journal pe-1"></i>
-            Download ePub
-            </a>
-          </li>
-      </ul>
-    </div>
+    <a href="../从样地到结论：保护生物学数据实战.epub" title="Download ePub" class="quarto-navigation-tool px-1" aria-label="Download ePub"><i class="bi bi-journal"></i></a>
 </div>
     </div>
       </div>
@@ -472,7 +456,7 @@ ul.task-list li input[type="checkbox"] {
 <p>前面 16 章建立了从设计到数据分析的完整链条。但链条的最后一环：“这些证据意味着什么行动”，不是统计软件能回答的。</p>
 <p>统计结论：“综合防治使虫口密度降低了 X 头/株（95% CI [下限, 上限]，P = 0.003）。”</p>
 <p>行动决策还需要： - 这个效应在生态上是否重要？（X 头/株的降低是否足以阻止树木死亡？） - 成本是否可接受？（每公顷 Y 元：预算够吗？） - 副作用是否可接受？（非目标生物减少了 Z%。这会影响天敌种群吗？） - 效果是否可逆？（如果推广后发现问题，能停下来吗？） - 是否有更好的替代方案？（生物防治单独使用效果稍差但成本低很多？）</p>
-<p>本章不设置最终考核。四个贯穿项目各自承担一种决策难点，帮助你练习”从证据到行动”的完整推理。</p>
+<p>四个贯穿项目各自承担一种决策难点。你将在本章完成过程作品集的第四次提交，把效应、不确定性、成本和行动条件写进同一份证据简报。</p>
 <div class="chapter-route" aria-label="本章学习路线">
 <div>
 提取效应<span>大小与区间</span>
@@ -541,6 +525,21 @@ ul.task-list li input[type="checkbox"] {
 <p>红外相机（探测不确定性）：检出率下降：是种群下降还是探测概率下降？ - 不能区分 → 需要改进监测（增加重复调查、校准相机） - 在区分之前，不能宣布”种群下降”</p>
 <p>森林防治（多指标冲突）：综合防治虫口最低，但成本最高，非目标影响中等。 - 生物防治效果稍差但成本低、副作用小：可能是更好的选择 - 取决于预算和生态优先级</p>
 <p>修复地（景观异质性）：BACI 效果在景观间差异大：景观 3 几乎无效果。 - 不能假设”修复在所有地方都有效” - 需要分析景观 3 为什么不同（土壤？水文？初始条件？）</p>
+<div class="classic-story">
+<div class="classic-story-label">
+古事，今问
+</div>
+<div class="classic-story-title">
+竭泽而渔
+</div>
+<p>《吕氏春秋·义赏》借雍季之口说：“竭泽而渔，岂不获得，而明年无鱼。”把水排干，眼前当然容易捕鱼，代价是下一年无鱼可捕。<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
+<div class="classic-story-judgment">
+<span>统计判断</span> 如果目标只写成”本季度虫口密度最低”，强力防治可能成为数据上的最优方案。把时间范围、非目标影响和恢复能力放回目标函数，行动排序可能完全改变。
+</div>
+<div class="classic-story-boundary">
+<span>类比边界</span> 面对种群即将崩溃或病害快速扩散，短期高代价干预有时仍然合理。请写出一种可以接受这种干预的条件，并给出停止规则和后续监测指标。
+</div>
+</div>
 </section>
 <section id="多指标冲突" class="level2">
 <h2 class="anchored" data-anchor-id="多指标冲突">17.5 多指标冲突</h2>
@@ -627,6 +626,7 @@ ul.task-list li input[type="checkbox"] {
 <li><p>应用层。为修复地 BACI 效果写一份一页证据简报。包含所有 8 个栏目。</p></li>
 <li><p>诊断层。综合防治虫口最低但成本最高，生物防治效果中等但成本低。管理者说”那就选综合防治”。请列出这个决策中隐含的价值判断：</p></li>
 <li><p>综合层。为黄黄草苗圃试验的结果写一份行动建议。明确区分”苗圃内的结论”和”野外推广的建议”：外推需要什么额外证据？</p></li>
+<li><p>AI 审计节点 4。把练习 3 的证据简报交给 AI，请它给出一个明确的管理建议。圈出回答中没有由统计结果决定的价值判断，检查它是否遗漏成本、副作用、可逆性和重新评估条件，然后写出你自己的修订版。</p></li>
 </ol>
 </section>
 <section id="继续学习" class="level2">
@@ -637,6 +637,12 @@ ul.task-list li input[type="checkbox"] {
 </div>
 
 
+</section>
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn1"><p>吕不韦等，《吕氏春秋·义赏》。原文参见河南师范大学资料<a href="https://www.htu.edu.cn/hnscxh/2023/0113/c14002a261695/page.htm">《竭泽而渔》</a>。<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
 </section>
 
 </main> <!-- /main -->

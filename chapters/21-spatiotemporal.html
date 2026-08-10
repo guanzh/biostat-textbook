@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.9.37">
+<meta name="generator" content="quarto-1.9.38">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -76,10 +76,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-276f18cc39b193f63b012a32496d79e1.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-832e3d7b6b94ddcc90a000f8fabe51a9.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -138,23 +138,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div class="sidebar-title mb-0 py-0">
       <a href="../">从样地到结论：保护生物学数据实战</a> 
         <div class="sidebar-tools-main">
-    <div class="dropdown">
-      <a href="" title="Download" id="quarto-navigation-tool-dropdown-0" class="quarto-navigation-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false" role="link" aria-label="Download"><i class="bi bi-download"></i></a>
-      <ul class="dropdown-menu" aria-labelledby="quarto-navigation-tool-dropdown-0">
-          <li>
-            <a class="dropdown-item sidebar-tools-main-item" href="../从样地到结论：保护生物学数据实战.pdf">
-              <i class="bi bi-file-pdf pe-1"></i>
-            Download PDF
-            </a>
-          </li>
-          <li>
-            <a class="dropdown-item sidebar-tools-main-item" href="../从样地到结论：保护生物学数据实战.epub">
-              <i class="bi bi-journal pe-1"></i>
-            Download ePub
-            </a>
-          </li>
-      </ul>
-    </div>
+    <a href="../从样地到结论：保护生物学数据实战.epub" title="Download ePub" class="quarto-navigation-tool px-1" aria-label="Download ePub"><i class="bi bi-journal"></i></a>
 </div>
     </div>
       </div>
@@ -397,7 +381,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#采样尺度决定可见过程" id="toc-采样尺度决定可见过程" class="nav-link" data-scroll-target="#采样尺度决定可见过程">21.4 采样尺度决定可见过程</a></li>
   <li><a href="#时空依赖怎样进入模型" id="toc-时空依赖怎样进入模型" class="nav-link" data-scroll-target="#时空依赖怎样进入模型">21.5 时空依赖怎样进入模型</a></li>
   <li><a href="#分块验证与地图不确定性" id="toc-分块验证与地图不确定性" class="nav-link" data-scroll-target="#分块验证与地图不确定性">21.6 分块验证与地图不确定性</a></li>
-  <li><a href="#外推和监测更新" id="toc-外推和监测更新" class="nav-link" data-scroll-target="#外推和监测更新">21.7 外推和监测更新</a></li>
+  <li><a href="#保护预测不能只看准确率" id="toc-保护预测不能只看准确率" class="nav-link" data-scroll-target="#保护预测不能只看准确率">21.7 保护预测不能只看准确率</a></li>
+  <li><a href="#外推和监测更新" id="toc-外推和监测更新" class="nav-link" data-scroll-target="#外推和监测更新">21.8 外推和监测更新</a></li>
   <li><a href="#本章小结" id="toc-本章小结" class="nav-link" data-scroll-target="#本章小结">本章小结</a></li>
   <li><a href="#练习" id="toc-练习" class="nav-link" data-scroll-target="#练习">练习</a></li>
   <li><a href="#继续学习" id="toc-继续学习" class="nav-link" data-scroll-target="#继续学习">继续学习</a></li>
@@ -641,9 +626,67 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"空间留出：训练集"</span>, <span class="fu">length</span>(train_stations), <span class="st">"个样点，测试集"</span>,</span>
 <span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">length</span>(test_stations), <span class="st">"个样点</span><span class="sc">\n</span><span class="st">"</span>)</span>
 <span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"同一样点的所有记录完整地属于训练集或测试集。</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="classic-story">
+<div class="classic-story-label">
+古事，今问
+</div>
+<div class="classic-story-title">
+循表夜涉
+</div>
+<p>《吕氏春秋·察今》写荆人准备袭宋，先派人在澭水立下可以涉水的标记。后来水位暴涨，夜行的军队仍照旧标记过河，死伤惨重。原文说：“今水已变而益多矣，荆人尚犹循表而导之。”<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
+<div class="classic-story-judgment">
+<span>统计判断</span> 模型也会留下这样的“表”。前两年的验证结果只说明模型适合当时的数据生成条件。气候、相机型号或土地管理方式变了，旧模型即使代码照常运行，也可能失去预测能力。
+</div>
+<div class="classic-story-boundary">
+<span>类比边界</span> 条件变化并不意味着旧模型一定作废。请各举一种变化：一种需要重新拟合模型，另一种可以由现有模型吸收。你的判断依据是什么？
+</div>
+</div>
+</section>
+<section id="保护预测不能只看准确率" class="level2">
+<h2 class="anchored" data-anchor-id="保护预测不能只看准确率">21.7 保护预测不能只看准确率</h2>
+<p>假设一个图像分类模型检查了 10,000 张相机照片，其中只有 100 张真正拍到目标物种。如果模型把所有照片都判成”没有目标物种”，准确率仍然达到 99%。这个数字很高，模型却漏掉了全部目标照片。</p>
+<p>稀有事件需要同时报告几种指标：</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>指标</th>
+<th>它回答的问题</th>
+<th>保护工作中的代价</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>召回率</td>
+<td>真正的目标照片中，模型找回了多少</td>
+<td>召回率低会漏掉稀有物种</td>
+</tr>
+<tr class="even">
+<td>精确率</td>
+<td>模型判为目标的照片中，有多少是真的</td>
+<td>精确率低会增加人工复核负担</td>
+</tr>
+<tr class="odd">
+<td>特异度</td>
+<td>非目标照片中，有多少被正确排除</td>
+<td>特异度低会产生大量误报</td>
+</tr>
+<tr class="even">
+<td>校准</td>
+<td>模型给出的概率与实际频率是否相符</td>
+<td>未校准的概率不能直接进入风险阈值</td>
+</tr>
+</tbody>
+</table>
+<p>总体指标还会掩盖生境差异。训练照片主要来自道路旁和开阔地时，模型可能在这些位置表现很好，却在密林、雨季或夜间频繁漏检。验证结果至少要按生境、年份、相机型号和光照条件分层查看。要预测新地区，还需要保留一个真正没有参与训练和调参的地点。</p>
+<p>这类检查对应 AI 系统中的偏倚问题。保护生物学关注的是哪些物种、生境和时间段被数据代表，哪些对象因为样本稀少而被模型忽略。总体准确率不能回答这个问题。</p>
 </section>
 <section id="外推和监测更新" class="level2">
-<h2 class="anchored" data-anchor-id="外推和监测更新">21.7 外推和监测更新</h2>
+<h2 class="anchored" data-anchor-id="外推和监测更新">21.8 外推和监测更新</h2>
 <p>时空模型的外推边界：</p>
 <ul>
 <li>时间外推：用 3 年数据预测第 4 年：假设趋势延续。如果发生了异常气候事件或管理变化，预测可能严重偏差。</li>
@@ -658,6 +701,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>相邻观测共享信息。时间自相关和空间自相关缩小有效样本量：忽视它们等于制造伪重复。</li>
 <li>不同过程在不同尺度上显现。采样尺度和研究范围决定了你能看到什么过程。</li>
 <li>随机拆分训练/测试集泄漏空间信息。正确的验证按年份或空间区块留出。</li>
+<li>稀有事件不能只看总体准确率。召回率、精确率、校准和分层表现决定模型能否用于保护监测。</li>
 <li>外推必须明确标注边界。时间外推假设趋势延续；空间外推假设关系一致。</li>
 <li>观测制度变化可能伪装生态趋势。比较年份之前，先检查调查方法是否一致。</li>
 </ul>
@@ -675,6 +719,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>应用层。为相机数据设计一个按年份留出的验证方案。说明训练集和测试集各包含什么。</p></li>
 <li><p>诊断层。残差的 Moran’s I 显著为正。这意味着什么？你应该怎么处理？</p></li>
 <li><p>综合层。为修复地项目设计一个多年空间监测方案。包含：样点布局、时间频率、验证策略、以及外推边界。</p></li>
+<li><p>AI 审计节点 5。让 AI 为相机图像分类提出训练和测试方案。检查它是否按照片随机拆分、是否只报告准确率、是否保留独立地点、是否比较不同生境的召回率。至少写出一个模型上线后必须持续监测的失败信号。</p></li>
 </ol>
 </section>
 <section id="继续学习" class="level2">
@@ -682,6 +727,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>→ <a href="../chapters/22-ai-assisted-learning.html">第 22 章：AI 辅助统计学习与分析</a></p>
 
 
+</section>
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn1"><p>吕不韦等，《吕氏春秋·察今》。原文参见<a href="https://ctext.org/wiki.pl?chapter=271615&amp;if=gb">中国哲学书电子化计划</a>，正文据原文转写为简体。<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
 </section>
 
 </main> <!-- /main -->

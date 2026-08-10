@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.9.37">
+<meta name="generator" content="quarto-1.9.38">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -76,10 +76,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-276f18cc39b193f63b012a32496d79e1.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-832e3d7b6b94ddcc90a000f8fabe51a9.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -138,23 +138,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div class="sidebar-title mb-0 py-0">
       <a href="../">从样地到结论：保护生物学数据实战</a> 
         <div class="sidebar-tools-main">
-    <div class="dropdown">
-      <a href="" title="Download" id="quarto-navigation-tool-dropdown-0" class="quarto-navigation-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false" role="link" aria-label="Download"><i class="bi bi-download"></i></a>
-      <ul class="dropdown-menu" aria-labelledby="quarto-navigation-tool-dropdown-0">
-          <li>
-            <a class="dropdown-item sidebar-tools-main-item" href="../从样地到结论：保护生物学数据实战.pdf">
-              <i class="bi bi-file-pdf pe-1"></i>
-            Download PDF
-            </a>
-          </li>
-          <li>
-            <a class="dropdown-item sidebar-tools-main-item" href="../从样地到结论：保护生物学数据实战.epub">
-              <i class="bi bi-journal pe-1"></i>
-            Download ePub
-            </a>
-          </li>
-      </ul>
-    </div>
+    <a href="../从样地到结论：保护生物学数据实战.epub" title="Download ePub" class="quarto-navigation-tool px-1" aria-label="Download ePub"><i class="bi bi-journal"></i></a>
 </div>
     </div>
       </div>
@@ -393,7 +377,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul>
   <li><a href="#数据伦理与敏感信息处理" id="toc-数据伦理与敏感信息处理" class="nav-link active" data-scroll-target="#数据伦理与敏感信息处理">数据伦理与敏感信息处理</a>
   <ul class="collapse">
-  <li><a href="#本附录状态seed" id="toc-本附录状态seed" class="nav-link" data-scroll-target="#本附录状态seed">本附录状态：seed</a></li>
+  <li><a href="#先识别四类风险" id="toc-先识别四类风险" class="nav-link" data-scroll-target="#先识别四类风险">先识别四类风险</a></li>
+  <li><a href="#数据分级" id="toc-数据分级" class="nav-link" data-scroll-target="#数据分级">数据分级</a></li>
+  <li><a href="#最小暴露原则" id="toc-最小暴露原则" class="nav-link" data-scroll-target="#最小暴露原则">最小暴露原则</a></li>
+  <li><a href="#位置数据的处理" id="toc-位置数据的处理" class="nav-link" data-scroll-target="#位置数据的处理">位置数据的处理</a></li>
+  <li><a href="#向-ai-提供数据" id="toc-向-ai-提供数据" class="nav-link" data-scroll-target="#向-ai-提供数据">向 AI 提供数据</a></li>
+  <li><a href="#发布前记录" id="toc-发布前记录" class="nav-link" data-scroll-target="#发布前记录">发布前记录</a></li>
+  <li><a href="#一个判断练习" id="toc-一个判断练习" class="nav-link" data-scroll-target="#一个判断练习">一个判断练习</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -422,15 +412,92 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="数据伦理与敏感信息处理" class="level1">
 <h1>数据伦理与敏感信息处理</h1>
-<section id="本附录状态seed" class="level2 {{.callout-note}}">
-<h2 class="anchored" data-anchor-id="本附录状态seed">本附录状态：seed</h2>
-<p>内容尚在建设中。</p>
+<p>保护数据公开得越细，复核越方便；濒危物种位置暴露得越细，盗采和干扰风险也越高。数据伦理不是一律公开或一律保密，而是让每一种用途只接触完成任务所需的信息。</p>
+<section id="先识别四类风险" class="level2">
+<h2 class="anchored" data-anchor-id="先识别四类风险">先识别四类风险</h2>
+<p>物种与栖息地风险。精确坐标、巢址、繁殖地、迁徙停歇地和小种群位置，可能被用于盗采、投毒、干扰或商业开发。</p>
+<p>人员与社区风险。调查员姓名、联系方式、访谈记录、社区知识和土地使用信息可能指向具体个人或群体。删除姓名不一定完成匿名化，地点、时间和角色组合仍可能让人被认出。</p>
+<p>权利与许可风险。拿到数据不等于拥有再次发布、上传第三方平台或用于新研究的权利。合作协议、保护区规定和知情同意可能限制用途。</p>
+<p>模型与平台风险。把文件发给外部 AI 服务，相当于把数据交给另一个处理方。即使平台声称不会训练模型，也要先确认保存期限、访问权限和机构规定。</p>
 </section>
-<!-- 待补充 -->
+<section id="数据分级" class="level2">
+<h2 class="anchored" data-anchor-id="数据分级">数据分级</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>级别</th>
+<th>典型内容</th>
+<th>处理方式</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>公开</td>
+<td>合成教学数据、已发表汇总表、低风险物种的粗尺度分布</td>
+<td>可以公开共享，附数据字典和许可说明</td>
+</tr>
+<tr class="even">
+<td>内部</td>
+<td>未发表结果、精度较低的样点信息、项目运行记录</td>
+<td>限项目成员访问，外发前审批</td>
+</tr>
+<tr class="odd">
+<td>受限</td>
+<td>濒危物种精确坐标、巢址、人员信息、社区敏感知识</td>
+<td>加密保存，按角色授权，不上传公共 AI 服务</td>
+</tr>
+</tbody>
+</table>
+<p>同一数据集可以拆成不同级别。公开版保留用于复核的变量，受限版单独保存坐标或身份对应表。不要为了方便，把所有字段放进同一个文件。</p>
+</section>
+<section id="最小暴露原则" class="level2">
+<h2 class="anchored" data-anchor-id="最小暴露原则">最小暴露原则</h2>
+<p>发送、共享或上传之前，依次问：</p>
+<ol type="1">
+<li>这项任务真的需要逐行数据吗，汇总表是否够用？</li>
+<li>需要精确坐标吗，网格编号或距离变量是否够用？</li>
+<li>需要真实数据吗，保留结构的模拟数据是否够用？</li>
+<li>接收方需要永久保存吗，能否设置期限和删除要求？</li>
+<li>谁能访问，访问是否留下记录？</li>
+</ol>
+<p>最小暴露不等于把数据改到无法分析。匿名化或空间模糊会改变统计性质，修改后要重新检查距离、聚集、稀有类别和外推范围。</p>
+</section>
+<section id="位置数据的处理" class="level2">
+<h2 class="anchored" data-anchor-id="位置数据的处理">位置数据的处理</h2>
+<p>常见做法包括降低坐标精度、转换为网格编号、只报告与道路或水源的距离、随机扰动位置，以及只发布区域汇总。选择哪一种取决于分析目标。</p>
+<p>如果研究空间自相关或巢址选择，过度模糊坐标会破坏分析。这时应保留受限原始版，在受控环境中完成分析，只公开不会反推出精确位置的结果。公开地图还要检查图层、悬停提示和下载按钮是否泄露原始坐标。</p>
+</section>
+<section id="向-ai-提供数据" class="level2">
+<h2 class="anchored" data-anchor-id="向-ai-提供数据">向 AI 提供数据</h2>
+<p>优先顺序如下：先描述数据结构，再提供模拟数据，再提供去标识的小样本，最后才考虑逐行真实数据。受限数据不进入公共 AI 服务。</p>
+<p>即使不上传文件，提示中也可能泄露信息。“某保护区仅剩三个巢址，坐标分别为……”已经构成数据披露。可以改写为虚构坐标，或只描述变量范围和层级结构。</p>
+</section>
+<section id="发布前记录" class="level2">
+<h2 class="anchored" data-anchor-id="发布前记录">发布前记录</h2>
+<pre class="text"><code>数据集：
+负责人：
+拟定用途：
+接收方或平台：
+数据级别：[公开 / 内部 / 受限]
+删除或模糊的字段：
+这些修改对分析的影响：
+授权依据：
+保存期限：
+复核人和日期：</code></pre>
+</section>
+<section id="一个判断练习" class="level2">
+<h2 class="anchored" data-anchor-id="一个判断练习">一个判断练习</h2>
+<p>研究者准备让 AI 检查占域模型代码，手里有物种名、精确坐标、六次调查记录和植被变量。代码核查需要数据层级和字段类型，但不需要真实物种名与坐标。较稳妥的做法是替换物种名，用模拟坐标保留样点层级，并生成少量结构相同的记录。模型代码通过核查后，再回到受控环境运行真实数据。</p>
 
 
 <!-- -->
 
+</section>
 </section>
 
 </main> <!-- /main -->
@@ -897,21 +964,78 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       </a>
   </div>
 </nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "数据伦理与敏感信息处理"</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="an">maturity:</span><span class="co"> seed</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="an">updated:</span><span class="co"> 2026-06-15</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu"># 数据伦理与敏感信息处理</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>::: {{.callout-note}}</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="fu">## 本附录状态：seed</span></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>内容尚在建设中。</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- 待补充 --&gt;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "数据伦理与敏感信息处理"</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="an">maturity:</span><span class="co"> sprout</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="an">updated:</span><span class="co"> 2026-07-22</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="fu"># 数据伦理与敏感信息处理</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>保护数据公开得越细，复核越方便；濒危物种位置暴露得越细，盗采和干扰风险也越高。数据伦理不是一律公开或一律保密，而是让每一种用途只接触完成任务所需的信息。</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="fu">## 先识别四类风险</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>物种与栖息地风险。精确坐标、巢址、繁殖地、迁徙停歇地和小种群位置，可能被用于盗采、投毒、干扰或商业开发。</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>人员与社区风险。调查员姓名、联系方式、访谈记录、社区知识和土地使用信息可能指向具体个人或群体。删除姓名不一定完成匿名化，地点、时间和角色组合仍可能让人被认出。</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>权利与许可风险。拿到数据不等于拥有再次发布、上传第三方平台或用于新研究的权利。合作协议、保护区规定和知情同意可能限制用途。</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>模型与平台风险。把文件发给外部 AI 服务，相当于把数据交给另一个处理方。即使平台声称不会训练模型，也要先确认保存期限、访问权限和机构规定。</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a><span class="fu">## 数据分级</span></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 级别 <span class="pp">|</span> 典型内容 <span class="pp">|</span> 处理方式 <span class="pp">|</span></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a><span class="pp">|---|---|---|</span></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 公开 <span class="pp">|</span> 合成教学数据、已发表汇总表、低风险物种的粗尺度分布 <span class="pp">|</span> 可以公开共享，附数据字典和许可说明 <span class="pp">|</span></span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 内部 <span class="pp">|</span> 未发表结果、精度较低的样点信息、项目运行记录 <span class="pp">|</span> 限项目成员访问，外发前审批 <span class="pp">|</span></span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 受限 <span class="pp">|</span> 濒危物种精确坐标、巢址、人员信息、社区敏感知识 <span class="pp">|</span> 加密保存，按角色授权，不上传公共 AI 服务 <span class="pp">|</span></span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>同一数据集可以拆成不同级别。公开版保留用于复核的变量，受限版单独保存坐标或身份对应表。不要为了方便，把所有字段放进同一个文件。</span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a><span class="fu">## 最小暴露原则</span></span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>发送、共享或上传之前，依次问：</span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>这项任务真的需要逐行数据吗，汇总表是否够用？</span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>需要精确坐标吗，网格编号或距离变量是否够用？</span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>需要真实数据吗，保留结构的模拟数据是否够用？</span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>接收方需要永久保存吗，能否设置期限和删除要求？</span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a><span class="ss">5. </span>谁能访问，访问是否留下记录？</span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a>最小暴露不等于把数据改到无法分析。匿名化或空间模糊会改变统计性质，修改后要重新检查距离、聚集、稀有类别和外推范围。</span>
+<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a><span class="fu">## 位置数据的处理</span></span>
+<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a>常见做法包括降低坐标精度、转换为网格编号、只报告与道路或水源的距离、随机扰动位置，以及只发布区域汇总。选择哪一种取决于分析目标。</span>
+<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a>如果研究空间自相关或巢址选择，过度模糊坐标会破坏分析。这时应保留受限原始版，在受控环境中完成分析，只公开不会反推出精确位置的结果。公开地图还要检查图层、悬停提示和下载按钮是否泄露原始坐标。</span>
+<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a><span class="fu">## 向 AI 提供数据</span></span>
+<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a>优先顺序如下：先描述数据结构，再提供模拟数据，再提供去标识的小样本，最后才考虑逐行真实数据。受限数据不进入公共 AI 服务。</span>
+<span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-53"><a href="#cb2-53" aria-hidden="true" tabindex="-1"></a>即使不上传文件，提示中也可能泄露信息。“某保护区仅剩三个巢址，坐标分别为……”已经构成数据披露。可以改写为虚构坐标，或只描述变量范围和层级结构。</span>
+<span id="cb2-54"><a href="#cb2-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-55"><a href="#cb2-55" aria-hidden="true" tabindex="-1"></a><span class="fu">## 发布前记录</span></span>
+<span id="cb2-56"><a href="#cb2-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-57"><a href="#cb2-57" aria-hidden="true" tabindex="-1"></a><span class="in">```text</span></span>
+<span id="cb2-58"><a href="#cb2-58" aria-hidden="true" tabindex="-1"></a><span class="in">数据集：</span></span>
+<span id="cb2-59"><a href="#cb2-59" aria-hidden="true" tabindex="-1"></a><span class="in">负责人：</span></span>
+<span id="cb2-60"><a href="#cb2-60" aria-hidden="true" tabindex="-1"></a><span class="in">拟定用途：</span></span>
+<span id="cb2-61"><a href="#cb2-61" aria-hidden="true" tabindex="-1"></a><span class="in">接收方或平台：</span></span>
+<span id="cb2-62"><a href="#cb2-62" aria-hidden="true" tabindex="-1"></a><span class="in">数据级别：[公开 / 内部 / 受限]</span></span>
+<span id="cb2-63"><a href="#cb2-63" aria-hidden="true" tabindex="-1"></a><span class="in">删除或模糊的字段：</span></span>
+<span id="cb2-64"><a href="#cb2-64" aria-hidden="true" tabindex="-1"></a><span class="in">这些修改对分析的影响：</span></span>
+<span id="cb2-65"><a href="#cb2-65" aria-hidden="true" tabindex="-1"></a><span class="in">授权依据：</span></span>
+<span id="cb2-66"><a href="#cb2-66" aria-hidden="true" tabindex="-1"></a><span class="in">保存期限：</span></span>
+<span id="cb2-67"><a href="#cb2-67" aria-hidden="true" tabindex="-1"></a><span class="in">复核人和日期：</span></span>
+<span id="cb2-68"><a href="#cb2-68" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb2-69"><a href="#cb2-69" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-70"><a href="#cb2-70" aria-hidden="true" tabindex="-1"></a><span class="fu">## 一个判断练习</span></span>
+<span id="cb2-71"><a href="#cb2-71" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-72"><a href="#cb2-72" aria-hidden="true" tabindex="-1"></a>研究者准备让 AI 检查占域模型代码，手里有物种名、精确坐标、六次调查记录和植被变量。代码核查需要数据层级和字段类型，但不需要真实物种名与坐标。较稳妥的做法是替换物种名，用模拟坐标保留样点层级，并生成少量结构相同的记录。模型代码通过核查后，再回到受控环境运行真实数据。</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 

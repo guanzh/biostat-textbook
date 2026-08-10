@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.9.37">
+<meta name="generator" content="quarto-1.9.38">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -76,10 +76,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-276f18cc39b193f63b012a32496d79e1.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-832e3d7b6b94ddcc90a000f8fabe51a9.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -138,23 +138,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div class="sidebar-title mb-0 py-0">
       <a href="../">从样地到结论：保护生物学数据实战</a> 
         <div class="sidebar-tools-main">
-    <div class="dropdown">
-      <a href="" title="Download" id="quarto-navigation-tool-dropdown-0" class="quarto-navigation-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false" role="link" aria-label="Download"><i class="bi bi-download"></i></a>
-      <ul class="dropdown-menu" aria-labelledby="quarto-navigation-tool-dropdown-0">
-          <li>
-            <a class="dropdown-item sidebar-tools-main-item" href="../从样地到结论：保护生物学数据实战.pdf">
-              <i class="bi bi-file-pdf pe-1"></i>
-            Download PDF
-            </a>
-          </li>
-          <li>
-            <a class="dropdown-item sidebar-tools-main-item" href="../从样地到结论：保护生物学数据实战.epub">
-              <i class="bi bi-journal pe-1"></i>
-            Download ePub
-            </a>
-          </li>
-      </ul>
-    </div>
+    <a href="../从样地到结论：保护生物学数据实战.epub" title="Download ePub" class="quarto-navigation-tool px-1" aria-label="Download ePub"><i class="bi bi-journal"></i></a>
 </div>
     </div>
       </div>
@@ -393,9 +377,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul>
   <li><a href="#ai-提问模板与核查清单" id="toc-ai-提问模板与核查清单" class="nav-link active" data-scroll-target="#ai-提问模板与核查清单">AI 提问模板与核查清单</a>
   <ul class="collapse">
-  <li><a href="#八要素完整模板" id="toc-八要素完整模板" class="nav-link" data-scroll-target="#八要素完整模板">八要素完整模板</a></li>
-  <li><a href="#五点核查清单" id="toc-五点核查清单" class="nav-link" data-scroll-target="#五点核查清单">五点核查清单</a></li>
+  <li><a href="#八要素分析请求" id="toc-八要素分析请求" class="nav-link" data-scroll-target="#八要素分析请求">八要素分析请求</a></li>
+  <li><a href="#输出核查清单" id="toc-输出核查清单" class="nav-link" data-scroll-target="#输出核查清单">输出核查清单</a></li>
   <li><a href="#人工核查记录模板" id="toc-人工核查记录模板" class="nav-link" data-scroll-target="#人工核查记录模板">人工核查记录模板</a></li>
+  <li><a href="#提交前检查" id="toc-提交前检查" class="nav-link" data-scroll-target="#提交前检查">提交前检查</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -424,76 +409,121 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="ai-提问模板与核查清单" class="level1">
 <h1>AI 提问模板与核查清单</h1>
-<section id="八要素完整模板" class="level2">
-<h2 class="anchored" data-anchor-id="八要素完整模板">八要素完整模板</h2>
-<pre><code>我的研究问题：[一句话描述]
-研究对象：[物种/样地/处理]
-变量列表：
-  - [变量名]：[类型：连续/计数/分类/比例]，[角色：因变量/自变量]
-  - ...
-样本量：[每组/总体]
-分组情况：[几组？每组多少？什么处理？]
-分析目标：[比较差异 / 分析关系 / 做预测]
-请给出：适合的统计方法、选择理由、前提假设和注意事项</code></pre>
+<p>本附录与第 22 章使用同一套八要素。模板的用途是补齐分析上下文，不是追求某种固定的提示词格式。工具和界面会变化，研究设计与核查责任不会随之消失。</p>
+<section id="八要素分析请求" class="level2">
+<h2 class="anchored" data-anchor-id="八要素分析请求">八要素分析请求</h2>
+<pre class="text"><code>1. 保护决策：管理者最终要决定什么？
+2. 目标量：需要估计哪个参数来支持决定？
+3. 研究设计：数据由什么设计产生？
+4. 独立单位：哪一级单位独立，n 是多少？
+5. 数据字段：变量名称、含义、类型、单位和设计层级。
+6. 候选模型：目前考虑哪些模型，为什么？
+7. 诊断要求：必须检查哪些失败模式？
+8. 行动表述：结论允许说到哪里，不能越过什么边界？
+
+请先复述你对这八项的理解。信息不足时列出缺口，不要自行补写研究条件。
+给出不超过三个候选分析。每个候选都说明适用理由、前提、诊断和失败条件。</code></pre>
 </section>
-<section id="五点核查清单" class="level2">
-<h2 class="anchored" data-anchor-id="五点核查清单">五点核查清单</h2>
+<section id="输出核查清单" class="level2">
+<h2 class="anchored" data-anchor-id="输出核查清单">输出核查清单</h2>
 <table class="caption-top table">
 <thead>
 <tr class="header">
-<th>#</th>
+<th style="text-align: right;">#</th>
 <th>核查项</th>
-<th>✓/✗</th>
-<th>备注</th>
+<th>结论</th>
+<th>证据或修改</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>1</td>
-<td>AI 正确识别了数据类型吗？</td>
+<td style="text-align: right;">1</td>
+<td>研究问题、目标量和保护决策是否对应</td>
 <td></td>
 <td></td>
 </tr>
 <tr class="even">
-<td>2</td>
-<td>AI 考虑了实验单位和伪重复吗？</td>
+<td style="text-align: right;">2</td>
+<td>AI 是否正确理解变量和数据生成过程</td>
 <td></td>
 <td></td>
 </tr>
 <tr class="odd">
-<td>3</td>
-<td>AI 推荐的方法适合数据和研究设计吗？</td>
+<td style="text-align: right;">3</td>
+<td>独立单位和样本量是否正确，有无伪重复</td>
 <td></td>
 <td></td>
 </tr>
 <tr class="even">
-<td>4</td>
-<td>AI 给出的代码能运行吗？</td>
+<td style="text-align: right;">4</td>
+<td>模型是否尊重设计、分布、层级和努力量</td>
 <td></td>
 <td></td>
 </tr>
 <tr class="odd">
-<td>5</td>
-<td>AI 是否过度解释了结果（暗示因果）？</td>
+<td style="text-align: right;">5</td>
+<td>代码是否在本地实际运行，结果是否与文字一致</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">6</td>
+<td>验证是否按地点、年份或独立单位分组，有无泄漏</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">7</td>
+<td>是否检查残差、过度离散、敏感性和不确定性</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">8</td>
+<td>是否把关联写成因果，或把显著写成重要</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">9</td>
+<td>引用、函数和数据字段是否真实存在</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">10</td>
+<td>是否暴露坐标、人员信息或其他受限制数据</td>
 <td></td>
 <td></td>
 </tr>
 </tbody>
 </table>
+<p>“结论”一栏只使用四种标记：接受、修改后接受、拒绝、证据不足。不要只写对或错。很多建议取决于尚未提供的设计信息。</p>
 </section>
 <section id="人工核查记录模板" class="level2">
 <h2 class="anchored" data-anchor-id="人工核查记录模板">人工核查记录模板</h2>
-<pre><code>日期：
-提问内容：[八要素]
-AI 回答摘要：
-核查结果：
- - 数据类型：[✓/✗] [说明]
- - 实验单位：[✓/✗] [说明]
- - 方法选择：[✓/✗] [说明]
- - 代码：[✓/✗] [说明]
- - 结论：[✓/✗] [说明]
-最终判断：[采用 / 修改后采用 / 不采用]
-理由：</code></pre>
+<pre class="text"><code>日期：
+工具与版本：
+用途：
+完整提示保存位置：
+完整输出保存位置：
+
+建议 1：
+人工结论：[接受 / 修改后接受 / 拒绝 / 证据不足]
+核查证据：
+做出的修改：
+
+建议 2：
+人工结论：
+核查证据：
+做出的修改：
+
+最终代码或文本保存位置：
+仍未解决的问题：</code></pre>
+</section>
+<section id="提交前检查" class="level2">
+<h2 class="anchored" data-anchor-id="提交前检查">提交前检查</h2>
+<p>提交报告前，再核对四件事：完整 AI 输出是否保留，所有数字是否来自实际运行结果，所有引用是否逐条打开核实，最终结论是否由作者本人能够口头解释。任何一项答不上来，都不能把该输出当作完成的分析。</p>
 
 
 <!-- -->
@@ -968,50 +998,72 @@ AI 回答摘要：
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "AI 提问模板与核查清单"</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="an">maturity:</span><span class="co"> sprout</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="an">updated:</span><span class="co"> 2026-06-15</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="an">updated:</span><span class="co"> 2026-07-22</span></span>
 <span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
 <span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="fu"># AI 提问模板与核查清单</span></span>
 <span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="fu">## 八要素完整模板</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>本附录与第 22 章使用同一套八要素。模板的用途是补齐分析上下文，不是追求某种固定的提示词格式。工具和界面会变化，研究设计与核查责任不会随之消失。</span>
 <span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="in">我的研究问题：[一句话描述]</span></span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="in">研究对象：[物种/样地/处理]</span></span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="in">变量列表：</span></span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="in">  - [变量名]：[类型：连续/计数/分类/比例]，[角色：因变量/自变量]</span></span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="in">  - ...</span></span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a><span class="in">样本量：[每组/总体]</span></span>
-<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a><span class="in">分组情况：[几组？每组多少？什么处理？]</span></span>
-<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a><span class="in">分析目标：[比较差异 / 分析关系 / 做预测]</span></span>
-<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a><span class="in">请给出：适合的统计方法、选择理由、前提假设和注意事项</span></span>
-<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="fu">## 八要素分析请求</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="in">```text</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="in">1. 保护决策：管理者最终要决定什么？</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="in">2. 目标量：需要估计哪个参数来支持决定？</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="in">3. 研究设计：数据由什么设计产生？</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a><span class="in">4. 独立单位：哪一级单位独立，n 是多少？</span></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a><span class="in">5. 数据字段：变量名称、含义、类型、单位和设计层级。</span></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a><span class="in">6. 候选模型：目前考虑哪些模型，为什么？</span></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a><span class="in">7. 诊断要求：必须检查哪些失败模式？</span></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a><span class="in">8. 行动表述：结论允许说到哪里，不能越过什么边界？</span></span>
 <span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a><span class="fu">## 五点核查清单</span></span>
-<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> # <span class="pp">|</span> 核查项 <span class="pp">|</span> ✓/✗ <span class="pp">|</span> 备注 <span class="pp">|</span></span>
-<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a><span class="pp">|---|--------|-----|------|</span></span>
-<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 1 <span class="pp">|</span> AI 正确识别了数据类型吗？ <span class="pp">|</span> <span class="pp">|</span> <span class="pp">|</span></span>
-<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 2 <span class="pp">|</span> AI 考虑了实验单位和伪重复吗？ <span class="pp">|</span> <span class="pp">|</span> <span class="pp">|</span></span>
-<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 3 <span class="pp">|</span> AI 推荐的方法适合数据和研究设计吗？ <span class="pp">|</span> <span class="pp">|</span> <span class="pp">|</span></span>
-<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 4 <span class="pp">|</span> AI 给出的代码能运行吗？ <span class="pp">|</span> <span class="pp">|</span> <span class="pp">|</span></span>
-<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 5 <span class="pp">|</span> AI 是否过度解释了结果（暗示因果）？ <span class="pp">|</span> <span class="pp">|</span> <span class="pp">|</span></span>
-<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a><span class="fu">## 人工核查记录模板</span></span>
-<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a><span class="in">日期：</span></span>
-<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a><span class="in">提问内容：[八要素]</span></span>
-<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a><span class="in">AI 回答摘要：</span></span>
-<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a><span class="in">核查结果：</span></span>
-<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a><span class="in"> - 数据类型：[✓/✗] [说明]</span></span>
-<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a><span class="in"> - 实验单位：[✓/✗] [说明]</span></span>
-<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a><span class="in"> - 方法选择：[✓/✗] [说明]</span></span>
-<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a><span class="in"> - 代码：[✓/✗] [说明]</span></span>
-<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a><span class="in"> - 结论：[✓/✗] [说明]</span></span>
-<span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a><span class="in">最终判断：[采用 / 修改后采用 / 不采用]</span></span>
-<span id="cb3-46"><a href="#cb3-46" aria-hidden="true" tabindex="-1"></a><span class="in">理由：</span></span>
-<span id="cb3-47"><a href="#cb3-47" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a><span class="in">请先复述你对这八项的理解。信息不足时列出缺口，不要自行补写研究条件。</span></span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a><span class="in">给出不超过三个候选分析。每个候选都说明适用理由、前提、诊断和失败条件。</span></span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a><span class="fu">## 输出核查清单</span></span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> # <span class="pp">|</span> 核查项 <span class="pp">|</span> 结论 <span class="pp">|</span> 证据或修改 <span class="pp">|</span></span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a><span class="pp">|---:|---|---|---|</span></span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 1 <span class="pp">|</span> 研究问题、目标量和保护决策是否对应 <span class="pp">|</span> <span class="pp">|</span> <span class="pp">|</span></span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 2 <span class="pp">|</span> AI 是否正确理解变量和数据生成过程 <span class="pp">|</span> <span class="pp">|</span> <span class="pp">|</span></span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 3 <span class="pp">|</span> 独立单位和样本量是否正确，有无伪重复 <span class="pp">|</span> <span class="pp">|</span> <span class="pp">|</span></span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 4 <span class="pp">|</span> 模型是否尊重设计、分布、层级和努力量 <span class="pp">|</span> <span class="pp">|</span> <span class="pp">|</span></span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 5 <span class="pp">|</span> 代码是否在本地实际运行，结果是否与文字一致 <span class="pp">|</span> <span class="pp">|</span> <span class="pp">|</span></span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 6 <span class="pp">|</span> 验证是否按地点、年份或独立单位分组，有无泄漏 <span class="pp">|</span> <span class="pp">|</span> <span class="pp">|</span></span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 7 <span class="pp">|</span> 是否检查残差、过度离散、敏感性和不确定性 <span class="pp">|</span> <span class="pp">|</span> <span class="pp">|</span></span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 8 <span class="pp">|</span> 是否把关联写成因果，或把显著写成重要 <span class="pp">|</span> <span class="pp">|</span> <span class="pp">|</span></span>
+<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 9 <span class="pp">|</span> 引用、函数和数据字段是否真实存在 <span class="pp">|</span> <span class="pp">|</span> <span class="pp">|</span></span>
+<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 10 <span class="pp">|</span> 是否暴露坐标、人员信息或其他受限制数据 <span class="pp">|</span> <span class="pp">|</span> <span class="pp">|</span></span>
+<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a>“结论”一栏只使用四种标记：接受、修改后接受、拒绝、证据不足。不要只写对或错。很多建议取决于尚未提供的设计信息。</span>
+<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a><span class="fu">## 人工核查记录模板</span></span>
+<span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-46"><a href="#cb3-46" aria-hidden="true" tabindex="-1"></a><span class="in">```text</span></span>
+<span id="cb3-47"><a href="#cb3-47" aria-hidden="true" tabindex="-1"></a><span class="in">日期：</span></span>
+<span id="cb3-48"><a href="#cb3-48" aria-hidden="true" tabindex="-1"></a><span class="in">工具与版本：</span></span>
+<span id="cb3-49"><a href="#cb3-49" aria-hidden="true" tabindex="-1"></a><span class="in">用途：</span></span>
+<span id="cb3-50"><a href="#cb3-50" aria-hidden="true" tabindex="-1"></a><span class="in">完整提示保存位置：</span></span>
+<span id="cb3-51"><a href="#cb3-51" aria-hidden="true" tabindex="-1"></a><span class="in">完整输出保存位置：</span></span>
+<span id="cb3-52"><a href="#cb3-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-53"><a href="#cb3-53" aria-hidden="true" tabindex="-1"></a><span class="in">建议 1：</span></span>
+<span id="cb3-54"><a href="#cb3-54" aria-hidden="true" tabindex="-1"></a><span class="in">人工结论：[接受 / 修改后接受 / 拒绝 / 证据不足]</span></span>
+<span id="cb3-55"><a href="#cb3-55" aria-hidden="true" tabindex="-1"></a><span class="in">核查证据：</span></span>
+<span id="cb3-56"><a href="#cb3-56" aria-hidden="true" tabindex="-1"></a><span class="in">做出的修改：</span></span>
+<span id="cb3-57"><a href="#cb3-57" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-58"><a href="#cb3-58" aria-hidden="true" tabindex="-1"></a><span class="in">建议 2：</span></span>
+<span id="cb3-59"><a href="#cb3-59" aria-hidden="true" tabindex="-1"></a><span class="in">人工结论：</span></span>
+<span id="cb3-60"><a href="#cb3-60" aria-hidden="true" tabindex="-1"></a><span class="in">核查证据：</span></span>
+<span id="cb3-61"><a href="#cb3-61" aria-hidden="true" tabindex="-1"></a><span class="in">做出的修改：</span></span>
+<span id="cb3-62"><a href="#cb3-62" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-63"><a href="#cb3-63" aria-hidden="true" tabindex="-1"></a><span class="in">最终代码或文本保存位置：</span></span>
+<span id="cb3-64"><a href="#cb3-64" aria-hidden="true" tabindex="-1"></a><span class="in">仍未解决的问题：</span></span>
+<span id="cb3-65"><a href="#cb3-65" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb3-66"><a href="#cb3-66" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-67"><a href="#cb3-67" aria-hidden="true" tabindex="-1"></a><span class="fu">## 提交前检查</span></span>
+<span id="cb3-68"><a href="#cb3-68" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-69"><a href="#cb3-69" aria-hidden="true" tabindex="-1"></a>提交报告前，再核对四件事：完整 AI 输出是否保留，所有数字是否来自实际运行结果，所有引用是否逐条打开核实，最终结论是否由作者本人能够口头解释。任何一项答不上来，都不能把该输出当作完成的分析。</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 
