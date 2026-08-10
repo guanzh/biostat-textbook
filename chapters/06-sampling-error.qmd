@@ -1,7 +1,7 @@
 ---
 title: "第 6 章 样本、误差与不确定性"
 maturity: sprout
-updated: 2026-06-20
+updated: 2026-07-22
 code-tools: false
 ---
 
@@ -179,6 +179,19 @@ mean(large_sample)  # 非常接近 0.6，而不是 0.5
 <p>如果 60 个相机全部布在道路旁，拍 10 万张照片得到的检出率仍然只代表"道路旁的物种活动"。它不能告诉你远离道路的森林里物种是否存在。增加照片数缩小了随机误差，但系统偏差纹丝不动。</p>
 </div>
 </div>
+
+:::: {.classic-story}
+<div class="classic-story-label">古事，今问</div>
+<div class="classic-story-title">三人成虎</div>
+
+《战国策·魏策二》中，庞葱临行前问魏王：一人说街市有虎，信不信？魏王不信；两人说，开始怀疑；三人都说，便相信了。庞葱叹道：“夫市之无虎明矣，然而三人言而成虎。”[^three-tigers]
+
+<div class="classic-story-judgment"><span>统计判断</span> 三次说法只有在来源彼此独立时，才接近三份证据。如果三个人转述的是同一个传闻，重复次数增加了，信息量却没有同步增加。十万张来自同一批道路旁相机的照片，也不能替代新的独立样点。</div>
+
+<div class="classic-story-boundary"><span>类比边界</span> 如果三名调查者各自随机抽样、独立记录，他们的一致结论会不会增强证据？你还需要知道哪些信息，才能判断这是重复转述还是独立重复？</div>
+::::
+
+[^three-tigers]: 刘向编，《战国策·魏策二》。原文参见清华大学出版社教材节选[《三人成虎》](https://www.tup.tsinghua.edu.cn/upload/books/yz/061172-01.pdf)。
 
 ## 6.4 标准误和区间描述哪一种不确定性
 

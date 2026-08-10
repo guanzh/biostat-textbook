@@ -1,7 +1,7 @@
 ---
 title: "第 10 章 分类与比例数据"
 maturity: sprout
-updated: 2026-06-20
+updated: 2026-07-22
 code-tools: false
 ---
 
@@ -246,6 +246,19 @@ cat("OR =", round(or, 2), "不等于 RR =", round(rr, 2), "\n")
 <p>当基线风险为 50% 时，OR = 2.0 对应的 RR 只有约 1.33。报告"风险降低 50%"（OR = 0.5）而实际绝对风险只从 50% 降到 33%。这在保护沟通中可能严重误导管理决策。</p>
 </div>
 </div>
+
+:::: {.classic-story}
+<div class="classic-story-label">古事，今问</div>
+<div class="classic-story-title">朝三暮四</div>
+
+《庄子·齐物论》写养猴人分橡实，先说早上三份、晚上四份，群猴发怒；改成早上四份、晚上三份，群猴便高兴。庄子说：“名实未亏，而喜怒为用。”[^three-four]
+
+<div class="classic-story-judgment"><span>统计判断</span> 同一张列联表可以写成风险差、风险比或优势比。底层计数没有变化，读者感受到的效果却可能不同。报告比例时必须交代分子、分母和基线风险，不能只挑听起来最大的数字。</div>
+
+<div class="classic-story-boundary"><span>类比边界</span> 早晨和晚上的食物未必等价，饥饿和时间偏好都可能让两种分配产生真实差别。风险差、风险比和优势比又在什么情况下回答了不同问题，而不只是换一种说法？</div>
+::::
+
+[^three-four]: 庄周，《庄子·齐物论》。原文参见[中国哲学书电子化计划](https://ctext.org/dictionary.pl?char=%E7%8B%99%E5%85%AC&if=gb)。
 
 ## 10.6 聚集、稀疏与完全分离
 
