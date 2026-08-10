@@ -186,6 +186,32 @@ IQR(rest$species_richness)
 range(rest$species_richness)
 ```
 
+<details class="why-derivation">
+<summary>为什么 <code>sd()</code> 的分母是 n−1，而不是 n？</summary>
+
+`sd()` 内部计算的是样本标准差 $s=\sqrt{\frac{1}{n-1}\sum(x_i-\bar{x})^2}$。问题出在平方和 $\sum(x_i-\bar{x})^2$：用样本均值 $\bar{x}$ 代替总体均值 $\mu$ 后，平方和平均来说偏小。
+
+设总体均值 $\mu$、总体方差 $\sigma^2=E[(X-\mu)^2]$。把平方和拆开（加一项减一项 $\mu$）：
+
+$$\sum (x_i-\bar{x})^2 = \sum (x_i-\mu)^2 - n(\bar{x}-\mu)^2$$
+
+交叉项消失，因为 $\sum (x_i-\mu)=n(\bar{x}-\mu)$：样本均值使残差之和为零。
+
+两边取期望（只用期望的线性性，不需要分布假设）：
+
+$$E\Big[\sum(x_i-\bar{x})^2\Big] = n\sigma^2 - n\,\mathrm{Var}(\bar{x})$$
+
+其中 $\mathrm{Var}(\bar{x})=\sigma^2/n$（样本均值的方差，第 6 章会用到），所以：
+
+$$E\Big[\sum(x_i-\bar{x})^2\Big] = n\sigma^2 - n\cdot\frac{\sigma^2}{n} = (n-1)\sigma^2$$
+
+如果除以 $n$，平均只得到 $\frac{n-1}{n}\sigma^2$，系统性偏低 $\sigma^2/n$；除以 $n-1$ 才得到 $\sigma^2$ 的无偏估计。
+
+::: {.key-judgment}
+判断：n−1 不是对公式的小修补，而是"估计了一个均值、少了一个自由度"的直接后果。n 大时偏差 $\sigma^2/n$ 趋近零，除 n 与除 n−1 几乎无差别；n 小时差别才明显。n=1 时平方和恒为零——一个观测点没有"离散"可言，方差无从估计。
+:::
+</details>
+
 ::: {.key-judgment}
 判断：均值和中位数回答不同的问题。当数据偏态时，用均值描述"典型值"会误导：均值被少数极端值拉向尾部，不再代表大多数观测值的位置。
 :::
