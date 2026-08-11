@@ -1,7 +1,7 @@
 ---
 title: "第 6 章 样本、误差与不确定性"
 maturity: sprout
-updated: 2026-06-20
+updated: 2026-07-22
 code-tools: false
 ---
 
@@ -180,11 +180,56 @@ mean(large_sample)  # 非常接近 0.6，而不是 0.5
 </div>
 </div>
 
+:::: {.classic-story}
+<div class="classic-story-label">古事，今问</div>
+<div class="classic-story-title">三人成虎</div>
+
+《战国策·魏策二》中，庞葱临行前问魏王：一人说街市有虎，信不信？魏王不信；两人说，开始怀疑；三人都说，便相信了。庞葱叹道：“夫市之无虎明矣，然而三人言而成虎。”[^three-tigers]
+
+<div class="classic-story-judgment"><span>统计判断</span> 三次说法只有在来源彼此独立时，才接近三份证据。如果三个人转述的是同一个传闻，重复次数增加了，信息量却没有同步增加。十万张来自同一批道路旁相机的照片，也不能替代新的独立样点。</div>
+
+<div class="classic-story-boundary"><span>类比边界</span> 如果三名调查者各自随机抽样、独立记录，他们的一致结论会不会增强证据？你还需要知道哪些信息，才能判断这是重复转述还是独立重复？</div>
+::::
+
+[^three-tigers]: 刘向编，《战国策·魏策二》。原文参见清华大学出版社教材节选[《三人成虎》](https://www.tup.tsinghua.edu.cn/upload/books/yz/061172-01.pdf)。
+
 ## 6.4 标准误和区间描述哪一种不确定性
 
 标准误（standard error, SE）可能是统计入门中最容易被误解的概念。它不是数据的变异程度，那是标准差（SD）。标准误描述估计量在重复抽样中的变异。以样本均值为例，如果从同一个总体反复抽取同样大小的样本，这些样本均值的标准差就是均值的标准误。
 
 对独立同分布观测的简单样本均值，标准误可估计为 SE = SD / √n。标准误随样本量的平方根减小。要把标准误减半，需要 4 倍的独立样本。聚类、重复测量或不等概率抽样必须按设计计算，不能只把数据表的行数代入 n。
+
+<details class="why-derivation">
+<summary>为什么标准误等于 SD/√n？</summary>
+
+标准误的定义是估计量在重复抽样中的标准差。对样本均值 $\bar{x}$ 来说，它就是 $\bar{x}$ 这个随机变量自身的标准差：
+
+$$\mathrm{SE}(\bar{x}) = \sqrt{\mathrm{Var}(\bar{x})}$$
+
+所以问题变成：样本均值的方差 $\mathrm{Var}(\bar{x})$ 等于多少？推导分三步。
+
+**第一步：常数提出平方。** 样本均值是 $\bar{x} = \frac{1}{n}\sum x_i$。把 $\frac{1}{n}$ 提到方差符号外面时，要平方。这是方差的定义直接推出的：$\mathrm{Var}(cX) = E[(cX - c\mu)^2] = c^2E[(X-\mu)^2] = c^2\,\mathrm{Var}(X)$。
+
+$$\mathrm{Var}(\bar{x}) = \mathrm{Var}\Big(\frac{1}{n}\sum x_i\Big) = \frac{1}{n^2}\,\mathrm{Var}\Big(\sum x_i\Big)$$
+
+**第二步：和的方差等于方差的和。** 这一步只在观测独立（或不相关）时成立，是整条推导唯一的假设：
+
+$$\mathrm{Var}\Big(\sum x_i\Big) = \sum \mathrm{Var}(x_i) = n\sigma^2$$
+
+如果观测相关——同一个样点的重复测量、空间上相邻的样方——这一步右边会多出协方差项，标准误就不再等于 SD/√n。这就是本章末尾"聚类、重复测量必须按设计计算"那句话的数学根源。
+
+**第三步：合并两式。**
+
+$$\mathrm{Var}(\bar{x}) = \frac{1}{n^2}\cdot n\sigma^2 = \frac{\sigma^2}{n}, \qquad \text{所以} \quad \mathrm{SE}(\bar{x}) = \frac{\sigma}{\sqrt{n}}$$
+
+用样本标准差 $s$ 估计未知的 $\sigma$，得到 $\widehat{\mathrm{SE}} = s/\sqrt{n}$。
+
+**为什么是 $\sqrt{n}$ 而不是 $n$？** 方差是"平方"的量，按 $n$ 平均；标准差是方差的平方根，只能按 $\sqrt{n}$ 缩小。样本量增加到 4 倍，方差缩小 4 倍，标准差只缩小 2 倍——"要把标准误减半需要 4 倍样本"就是从这一步直接读出来的，不需要记忆。
+
+::: {.key-judgment}
+判断：这条推导只用方差的性质，没有用到中心极限定理。CLT 管的是 $\bar{x}$ 的分布形状是否接近正态，SE 管的是 $\bar{x}$ 的散布宽度，两件事互相独立。唯一的假设是观测独立；样点相关的数据（空间自相关、重复测量）不能直接套用 SD/√n。
+:::
+</details>
 
 观看动画时，比较 n = 4、16 和 64 三种抽样分布。原始个体的离散程度没有改变，收窄的是样本均值的分布。
 

@@ -19,3 +19,10 @@ Thumbs.db
 
 **/*.quarto_ipynb
 /.worktrees/
+
+# Hermes agent working files
+.hermes/
+
+# Python
+__pycache__/
+*.pyc
