@@ -55,7 +55,6 @@ book:
         - appendices/method-map.qmd
         - appendices/glossary.qmd
         - appendices/reproducible-template.qmd
-        - appendices/process-portfolio.qmd
         - appendices/data-ethics.qmd
         - appendices/ai-checklist.qmd
         - appendices/learning-pathway.qmd
