@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <defs>
+    <filter id="wobble">
+      <feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="2" seed="3"/>
+      <feDisplacementMap in="SourceGraphic" scale="2.5"/>
+    </filter>
+  </defs>
+  <g filter="url(#wobble)" fill="none" stroke="#1a1a1a" stroke-width="3"
+     stroke-linecap="round" stroke-linejoin="round">
+    <!-- 身体（坐姿） -->
+    <ellipse cx="100" cy="138" rx="42" ry="38" fill="#1a1a1a"/>
+    <!-- 头 -->
+    <circle cx="100" cy="80" r="38" fill="#1a1a1a"/>
+    <!-- 耳朵 -->
+    <path d="M 70 55 L 65 30 L 88 50 Z" fill="#1a1a1a"/>
+    <path d="M 130 55 L 135 30 L 112 50 Z" fill="#1a1a1a"/>
+    <path d="M 72 50 L 70 38 L 82 48 Z" fill="#f8bbd0" stroke="none"/>
+    <path d="M 128 50 L 130 38 L 118 48 Z" fill="#f8bbd0" stroke="none"/>
+    <!-- 异色瞳：左黄右绿 -->
+    <ellipse cx="86" cy="78" rx="6" ry="9" fill="#ffd54f" stroke="none"/>
+    <ellipse cx="114" cy="78" rx="6" ry="9" fill="#ffd54f" stroke="none"/>
+    <ellipse cx="86" cy="80" rx="2" ry="6" fill="#1a1a1a" stroke="none"/>
+    <ellipse cx="114" cy="80" rx="2" ry="6" fill="#1a1a1a" stroke="none"/>
+    <!-- 鼻 -->
+    <path d="M 97 92 L 100 96 L 103 92 Z" fill="#ef5350" stroke="none"/>
+    <!-- 嘴：白色细线 -->
+    <path d="M 100 96 Q 95 102 90 100" stroke="#ffffff" stroke-width="2"/>
+    <path d="M 100 96 Q 105 102 110 100" stroke="#ffffff" stroke-width="2"/>
+    <!-- 胡须 -->
+    <line x1="65" y1="92" x2="50" y2="88"/>
+    <line x1="65" y1="96" x2="50" y2="98"/>
+    <line x1="135" y1="92" x2="150" y2="88"/>
+    <line x1="135" y1="96" x2="150" y2="98"/>
+    <!-- 招手的右前爪 -->
+    <ellipse cx="148" cy="105" rx="10" ry="14" fill="#1a1a1a"
+             transform="rotate(25 148 105)"/>
+    <!-- 静止左前爪 -->
+    <ellipse cx="78" cy="158" rx="10" ry="14" fill="#1a1a1a"/>
+    <!-- 尾巴 -->
+    <path d="M 138 145 Q 175 130 170 95" stroke="#1a1a1a" stroke-width="10"
+          stroke-linecap="round" fill="none"/>
+  </g>
+  <!-- 招手动作弧线 -->
+  <g stroke="#4fc3f7" stroke-width="2.5" fill="none" stroke-linecap="round">
+    <path d="M 165 90 Q 175 92 172 100"/>
+    <path d="M 172 80 Q 184 82 180 92"/>
+  </g>
+</svg>
