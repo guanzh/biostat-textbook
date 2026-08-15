@@ -1,0 +1,1056 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>第 17 章 从统计结果到保护行动 – 从样地到结论：保护生物学数据实战</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../chapters/18-mixed-models.html" rel="next">
+<link href="../chapters/16-treatment-evaluation.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-832e3d7b6b94ddcc90a000f8fabe51a9.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/13-plant-protection.html">第四篇：植保专业应用</a></li><li class="breadcrumb-item"><a href="../chapters/17-stats-to-action.html"><span class="chapter-title">第 17 章 从统计结果到保护行动</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">从样地到结论：保护生物学数据实战</a> 
+        <div class="sidebar-tools-main">
+    <a href="../从样地到结论：保护生物学数据实战.epub" title="Download ePub" class="quarto-navigation-tool px-1" aria-label="Download ePub"><i class="bi bi-journal"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">从样地到结论：保护生物学数据实战</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">第一篇：从保护问题进入统计</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/01-role-of-statistics.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">第 1 章 统计学在保护中的角色</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/02-variables-hypotheses.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">第 2 章 研究问题、变量与假设</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/03-experimental-design.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">第 3 章 实验设计：让比较产生可信证据</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">第二篇：看懂并整理保护数据</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/04-data-management.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">第 4 章 数据管理与可重复分析</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/05-descriptive-statistics.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">第 5 章 描述统计与分布</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/06-sampling-error.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">第 6 章 样本、误差与不确定性</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/07-data-visualization.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">第 7 章 数据可视化</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">第三篇：回答常见保护问题</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/08-two-group-comparison.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">第 8 章 两组比较</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/09-anova.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">第 9 章 多组比较与方差分析</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/10-categorical-data.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">第 10 章 分类与比例数据</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/11-correlation-regression.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">第 11 章 相关与线性回归</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/12-glm-intro.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">第 12 章 从线性模型走向广义线性模型</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">第四篇：植保专业应用</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/13-plant-protection.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">第 13 章 植物保护田间药效试验</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/16-treatment-evaluation.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">第 16 章 措施效果与保护评估</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/17-stats-to-action.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">第 17 章 从统计结果到保护行动</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+ <span class="menu-text">第五篇：现代生态统计与继续学习</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/18-mixed-models.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">第 18 章 层级结构与混合模型</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/19-ecological-processes.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">第 19 章 生态过程与观测过程</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/20-bayesian-intro.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">第 20 章 贝叶斯统计与模型诊断</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/21-spatiotemporal.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">第 21 章 时间、空间与随机过程</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/22-ai-assisted-learning.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">第 22 章 AI 辅助统计学习与分析</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
+ <span class="menu-text">附录</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../appendices/r-basics.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">R 基础速查</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../appendices/method-map.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">常用统计方法选择地图</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../appendices/glossary.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">统计术语中英文对照</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../appendices/reproducible-template.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">可重复分析项目模板</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../appendices/data-ethics.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">数据伦理与敏感信息处理</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../appendices/ai-checklist.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">AI 提问模板与核查清单</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../appendices/learning-pathway.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">从基础统计到现代生态统计的学习路线</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#统计结论不是行动命令" id="toc-统计结论不是行动命令" class="nav-link active" data-scroll-target="#统计结论不是行动命令">17.1 统计结论不是行动命令</a></li>
+  <li><a href="#效应大小与生态意义" id="toc-效应大小与生态意义" class="nav-link" data-scroll-target="#效应大小与生态意义">17.2 效应大小与生态意义</a></li>
+  <li><a href="#区间和行动阈值" id="toc-区间和行动阈值" class="nav-link" data-scroll-target="#区间和行动阈值">17.3 区间和行动阈值</a></li>
+  <li><a href="#成本风险伦理与可逆性" id="toc-成本风险伦理与可逆性" class="nav-link" data-scroll-target="#成本风险伦理与可逆性">17.4 成本、风险、伦理与可逆性</a></li>
+  <li><a href="#多指标冲突" id="toc-多指标冲突" class="nav-link" data-scroll-target="#多指标冲突">17.5 多指标冲突</a></li>
+  <li><a href="#证据不足时的下一步" id="toc-证据不足时的下一步" class="nav-link" data-scroll-target="#证据不足时的下一步">17.6 证据不足时的下一步</a></li>
+  <li><a href="#一页证据简报" id="toc-一页证据简报" class="nav-link" data-scroll-target="#一页证据简报">17.7 一页证据简报</a></li>
+  <li><a href="#本章小结" id="toc-本章小结" class="nav-link" data-scroll-target="#本章小结">本章小结</a></li>
+  <li><a href="#练习" id="toc-练习" class="nav-link" data-scroll-target="#练习">练习</a></li>
+  <li><a href="#继续学习" id="toc-继续学习" class="nav-link" data-scroll-target="#继续学习">继续学习</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/13-plant-protection.html">第四篇：植保专业应用</a></li><li class="breadcrumb-item"><a href="../chapters/17-stats-to-action.html"><span class="chapter-title">第 17 章 从统计结果到保护行动</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-title">第 17 章 从统计结果到保护行动</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<style>
+.ch17-fig {
+  background: #fff;
+  border: 2px solid #1a1a1a;
+  border-radius: 16px 6px 16px 6px;
+  box-shadow: 5px 5px 0 #1a1a1a;
+  padding: 1.6rem 1.4rem 1.4rem;
+  margin: 0 0 2.5rem 0;
+}
+.ch17-fig-h {
+  font-family: "Gochi Hand", "Caveat", "楷体", cursive;
+  font-size: 1.2rem; font-weight: 700; color: #1a1a1a;
+  text-align: center; margin-bottom: 1.2rem; letter-spacing: 0.1em;
+}
+.ch17-pipeline {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr auto 1fr;
+  align-items: center; gap: 0.5rem; margin: 0.4rem 0;
+}
+.ch17-stage {
+  padding: 0.9rem 0.9rem 1rem; border-radius: 6px 16px 4px 18px;
+  box-shadow: 4px 4px 0 #1a1a1a;
+}
+.ch17-stage.s1 { background: #ffebee; border: 2.5px solid #ef5350; transform: rotate(-1.5deg); }
+.ch17-stage.s2 { background: #e1f5fe; border: 2.5px solid #0277bd; transform: rotate(0.5deg); }
+.ch17-stage.s3 { background: #e8f5e9; border: 2.5px solid #2e7d32; transform: rotate(1deg); }
+.ch17-stage-h {
+  font-family: "Gochi Hand", "Caveat", "楷体", cursive;
+  font-weight: 700; font-size: 0.95rem; margin-bottom: 0.4rem; text-align: center;
+}
+.ch17-stage.s1 .ch17-stage-h { color: #c62828; }
+.ch17-stage.s2 .ch17-stage-h { color: #01579b; }
+.ch17-stage.s3 .ch17-stage-h { color: #1b5e20; }
+.ch17-stage-body {
+  font-family: "楷体", "STKaiti", "Microsoft YaHei", cursive;
+  font-size: 0.85rem; color: #333; line-height: 1.65; text-align: center;
+}
+.ch17-arrow {
+  font-family: "Gochi Hand", "Caveat", cursive;
+  font-size: 2.2rem; font-weight: 700; color: #1a1a1a;
+  transform: rotate(-3deg); text-align: center; line-height: 1;
+}
+.ch17-caveat {
+  margin-top: 1.1rem; padding: 0.6rem 0.85rem;
+  background: #fafafa; border-left: 3px solid #1a1a1a; border-radius: 2px;
+  font-size: 0.86rem; color: #1a1a1a; line-height: 1.7; text-align: center;
+}
+@media (max-width: 720px) {
+  .ch17-pipeline { grid-template-columns: 1fr; gap: 0.8rem; }
+  .ch17-arrow { transform: rotate(87deg); }
+  .ch17-stage { transform: rotate(0deg); }
+}
+</style>
+
+<div class="ch17-fig sketch">
+  <div class="ch17-fig-h">显著结果 → 加入阈值、风险和成本 → 可复核行动</div>
+  <div class="ch17-pipeline">
+    <div class="ch17-stage s1">
+      <div class="ch17-stage-h">① 提取效应</div>
+      <div class="ch17-stage-body">效应多大？区间多宽？：P 值只是起点</div>
+    </div>
+    <div class="ch17-arrow" aria-hidden="true">→</div>
+    <div class="ch17-stage s2">
+      <div class="ch17-stage-h">② 对照阈值</div>
+      <div class="ch17-stage-body">最小有意义效应：统计显著 ≠ 管理重要</div>
+    </div>
+    <div class="ch17-arrow" aria-hidden="true">→</div>
+    <div class="ch17-stage s3">
+      <div class="ch17-stage-h">③ 安排更新</div>
+      <div class="ch17-stage-body">证据不足→继续监测；效果明确→行动+监测；效果为负→停止</div>
+    </div>
+  </div>
+  <div class="ch17-caveat">
+    黑豹提醒：P = 0.03，因此立即全区推广综合防治。这个推理跳过了效应大小、成本、副作用和可逆性。
+  </div>
+</div>
+<section id="统计结论不是行动命令" class="level2">
+<h2 class="anchored" data-anchor-id="统计结论不是行动命令">17.1 统计结论不是行动命令</h2>
+<p>前面 16 章建立了从设计到数据分析的完整链条。但链条的最后一环：“这些证据意味着什么行动”，不是统计软件能回答的。</p>
+<p>统计结论：“综合防治使虫口密度降低了 X 头/株（95% CI [下限, 上限]，P = 0.003）。”</p>
+<p>行动决策还需要： - 这个效应在生态上是否重要？（X 头/株的降低是否足以阻止树木死亡？） - 成本是否可接受？（每公顷 Y 元：预算够吗？） - 副作用是否可接受？（非目标生物减少了 Z%。这会影响天敌种群吗？） - 效果是否可逆？（如果推广后发现问题，能停下来吗？） - 是否有更好的替代方案？（生物防治单独使用效果稍差但成本低很多？）</p>
+<p>四个贯穿项目各自承担一种决策难点。你将在本章完成过程作品集的第四次提交，把效应、不确定性、成本和行动条件写进同一份证据简报。</p>
+<div class="chapter-route" aria-label="本章学习路线">
+<div>
+提取效应<span>大小与区间</span>
+</div>
+<div>
+对照阈值<span>最小有意义效应</span>
+</div>
+<div>
+权衡代价<span>成本/风险/伦理</span>
+</div>
+<div>
+选择行动<span>行动/监测/停止</span>
+</div>
+<div>
+安排更新<span>适应性管理</span>
+</div>
+</div>
+</section>
+<section id="效应大小与生态意义" class="level2">
+<h2 class="anchored" data-anchor-id="效应大小与生态意义">17.2 效应大小与生态意义</h2>
+<p>P 值描述数据与零假设及其模型条件的相容程度。它不回答效应有多大，也不回答效应是否具有生态或管理意义。</p>
+<p>最小有意义效应（minimum meaningful effect）：在管理上有意义的最小变化。例如： - 虫口密度降低 &lt; 1 头/株 → 管理上无意义（树木仍然受害） - 虫口密度降低 ≥ 3 头/株 → 管理上有意义（树木受害率明显下降）</p>
+<p>证据解释流程： 1. 估计效应和置信区间 2. 将区间与最小有意义效应比较 3. 如果整个区间都在有意义范围内 → 证据支持重要效果 4. 如果区间包含零或包含无意义范围 → 证据不足 5. 如果区间完全在无意义范围内 → 证据支持效果不重要</p>
+<p>这五步解释证据，不直接生成行动命令。是否行动还取决于错误行动与延迟行动各自造成的损失，以及成本、风险、伦理和可逆性。</p>
+</section>
+<section id="区间和行动阈值" class="level2">
+<h2 class="anchored" data-anchor-id="区间和行动阈值">17.3 区间和行动阈值</h2>
+<p>行动阈值（action threshold）将连续的证据转化为二元的行动决策：</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>区间相对于阈值的位置</th>
+<th>含义</th>
+<th>行动</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>区间完全高于阈值</td>
+<td>数据与模型较支持效果达到预设水平</td>
+<td>结合行动代价和延迟损失，考虑实施或验证</td>
+</tr>
+<tr class="even">
+<td>区间跨越阈值</td>
+<td>当前精度不能区分是否达到阈值</td>
+<td>比较补充信息的价值与等待成本</td>
+</tr>
+<tr class="odd">
+<td>区间完全低于阈值</td>
+<td>数据与模型较支持效果未达到预设水平</td>
+<td>比较换方案、停止与保留小规模试验的损失</td>
+</tr>
+</tbody>
+</table>
+<p>阈值是管理决策，不是统计输出。统计分析提供效应和区间，管理者还要说明误判损失、预算、风险承受能力和行动可逆性。同一份区间在高风险不可逆行动和低成本可逆试点中，可能对应不同选择。</p>
+</section>
+<section id="成本风险伦理与可逆性" class="level2">
+<h2 class="anchored" data-anchor-id="成本风险伦理与可逆性">17.4 成本、风险、伦理与可逆性</h2>
+<p>四个贯穿项目的决策难点：</p>
+<p>黄黄草（外推风险）：苗圃试验显示 40% 光照开花最多。能否建议野外搭建遮阴网？ - 苗圃 → 野外外推有损耗（土壤、竞争、物候不同） - 遮阴网的成本和生态影响？ - 建议：先选 2-3 个野外样地做小规模验证</p>
+<p>红外相机（探测不确定性）：检出率下降：是种群下降还是探测概率下降？ - 不能区分 → 需要改进监测（增加重复调查、校准相机） - 在区分之前，不能宣布”种群下降”</p>
+<p>森林防治（多指标冲突）：综合防治虫口最低，但成本最高，非目标影响中等。 - 生物防治效果稍差但成本低、副作用小：可能是更好的选择 - 取决于预算和生态优先级</p>
+<p>修复地（景观异质性）：BACI 效果在景观间差异大：景观 3 几乎无效果。 - 不能假设”修复在所有地方都有效” - 需要分析景观 3 为什么不同（土壤？水文？初始条件？）</p>
+<div class="classic-story">
+<div class="classic-story-label">
+古事，今问
+</div>
+<div class="classic-story-title">
+竭泽而渔
+</div>
+<p>《吕氏春秋·义赏》借雍季之口说：“竭泽而渔，岂不获得，而明年无鱼。”把水排干，眼前当然容易捕鱼，代价是下一年无鱼可捕。<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
+<div class="classic-story-judgment">
+<span>统计判断</span> 如果目标只写成”本季度虫口密度最低”，强力防治可能成为数据上的最优方案。把时间范围、非目标影响和恢复能力放回目标函数，行动排序可能完全改变。
+</div>
+<div class="classic-story-boundary">
+<span>类比边界</span> 面对种群即将崩溃或病害快速扩散，短期高代价干预有时仍然合理。请写出一种可以接受这种干预的条件，并给出停止规则和后续监测指标。
+</div>
+</div>
+</section>
+<section id="多指标冲突" class="level2">
+<h2 class="anchored" data-anchor-id="多指标冲突">17.5 多指标冲突</h2>
+<p>保护决策中经常出现指标冲突： - 虫口密度降低 vs 非目标生物减少 → 哪个优先？ - 丰富度增加 vs 本地种比例不变 → 修复成功了吗？ - 成本低 vs 效果强 → 预算有限时选哪个？</p>
+<p>不能把多指标合成一个总分。权重反映价值判断：统计不能替你决定”天敌保护比虫口降低重要 1.5 倍”。</p>
+</section>
+<section id="证据不足时的下一步" class="level2">
+<h2 class="anchored" data-anchor-id="证据不足时的下一步">17.6 证据不足时的下一步</h2>
+<p>三种证据状态和对应的行动：</p>
+<ol type="1">
+<li>证据较支持达到阈值。结合错误行动的损失、成本和可逆性，决定实施范围，并安排监测。</li>
+<li>证据较支持未达到阈值。比较换方案、停止和保留小规模试验的代价。</li>
+<li>区间跨越阈值。先判断补充信息能否改变决定；等待本身代价很高时，不一定适合机械地继续监测。</li>
+</ol>
+<p>适应性管理（adaptive management）：把行动本身当作试验。行动 + 监测 + 根据新证据调整。不要求”一次做对”，要求”做的时候能学到东西”。</p>
+</section>
+<section id="一页证据简报" class="level2">
+<h2 class="anchored" data-anchor-id="一页证据简报">17.7 一页证据简报</h2>
+<p>将统计结果转化为管理者能看懂的简报：</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>栏目</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>管理问题</td>
+<td>一句话：我们要决定什么？</td>
+</tr>
+<tr class="even">
+<td>设计与数据</td>
+<td>什么设计、多少独立单位、什么时间范围</td>
+</tr>
+<tr class="odd">
+<td>主要效应</td>
+<td>效应大小 + 95% CI + 单位</td>
+</tr>
+<tr class="even">
+<td>区间与阈值</td>
+<td>区间相对于行动阈值的位置</td>
+</tr>
+<tr class="odd">
+<td>诊断与局限</td>
+<td>模型假设、异常值、未控制的混杂</td>
+</tr>
+<tr class="even">
+<td>成本和副作用</td>
+<td>经济成本、非目标影响、外推风险</td>
+</tr>
+<tr class="odd">
+<td>建议行动</td>
+<td>行动 / 继续监测 / 停止：附理由</td>
+</tr>
+<tr class="even">
+<td>重新评估条件</td>
+<td>什么新证据会改变这个建议？</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="本章小结" class="level2">
+<h2 class="anchored" data-anchor-id="本章小结">本章小结</h2>
+<ul>
+<li>统计结论不是行动命令。P 值和效应量是决策的输入，成本、风险、伦理和可逆性共同决定行动。</li>
+<li>最小有意义效应是管理概念，不是统计概念。统计提供效应和区间。管理者设定”多大才算大”。</li>
+<li>区间相对于阈值的位置描述证据状态，不自动决定行动。损失、成本、风险、伦理和可逆性决定同一证据下可以承担哪种选择。</li>
+<li>多指标冲突时不能合成总分。权重反映价值判断：透明地列出各指标的得失。</li>
+<li>证据不足是合法结论。“我们目前不知道”比”我们假装知道”更有助于保护决策。</li>
+<li>适应性管理：行动 + 监测 + 调整。不要求一次做对：要求做的时候能学到东西。</li>
+</ul>
+</section>
+<section id="练习" class="level2">
+<h2 class="anchored" data-anchor-id="练习">练习</h2>
+<ol type="1">
+<li><p>识别层。以下结论各属于哪种证据状态（支持重要效果/支持效果很小/证据不足）？</p>
+<ol type="a">
+<li>效应 = 5，95% CI [3, 7]，阈值 = 2</li>
+<li>效应 = 1，95% CI [−2, 4]，阈值 = 5</li>
+<li>效应 = 0.5，95% CI [0.1, 0.9]，阈值 = 3</li>
+</ol></li>
+<li><p>解释层。“P = 0.03，因此立即全区推广综合防治。” 这个推理跳过了哪些步骤？</p></li>
+<li><p>应用层。为修复地 BACI 效果写一份一页证据简报。包含所有 8 个栏目。</p></li>
+<li><p>诊断层。综合防治虫口最低但成本最高，生物防治效果中等但成本低。管理者说”那就选综合防治”。请列出这个决策中隐含的价值判断：</p></li>
+<li><p>综合层。为黄黄草苗圃试验的结果写一份行动建议。明确区分”苗圃内的结论”和”野外推广的建议”：外推需要什么额外证据？</p></li>
+<li><p>AI 审计节点 4。把练习 3 的证据简报交给 AI，请它给出一个明确的管理建议。圈出回答中没有由统计结果决定的价值判断，检查它是否遗漏成本、副作用、可逆性和重新评估条件，然后写出你自己的修订版。</p></li>
+</ol>
+</section>
+<section id="继续学习" class="level2">
+<h2 class="anchored" data-anchor-id="继续学习">继续学习</h2>
+<div class="chapter-next">
+<p>下一步：第四篇完成了从专业应用到行动决策的闭环。第五篇将处理基础模型无法解决的问题：层级结构、探测误差、先验信息和时空依赖。</p>
+<p>→ <a href="../chapters/18-mixed-models.html">第 18 章：层级结构与混合模型</a></p>
+</div>
+
+
+</section>
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn1"><p>吕不韦等，《吕氏春秋·义赏》。原文参见河南师范大学资料<a href="https://www.htu.edu.cn/hnscxh/2023/0113/c14002a261695/page.htm">《竭泽而渔》</a>。<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../chapters/16-treatment-evaluation.html" class="pagination-link" aria-label="第 16 章 措施效果与保护评估">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">第 16 章 措施效果与保护评估</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../chapters/18-mixed-models.html" class="pagination-link" aria-label="第 18 章 层级结构与混合模型">
+        <span class="nav-page-text"><span class="chapter-title">第 18 章 层级结构与混合模型</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 520" role="img" aria-labelledby="title desc" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',system-ui,sans-serif">
+  <title id="title">实验单位层级图：黄黄草苗圃光照梯度试验</title>
+  <desc id="desc">从上到下依次为区组、小区、幼苗、叶片四层；处理在小区层独立随机分配，因此小区是实验单位。</desc>
+
+  <!-- 颜色令牌（与全书 spec §3.3 一致） -->
+  <!-- forest #315e46 - 实验单位主线 -->
+  <!-- lake   #4d8294 - 观测单位 -->
+  <!-- mustard #d0a03a - 子抽样 -->
+  <!-- ink    #243129 - 技术重复 / 文字 -->
+  <!-- moss   #6b906f - 区组 -->
+
+  <!-- ========== 第 1 层：区组 ========== -->
+  <g transform="translate(80,30)">
+    <rect x="0" y="0" width="560" height="60" rx="6" fill="#fcfdfc" stroke="#6b906f" stroke-width="2"/>
+    <text x="20" y="26" font-size="15" font-weight="700" fill="#243129">区组（Block）</text>
+    <text x="20" y="48" font-size="13" fill="#59665e">苗床被划分为 8 个区组（南段近水源 / 北段近防风林——基线含水量本底差异强）</text>
+    <text x="540" y="36" font-size="11" fill="#6b906f" text-anchor="end" font-style="italic">B01 … B08</text>
+  </g>
+
+  <!-- 区组 -> 小区 箭头 -->
+  <g stroke="#243129" stroke-width="1.5" fill="none">
+    <line x1="360" y1="92" x2="360" y2="118"/>
+    <polygon points="356,113 364,113 360,121" fill="#243129" stroke="none"/>
+  </g>
+  <text x="370" y="108" font-size="11" fill="#59665e">每个区组内</text>
+
+  <!-- ========== 第 2 层：小区（实验单位）—— 强调层 ========== -->
+  <g transform="translate(60,128)">
+    <!-- 强调框：双线 + 加深背景 -->
+    <rect x="0" y="0" width="600" height="86" rx="8" fill="#eef4f0" stroke="#315e46" stroke-width="3"/>
+    <text x="20" y="28" font-size="16" font-weight="700" fill="#315e46">小区（Plot）= 实验单位</text>
+    <text x="20" y="50" font-size="13" fill="#243129">每个 1m² 独立可遮阴的苗圃小区。<tspan font-weight="700" fill="#315e46">4 个光照水平在区组内随机分配到 4 个小区。</tspan></text>
+    <text x="20" y="70" font-size="12" fill="#59665e">⇒ 处理在此层独立施加 → <tspan font-weight="700">n = 32 小区</tspan>（不是幼苗数，也不是叶片数）</text>
+    <!-- 右侧 4 个小处理标签 -->
+    <g font-size="10" fill="#fcfdfc" font-weight="700">
+      <rect x="450" y="58" width="32" height="18" rx="3" fill="#315e46"/><text x="466" y="71" text-anchor="middle">100%</text>
+      <rect x="486" y="58" width="32" height="18" rx="3" fill="#6b906f"/><text x="502" y="71" text-anchor="middle">70%</text>
+      <rect x="522" y="58" width="32" height="18" rx="3" fill="#d0a03a"/><text x="538" y="71" text-anchor="middle">40%</text>
+      <rect x="558" y="58" width="32" height="18" rx="3" fill="#c86652"/><text x="574" y="71" text-anchor="middle">15%</text>
+    </g>
+  </g>
+
+  <!-- 小区 -> 幼苗 箭头 -->
+  <g stroke="#243129" stroke-width="1.5" fill="none">
+    <line x1="360" y1="216" x2="360" y2="242"/>
+    <polygon points="356,237 364,237 360,245" fill="#243129" stroke="none"/>
+  </g>
+  <text x="370" y="232" font-size="11" fill="#59665e">每小区</text>
+
+  <!-- ========== 第 3 层：幼苗 ========== -->
+  <g transform="translate(80,252)">
+    <rect x="0" y="0" width="560" height="60" rx="6" fill="#fcfdfc" stroke="#4d8294" stroke-width="2"/>
+    <text x="20" y="26" font-size="15" font-weight="700" fill="#4d8294">幼苗（Seedling）= 观测单位</text>
+    <text x="20" y="48" font-size="13" fill="#59665e">每小区标记 5 株黄黄草指名亚种幼苗（小区内 5 株 = 子抽样，<tspan font-weight="700" fill="#c86652">不是 5 个独立处理重复</tspan>）</text>
+  </g>
+
+  <!-- 幼苗 -> 叶片 箭头 -->
+  <g stroke="#243129" stroke-width="1.5" fill="none">
+    <line x1="360" y1="314" x2="360" y2="340"/>
+    <polygon points="356,335 364,335 360,343" fill="#243129" stroke="none"/>
+  </g>
+  <text x="370" y="330" font-size="11" fill="#59665e">每株</text>
+
+  <!-- ========== 第 4 层：叶片 + 技术重复 ========== -->
+  <g transform="translate(80,350)">
+    <rect x="0" y="0" width="380" height="60" rx="6" fill="#fcfdfc" stroke="#d0a03a" stroke-width="2"/>
+    <text x="20" y="26" font-size="15" font-weight="700" fill="#a07a20">叶片（Leaf）= 子抽样</text>
+    <text x="20" y="48" font-size="13" fill="#59665e">每株上若干叶片的 SPAD 叶绿素读数</text>
+  </g>
+
+  <!-- 技术重复（第 4 层右侧附注） -->
+  <g transform="translate(478,350)">
+    <rect x="0" y="0" width="162" height="60" rx="6" fill="#fcfdfc" stroke="#243129" stroke-width="2" stroke-dasharray="4 3"/>
+    <text x="10" y="22" font-size="13" font-weight="700" fill="#243129">技术重复</text>
+    <text x="10" y="40" font-size="11" fill="#59665e">同一叶片 SPAD</text>
+    <text x="10" y="54" font-size="11" fill="#59665e">连测 3 次取均值</text>
+  </g>
+
+  <!-- 底部判断条 -->
+  <g transform="translate(40,440)">
+    <rect x="0" y="0" width="640" height="60" rx="6" fill="#315e46"/>
+    <text x="320" y="26" font-size="14" font-weight="700" fill="#fcfdfc" text-anchor="middle">处理在哪一级被独立随机分配，哪一级就是实验单位。</text>
+    <text x="320" y="48" font-size="13" fill="#fcfdfc" text-anchor="middle">本案例 n = 小区数 = 32，不是幼苗数 160，更不是叶片读数。</text>
+  </g>
+</svg>

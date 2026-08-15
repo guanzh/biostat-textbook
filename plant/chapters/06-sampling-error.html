@@ -1,0 +1,1256 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>第 6 章 样本、误差与不确定性 – 从样地到结论：保护生物学数据实战</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../chapters/07-data-visualization.html" rel="next">
+<link href="../chapters/05-descriptive-statistics.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-832e3d7b6b94ddcc90a000f8fabe51a9.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/04-data-management.html">第二篇：看懂并整理保护数据</a></li><li class="breadcrumb-item"><a href="../chapters/06-sampling-error.html"><span class="chapter-title">第 6 章 样本、误差与不确定性</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">从样地到结论：保护生物学数据实战</a> 
+        <div class="sidebar-tools-main">
+    <a href="../从样地到结论：保护生物学数据实战.epub" title="Download ePub" class="quarto-navigation-tool px-1" aria-label="Download ePub"><i class="bi bi-journal"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">从样地到结论：保护生物学数据实战</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">第一篇：从保护问题进入统计</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/01-role-of-statistics.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">第 1 章 统计学在保护中的角色</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/02-variables-hypotheses.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">第 2 章 研究问题、变量与假设</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/03-experimental-design.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">第 3 章 实验设计：让比较产生可信证据</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">第二篇：看懂并整理保护数据</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/04-data-management.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">第 4 章 数据管理与可重复分析</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/05-descriptive-statistics.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">第 5 章 描述统计与分布</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/06-sampling-error.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">第 6 章 样本、误差与不确定性</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/07-data-visualization.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">第 7 章 数据可视化</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">第三篇：回答常见保护问题</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/08-two-group-comparison.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">第 8 章 两组比较</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/09-anova.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">第 9 章 多组比较与方差分析</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/10-categorical-data.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">第 10 章 分类与比例数据</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/11-correlation-regression.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">第 11 章 相关与线性回归</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/12-glm-intro.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">第 12 章 从线性模型走向广义线性模型</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">第四篇：植保专业应用</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/13-plant-protection.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">第 13 章 植物保护田间药效试验</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/16-treatment-evaluation.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">第 16 章 措施效果与保护评估</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/17-stats-to-action.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">第 17 章 从统计结果到保护行动</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+ <span class="menu-text">第五篇：现代生态统计与继续学习</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/18-mixed-models.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">第 18 章 层级结构与混合模型</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/19-ecological-processes.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">第 19 章 生态过程与观测过程</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/20-bayesian-intro.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">第 20 章 贝叶斯统计与模型诊断</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/21-spatiotemporal.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">第 21 章 时间、空间与随机过程</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/22-ai-assisted-learning.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">第 22 章 AI 辅助统计学习与分析</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
+ <span class="menu-text">附录</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../appendices/r-basics.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">R 基础速查</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../appendices/method-map.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">常用统计方法选择地图</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../appendices/glossary.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">统计术语中英文对照</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../appendices/reproducible-template.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">可重复分析项目模板</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../appendices/data-ethics.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">数据伦理与敏感信息处理</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../appendices/ai-checklist.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">AI 提问模板与核查清单</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../appendices/learning-pathway.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">从基础统计到现代生态统计的学习路线</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#样本究竟要代表谁" id="toc-样本究竟要代表谁" class="nav-link active" data-scroll-target="#样本究竟要代表谁">6.1 样本究竟要代表谁</a></li>
+  <li><a href="#抽样框决定哪些对象有机会进入数据" id="toc-抽样框决定哪些对象有机会进入数据" class="nav-link" data-scroll-target="#抽样框决定哪些对象有机会进入数据">6.2 抽样框决定哪些对象有机会进入数据</a></li>
+  <li><a href="#随机误差与系统偏差不能互相替代" id="toc-随机误差与系统偏差不能互相替代" class="nav-link" data-scroll-target="#随机误差与系统偏差不能互相替代">6.3 随机误差与系统偏差不能互相替代</a></li>
+  <li><a href="#标准误和区间描述哪一种不确定性" id="toc-标准误和区间描述哪一种不确定性" class="nav-link" data-scroll-target="#标准误和区间描述哪一种不确定性">6.4 标准误和区间描述哪一种不确定性</a></li>
+  <li><a href="#重抽样必须尊重独立单位" id="toc-重抽样必须尊重独立单位" class="nav-link" data-scroll-target="#重抽样必须尊重独立单位">6.5 重抽样必须尊重独立单位</a></li>
+  <li><a href="#建立调查的不确定性预算" id="toc-建立调查的不确定性预算" class="nav-link" data-scroll-target="#建立调查的不确定性预算">6.6 建立调查的不确定性预算</a></li>
+  <li><a href="#不确定性如何改变监测行动" id="toc-不确定性如何改变监测行动" class="nav-link" data-scroll-target="#不确定性如何改变监测行动">6.7 不确定性如何改变监测行动</a></li>
+  <li><a href="#本章小结" id="toc-本章小结" class="nav-link" data-scroll-target="#本章小结">本章小结</a></li>
+  <li><a href="#练习" id="toc-练习" class="nav-link" data-scroll-target="#练习">练习</a></li>
+  <li><a href="#继续学习" id="toc-继续学习" class="nav-link" data-scroll-target="#继续学习">继续学习</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/04-data-management.html">第二篇：看懂并整理保护数据</a></li><li class="breadcrumb-item"><a href="../chapters/06-sampling-error.html"><span class="chapter-title">第 6 章 样本、误差与不确定性</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-title">第 6 章 样本、误差与不确定性</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<style>
+.ch6-fig {
+  background: #fff;
+  border: 2px solid #1a1a1a;
+  border-radius: 16px 6px 16px 6px;
+  box-shadow: 5px 5px 0 #1a1a1a;
+  padding: 1.6rem 1.4rem 1.4rem;
+  margin: 0 0 2.5rem 0;
+}
+.ch6-fig-h {
+  font-family: "Gochi Hand", "Caveat", "楷体", cursive;
+  font-size: 1.2rem; font-weight: 700; color: #1a1a1a;
+  text-align: center; margin-bottom: 1.2rem;
+  letter-spacing: 0.1em;
+}
+.ch6-pipeline {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr auto 1fr;
+  align-items: center; gap: 0.5rem; margin: 0.4rem 0;
+}
+.ch6-stage {
+  padding: 0.9rem 0.9rem 1rem; border-radius: 6px 16px 4px 18px;
+  box-shadow: 4px 4px 0 #1a1a1a;
+}
+.ch6-stage.s1 { background: #ffebee; border: 2.5px solid #ef5350; transform: rotate(-1.5deg); }
+.ch6-stage.s2 { background: #e1f5fe; border: 2.5px solid #0277bd; transform: rotate(0.5deg); }
+.ch6-stage.s3 { background: #e8f5e9; border: 2.5px solid #2e7d32; transform: rotate(1deg); }
+.ch6-stage-h {
+  font-family: "Gochi Hand", "Caveat", "楷体", cursive;
+  font-weight: 700; font-size: 0.95rem; margin-bottom: 0.4rem; text-align: center;
+}
+.ch6-stage.s1 .ch6-stage-h { color: #c62828; }
+.ch6-stage.s2 .ch6-stage-h { color: #01579b; }
+.ch6-stage.s3 .ch6-stage-h { color: #1b5e20; }
+.ch6-stage-body {
+  font-family: "楷体", "STKaiti", "Microsoft YaHei", cursive;
+  font-size: 0.85rem; color: #333; line-height: 1.65; text-align: center;
+}
+.ch6-arrow {
+  font-family: "Gochi Hand", "Caveat", cursive;
+  font-size: 2.2rem; font-weight: 700; color: #1a1a1a;
+  transform: rotate(-3deg); text-align: center; line-height: 1;
+}
+.ch6-caveat {
+  margin-top: 1.1rem; padding: 0.6rem 0.85rem;
+  background: #fafafa; border-left: 3px solid #1a1a1a; border-radius: 2px;
+  font-size: 0.86rem; color: #1a1a1a; line-height: 1.7; text-align: center;
+}
+@media (max-width: 720px) {
+  .ch6-pipeline { grid-template-columns: 1fr; gap: 0.8rem; }
+  .ch6-arrow { transform: rotate(87deg); }
+  .ch6-stage { transform: rotate(0deg); }
+}
+</style>
+
+<div class="ch6-fig sketch">
+  <div class="ch6-fig-h">照片很多 → 代表性与探测仍有缺口 → 按误差来源安排调查</div>
+  <div class="ch6-pipeline">
+    <div class="ch6-stage s1">
+      <div class="ch6-stage-h">① 样本代表谁</div>
+      <div class="ch6-stage-body">60 个相机样点。它们覆盖了整个保护区，还是只覆盖了道路两侧？</div>
+    </div>
+    <div class="ch6-arrow" aria-hidden="true">→</div>
+    <div class="ch6-stage s2">
+      <div class="ch6-stage-h">② 拆分误差来源</div>
+      <div class="ch6-stage-body">覆盖偏差、测量误差、探测失败、模型假设：每类误差需要不同的缓解措施</div>
+    </div>
+    <div class="ch6-arrow" aria-hidden="true">→</div>
+    <div class="ch6-stage s3">
+      <div class="ch6-stage-h">③ 建立不确定性预算</div>
+      <div class="ch6-stage-body">区间不是"样本量够不够"的问题：是每种误差来源各贡献了多少不确定性</div>
+    </div>
+  </div>
+  <div class="ch6-caveat">
+    黑豹提醒：扩大样本不能修复系统偏差。更多的有偏样本只产生更窄的错误区间。
+  </div>
+</div>
+<section id="样本究竟要代表谁" class="level2">
+<h2 class="anchored" data-anchor-id="样本究竟要代表谁">6.1 样本究竟要代表谁</h2>
+<p>第 5 章让你看清了数据长什么样。但描述统计回答的是”我手上的数据是什么样的”。也不回答”我手上的数据能代表谁”。</p>
+<p>这是抽样推断的要紧的问题。回到红外相机监测项目：你在保护区布设了 60 个相机样点，连续三年每年调查 6 次，积累了 1080 条记录。第 5 章的数据画像告诉你检出率、照片数的分布、样点间的差异。但如果你要说”目标物种在保护区的占域率约为 45%“，你必须先回答：这 60 个样点能代表整个保护区吗？</p>
+<p>目标总体（target population）是你想把结论推广到的所有对象。对于红外相机监测，目标总体是”保护区范围内所有可能被目标物种利用的生境”。但你的 60 个样点只是从这个总体中选出的一个样本。它们是否覆盖了所有生境类型？是否有些区域（陡峭山脊、密灌丛、深谷）根本没有样点？</p>
+<p>抽样框（sampling frame）是实际从中抽取样本的名单或范围。如果保护区有 500 个 1 km² 的网格，你从中随机抽取了 60 个布设相机：那么抽样框是 500 个网格，样本是 60 个。但如果你的 60 个样点全部位于”步行 2 小时内可达”的区域，那么抽样框实际上被缩小了：不可达区域根本没有机会被抽中。</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 读取相机数据</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>camera <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"../data/teaching/camera_monitoring_long.csv"</span>,</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>                   <span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># 检查样点的空间覆盖</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co"># 分层覆盖</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(camera<span class="sc">$</span>stratum) <span class="sc">/</span> <span class="dv">18</span>  <span class="co"># 每个样点有 18 条记录</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co"># 检查道路距离的分布</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(camera<span class="sc">$</span>distance_road_km)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co"># 检查森林覆盖的分布</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(camera<span class="sc">$</span>forest_cover)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="observation-question">
+<p>观察问题：你的 60 个相机样点中，距离道路 2 km 以内的占了多少？如果目标物种偏好远离道路的生境，你的样本能代表它的真实分布吗？</p>
+</div>
+</section>
+<section id="抽样框决定哪些对象有机会进入数据" class="level2">
+<h2 class="anchored" data-anchor-id="抽样框决定哪些对象有机会进入数据">6.2 抽样框决定哪些对象有机会进入数据</h2>
+<p>抽样框是推断链条中最容易被忽视的一环。三种常见的抽样方式，对应三种不同的推断范围：</p>
+<p>概率抽样（probability sampling）：总体中每个单位有已知的、非零的概率被抽中。简单随机抽样、分层抽样、系统抽样都属于这一类。只有概率抽样允许你从样本推断总体，因为你知道每个单位被抽中的概率，可以据此加权。</p>
+<p>便利抽样（convenience sampling）：样本由最容易获取的单位组成：“沿道路布设相机”“选最近的 10 个样地”。便利样本不能代表总体，因为”容易获取”本身就是一个系统性的选择偏差。</p>
+<p>目的抽样（purposive sampling）：根据研究目的有意识地选择特定单位：“选已知有目标物种活动的区域布设相机”。目的抽样适合探索性研究，但不能用于推断总体参数。</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 演示：全样点 vs 道路旁便利样点的检出率差异</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 假设"道路旁"定义为距离道路 &lt; 1 km</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>roadside <span class="ot">&lt;-</span> camera<span class="sc">$</span>distance_road_km <span class="sc">&lt;</span> <span class="dv">1</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 全样点朴素检出率</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(camera<span class="sc">$</span>detected)</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="co"># 道路旁样点朴素检出率</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(camera<span class="sc">$</span>detected[roadside])</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="co"># 远离道路样点朴素检出率</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(camera<span class="sc">$</span>detected[<span class="sc">!</span>roadside])</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="co"># 差异可能来自生境偏好，也可能来自抽样偏差</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="key-judgment">
+<p>判断：抽样框决定了”谁有机会被听见”。如果某些生境类型根本没有样点，那么无论你收集多少照片，你的结论都不能推广到那些生境。</p>
+</div>
+</section>
+<section id="随机误差与系统偏差不能互相替代" class="level2">
+<h2 class="anchored" data-anchor-id="随机误差与系统偏差不能互相替代">6.3 随机误差与系统偏差不能互相替代</h2>
+<p>误差有两种根本不同的类型，它们需要完全不同的应对策略。</p>
+<p>随机误差（random error）：由抽样、测量或自然过程的随机波动引起。它的特点是：重复抽样时，误差有时高有时低，平均趋向于零。增加样本量可以减小随机误差。更多的独立样点会让均值更稳定，标准误更小。</p>
+<p>系统偏差（systematic bias）：由抽样方式、测量工具或数据处理的系统性缺陷引起。它的特点是：重复抽样时，误差始终偏向同一方向。增加样本量不能减小系统偏差。更多的有偏样本只会产生更窄但同样错误的结果。</p>
+<p>红外相机监测中的系统偏差来源：</p>
+<ul>
+<li>选择偏差：样点全部布在道路旁 → 低估远离道路生境中的物种出现率</li>
+<li>测量偏差：相机触发灵敏度不一致 → 某些样点系统性漏拍</li>
+<li>探测偏差：目标物种在密林中的可探测性低于开阔地 → 密林样点检出率系统性偏低</li>
+<li>失访偏差：相机故障集中在雨季 → 雨季的物种活动模式缺失</li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 演示：随机误差 vs 系统偏差</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 假设真实检出率为 0.5，但道路旁样点系统性高估 0.1</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">20260620</span>)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>true_rate <span class="ot">&lt;-</span> <span class="fl">0.5</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>bias <span class="ot">&lt;-</span> <span class="fl">0.1</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="co"># 小样本（n=10）：随机误差大</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>small_sample <span class="ot">&lt;-</span> <span class="fu">rbinom</span>(<span class="dv">10</span>, <span class="dv">1</span>, true_rate <span class="sc">+</span> bias)</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(small_sample)  <span class="co"># 可能远离真值</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="co"># 大样本（n=1000）：随机误差小，但偏差仍在</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>large_sample <span class="ot">&lt;-</span> <span class="fu">rbinom</span>(<span class="dv">1000</span>, <span class="dv">1</span>, true_rate <span class="sc">+</span> bias)</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(large_sample)  <span class="co"># 非常接近 0.6，而不是 0.5</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="mascot-note">
+<img src="../images/mascot/cat-point.svg" alt="" class="mascot" aria-hidden="true">
+<div class="mascot-note-copy">
+黑豹提醒：更多数据不能修复系统偏差
+<p>
+如果 60 个相机全部布在道路旁，拍 10 万张照片得到的检出率仍然只代表”道路旁的物种活动”。它不能告诉你远离道路的森林里物种是否存在。增加照片数缩小了随机误差，但系统偏差纹丝不动。
+</p>
+</div>
+</div>
+<div class="classic-story">
+<div class="classic-story-label">
+古事，今问
+</div>
+<div class="classic-story-title">
+三人成虎
+</div>
+<p>《战国策·魏策二》中，庞葱临行前问魏王：一人说街市有虎，信不信？魏王不信；两人说，开始怀疑；三人都说，便相信了。庞葱叹道：“夫市之无虎明矣，然而三人言而成虎。”<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
+<div class="classic-story-judgment">
+<span>统计判断</span> 三次说法只有在来源彼此独立时，才接近三份证据。如果三个人转述的是同一个传闻，重复次数增加了，信息量却没有同步增加。十万张来自同一批道路旁相机的照片，也不能替代新的独立样点。
+</div>
+<div class="classic-story-boundary">
+<span>类比边界</span> 如果三名调查者各自随机抽样、独立记录，他们的一致结论会不会增强证据？你还需要知道哪些信息，才能判断这是重复转述还是独立重复？
+</div>
+</div>
+</section>
+<section id="标准误和区间描述哪一种不确定性" class="level2">
+<h2 class="anchored" data-anchor-id="标准误和区间描述哪一种不确定性">6.4 标准误和区间描述哪一种不确定性</h2>
+<p>标准误（standard error, SE）可能是统计入门中最容易被误解的概念。它不是数据的变异程度，那是标准差（SD）。标准误描述估计量在重复抽样中的变异。以样本均值为例，如果从同一个总体反复抽取同样大小的样本，这些样本均值的标准差就是均值的标准误。</p>
+<p>对独立同分布观测的简单样本均值，标准误可估计为 SE = SD / √n。标准误随样本量的平方根减小。要把标准误减半，需要 4 倍的独立样本。聚类、重复测量或不等概率抽样必须按设计计算，不能只把数据表的行数代入 n。</p>
+<details class="why-derivation">
+<summary>
+为什么标准误等于 SD/√n？
+</summary>
+<p>标准误的定义是估计量在重复抽样中的标准差。对样本均值 <span class="math inline">\(\bar{x}\)</span> 来说，它就是 <span class="math inline">\(\bar{x}\)</span> 这个随机变量自身的标准差：</p>
+<p><span class="math display">\[\mathrm{SE}(\bar{x}) = \sqrt{\mathrm{Var}(\bar{x})}\]</span></p>
+<p>所以问题变成：样本均值的方差 <span class="math inline">\(\mathrm{Var}(\bar{x})\)</span> 等于多少？推导分三步。</p>
+<p><strong>第一步：常数提出平方。</strong> 样本均值是 <span class="math inline">\(\bar{x} = \frac{1}{n}\sum x_i\)</span>。把 <span class="math inline">\(\frac{1}{n}\)</span> 提到方差符号外面时，要平方。这是方差的定义直接推出的：<span class="math inline">\(\mathrm{Var}(cX) = E[(cX - c\mu)^2] = c^2E[(X-\mu)^2] = c^2\,\mathrm{Var}(X)\)</span>。</p>
+<p><span class="math display">\[\mathrm{Var}(\bar{x}) = \mathrm{Var}\Big(\frac{1}{n}\sum x_i\Big) = \frac{1}{n^2}\,\mathrm{Var}\Big(\sum x_i\Big)\]</span></p>
+<p><strong>第二步：和的方差等于方差的和。</strong> 这一步只在观测独立（或不相关）时成立，是整条推导唯一的假设：</p>
+<p><span class="math display">\[\mathrm{Var}\Big(\sum x_i\Big) = \sum \mathrm{Var}(x_i) = n\sigma^2\]</span></p>
+<p>如果观测相关——同一个样点的重复测量、空间上相邻的样方——这一步右边会多出协方差项，标准误就不再等于 SD/√n。这就是本章末尾”聚类、重复测量必须按设计计算”那句话的数学根源。</p>
+<p><strong>第三步：合并两式。</strong></p>
+<p><span class="math display">\[\mathrm{Var}(\bar{x}) = \frac{1}{n^2}\cdot n\sigma^2 = \frac{\sigma^2}{n}, \qquad \text{所以} \quad \mathrm{SE}(\bar{x}) = \frac{\sigma}{\sqrt{n}}\]</span></p>
+<p>用样本标准差 <span class="math inline">\(s\)</span> 估计未知的 <span class="math inline">\(\sigma\)</span>，得到 <span class="math inline">\(\widehat{\mathrm{SE}} = s/\sqrt{n}\)</span>。</p>
+<p><strong>为什么是 <span class="math inline">\(\sqrt{n}\)</span> 而不是 <span class="math inline">\(n\)</span>？</strong> 方差是”平方”的量，按 <span class="math inline">\(n\)</span> 平均；标准差是方差的平方根，只能按 <span class="math inline">\(\sqrt{n}\)</span> 缩小。样本量增加到 4 倍，方差缩小 4 倍，标准差只缩小 2 倍——“要把标准误减半需要 4 倍样本”就是从这一步直接读出来的，不需要记忆。</p>
+<div class="key-judgment">
+<p>判断：这条推导只用方差的性质，没有用到中心极限定理。CLT 管的是 <span class="math inline">\(\bar{x}\)</span> 的分布形状是否接近正态，SE 管的是 <span class="math inline">\(\bar{x}\)</span> 的散布宽度，两件事互相独立。唯一的假设是观测独立；样点相关的数据（空间自相关、重复测量）不能直接套用 SD/√n。</p>
+</div>
+</details>
+<p>观看动画时，比较 n = 4、16 和 64 三种抽样分布。原始个体的离散程度没有改变，收窄的是样本均值的分布。</p>
+<div class="teaching-animation">
+<div class="teaching-animation-frame">
+<iframe src="../animations/sampling-distribution.html" title="抽样分布与标准误动画" loading="lazy" allowfullscreen=""></iframe>
+</div>
+<p class="teaching-animation-link">
+<a href="../animations/sampling-distribution.html" target="_blank" rel="noopener">在新窗口打开动画</a>
+</p>
+</div>
+<p>动画使用独立同分布的理想情形。分层、聚类和重复测量数据不能直接照搬其中的 SD/√n。</p>
+<p>置信区间（confidence interval）可以用标准误构造。在模型和抽样条件成立时，如果从同一总体反复抽样，并且每次都用同一方法构造 95% 置信区间，长期来看约 95% 的区间会覆盖真实参数。对已经得到的这一个区间，不能解释为真实参数有 95% 的概率落在其中。第 20 章会比较这种覆盖率陈述与贝叶斯可信区间。</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 演示：标准误 vs 标准差</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 以相机样点的森林覆盖度为例</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>forest_cover <span class="ot">&lt;-</span> <span class="fu">aggregate</span>(forest_cover <span class="sc">~</span> station_id, <span class="at">data =</span> camera, <span class="at">FUN =</span> mean)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>fc <span class="ot">&lt;-</span> forest_cover<span class="sc">$</span>forest_cover</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co"># 标准差：单个样点森林覆盖度的典型偏离</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(fc)</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="co"># 标准误：样点均值的不确定性</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(fc) <span class="sc">/</span> <span class="fu">sqrt</span>(<span class="fu">length</span>(fc))</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="co"># 95% 置信区间（正态近似）</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(fc) <span class="sc">+</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="dv">1</span>) <span class="sc">*</span> <span class="fl">1.96</span> <span class="sc">*</span> <span class="fu">sd</span>(fc) <span class="sc">/</span> <span class="fu">sqrt</span>(<span class="fu">length</span>(fc))</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="co"># 注意。这个区间只反映抽样误差。它假设样点是随机抽取的，</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="co"># 且没有考虑测量误差、探测误差或模型假设违反</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="key-judgment">
+<p>判断：标准误只反映特定模型下的随机抽样变异。它不包含选择偏差、测量误差、探测失败或模型错误带来的不确定性。</p>
+</div>
+</section>
+<section id="重抽样必须尊重独立单位" class="level2">
+<h2 class="anchored" data-anchor-id="重抽样必须尊重独立单位">6.5 重抽样必须尊重独立单位</h2>
+<p>Bootstrap 是一种通过从原始数据中有放回地重抽样来估计统计量分布的方法。它不依赖正态假设，是理解不确定性的有力工具。</p>
+<p>但 bootstrap 有一个致命的陷阱：重抽样的单位必须是独立单位。如果你对 1080 行相机数据直接做 bootstrap（每行有相等的被抽中概率），你实际上假设了 1080 行是独立的。这意味着你把同一个样点的 18 次重复调查当成了 18 个独立观测。</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 错误做法：按行重抽样（把 occasion 当独立单位）</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">20260620</span>)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>n_boot <span class="ot">&lt;-</span> <span class="dv">1000</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>boot_means_wrong <span class="ot">&lt;-</span> <span class="fu">replicate</span>(n_boot, {</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  idx <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(camera), <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mean</span>(camera<span class="sc">$</span>detected[idx])</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="co"># 区间会很窄，因为伪重复制造了虚假的精度</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="fu">quantile</span>(boot_means_wrong, <span class="fu">c</span>(<span class="fl">0.025</span>, <span class="fl">0.975</span>))</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="co"># 正确做法：按样点重抽样</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>stations <span class="ot">&lt;-</span> <span class="fu">unique</span>(camera<span class="sc">$</span>station_id)</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>boot_means_right <span class="ot">&lt;-</span> <span class="fu">replicate</span>(n_boot, {</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>  idx_stations <span class="ot">&lt;-</span> <span class="fu">sample</span>(stations, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 保留重复抽中的样点，并给每次抽中建立新的 bootstrap ID</span></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>  samp <span class="ot">&lt;-</span> <span class="fu">do.call</span>(rbind, <span class="fu">lapply</span>(<span class="fu">seq_along</span>(idx_stations), <span class="cf">function</span>(i) {</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>    block <span class="ot">&lt;-</span> camera[camera<span class="sc">$</span>station_id <span class="sc">==</span> idx_stations[i], ]</span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>    block<span class="sc">$</span>boot_station <span class="ot">&lt;-</span> i</span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>    block</span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>  }))</span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mean</span>(samp<span class="sc">$</span>detected)</span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a><span class="co"># 区间会更宽，因为正确反映了样点间的变异</span></span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a><span class="fu">quantile</span>(boot_means_right, <span class="fu">c</span>(<span class="fl">0.025</span>, <span class="fl">0.975</span>))</span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a><span class="co"># 比较两种方法的区间宽度</span></span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"错误方法区间宽度:"</span>,</span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a>    <span class="fu">diff</span>(<span class="fu">quantile</span>(boot_means_wrong, <span class="fu">c</span>(<span class="fl">0.025</span>, <span class="fl">0.975</span>))), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"正确方法区间宽度:"</span>,</span>
+<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a>    <span class="fu">diff</span>(<span class="fu">quantile</span>(boot_means_right, <span class="fu">c</span>(<span class="fl">0.025</span>, <span class="fl">0.975</span>))), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="key-judgment">
+<p>判断：Bootstrap 的重抽样单位必须与研究设计中的独立单位一致。对 1080 行重抽样假设行间独立。这等于把同一样点的 18 次重复调查当作 18 个独立样点。</p>
+</div>
+</section>
+<section id="建立调查的不确定性预算" class="level2">
+<h2 class="anchored" data-anchor-id="建立调查的不确定性预算">6.6 建立调查的不确定性预算</h2>
+<p>不确定性预算（uncertainty budget）是一份系统性的清单，列出所有可能影响结论的误差来源、它们的方向、大致量级和缓解措施。它不是精确的定量工具。它是防止你遗漏重要误差来源的检查表。</p>
+<p>红外相机监测的不确定性预算：</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>误差来源</th>
+<th>类型</th>
+<th>方向</th>
+<th>缓解措施</th>
+<th>对应章节</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>样点未覆盖某些生境</td>
+<td>选择偏差</td>
+<td>未知</td>
+<td>分层抽样、事后加权</td>
+<td>本章</td>
+</tr>
+<tr class="even">
+<td>样点数量有限</td>
+<td>随机误差</td>
+<td>双向</td>
+<td>增加样点（不是增加照片）</td>
+<td>本章</td>
+</tr>
+<tr class="odd">
+<td>相机触发不一致</td>
+<td>测量偏差</td>
+<td>未知</td>
+<td>统一相机型号和设置</td>
+<td>第 14 章（野保版）</td>
+</tr>
+<tr class="even">
+<td>物种未被检出</td>
+<td>探测偏差</td>
+<td>低估</td>
+<td>重复调查、占域模型</td>
+<td>第 19 章</td>
+</tr>
+<tr class="odd">
+<td>相机故障</td>
+<td>失访偏差</td>
+<td>低估</td>
+<td>记录故障、分析中处理</td>
+<td>第 4 章</td>
+</tr>
+<tr class="even">
+<td>模型假设违反</td>
+<td>模型偏差</td>
+<td>未知</td>
+<td>诊断、替代模型</td>
+<td>第 8-12 章</td>
+</tr>
+</tbody>
+</table>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 演示：分层查看生境覆盖</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 按分层统计样点数和检出率</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>stratum_stats <span class="ot">&lt;-</span> <span class="fu">aggregate</span>(</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cbind</span>(<span class="at">n_stations =</span> detected) <span class="sc">~</span> stratum,</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> camera,</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">FUN =</span> <span class="cf">function</span>(x) <span class="fu">c</span>(</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">n_stations =</span> <span class="fu">length</span>(<span class="fu">unique</span>(camera<span class="sc">$</span>station_id[camera<span class="sc">$</span>stratum <span class="sc">==</span> x[<span class="dv">1</span>]])),</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">n_occasions =</span> <span class="fu">length</span>(x),</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">detected =</span> <span class="fu">sum</span>(x <span class="sc">==</span> <span class="dv">1</span>)</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(stratum_stats)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="不确定性如何改变监测行动" class="level2">
+<h2 class="anchored" data-anchor-id="不确定性如何改变监测行动">6.7 不确定性如何改变监测行动</h2>
+<p>不确定性的最终用途不是报告一个数字，而是指导下一步行动。不同来源的不确定性需要不同的行动：</p>
+<ul>
+<li>样点覆盖不足 → 扩大抽样框。在未覆盖的生境类型中增设样点。</li>
+<li>样点数量不足 → 增加样点。增加照片数或重复调查次数不能替代增加独立样点。</li>
+<li>探测概率低 → 增加重复调查或改进设备。占域模型（第 19 章）可以分离探测过程。</li>
+<li>模型假设不确定 → 做敏感性分析。用不同模型重复分析，看结论是否稳定。</li>
+</ul>
+<p>反例：某分析者用 60 个道路旁样点、共 10 万张照片，计算目标物种的”出现率”为 62%，95% 置信区间为 [59%, 65%]：区间非常窄。他据此报告”保护区目标物种出现率约为 62%，估计很精确”。</p>
+<p>问题在哪里？这个窄区间只反映了给定这 60 个道路旁样点的随机抽样误差。它完全没有反映”道路旁样点不能代表远离道路的生境”这一系统偏差。真正的出现率可能是 30%（如果目标物种回避道路），也可能是 80%（如果目标物种偏好道路）。这个区间没有提供任何关于系统偏差的信息。</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 演示：比较全样点与道路旁样点的检出率差异</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 按道路距离分组</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>camera<span class="sc">$</span>road_group <span class="ot">&lt;-</span> <span class="fu">cut</span>(camera<span class="sc">$</span>distance_road_km,</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>                          <span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">8</span>),</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>                          <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"近道路(&lt;1km)"</span>, <span class="st">"中等(1-3km)"</span>, <span class="st">"远(&gt;3km)"</span>))</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="fu">aggregate</span>(detected <span class="sc">~</span> road_group, <span class="at">data =</span> camera, <span class="at">FUN =</span> mean)</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="co"># 如果三组的检出率系统性地不同，</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="co"># 那么"全样点均值"的窄区间掩盖了重要的空间异质性</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="key-judgment">
+<p>判断：一个很窄的置信区间不等于一个可靠的结论。区间只反映特定误差模型下的随机变异。它不包含系统偏差、探测失败或模型错误。</p>
+</div>
+</section>
+<section id="本章小结" class="level2">
+<h2 class="anchored" data-anchor-id="本章小结">本章小结</h2>
+<ul>
+<li>样本要代表目标总体，首先取决于抽样框。如果某些生境类型没有样点，无论样本多大，结论都不能推广到那些生境。</li>
+<li>随机误差和系统偏差需要完全不同的应对策略。增加样本量减小随机误差，但不能修复系统偏差。更多的有偏样本只产生更窄的错误区间。</li>
+<li>标准误描述估计量在重复抽样中的变异，不描述原始数据的变异。SD/√n 只适用于独立同分布观测的简单样本均值；置信区间的覆盖率还依赖抽样和模型条件。</li>
+<li>Bootstrap 的重抽样单位必须与独立单位一致。对观测行重抽样等于制造伪重复：区间会被人为缩窄。</li>
+<li>不确定性预算是一份系统性的误差清单。覆盖偏差、测量误差、探测失败、模型假设：每类误差需要不同的缓解措施。</li>
+<li>不同来源的不确定性需要不同的行动。扩大样点覆盖、增加独立样点、增加重复调查、改进设备、做敏感性分析。它们不能互相替代。</li>
+</ul>
+</section>
+<section id="练习" class="level2">
+<h2 class="anchored" data-anchor-id="练习">练习</h2>
+<ol type="1">
+<li><p>识别层。以下场景中，目标总体和抽样框分别是什么？抽样框是否存在缺口？</p>
+<ol type="a">
+<li>60 个红外相机样点全部位于保护区道路网 500 m 范围内。</li>
+<li>黄黄草调查的 10 个固定样地全部位于保护区南坡。</li>
+</ol></li>
+<li><p>解释层。“我拍了 10 万张照片，样本量非常大，所以结论很可靠。” 请用本章的概念说明为什么照片数不等于独立样本量。</p></li>
+<li><p>应用层。为红外相机监测项目选择正确的 bootstrap 重抽样单位，并解释为什么不能按 1080 行重抽样。</p></li>
+<li><p>诊断层。一位研究者报告：“目标物种的检出率为 45%，95% CI [42%, 48%]。” 你发现他的 60 个样点全部位于海拔 1000 m 以下。这个置信区间遗漏了什么？</p></li>
+<li><p>综合层。为黄黄草野外观察（第 1-2 章的 10 个固定样地监测）建立一份不确定性预算。包含至少四种误差来源，并说明每种误差的方向和缓解措施。</p></li>
+</ol>
+</section>
+<section id="继续学习" class="level2">
+<h2 class="anchored" data-anchor-id="继续学习">继续学习</h2>
+<div class="chapter-next">
+<p>下一步：不确定性预算告诉你”我们不知道什么”：第 7 章将教你用图形把这些不确定性、设计结构和证据关系同时呈现出来。</p>
+<p>→ <a href="../chapters/07-data-visualization.html">第 7 章：数据可视化</a></p>
+</div>
+
+
+</section>
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn1"><p>刘向编，《战国策·魏策二》。原文参见清华大学出版社教材节选<a href="https://www.tup.tsinghua.edu.cn/upload/books/yz/061172-01.pdf">《三人成虎》</a>。<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../chapters/05-descriptive-statistics.html" class="pagination-link" aria-label="第 5 章 描述统计与分布">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">第 5 章 描述统计与分布</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../chapters/07-data-visualization.html" class="pagination-link" aria-label="第 7 章 数据可视化">
+        <span class="nav-page-text"><span class="chapter-title">第 7 章 数据可视化</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
