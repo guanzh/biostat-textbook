@@ -1,0 +1,241 @@
+---
+title: "第 13 章 植物保护田间药效试验"
+maturity: sprout
+updated: 2026-08-15
+code-tools: false
+---
+
+```{=html}
+<style>
+.ch13p-fig {
+  background: #fff;
+  border: 2px solid #1a1a1a;
+  border-radius: 16px 6px 16px 6px;
+  box-shadow: 5px 5px 0 #1a1a1a;
+  padding: 1.6rem 1.4rem 1.4rem;
+  margin: 0 0 2.5rem 0;
+}
+.ch13p-fig-h {
+  font-family: "Gochi Hand", "Caveat", "楷体", cursive;
+  font-size: 1.2rem; font-weight: 700; color: #1a1a1a;
+  text-align: center; margin-bottom: 1.2rem; letter-spacing: 0.1em;
+}
+.ch13p-pipeline {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr auto 1fr;
+  align-items: center; gap: 0.5rem; margin: 0.4rem 0;
+}
+.ch13p-stage {
+  padding: 0.9rem 0.9rem 1rem; border-radius: 6px 16px 4px 18px;
+  box-shadow: 4px 4px 0 #1a1a1a;
+}
+.ch13p-stage.s1 { background: #ffebee; border: 2.5px solid #ef5350; transform: rotate(-1.5deg); }
+.ch13p-stage.s2 { background: #e1f5fe; border: 2.5px solid #0277bd; transform: rotate(0.5deg); }
+.ch13p-stage.s3 { background: #e8f5e9; border: 2.5px solid #2e7d32; transform: rotate(1deg); }
+.ch13p-stage-h {
+  font-family: "Gochi Hand", "Caveat", "楷体", cursive;
+  font-weight: 700; font-size: 0.95rem; margin-bottom: 0.4rem; text-align: center;
+}
+.ch13p-stage.s1 .ch13p-stage-h { color: #c62828; }
+.ch13p-stage.s2 .ch13p-stage-h { color: #01579b; }
+.ch13p-stage.s3 .ch13p-stage-h { color: #1b5e20; }
+.ch13p-stage-body {
+  font-family: "楷体", "STKaiti", "Microsoft YaHei", cursive;
+  font-size: 0.85rem; color: #333; line-height: 1.65; text-align: center;
+}
+.ch13p-arrow {
+  font-family: "Gochi Hand", "Caveat", cursive;
+  font-size: 2.2rem; font-weight: 700; color: #1a1a1a;
+  transform: rotate(-3deg); text-align: center; line-height: 1;
+}
+.ch13p-caveat {
+  margin-top: 1.1rem; padding: 0.6rem 0.85rem;
+  background: #fafafa; border-left: 3px solid #1a1a1a; border-radius: 2px;
+  font-size: 0.86rem; color: #1a1a1a; line-height: 1.7; text-align: center;
+}
+@media (max-width: 720px) {
+  .ch13p-pipeline { grid-template-columns: 1fr; gap: 0.8rem; }
+  .ch13p-arrow { transform: rotate(87deg); }
+  .ch13p-stage { transform: rotate(0deg); }
+}
+</style>
+
+<div class="ch13p-fig sketch">
+  <div class="ch13p-fig-h">病情下降 → 药害与持效期仍不清楚 → 可登记方案</div>
+  <div class="ch13p-pipeline">
+    <div class="ch13p-stage s1">
+      <div class="ch13p-stage-h">① 定义靶标</div>
+      <div class="ch13p-stage-body">防治要改变什么？病情指数、药害，还是兼而有之？</div>
+    </div>
+    <div class="ch13p-arrow" aria-hidden="true">→</div>
+    <div class="ch13p-stage s2">
+      <div class="ch13p-stage-h">② 划分层级</div>
+      <div class="ch13p-stage-body">试验田→区组→小区→植株：处理在小区，植株是观测单位</div>
+    </div>
+    <div class="ch13p-arrow" aria-hidden="true">→</div>
+    <div class="ch13p-stage s3">
+      <div class="ch13p-stage-h">③ 连接决策</div>
+      <div class="ch13p-stage-body">防效、药害、成本、持效期，不能只看病情指数</div>
+    </div>
+  </div>
+  <div class="ch13p-caveat">
+    黑豹提醒：五块田各用一种药剂，再把上千株当重复。这是田间药效试验中最常见的致命设计错误。
+  </div>
+</div>
+```
+
+## 13.1 药效试验要评价什么
+
+第三篇教你掌握了从两组比较到 GLM 的统计方法。第四篇把这些方法放回真实的专业场景，不是再讲一遍方法，而是教你如何把本专业的问题写成完整的研究方案。
+
+本章聚焦于田间药效试验（项目 E）。假设你是一名植物保护技术员，负责评价四种处理对黄瓜霜霉病的防治效果：清水对照（不施药）、常规化学药剂、生物制剂、复配（化学+生物，各减量使用）。试验数据是教学合成数据 `plant_trial_long.csv`：8 个区组，每个区组 4 个小区，每小区 20 株，施药后 7、14、21 天各调查一次。
+
+在开始设计试验之前，先明确：药效试验要评价什么？
+
+- 主要靶标：病情指数（disease_index）：由每株病级汇总，是防效计算的基础
+- 次要响应：药害等级（phytotoxicity）、植株死亡（dead）
+- 非目标影响：天敌等非目标生物的数量（non_target_count）
+- 成本：每小区的用药成本（cost_cny_plot）
+- 实施质量：施药是否按方案执行（implementation_score）
+
+不能只看病情指数下降就宣布成功。化学药剂防效高，但把瓢虫和寄生蜂一起打掉了，下一茬蚜虫失去天敌控制，可能更糟。药效试验评价的是一整套后果，不是一个数字。
+
+```r
+trial <- read.csv("../data/teaching/plant_trial_long.csv",
+                  stringsAsFactors = FALSE)
+```
+
+<div class="chapter-route" aria-label="本章学习路线">
+  <div>定义靶标<span>病情与药害</span></div>
+  <div>划分层级<span>区组→小区→植株</span></div>
+  <div>控制污染<span>保护行与挡板</span></div>
+  <div>测量多结果<span>病级/药害/天敌/成本</span></div>
+  <div>连接决策<span>防效与登记标准</span></div>
+</div>
+
+## 13.2 地块、小区与植株层级
+
+田间药效试验的设计层级：
+
+- 试验田（field）：试验所在的整块田地：目标总体
+- 区组（block）：8 个区组，按地力梯度和朝向划分：控制已知差异
+- 小区（plot）：32 个处理小区（每区组 4 个）：实验单位，处理施加在此层
+- 植株（plant）：每小区 20 株：观测单位，不是实验单位
+- 调查次数（visit）：3 次重复调查（施药后 7、14、21 天）：重复测量，不是独立观测
+
+```r
+# 检查设计
+cat("区组数:", length(unique(trial$block_id)), "\n")
+cat("小区数:", length(unique(trial$plot_id)), "\n")
+cat("处理:", unique(trial$treatment), "\n")
+
+# 每个区组 × 处理的植株数
+table(trial$block_id, trial$treatment)
+```
+
+## 13.3 区组、保护行与药剂漂移
+
+区组：8 个区组按地力（田块本身的肥力梯度）和朝向划分。区组内的 4 个小区条件尽可能接近，区组间的差异从分析中扣除。地力好的区组四个处理都沾光，地力差的都吃亏，但这不妨碍区组内的比较。
+
+保护行与药剂漂移：相邻小区之间留保护行，防止：
+
+- 药剂漂移（喷药时化学药剂飘进生物制剂小区）
+- 边缘效应（小区边缘的植株受相邻处理影响）
+- 人为干扰（调查、行走对边缘植株的影响）
+
+反例："五块田各用一种药剂，再把上千株当重复。"这不是随机区组设计。五块田的地力、茬口、灌溉条件可能完全不同：处理效应和地块效应完全混杂。最后算出来的差异，你分不清是药的原因还是田的原因。
+
+## 13.4 病情、药害与非目标影响
+
+病级靠目测，标准要先定死：0 级无病斑，1 级病斑面积 5% 以下，2 级 5%~25%，3 级 25%~50%，4 级 50% 以上。病情指数按小区汇总：
+
+$$\text{病情指数} = \frac{\sum(\text{病级} \times \text{该级株数})}{\text{最高病级} \times \text{总株数}} \times 100$$
+
+田间药效试验有多个响应变量，每个需要不同的分析方法：
+
+| 响应 | 类型 | 分析接口 |
+|---|---|---|
+| 病级（disease_severity） | 有序分类 0-4 | 第 9 章 ANOVA（小区聚合）或第 12 章 GLM |
+| 药害等级（phytotoxicity） | 有序分类 0-3 | 第 10 章分类分析 |
+| 死亡（dead） | 0/1 | 第 10 章分类分析 / 第 12 章逻辑回归 |
+| 非目标生物（non_target_count） | 计数 | 第 12 章 GLM |
+| 成本（cost_cny_plot） | 连续 | 与效果联合分析（第 16 章） |
+
+不能把多指标随意合成总分。防效高但药害重，是两个回答不同问题的结果，不能加权平均成一个"综合药效分"。
+
+```r
+# 第三次调查：按小区汇总病级
+v3 <- trial[trial$visit == 3, ]
+plot_mean <- aggregate(disease_severity ~ block_id + plot_id + treatment,
+                       data = v3, FUN = mean)
+plot_mean$disease_index <- plot_mean$disease_severity / 4 * 100
+aggregate(disease_index ~ treatment, data = plot_mean, FUN = mean)
+```
+
+## 13.5 重复调查与质控
+
+三次调查（施药后 7、14、21 天）不是三次独立试验。同一小区的植株被重复测量：
+
+- 药剂持效期：第 7 天防效好不代表第 21 天还好。持效期本身是要报告的结果
+- 调查员一致性：三次调查应由同一调查员完成，或先做分级一致性培训
+- 标准病叶图比对：病级靠目测，调查前用标准病叶图统一口径
+
+## 13.6 防效、药害与成本
+
+$$\text{防效} = \left(1 - \frac{\text{处理区病情指数}}{\text{对照区病情指数}}\right) \times 100\%$$
+
+这个公式有一个隐藏前提：对照区要真的发病。对照区病情指数 5 的时候，处理区 2 就算出 60% 防效，实际只差 3 个百分点。对照发病太轻，防效数字就虚高。所以药效试验要选发病条件合适的地块，必要时人工接种。
+
+一个完整的登记评价表应包含：
+
+| 维度 | 问题 | 本章能回答？ |
+|---|---|---|
+| 防效大小 | 病情指数降了多少？ | 是（第 8、9 章） |
+| 防效不确定性 | 置信区间有多宽？ | 是 |
+| 药害 | 叶片和果实是否受损？ | 是（描述性） |
+| 成本 | 每公顷多少钱？ | 是（固定值） |
+| 实施完整性 | 施药是否按方案执行？ | 是（implementation_score） |
+| 持效期 | 防效能维持多久？ | 是（三次调查） |
+| 抗药性风险 | 病原是否会产生抗性？ | 否（需要专门设计） |
+
+```r
+# 以区组内清水对照为基准计算防效
+ctrl <- plot_mean[plot_mean$treatment == "control",
+                  c("block_id", "disease_index")]
+names(ctrl)[2] <- "ctrl_index"
+plot_mean <- merge(plot_mean, ctrl, by = "block_id")
+plot_mean$efficacy <- (1 - plot_mean$disease_index / plot_mean$ctrl_index) * 100
+aggregate(efficacy ~ treatment, data = plot_mean, FUN = mean)
+```
+
+## 13.7 分析接口
+
+本章不重复讲授完整的 ANOVA 或 GLM。这些方法已在第 8-12 章中详细展开。本章的角色是把药效评价问题映射到正确的分析方法：
+
+| 分析问题 | 推荐方法 | 章节 |
+|---|---|---|
+| 四种处理的病情指数比较 | RCBD ANOVA（小区聚合） | 第 9 章 |
+| 对照 vs 复配 | 区组内配对 t 检验 | 第 8 章 |
+| 药害比例比较 | 卡方/Fisher + 风险差 | 第 10 章 |
+| 病情指数的时间轨迹 | 重复测量 ANOVA / 混合模型 | 第 18 章 |
+| 防效是否达到登记标准 | 区间估计 + 预设标准 | 第 16 章 |
+
+## 本章小结
+
+- 药效试验的设计层级：试验田→区组→小区→植株。处理施加在小区，植株是观测单位。
+- 多指标不能随意合成总分。病级、药害、死亡、非目标、成本：各回答不同问题。
+- 区组控制地力差异，保护行防止药剂漂移。五块田各用一种药剂是设计灾难。
+- 防效、药害和成本必须同时考虑。统计显著不等于应该推广。
+- 本章不重复讲授方法。它把药效评价问题映射到第 8-12 章的分析接口。
+
+## 练习
+
+1. 识别层。"五块田各用一种药剂"的设计至少有三个致命缺陷。列出它们。
+2. 解释层。为什么不能把病情指数、药害等级和死亡率加权平均成"综合药效"？
+3. 计算层。对照区病情指数 30、处理区 9，防效是多少？如果对照区病情指数只有 3，这个防效数字还可靠吗？
+4. 诊断层。implementation_score 为 0.6 的小区：病情指数异常高。应该删除这个小区吗？
+5. 综合层。为药效试验写一份分析计划：每个响应变量对应什么方法、什么设计层级、什么独立单位。
+
+## 继续学习
+
+→ [第 16 章：措施效果与保护评估](16-treatment-evaluation.qmd)

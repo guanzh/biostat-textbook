@@ -106,7 +106,7 @@ date: "2026"
     <img src="images/mascot/cat-wave.svg" alt="黑豹" class="cv2-mascot"/>
     <div class="cv2-bubble">
       喵～我是黑豹，<br>
-      后面 22 章的统计冒险，<br>
+      后面 20 多章的统计冒险，<br>
       我陪你一起走。
     </div>
   </div>

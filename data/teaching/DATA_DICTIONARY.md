@@ -146,9 +146,41 @@
 
 ---
 
+## 6. 田间药效试验数据
+
+**文件：** `plant_trial_long.csv`
+**行数：** 1920
+**设计：** 随机区组（RCBD），8 个区组 × 4 个处理小区 × 每小区 20 株 × 3 次调查（施药后 7、14、21 天）
+**独立实验单位：** 小区（plot_id），共 32 个
+**观测单位：** 植株 × 调查次数（plant_id × visit）
+**生成种子：** `20260815`
+
+| 字段 | 中文含义 | 数据类型 | 单位/水平 | 设计层级 | 缺失 | 生成方式 |
+|---|---|---|---|---|---|---|
+| `block_id` | 区组编号 | 整数 1–8 | — | 区组 | 不允许 | 固定序列 |
+| `plot_id` | 小区标识 | 字符 `B{block}_P{position}` | — | 小区（实验单位） | 不允许 | 由区组和位置生成 |
+| `treatment` | 处理 | 字符 | `control`, `standard`, `biocontrol`, `integrated` | 小区处理 | 不允许 | 区组内随机分配 |
+| `plant_id` | 植株标识 | 字符 `{plot_id}_plant{1-20}` | — | 植株（子样本） | 不允许 | 由小区和序号生成 |
+| `visit` | 调查次数 | 整数 | 1, 2, 3（施药后 7、14、21 天） | 重复测量 | 不允许 | 固定三次 |
+| `disease_severity` | 病级 | 整数 | 0–4 | 植株×visit | 不允许 | 潜变量生成后分级，与处理、区组、植株和调查次数有关 |
+| `dead` | 死亡状态 | 0/1 | 1=死亡 | 植株×visit | 不允许 | 二项生成，与病级正相关 |
+| `phytotoxicity` | 药害等级 | 整数 | 0–3 | 植株×visit | 不允许 | 分类生成，化学处理出现概率更高 |
+| `non_target_count` | 非目标生物数量 | 整数 | 头/小区 | 小区×visit | 不允许 | Poisson 生成，受处理影响 |
+| `cost_cny_plot` | 用药成本 | 数值 | 元/小区 | 小区 | 不允许 | 固定值：control=0, standard=150, biocontrol=400, integrated=650 |
+| `implementation_score` | 实施完整性 | 数值 | 0.6–1.0 | 小区 | 不允许 | 均匀分布 |
+| `source_type` | 数据来源 | 字符 | `synthetic_teaching_data` | — | 不允许 | 固定值 |
+
+**关键说明：**
+- 处理施加在小区层级，植株是观测单位而非独立处理重复。
+- 病情指数由病级按小区汇总：Σ(病级×株数)/(最高病级×总株数)×100。
+- `integrated` 防效较高但成本更高、有一定药害风险，不自动等于"应当采用"。
+- `non_target_count` 和 `cost_cny_plot` 为小区级变量，同一小区的所有植株共享相同值。
+
+---
+
 ## 数据使用约定
 
 1. 所有数据文件首次在章节中出现时，必须标注"为教学目的生成的合成数据"。
 2. R 代码读取路径为 `../data/teaching/{filename}.csv`（相对于 `chapters/` 目录）。
-3. 生成脚本 `scripts/generate-teaching-data.R` 可从空目录一次生成全部五份 CSV，不依赖网络或外部文件。
+3. 生成脚本 `scripts/generate-teaching-data.R` 可从空目录一次生成全部六份 CSV，不依赖网络或外部文件。
 4. 数据契约测试 `tests/test_teaching_data_contract.py` 验证所有 CSV 的结构完整性。

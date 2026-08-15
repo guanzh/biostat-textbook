@@ -1,0 +1,30 @@
+# 植保方向版：quarto render --profile plant
+project:
+  output-dir: _site-plant
+
+book:
+  subtitle: "基于 R 语言的生物实验设计与统计分析（植物保护方向）"
+  chapters:
+    - part: "第四篇：植保专业应用"
+      chapters:
+        - chapters/13-plant-protection.qmd
+        - chapters/16-treatment-evaluation.qmd
+        - chapters/17-stats-to-action.qmd
+
+    - part: "第五篇：现代生态统计与继续学习"
+      chapters:
+        - chapters/18-mixed-models.qmd
+        - chapters/19-ecological-processes.qmd
+        - chapters/20-bayesian-intro.qmd
+        - chapters/21-spatiotemporal.qmd
+        - chapters/22-ai-assisted-learning.qmd
+
+    - part: "附录"
+      chapters:
+        - appendices/r-basics.qmd
+        - appendices/method-map.qmd
+        - appendices/glossary.qmd
+        - appendices/reproducible-template.qmd
+        - appendices/data-ethics.qmd
+        - appendices/ai-checklist.qmd
+        - appendices/learning-pathway.qmd

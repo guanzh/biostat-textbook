@@ -1,5 +1,9 @@
 # Quarto
 /_site/
+/_site-wildlife/
+/_site-forest/
+/_site-plant/
+/site_libs/
 /.quarto/
 /_freeze/
 *.html

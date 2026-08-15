@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>从样地到结论 · 分专业入口</title>
+<style>
+  :root { --ink: #1a1a1a; }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; min-height: 100vh; background: #fffdf5;
+    font-family: "楷体", "STKaiti", "KaiTi", "Microsoft YaHei", sans-serif;
+    color: var(--ink);
+    display: flex; flex-direction: column; align-items: center;
+    padding: 3rem 1rem 2rem;
+  }
+  .mascot-row { display: flex; align-items: center; gap: 1rem; margin-bottom: 0.6rem; }
+  .mascot-row img { width: 96px; height: 96px; }
+  .bubble {
+    background: #fffde7; border: 2.5px solid var(--ink);
+    border-radius: 22px 22px 22px 4px; padding: 0.8rem 1.1rem;
+    font-size: 1.05rem; font-weight: 700; line-height: 1.6;
+    box-shadow: 3px 3px 0 var(--ink); transform: rotate(1.5deg);
+  }
+  h1 {
+    font-family: "Gochi Hand", "Caveat", "楷体", cursive;
+    font-size: clamp(2rem, 6vw, 3rem); margin: 0.4rem 0 0.2rem;
+    letter-spacing: 0.05em; transform: rotate(-1.2deg);
+  }
+  .sub { color: #666; font-size: 1rem; margin-bottom: 2rem; }
+  .cards {
+    display: flex; flex-wrap: wrap; gap: 1.2rem;
+    justify-content: center; max-width: 900px;
+  }
+  .card {
+    display: block; width: 240px; text-decoration: none; color: var(--ink);
+    background: #fff; border: 2.5px solid var(--ink);
+    border-radius: 18px 6px 18px 6px; padding: 1.3rem 1.2rem;
+    box-shadow: 5px 5px 0 var(--ink);
+    transition: transform .12s ease, box-shadow .12s ease;
+  }
+  .card:hover { transform: translate(-2px, -2px) rotate(-0.5deg); box-shadow: 7px 7px 0 var(--ink); }
+  .card.wildlife { background: #e8f5e9; }
+  .card.forest { background: #e1f5fe; }
+  .card.plant { background: #fff8e1; }
+  .card .major {
+    font-family: "Gochi Hand", "Caveat", "楷体", cursive;
+    font-size: 1.6rem; font-weight: 800; margin-bottom: 0.5rem;
+  }
+  .card .desc { font-size: 0.88rem; line-height: 1.65; color: #333; }
+  .card .go { margin-top: 0.9rem; font-size: 0.9rem; font-weight: 700; text-decoration: underline; }
+  .foot { margin-top: 2.2rem; color: #999; font-size: 0.8rem; text-align: center; line-height: 1.8; }
+</style>
+</head>
+<body>
+
+  <div class="mascot-row">
+    <img src="wildlife/images/mascot/cat-wave.svg" alt="黑豹">
+    <div class="bubble">
+      喵～你是哪个专业的？<br>
+      点开你的版本，各章顺序已经排好。
+    </div>
+  </div>
+
+  <h1>从样地到结论</h1>
+  <div class="sub">保护生物学数据实战 · 基于 R 语言 · 管振华 · 2026</div>
+
+  <div class="cards">
+    <a class="card wildlife" href="wildlife/index.html">
+      <div class="major">野保版</div>
+      <div class="desc">野生动物保护方向：监测设计、生物多样性数据、措施评估。含野生动物调查与监测专章。</div>
+      <div class="go">进入野保版 →</div>
+    </a>
+    <a class="card forest" href="forest/index.html">
+      <div class="major">森保版</div>
+      <div class="desc">森林保护方向：病虫害防治试验、生物多样性数据、措施评估。含森林病虫害防治试验专章。</div>
+      <div class="go">进入森保版 →</div>
+    </a>
+    <a class="card plant" href="plant/index.html">
+      <div class="major">植保版</div>
+      <div class="desc">植物保护方向：田间药效试验、措施评估、统计决策。含植物保护田间药效试验专章。</div>
+      <div class="go">进入植保版 →</div>
+    </a>
+  </div>
+
+  <div class="foot">
+    三个版本共享第一至三篇统计方法内容，第四篇按专业方向分流。<br>
+    教学合成数据，不反映真实物种或防治效果。
+  </div>
+
+</body>
+</html>

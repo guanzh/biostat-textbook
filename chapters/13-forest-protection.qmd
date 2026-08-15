@@ -1,7 +1,7 @@
 ---
-title: "第 13 章 森林与植物保护研究"
+title: "第 13 章 森林病虫害防治试验"
 maturity: sprout
-updated: 2026-06-20
+updated: 2026-08-15
 code-tools: false
 ---
 
@@ -239,4 +239,4 @@ print(trt_eval)
 
 ## 继续学习
 
-→ [第 14 章：野生动物调查与监测](14-wildlife-survey.qmd)
+→ [第 15 章：生物多样性与群落数据](15-biodiversity-data.qmd)

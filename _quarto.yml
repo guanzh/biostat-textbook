@@ -8,23 +8,27 @@ book:
   author: "管振华"
   date: "2026"
   language: zh
-  
+
+  # 第一至三篇为三个专业方向共用。第四篇及之后由各专业 profile 追加：
+  #   quarto render --profile wildlife  → 野保版（_site-wildlife）
+  #   quarto render --profile forest    → 森保版（_site-forest）
+  #   quarto render --profile plant     → 植保版（_site-plant）
   chapters:
     - index.qmd
-    
+
     - part: "第一篇：从保护问题进入统计"
       chapters:
         - chapters/01-role-of-statistics.qmd
         - chapters/02-variables-hypotheses.qmd
         - chapters/03-experimental-design.qmd
-    
+
     - part: "第二篇：看懂并整理保护数据"
       chapters:
         - chapters/04-data-management.qmd
         - chapters/05-descriptive-statistics.qmd
         - chapters/06-sampling-error.qmd
         - chapters/07-data-visualization.qmd
-    
+
     - part: "第三篇：回答常见保护问题"
       chapters:
         - chapters/08-two-group-comparison.qmd
@@ -32,32 +36,6 @@ book:
         - chapters/10-categorical-data.qmd
         - chapters/11-correlation-regression.qmd
         - chapters/12-glm-intro.qmd
-    
-    - part: "第四篇：保护专业应用"
-      chapters:
-        - chapters/13-forest-plant-protection.qmd
-        - chapters/14-wildlife-survey.qmd
-        - chapters/15-biodiversity-data.qmd
-        - chapters/16-treatment-evaluation.qmd
-        - chapters/17-stats-to-action.qmd
-    
-    - part: "第五篇：现代生态统计与继续学习"
-      chapters:
-        - chapters/18-mixed-models.qmd
-        - chapters/19-ecological-processes.qmd
-        - chapters/20-bayesian-intro.qmd
-        - chapters/21-spatiotemporal.qmd
-        - chapters/22-ai-assisted-learning.qmd
-    
-    - part: "附录"
-      chapters:
-        - appendices/r-basics.qmd
-        - appendices/method-map.qmd
-        - appendices/glossary.qmd
-        - appendices/reproducible-template.qmd
-        - appendices/data-ethics.qmd
-        - appendices/ai-checklist.qmd
-        - appendices/learning-pathway.qmd
 
   downloads: [epub]
 
