@@ -220,5 +220,52 @@ class TeachingDataContractTests(unittest.TestCase):
         self.assertEqual(vals, {"synthetic_teaching_data"})
 
 
+    # ── 田间药效试验数据 ──
+
+    def test_plant_exists_and_has_1920_rows(self):
+        _, rows = _read_csv("plant_trial_long.csv")
+        self.assertEqual(len(rows), 1920)
+
+    def test_plant_has_required_columns(self):
+        _, rows = _read_csv("plant_trial_long.csv")
+        expected = {
+            "block_id", "plot_id", "treatment", "plant_id", "visit",
+            "disease_severity", "dead", "phytotoxicity", "non_target_count",
+            "cost_cny_plot", "implementation_score", "source_type",
+        }
+        self.assertTrue(expected.issubset(set(rows[0].keys())))
+
+    def test_plant_primary_key_unique(self):
+        _, rows = _read_csv("plant_trial_long.csv")
+        seen = set()
+        for r in rows:
+            k = (r["block_id"], r["plot_id"], r["plant_id"], r["visit"])
+            self.assertNotIn(k, seen, f"重复主键 {k}")
+            seen.add(k)
+
+    def test_plant_has_32_treatment_plots(self):
+        _, rows = _read_csv("plant_trial_long.csv")
+        plots = set((r["block_id"], r["plot_id"]) for r in rows)
+        self.assertEqual(len(plots), 32)
+
+    def test_plant_treatment_levels(self):
+        _, rows = _read_csv("plant_trial_long.csv")
+        levels = set(r["treatment"] for r in rows)
+        self.assertEqual(levels, {"control", "standard", "biocontrol", "integrated"})
+
+    def test_plant_source_type(self):
+        _, rows = _read_csv("plant_trial_long.csv")
+        vals = set(r["source_type"] for r in rows)
+        self.assertEqual(vals, {"synthetic_teaching_data"})
+
+    def test_plant_severity_and_phytotoxicity_ranges(self):
+        _, rows = _read_csv("plant_trial_long.csv")
+        for r in rows:
+            sev = int(r["disease_severity"])
+            phyto = int(r["phytotoxicity"])
+            self.assertTrue(0 <= sev <= 4, f"病级越界 {sev}")
+            self.assertTrue(0 <= phyto <= 3, f"药害等级越界 {phyto}")
+
+
 if __name__ == "__main__":
     unittest.main()
