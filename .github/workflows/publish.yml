@@ -11,26 +11,36 @@ jobs:
       contents: write
     steps:
       - uses: actions/checkout@v4
-      
+
       - uses: r-lib/actions/setup-r@v2
         with:
           r-version: 'release'
-      
+
       - name: Install R packages
         run: install.packages(c("knitr", "rmarkdown"))
         shell: Rscript {0}
-      
+
       - uses: quarto-dev/quarto-actions/setup@v2
         with:
-          version: '1.9.37'
-      
-      - name: Render Quarto Book
-        run: quarto render --no-execute --to html
-        timeout-minutes: 10
-      
+          version: '1.9.38'
+
+      # 三个专业方向版本 + 根入口页，全部渲染后汇总到 _publish
+      - name: Render versioned books
+        run: |
+          quarto render --profile wildlife --no-execute --to html
+          quarto render --profile forest --no-execute --to html
+          quarto render --profile plant --no-execute --to html
+          mkdir -p _publish
+          cp -r _site-wildlife _publish/wildlife
+          cp -r _site-forest _publish/forest
+          cp -r _site-plant _publish/plant
+          cp deploy/index.html _publish/index.html
+          touch _publish/.nojekyll
+        timeout-minutes: 20
+
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./_site
+          publish_dir: ./_publish
           publish_branch: gh-pages
