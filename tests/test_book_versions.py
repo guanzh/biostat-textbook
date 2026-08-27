@@ -30,11 +30,9 @@ SHARED_TAIL = {
     "附录": [
         "appendices/r-basics.qmd",
         "appendices/method-map.qmd",
-        "appendices/glossary.qmd",
         "appendices/reproducible-template.qmd",
         "appendices/data-ethics.qmd",
         "appendices/ai-checklist.qmd",
-        "appendices/learning-pathway.qmd",
     ],
 }
 
@@ -160,6 +158,26 @@ class BookVersionContractTests(unittest.TestCase):
                         (ROOT / path).exists(),
                         f"{profile} 引用了不存在的文件 {path}",
                     )
+
+    def test_seed_appendices_are_not_in_public_navigation(self):
+        seed_appendices = []
+        for path in sorted((ROOT / "appendices").glob("*.qmd")):
+            text = path.read_text(encoding="utf-8")
+            if re.search(r"(?m)^maturity:\s*seed\s*$", text):
+                seed_appendices.append(path.relative_to(ROOT).as_posix())
+
+        for profile in PART_FOUR_EXPECTED:
+            public_paths = {
+                path
+                for chapters in _chapters_in_profile(profile).values()
+                for path in chapters
+            }
+            for path in seed_appendices:
+                self.assertNotIn(
+                    path,
+                    public_paths,
+                    f"{profile} 的公开导航不应包含 seed 附录 {path}",
+                )
 
     def test_every_chapter_file_belongs_to_at_least_one_version(self):
         """每个章节文件要么在基础配置（三版本共用），要么至少被一个 profile 引用。"""

@@ -24,8 +24,6 @@ book:
       chapters:
         - appendices/r-basics.qmd
         - appendices/method-map.qmd
-        - appendices/glossary.qmd
         - appendices/reproducible-template.qmd
         - appendices/data-ethics.qmd
         - appendices/ai-checklist.qmd
-        - appendices/learning-pathway.qmd

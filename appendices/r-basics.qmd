@@ -1,15 +1,224 @@
 ---
 title: "R 基础速查"
-maturity: seed
-updated: 2026-06-15
+maturity: budding
+updated: 2026-08-27
 ---
 
 # R 基础速查
 
-::: {{.callout-note}}
-## 本附录状态：seed
+本附录不讲一门完整的 R 课程。它只处理阅读本书时最常见的阻塞，例如代码在哪里运行、数据怎样读入、变量名怎样替换、报错后先查什么。已经能独立读取 CSV 文件、筛选数据和运行模型的读者可以跳过。
 
-内容尚在建设中。
+::: {.callout-note}
+## 使用范围
+
+完成本附录大约需要 60 至 90 分钟。这里使用书中的教学数据，目标是让你能照着正文运行代码。统计方法的含义仍由相应章节解释。
 :::
 
-<!-- 待补充 -->
+## 先让 R 跑起来
+
+打开 R 或 RStudio 后，把下面两行分别送到控制台运行。RStudio 中可将代码写在脚本窗口，再用 `Ctrl + Enter` 运行当前行。
+
+```r
+R.version.string
+1 + 1
+```
+
+第一行应返回 R 的版本信息，第二行应得到 `2`。如果这两行都不能运行，问题出在安装或运行环境，还没有进入本书的数据分析环节。先解决 R 的安装问题，再继续本附录。
+
+## 先认出五个符号
+
+| 符号 | 在本书代码中的作用 | 例子 |
+|---|---|---|
+| `<-` | 把右侧结果保存到左侧名称中 | `after <- ...` |
+| `()` | 给函数提供参数 | `mean(x)` |
+| `$` | 从数据框中取出一列 | `rest$period` |
+| `[]` | 按条件取出行或列 | `rest[条件, ]` |
+| `~` | 写出响应变量和解释变量的关系 | `richness ~ status` |
+
+以 `after <- rest[rest$period == "after", ]` 为例，这行代码从 `rest` 中选出 `period` 等于 `after` 的行，再把结果保存为 `after`。两个等号 `==` 用于比较是否相等，不能写成一个等号。
+
+井号 `#` 后的文字是注释，R 不会运行它。修改示例代码时，可以先保留注释，确认每行的用途后再改变量名。
+
+```r
+# 只保留处理后的观测
+after <- rest[rest$period == "after", ]
+```
+
+## 读入一份教学数据
+
+下面使用修复地块的重复观测数据。它位于本书的 `data/teaching` 目录，也可以从在线教材中[下载这份 CSV 文件](../data/teaching/restoration_site_period.csv)。
+
+在教材项目中打开本附录时，可使用下面的相对路径。先把路径保存为 `data_path`，再检查 R 能否找到文件。
+
+```r
+data_path <- "../data/teaching/restoration_site_period.csv"
+file.exists(data_path)
+```
+
+结果应为 `TRUE`。如果你只下载了 CSV 文件，或者文件保存在别处，可以让 R 弹出文件选择窗口。
+
+```r
+data_path <- file.choose()
+```
+
+无论采用哪种方式，确认 `file.exists(data_path)` 返回 `TRUE` 后再读入数据。
+
+文件可以找到后再读入数据。
+
+```r
+rest <- read.csv(
+  data_path,
+  stringsAsFactors = FALSE
+)
+```
+
+读入后先做检查，不要直接进入分析。
+
+```r
+nrow(rest)       # 行数，应为 120
+names(rest)      # 列名
+head(rest)       # 前 6 行
+str(rest)        # 每列的数据类型
+summary(rest)    # 数值范围和基本摘要
+```
+
+本书的示例代码依赖准确的列名。复制代码后出现列不存在的错误，先运行 `names(rest)`，再核对拼写和大小写。R 会把 `species_richness` 和 `Species_richness` 视为两个不同的名称。
+
+## 三类最常用的改法
+
+正文中的代码通常只需要替换数据名、列名或分组条件。先从下面三个模板开始。
+
+### 按条件保留观测
+
+```r
+after <- rest[rest$period == "after", ]
+nrow(after)      # 应为 60
+```
+
+逗号前写行的条件，逗号后留空表示保留全部列。若要选择处理前的数据，只改条件值。
+
+```r
+before <- rest[rest$period == "before", ]
+```
+
+### 按组计算均值
+
+```r
+aggregate(
+  species_richness ~ status,
+  data = after,
+  FUN = mean
+)
+```
+
+波浪号左边是要汇总的变量，右边是分组变量。`data = after` 指定数据来源，`FUN = mean` 指定计算均值。若要比较乡土植物盖度，只替换波浪号左边的列名。
+
+```r
+aggregate(native_cover ~ status, data = after, FUN = mean)
+```
+
+### 画一个分组箱线图
+
+```r
+boxplot(
+  species_richness ~ status,
+  data = after,
+  xlab = "地块状态",
+  ylab = "物种丰富度"
+)
+```
+
+箱线图是否适合当前问题、图中的差异能否解释为处理效应，要回到数据可视化和研究设计章节判断。这里先确认变量能正确传给绘图函数。
+
+## 模型代码先学会运行
+
+模型解释属于统计正文。本节只说明模型对象保存在哪里，以及常见输出怎样打开。
+
+```r
+fit <- lm(species_richness ~ soil_moisture, data = after)
+
+summary(fit)
+coef(fit)
+confint(fit)
+```
+
+第一行运行模型，并把结果保存为 `fit`。后三行读取同一个模型对象的不同部分。`summary(fit)` 显示较完整的结果，`coef(fit)` 只取系数，`confint(fit)` 给出系数的置信区间。系数和置信区间怎样解释，见[相关与回归](../chapters/11-correlation-regression.qmd)。
+
+换分析问题时，先改公式和 `data`，再检查读取结果的几行是否仍使用同一个对象名。若第一行保存为 `model_1`，后面也应写 `summary(model_1)`。
+
+## 报错时先查什么
+
+| 提示中的常见文字 | 先检查 |
+|---|---|
+| `object ... not found` | 对象是否已经创建，名称和大小写是否一致 |
+| `cannot open the connection` | 文件路径是否正确，`file.exists(data_path)` 是否返回 `TRUE` |
+| `undefined columns selected` | 列名是否存在，可先运行 `names()` |
+| `non-numeric argument` | 本应为数值的列是否被读成文字，可用 `str()` 检查 |
+| `could not find function` | 函数名是否拼错；若函数来自扩展包，该包是否已安装并载入 |
+
+报错往往出现在当前行之前。比如 `summary(fit)` 提示找不到 `fit`，先回看创建 `fit` 的那一行是否成功运行。不要只盯着最后一条错误信息。
+
+## 三个小练习
+
+练习 1：从 `rest` 中选出 `period` 为 `before` 的观测，并确认行数。
+
+<details>
+<summary>查看答案</summary>
+
+```r
+before <- rest[rest$period == "before", ]
+nrow(before)     # 60
+```
+
+</details>
+
+练习 2：在 `after` 数据中，按 `status` 计算 `native_cover` 的均值。
+
+<details>
+<summary>查看答案</summary>
+
+```r
+aggregate(native_cover ~ status, data = after, FUN = mean)
+```
+
+</details>
+
+练习 3：把箱线图的纵轴从物种丰富度改为土壤湿度。
+
+<details>
+<summary>查看答案</summary>
+
+```r
+boxplot(
+  soil_moisture ~ status,
+  data = after,
+  xlab = "地块状态",
+  ylab = "土壤湿度"
+)
+```
+
+</details>
+
+三题都能独立运行，就可以回到正文。若代码能运行但不知道结果说明什么，应查阅相应统计章节，而不是在函数帮助页里猜统计含义。
+
+## 一页速查
+
+| 要做的事 | 可先使用 |
+|---|---|
+| 手动选择文件 | `data_path <- file.choose()` |
+| 检查文件路径 | `file.exists(data_path)` |
+| 读取 CSV 文件 | `read.csv(data_path)` |
+| 查看行数和列名 | `nrow(data)`、`names(data)` |
+| 查看数据结构 | `str(data)` |
+| 查看数据前几行 | `head(data)` |
+| 查看基本摘要 | `summary(data)` |
+| 取一列 | `data$列名` |
+| 按条件取行 | `data[data$列名 == "值", ]` |
+| 按组汇总 | `aggregate(响应变量 ~ 分组变量, data = data, FUN = mean)` |
+| 画分组箱线图 | `boxplot(响应变量 ~ 分组变量, data = data)` |
+| 保存模型 | `fit <- lm(响应变量 ~ 解释变量, data = data)` |
+| 查看模型结果 | `summary(fit)`、`coef(fit)`、`confint(fit)` |
+
+## 本附录不负责什么
+
+这里不系统讲授向量、循环、自定义函数、扩展包生态、数据整理语法或项目开发，也不把 R 和统计概念合并成一门课。需要完整学习 R 时，应使用独立的 R 课程材料。本附录只保留读懂并修改本书示例所需的最低操作。
