@@ -2642,18 +2642,106 @@
     "href": "appendices/r-basics.html",
     "title": "R 基础速查",
     "section": "",
-    "text": "R 基础速查",
+    "text": "R 基础速查\n本附录不讲一门完整的 R 课程。它只处理阅读本书时最常见的阻塞，例如代码在哪里运行、数据怎样读入、变量名怎样替换、报错后先查什么。已经能独立读取 CSV 文件、筛选数据和运行模型的读者可以跳过。",
     "crumbs": [
       "附录",
       "<span class='chapter-number'>23</span>  <span class='chapter-title'>R 基础速查</span>"
     ]
   },
   {
-    "objectID": "appendices/r-basics.html#本附录状态seed",
-    "href": "appendices/r-basics.html#本附录状态seed",
+    "objectID": "appendices/r-basics.html#先让-r-跑起来",
+    "href": "appendices/r-basics.html#先让-r-跑起来",
     "title": "R 基础速查",
-    "section": "本附录状态：seed",
-    "text": "本附录状态：seed\n内容尚在建设中。",
+    "section": "先让 R 跑起来",
+    "text": "先让 R 跑起来\n打开 R 或 RStudio 后，把下面两行分别送到控制台运行。RStudio 中可将代码写在脚本窗口，再用 Ctrl + Enter 运行当前行。\nR.version.string\n1 + 1\n第一行应返回 R 的版本信息，第二行应得到 2。如果这两行都不能运行，问题出在安装或运行环境，还没有进入本书的数据分析环节。先解决 R 的安装问题，再继续本附录。",
+    "crumbs": [
+      "附录",
+      "<span class='chapter-number'>23</span>  <span class='chapter-title'>R 基础速查</span>"
+    ]
+  },
+  {
+    "objectID": "appendices/r-basics.html#先认出五个符号",
+    "href": "appendices/r-basics.html#先认出五个符号",
+    "title": "R 基础速查",
+    "section": "先认出五个符号",
+    "text": "先认出五个符号\n\n\n\n符号\n在本书代码中的作用\n例子\n\n\n\n\n&lt;-\n把右侧结果保存到左侧名称中\nafter &lt;- ...\n\n\n()\n给函数提供参数\nmean(x)\n\n\n$\n从数据框中取出一列\nrest$period\n\n\n[]\n按条件取出行或列\nrest[条件, ]\n\n\n~\n写出响应变量和解释变量的关系\nrichness ~ status\n\n\n\n以 after &lt;- rest[rest$period == \"after\", ] 为例，这行代码从 rest 中选出 period 等于 after 的行，再把结果保存为 after。两个等号 == 用于比较是否相等，不能写成一个等号。\n井号 # 后的文字是注释，R 不会运行它。修改示例代码时，可以先保留注释，确认每行的用途后再改变量名。\n# 只保留处理后的观测\nafter &lt;- rest[rest$period == \"after\", ]",
+    "crumbs": [
+      "附录",
+      "<span class='chapter-number'>23</span>  <span class='chapter-title'>R 基础速查</span>"
+    ]
+  },
+  {
+    "objectID": "appendices/r-basics.html#读入一份教学数据",
+    "href": "appendices/r-basics.html#读入一份教学数据",
+    "title": "R 基础速查",
+    "section": "读入一份教学数据",
+    "text": "读入一份教学数据\n下面使用修复地块的重复观测数据。它位于本书的 data/teaching 目录，也可以从在线教材中下载这份 CSV 文件。\n在教材项目中打开本附录时，可使用下面的相对路径。先把路径保存为 data_path，再检查 R 能否找到文件。\ndata_path &lt;- \"../data/teaching/restoration_site_period.csv\"\nfile.exists(data_path)\n结果应为 TRUE。如果你只下载了 CSV 文件，或者文件保存在别处，可以让 R 弹出文件选择窗口。\ndata_path &lt;- file.choose()\n无论采用哪种方式，确认 file.exists(data_path) 返回 TRUE 后再读入数据。\n文件可以找到后再读入数据。\nrest &lt;- read.csv(\n  data_path,\n  stringsAsFactors = FALSE\n)\n读入后先做检查，不要直接进入分析。\nnrow(rest)       # 行数，应为 120\nnames(rest)      # 列名\nhead(rest)       # 前 6 行\nstr(rest)        # 每列的数据类型\nsummary(rest)    # 数值范围和基本摘要\n本书的示例代码依赖准确的列名。复制代码后出现列不存在的错误，先运行 names(rest)，再核对拼写和大小写。R 会把 species_richness 和 Species_richness 视为两个不同的名称。",
+    "crumbs": [
+      "附录",
+      "<span class='chapter-number'>23</span>  <span class='chapter-title'>R 基础速查</span>"
+    ]
+  },
+  {
+    "objectID": "appendices/r-basics.html#三类最常用的改法",
+    "href": "appendices/r-basics.html#三类最常用的改法",
+    "title": "R 基础速查",
+    "section": "三类最常用的改法",
+    "text": "三类最常用的改法\n正文中的代码通常只需要替换数据名、列名或分组条件。先从下面三个模板开始。\n\n按条件保留观测\nafter &lt;- rest[rest$period == \"after\", ]\nnrow(after)      # 应为 60\n逗号前写行的条件，逗号后留空表示保留全部列。若要选择处理前的数据，只改条件值。\nbefore &lt;- rest[rest$period == \"before\", ]\n\n\n按组计算均值\naggregate(\n  species_richness ~ status,\n  data = after,\n  FUN = mean\n)\n波浪号左边是要汇总的变量，右边是分组变量。data = after 指定数据来源，FUN = mean 指定计算均值。若要比较乡土植物盖度，只替换波浪号左边的列名。\naggregate(native_cover ~ status, data = after, FUN = mean)\n\n\n画一个分组箱线图\nboxplot(\n  species_richness ~ status,\n  data = after,\n  xlab = \"地块状态\",\n  ylab = \"物种丰富度\"\n)\n箱线图是否适合当前问题、图中的差异能否解释为处理效应，要回到数据可视化和研究设计章节判断。这里先确认变量能正确传给绘图函数。",
+    "crumbs": [
+      "附录",
+      "<span class='chapter-number'>23</span>  <span class='chapter-title'>R 基础速查</span>"
+    ]
+  },
+  {
+    "objectID": "appendices/r-basics.html#模型代码先学会运行",
+    "href": "appendices/r-basics.html#模型代码先学会运行",
+    "title": "R 基础速查",
+    "section": "模型代码先学会运行",
+    "text": "模型代码先学会运行\n模型解释属于统计正文。本节只说明模型对象保存在哪里，以及常见输出怎样打开。\nfit &lt;- lm(species_richness ~ soil_moisture, data = after)\n\nsummary(fit)\ncoef(fit)\nconfint(fit)\n第一行运行模型，并把结果保存为 fit。后三行读取同一个模型对象的不同部分。summary(fit) 显示较完整的结果，coef(fit) 只取系数，confint(fit) 给出系数的置信区间。系数和置信区间怎样解释，见相关与回归。\n换分析问题时，先改公式和 data，再检查读取结果的几行是否仍使用同一个对象名。若第一行保存为 model_1，后面也应写 summary(model_1)。",
+    "crumbs": [
+      "附录",
+      "<span class='chapter-number'>23</span>  <span class='chapter-title'>R 基础速查</span>"
+    ]
+  },
+  {
+    "objectID": "appendices/r-basics.html#报错时先查什么",
+    "href": "appendices/r-basics.html#报错时先查什么",
+    "title": "R 基础速查",
+    "section": "报错时先查什么",
+    "text": "报错时先查什么\n\n\n\n\n\n\n\n提示中的常见文字\n先检查\n\n\n\n\nobject ... not found\n对象是否已经创建，名称和大小写是否一致\n\n\ncannot open the connection\n文件路径是否正确，file.exists(data_path) 是否返回 TRUE\n\n\nundefined columns selected\n列名是否存在，可先运行 names()\n\n\nnon-numeric argument\n本应为数值的列是否被读成文字，可用 str() 检查\n\n\ncould not find function\n函数名是否拼错；若函数来自扩展包，该包是否已安装并载入\n\n\n\n报错往往出现在当前行之前。比如 summary(fit) 提示找不到 fit，先回看创建 fit 的那一行是否成功运行。不要只盯着最后一条错误信息。",
+    "crumbs": [
+      "附录",
+      "<span class='chapter-number'>23</span>  <span class='chapter-title'>R 基础速查</span>"
+    ]
+  },
+  {
+    "objectID": "appendices/r-basics.html#三个小练习",
+    "href": "appendices/r-basics.html#三个小练习",
+    "title": "R 基础速查",
+    "section": "三个小练习",
+    "text": "三个小练习\n练习 1：从 rest 中选出 period 为 before 的观测，并确认行数。\n\n\n查看答案\n\nbefore &lt;- rest[rest$period == \"before\", ]\nnrow(before)     # 60\n\n练习 2：在 after 数据中，按 status 计算 native_cover 的均值。\n\n\n查看答案\n\naggregate(native_cover ~ status, data = after, FUN = mean)\n\n练习 3：把箱线图的纵轴从物种丰富度改为土壤湿度。\n\n\n查看答案\n\nboxplot(\n  soil_moisture ~ status,\n  data = after,\n  xlab = \"地块状态\",\n  ylab = \"土壤湿度\"\n)\n\n三题都能独立运行，就可以回到正文。若代码能运行但不知道结果说明什么，应查阅相应统计章节，而不是在函数帮助页里猜统计含义。",
+    "crumbs": [
+      "附录",
+      "<span class='chapter-number'>23</span>  <span class='chapter-title'>R 基础速查</span>"
+    ]
+  },
+  {
+    "objectID": "appendices/r-basics.html#一页速查",
+    "href": "appendices/r-basics.html#一页速查",
+    "title": "R 基础速查",
+    "section": "一页速查",
+    "text": "一页速查\n\n\n\n要做的事\n可先使用\n\n\n\n\n手动选择文件\ndata_path &lt;- file.choose()\n\n\n检查文件路径\nfile.exists(data_path)\n\n\n读取 CSV 文件\nread.csv(data_path)\n\n\n查看行数和列名\nnrow(data)、names(data)\n\n\n查看数据结构\nstr(data)\n\n\n查看数据前几行\nhead(data)\n\n\n查看基本摘要\nsummary(data)\n\n\n取一列\ndata$列名\n\n\n按条件取行\ndata[data$列名 == \"值\", ]\n\n\n按组汇总\naggregate(响应变量 ~ 分组变量, data = data, FUN = mean)\n\n\n画分组箱线图\nboxplot(响应变量 ~ 分组变量, data = data)\n\n\n保存模型\nfit &lt;- lm(响应变量 ~ 解释变量, data = data)\n\n\n查看模型结果\nsummary(fit)、coef(fit)、confint(fit)",
+    "crumbs": [
+      "附录",
+      "<span class='chapter-number'>23</span>  <span class='chapter-title'>R 基础速查</span>"
+    ]
+  },
+  {
+    "objectID": "appendices/r-basics.html#本附录不负责什么",
+    "href": "appendices/r-basics.html#本附录不负责什么",
+    "title": "R 基础速查",
+    "section": "本附录不负责什么",
+    "text": "本附录不负责什么\n这里不系统讲授向量、循环、自定义函数、扩展包生态、数据整理语法或项目开发，也不把 R 和统计概念合并成一门课。需要完整学习 R 时，应使用独立的 R 课程材料。本附录只保留读懂并修改本书示例所需的最低操作。",
     "crumbs": [
       "附录",
       "<span class='chapter-number'>23</span>  <span class='chapter-title'>R 基础速查</span>"
@@ -2715,28 +2803,6 @@
     ]
   },
   {
-    "objectID": "appendices/glossary.html",
-    "href": "appendices/glossary.html",
-    "title": "统计术语中英文对照",
-    "section": "",
-    "text": "统计术语中英文对照",
-    "crumbs": [
-      "附录",
-      "<span class='chapter-number'>25</span>  <span class='chapter-title'>统计术语中英文对照</span>"
-    ]
-  },
-  {
-    "objectID": "appendices/glossary.html#本附录状态seed",
-    "href": "appendices/glossary.html#本附录状态seed",
-    "title": "统计术语中英文对照",
-    "section": "本附录状态：seed",
-    "text": "本附录状态：seed\n内容尚在建设中。",
-    "crumbs": [
-      "附录",
-      "<span class='chapter-number'>25</span>  <span class='chapter-title'>统计术语中英文对照</span>"
-    ]
-  },
-  {
     "objectID": "appendices/reproducible-template.html",
     "href": "appendices/reproducible-template.html",
     "title": "可重复分析项目模板",
@@ -2744,7 +2810,7 @@
     "text": "可重复分析项目模板\n可重复分析要求另一名研究者拿到项目文件后，能够从只读原始数据生成同样的分析数据、图形和统计结果。口头补充的步骤、桌面上手改的表格和没有保存的 AI 对话，都不属于可重复流程。",
     "crumbs": [
       "附录",
-      "<span class='chapter-number'>26</span>  <span class='chapter-title'>可重复分析项目模板</span>"
+      "<span class='chapter-number'>25</span>  <span class='chapter-title'>可重复分析项目模板</span>"
     ]
   },
   {
@@ -2755,7 +2821,7 @@
     "text": "推荐目录\nproject/\n  README.md\n  data/\n    raw/          # 原始数据，只读\n    clean/        # 由脚本生成\n    dictionary/   # 数据字典与编码规则\n  R/\n    01_validate.R\n    02_clean.R\n    03_describe.R\n    04_model.R\n    05_report.R\n  output/\n    figures/\n    tables/\n  records/\n    decisions.md\n    changes.md\n    ai-audit.md\n  report.qmd\n文件名前的数字说明运行顺序。脚本只读取 data/raw/，不覆盖原始文件。清洗数据、图形和表格都由脚本重新生成。",
     "crumbs": [
       "附录",
-      "<span class='chapter-number'>26</span>  <span class='chapter-title'>可重复分析项目模板</span>"
+      "<span class='chapter-number'>25</span>  <span class='chapter-title'>可重复分析项目模板</span>"
     ]
   },
   {
@@ -2766,7 +2832,7 @@
     "text": "README 最少要写什么\n项目名称：\n研究问题：\n数据来源与使用限制：\n独立单位和样本量：\n主要响应与主要比较：\n软件环境：\n运行顺序：\n预计生成的文件：\n联系人：\n“先运行清洗脚本”还不够。要写出脚本名称、输入文件和输出文件。若运行需要手工选择文件、改工作目录或点击界面，也要改成明确指令。",
     "crumbs": [
       "附录",
-      "<span class='chapter-number'>26</span>  <span class='chapter-title'>可重复分析项目模板</span>"
+      "<span class='chapter-number'>25</span>  <span class='chapter-title'>可重复分析项目模板</span>"
     ]
   },
   {
@@ -2777,7 +2843,7 @@
     "text": "数据处理记录\n清洗脚本负责执行规则，records/changes.md 负责解释规则为什么存在。每条重要修改记录日期、字段、原值、修改后值、依据和复核人。\n日期：2026-07-22\n记录键：station_id = S018, year = 2, occasion = 4\n问题：effort_nights = -6\n处理：改为缺失，不直接改成 0\n依据：现场日志记录相机未部署，0 会被解释为完成了零夜调查\n复核：姓名或角色\n不要把缺失值统一替换为 0，也不要删除离群点而不留痕。数据修正必须能回到原记录。",
     "crumbs": [
       "附录",
-      "<span class='chapter-number'>26</span>  <span class='chapter-title'>可重复分析项目模板</span>"
+      "<span class='chapter-number'>25</span>  <span class='chapter-title'>可重复分析项目模板</span>"
     ]
   },
   {
@@ -2788,7 +2854,7 @@
     "text": "固定分析环境\n报告中记录 R 版本、包版本、操作系统和随机种子。R 项目可以在报告末尾运行：\nsessionInfo()\n涉及随机化、bootstrap、交叉验证或模拟时，在代码附近设置并说明随机种子：\nset.seed(20260722)\n随机种子保证同一算法得到相同抽样结果，但不能修复不稳定的依赖版本。重要项目还应锁定包版本或保存可恢复的环境说明。",
     "crumbs": [
       "附录",
-      "<span class='chapter-number'>26</span>  <span class='chapter-title'>可重复分析项目模板</span>"
+      "<span class='chapter-number'>25</span>  <span class='chapter-title'>可重复分析项目模板</span>"
     ]
   },
   {
@@ -2799,7 +2865,7 @@
     "text": "记录分析判断\n模型选择不能只留最终公式。records/decisions.md 至少记录候选模型、排除理由、诊断结果和改变结论的条件。\n问题：虫口密度使用 Poisson 还是负二项模型？\n候选：Poisson、quasi-Poisson、负二项\n检查：Poisson 离散统计量为 3.5\n决定：使用负二项，另报 quasi-Poisson 敏感性分析\n仍有风险：树木嵌套于小区，需要处理小区层级",
     "crumbs": [
       "附录",
-      "<span class='chapter-number'>26</span>  <span class='chapter-title'>可重复分析项目模板</span>"
+      "<span class='chapter-number'>25</span>  <span class='chapter-title'>可重复分析项目模板</span>"
     ]
   },
   {
@@ -2810,7 +2876,7 @@
     "text": "保存 AI 使用记录\nAI 生成的代码进入项目时，保存工具和版本、完整提示、原始输出、实际运行结果、人工修改及理由。只保存最终代码会丢失错误是怎样被发现的。记录格式见AI 提问模板与核查清单。",
     "crumbs": [
       "附录",
-      "<span class='chapter-number'>26</span>  <span class='chapter-title'>可重复分析项目模板</span>"
+      "<span class='chapter-number'>25</span>  <span class='chapter-title'>可重复分析项目模板</span>"
     ]
   },
   {
@@ -2821,7 +2887,7 @@
     "text": "交付检查\n交付前从一个新的工作目录重新运行。确认原始数据没有被改写，脚本没有依赖个人电脑的绝对路径，输出文件能重新生成，报告中的数字与当前输出一致，受限数据没有进入公开目录。\n如果接收者必须先询问“这个文件从哪里来”或“这一步当时怎么做”，项目还没有完成可重复交付。",
     "crumbs": [
       "附录",
-      "<span class='chapter-number'>26</span>  <span class='chapter-title'>可重复分析项目模板</span>"
+      "<span class='chapter-number'>25</span>  <span class='chapter-title'>可重复分析项目模板</span>"
     ]
   },
   {
@@ -2832,7 +2898,7 @@
     "text": "数据伦理与敏感信息处理\n保护数据公开得越细，复核越方便；濒危物种位置暴露得越细，盗采和干扰风险也越高。数据伦理不是一律公开或一律保密，而是让每一种用途只接触完成任务所需的信息。",
     "crumbs": [
       "附录",
-      "<span class='chapter-number'>27</span>  <span class='chapter-title'>数据伦理与敏感信息处理</span>"
+      "<span class='chapter-number'>26</span>  <span class='chapter-title'>数据伦理与敏感信息处理</span>"
     ]
   },
   {
@@ -2843,7 +2909,7 @@
     "text": "先识别四类风险\n物种与栖息地风险。精确坐标、巢址、繁殖地、迁徙停歇地和小种群位置，可能被用于盗采、投毒、干扰或商业开发。\n人员与社区风险。调查员姓名、联系方式、访谈记录、社区知识和土地使用信息可能指向具体个人或群体。删除姓名不一定完成匿名化，地点、时间和角色组合仍可能让人被认出。\n权利与许可风险。拿到数据不等于拥有再次发布、上传第三方平台或用于新研究的权利。合作协议、保护区规定和知情同意可能限制用途。\n模型与平台风险。把文件发给外部 AI 服务，相当于把数据交给另一个处理方。即使平台声称不会训练模型，也要先确认保存期限、访问权限和机构规定。",
     "crumbs": [
       "附录",
-      "<span class='chapter-number'>27</span>  <span class='chapter-title'>数据伦理与敏感信息处理</span>"
+      "<span class='chapter-number'>26</span>  <span class='chapter-title'>数据伦理与敏感信息处理</span>"
     ]
   },
   {
@@ -2854,7 +2920,7 @@
     "text": "数据分级\n\n\n\n\n\n\n\n\n级别\n典型内容\n处理方式\n\n\n\n\n公开\n合成教学数据、已发表汇总表、低风险物种的粗尺度分布\n可以公开共享，附数据字典和许可说明\n\n\n内部\n未发表结果、精度较低的样点信息、项目运行记录\n限项目成员访问，外发前审批\n\n\n受限\n濒危物种精确坐标、巢址、人员信息、社区敏感知识\n加密保存，按角色授权，不上传公共 AI 服务\n\n\n\n同一数据集可以拆成不同级别。公开版保留用于复核的变量，受限版单独保存坐标或身份对应表。不要为了方便，把所有字段放进同一个文件。",
     "crumbs": [
       "附录",
-      "<span class='chapter-number'>27</span>  <span class='chapter-title'>数据伦理与敏感信息处理</span>"
+      "<span class='chapter-number'>26</span>  <span class='chapter-title'>数据伦理与敏感信息处理</span>"
     ]
   },
   {
@@ -2865,7 +2931,7 @@
     "text": "最小暴露原则\n发送、共享或上传之前，依次问：\n\n这项任务真的需要逐行数据吗，汇总表是否够用？\n需要精确坐标吗，网格编号或距离变量是否够用？\n需要真实数据吗，保留结构的模拟数据是否够用？\n接收方需要永久保存吗，能否设置期限和删除要求？\n谁能访问，访问是否留下记录？\n\n最小暴露不等于把数据改到无法分析。匿名化或空间模糊会改变统计性质，修改后要重新检查距离、聚集、稀有类别和外推范围。",
     "crumbs": [
       "附录",
-      "<span class='chapter-number'>27</span>  <span class='chapter-title'>数据伦理与敏感信息处理</span>"
+      "<span class='chapter-number'>26</span>  <span class='chapter-title'>数据伦理与敏感信息处理</span>"
     ]
   },
   {
@@ -2876,7 +2942,7 @@
     "text": "位置数据的处理\n常见做法包括降低坐标精度、转换为网格编号、只报告与道路或水源的距离、随机扰动位置，以及只发布区域汇总。选择哪一种取决于分析目标。\n如果研究空间自相关或巢址选择，过度模糊坐标会破坏分析。这时应保留受限原始版，在受控环境中完成分析，只公开不会反推出精确位置的结果。公开地图还要检查图层、悬停提示和下载按钮是否泄露原始坐标。",
     "crumbs": [
       "附录",
-      "<span class='chapter-number'>27</span>  <span class='chapter-title'>数据伦理与敏感信息处理</span>"
+      "<span class='chapter-number'>26</span>  <span class='chapter-title'>数据伦理与敏感信息处理</span>"
     ]
   },
   {
@@ -2887,7 +2953,7 @@
     "text": "向 AI 提供数据\n优先顺序如下：先描述数据结构，再提供模拟数据，再提供去标识的小样本，最后才考虑逐行真实数据。受限数据不进入公共 AI 服务。\n即使不上传文件，提示中也可能泄露信息。“某保护区仅剩三个巢址，坐标分别为……”已经构成数据披露。可以改写为虚构坐标，或只描述变量范围和层级结构。",
     "crumbs": [
       "附录",
-      "<span class='chapter-number'>27</span>  <span class='chapter-title'>数据伦理与敏感信息处理</span>"
+      "<span class='chapter-number'>26</span>  <span class='chapter-title'>数据伦理与敏感信息处理</span>"
     ]
   },
   {
@@ -2898,7 +2964,7 @@
     "text": "发布前记录\n数据集：\n负责人：\n拟定用途：\n接收方或平台：\n数据级别：[公开 / 内部 / 受限]\n删除或模糊的字段：\n这些修改对分析的影响：\n授权依据：\n保存期限：\n复核人和日期：",
     "crumbs": [
       "附录",
-      "<span class='chapter-number'>27</span>  <span class='chapter-title'>数据伦理与敏感信息处理</span>"
+      "<span class='chapter-number'>26</span>  <span class='chapter-title'>数据伦理与敏感信息处理</span>"
     ]
   },
   {
@@ -2909,7 +2975,7 @@
     "text": "一个判断练习\n研究者准备让 AI 检查占域模型代码，手里有物种名、精确坐标、六次调查记录和植被变量。代码核查需要数据层级和字段类型，但不需要真实物种名与坐标。较稳妥的做法是替换物种名，用模拟坐标保留样点层级，并生成少量结构相同的记录。模型代码通过核查后，再回到受控环境运行真实数据。",
     "crumbs": [
       "附录",
-      "<span class='chapter-number'>27</span>  <span class='chapter-title'>数据伦理与敏感信息处理</span>"
+      "<span class='chapter-number'>26</span>  <span class='chapter-title'>数据伦理与敏感信息处理</span>"
     ]
   },
   {
@@ -2920,7 +2986,7 @@
     "text": "AI 提问模板与核查清单\n本附录与第 22 章使用同一套八要素。模板的用途是补齐分析上下文，不是追求某种固定的提示词格式。工具和界面会变化，研究设计与核查责任不会随之消失。",
     "crumbs": [
       "附录",
-      "<span class='chapter-number'>28</span>  <span class='chapter-title'>AI 提问模板与核查清单</span>"
+      "<span class='chapter-number'>27</span>  <span class='chapter-title'>AI 提问模板与核查清单</span>"
     ]
   },
   {
@@ -2931,7 +2997,7 @@
     "text": "八要素分析请求\n1. 保护决策：管理者最终要决定什么？\n2. 目标量：需要估计哪个参数来支持决定？\n3. 研究设计：数据由什么设计产生？\n4. 独立单位：哪一级单位独立，n 是多少？\n5. 数据字段：变量名称、含义、类型、单位和设计层级。\n6. 候选模型：目前考虑哪些模型，为什么？\n7. 诊断要求：必须检查哪些失败模式？\n8. 行动表述：结论允许说到哪里，不能越过什么边界？\n\n请先复述你对这八项的理解。信息不足时列出缺口，不要自行补写研究条件。\n给出不超过三个候选分析。每个候选都说明适用理由、前提、诊断和失败条件。",
     "crumbs": [
       "附录",
-      "<span class='chapter-number'>28</span>  <span class='chapter-title'>AI 提问模板与核查清单</span>"
+      "<span class='chapter-number'>27</span>  <span class='chapter-title'>AI 提问模板与核查清单</span>"
     ]
   },
   {
@@ -2942,7 +3008,7 @@
     "text": "输出核查清单\n\n\n\n#\n核查项\n结论\n证据或修改\n\n\n\n\n1\n研究问题、目标量和保护决策是否对应\n\n\n\n\n2\nAI 是否正确理解变量和数据生成过程\n\n\n\n\n3\n独立单位和样本量是否正确，有无伪重复\n\n\n\n\n4\n模型是否尊重设计、分布、层级和努力量\n\n\n\n\n5\n代码是否在本地实际运行，结果是否与文字一致\n\n\n\n\n6\n验证是否按地点、年份或独立单位分组，有无泄漏\n\n\n\n\n7\n是否检查残差、过度离散、敏感性和不确定性\n\n\n\n\n8\n是否把关联写成因果，或把显著写成重要\n\n\n\n\n9\n引用、函数和数据字段是否真实存在\n\n\n\n\n10\n是否暴露坐标、人员信息或其他受限制数据\n\n\n\n\n\n“结论”一栏只使用四种标记：接受、修改后接受、拒绝、证据不足。不要只写对或错。很多建议取决于尚未提供的设计信息。",
     "crumbs": [
       "附录",
-      "<span class='chapter-number'>28</span>  <span class='chapter-title'>AI 提问模板与核查清单</span>"
+      "<span class='chapter-number'>27</span>  <span class='chapter-title'>AI 提问模板与核查清单</span>"
     ]
   },
   {
@@ -2953,7 +3019,7 @@
     "text": "人工核查记录模板\n日期：\n工具与版本：\n用途：\n完整提示保存位置：\n完整输出保存位置：\n\n建议 1：\n人工结论：[接受 / 修改后接受 / 拒绝 / 证据不足]\n核查证据：\n做出的修改：\n\n建议 2：\n人工结论：\n核查证据：\n做出的修改：\n\n最终代码或文本保存位置：\n仍未解决的问题：",
     "crumbs": [
       "附录",
-      "<span class='chapter-number'>28</span>  <span class='chapter-title'>AI 提问模板与核查清单</span>"
+      "<span class='chapter-number'>27</span>  <span class='chapter-title'>AI 提问模板与核查清单</span>"
     ]
   },
   {
@@ -2964,29 +3030,7 @@
     "text": "提交前检查\n提交报告前，再核对四件事：完整 AI 输出是否保留，所有数字是否来自实际运行结果，所有引用是否逐条打开核实，最终结论是否由作者本人能够口头解释。任何一项答不上来，都不能把该输出当作完成的分析。",
     "crumbs": [
       "附录",
-      "<span class='chapter-number'>28</span>  <span class='chapter-title'>AI 提问模板与核查清单</span>"
-    ]
-  },
-  {
-    "objectID": "appendices/learning-pathway.html",
-    "href": "appendices/learning-pathway.html",
-    "title": "从基础统计到现代生态统计的学习路线",
-    "section": "",
-    "text": "从基础统计到现代生态统计的学习路线",
-    "crumbs": [
-      "附录",
-      "<span class='chapter-number'>29</span>  <span class='chapter-title'>从基础统计到现代生态统计的学习路线</span>"
-    ]
-  },
-  {
-    "objectID": "appendices/learning-pathway.html#本附录状态seed",
-    "href": "appendices/learning-pathway.html#本附录状态seed",
-    "title": "从基础统计到现代生态统计的学习路线",
-    "section": "本附录状态：seed",
-    "text": "本附录状态：seed\n内容尚在建设中。",
-    "crumbs": [
-      "附录",
-      "<span class='chapter-number'>29</span>  <span class='chapter-title'>从基础统计到现代生态统计的学习路线</span>"
+      "<span class='chapter-number'>27</span>  <span class='chapter-title'>AI 提问模板与核查清单</span>"
     ]
   }
 ]

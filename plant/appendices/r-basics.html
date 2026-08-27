@@ -330,11 +330,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../appendices/glossary.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">统计术语中英文对照</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="../appendices/reproducible-template.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">可重复分析项目模板</span></a>
   </div>
 </li>
@@ -346,11 +341,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../appendices/ai-checklist.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">AI 提问模板与核查清单</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../appendices/learning-pathway.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">从基础统计到现代生态统计的学习路线</span></a>
   </div>
 </li>
       </ul>
@@ -367,7 +357,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul>
   <li><a href="#r-基础速查" id="toc-r-基础速查" class="nav-link active" data-scroll-target="#r-基础速查">R 基础速查</a>
   <ul class="collapse">
-  <li><a href="#本附录状态seed" id="toc-本附录状态seed" class="nav-link" data-scroll-target="#本附录状态seed">本附录状态：seed</a></li>
+  <li><a href="#先让-r-跑起来" id="toc-先让-r-跑起来" class="nav-link" data-scroll-target="#先让-r-跑起来">先让 R 跑起来</a></li>
+  <li><a href="#先认出五个符号" id="toc-先认出五个符号" class="nav-link" data-scroll-target="#先认出五个符号">先认出五个符号</a></li>
+  <li><a href="#读入一份教学数据" id="toc-读入一份教学数据" class="nav-link" data-scroll-target="#读入一份教学数据">读入一份教学数据</a></li>
+  <li><a href="#三类最常用的改法" id="toc-三类最常用的改法" class="nav-link" data-scroll-target="#三类最常用的改法">三类最常用的改法</a>
+  <ul class="collapse">
+  <li><a href="#按条件保留观测" id="toc-按条件保留观测" class="nav-link" data-scroll-target="#按条件保留观测">按条件保留观测</a></li>
+  <li><a href="#按组计算均值" id="toc-按组计算均值" class="nav-link" data-scroll-target="#按组计算均值">按组计算均值</a></li>
+  <li><a href="#画一个分组箱线图" id="toc-画一个分组箱线图" class="nav-link" data-scroll-target="#画一个分组箱线图">画一个分组箱线图</a></li>
+  </ul></li>
+  <li><a href="#模型代码先学会运行" id="toc-模型代码先学会运行" class="nav-link" data-scroll-target="#模型代码先学会运行">模型代码先学会运行</a></li>
+  <li><a href="#报错时先查什么" id="toc-报错时先查什么" class="nav-link" data-scroll-target="#报错时先查什么">报错时先查什么</a></li>
+  <li><a href="#三个小练习" id="toc-三个小练习" class="nav-link" data-scroll-target="#三个小练习">三个小练习</a></li>
+  <li><a href="#一页速查" id="toc-一页速查" class="nav-link" data-scroll-target="#一页速查">一页速查</a></li>
+  <li><a href="#本附录不负责什么" id="toc-本附录不负责什么" class="nav-link" data-scroll-target="#本附录不负责什么">本附录不负责什么</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -396,15 +399,276 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="r-基础速查" class="level1">
 <h1>R 基础速查</h1>
-<section id="本附录状态seed" class="level2 {{.callout-note}}">
-<h2 class="anchored" data-anchor-id="本附录状态seed">本附录状态：seed</h2>
-<p>内容尚在建设中。</p>
+<p>本附录不讲一门完整的 R 课程。它只处理阅读本书时最常见的阻塞，例如代码在哪里运行、数据怎样读入、变量名怎样替换、报错后先查什么。已经能独立读取 CSV 文件、筛选数据和运行模型的读者可以跳过。</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>使用范围
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>完成本附录大约需要 60 至 90 分钟。这里使用书中的教学数据，目标是让你能照着正文运行代码。统计方法的含义仍由相应章节解释。</p>
+</div>
+</div>
+<section id="先让-r-跑起来" class="level2">
+<h2 class="anchored" data-anchor-id="先让-r-跑起来">先让 R 跑起来</h2>
+<p>打开 R 或 RStudio 后，把下面两行分别送到控制台运行。RStudio 中可将代码写在脚本窗口，再用 <code>Ctrl + Enter</code> 运行当前行。</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>R.version.string</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">+</span> <span class="dv">1</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>第一行应返回 R 的版本信息，第二行应得到 <code>2</code>。如果这两行都不能运行，问题出在安装或运行环境，还没有进入本书的数据分析环节。先解决 R 的安装问题，再继续本附录。</p>
 </section>
-<!-- 待补充 -->
+<section id="先认出五个符号" class="level2">
+<h2 class="anchored" data-anchor-id="先认出五个符号">先认出五个符号</h2>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>符号</th>
+<th>在本书代码中的作用</th>
+<th>例子</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>&lt;-</code></td>
+<td>把右侧结果保存到左侧名称中</td>
+<td><code>after &lt;- ...</code></td>
+</tr>
+<tr class="even">
+<td><code>()</code></td>
+<td>给函数提供参数</td>
+<td><code>mean(x)</code></td>
+</tr>
+<tr class="odd">
+<td><code>$</code></td>
+<td>从数据框中取出一列</td>
+<td><code>rest$period</code></td>
+</tr>
+<tr class="even">
+<td><code>[]</code></td>
+<td>按条件取出行或列</td>
+<td><code>rest[条件, ]</code></td>
+</tr>
+<tr class="odd">
+<td><code>~</code></td>
+<td>写出响应变量和解释变量的关系</td>
+<td><code>richness ~ status</code></td>
+</tr>
+</tbody>
+</table>
+<p>以 <code>after &lt;- rest[rest$period == "after", ]</code> 为例，这行代码从 <code>rest</code> 中选出 <code>period</code> 等于 <code>after</code> 的行，再把结果保存为 <code>after</code>。两个等号 <code>==</code> 用于比较是否相等，不能写成一个等号。</p>
+<p>井号 <code>#</code> 后的文字是注释，R 不会运行它。修改示例代码时，可以先保留注释，确认每行的用途后再改变量名。</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 只保留处理后的观测</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>after <span class="ot">&lt;-</span> rest[rest<span class="sc">$</span>period <span class="sc">==</span> <span class="st">"after"</span>, ]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="读入一份教学数据" class="level2">
+<h2 class="anchored" data-anchor-id="读入一份教学数据">读入一份教学数据</h2>
+<p>下面使用修复地块的重复观测数据。它位于本书的 <code>data/teaching</code> 目录，也可以从在线教材中<a href="../data/teaching/restoration_site_period.csv">下载这份 CSV 文件</a>。</p>
+<p>在教材项目中打开本附录时，可使用下面的相对路径。先把路径保存为 <code>data_path</code>，再检查 R 能否找到文件。</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>data_path <span class="ot">&lt;-</span> <span class="st">"../data/teaching/restoration_site_period.csv"</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">file.exists</span>(data_path)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>结果应为 <code>TRUE</code>。如果你只下载了 CSV 文件，或者文件保存在别处，可以让 R 弹出文件选择窗口。</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>data_path <span class="ot">&lt;-</span> <span class="fu">file.choose</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>无论采用哪种方式，确认 <code>file.exists(data_path)</code> 返回 <code>TRUE</code> 后再读入数据。</p>
+<p>文件可以找到后再读入数据。</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>rest <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  data_path,</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>读入后先做检查，不要直接进入分析。</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(rest)       <span class="co"># 行数，应为 120</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(rest)      <span class="co"># 列名</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(rest)       <span class="co"># 前 6 行</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(rest)        <span class="co"># 每列的数据类型</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(rest)    <span class="co"># 数值范围和基本摘要</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>本书的示例代码依赖准确的列名。复制代码后出现列不存在的错误，先运行 <code>names(rest)</code>，再核对拼写和大小写。R 会把 <code>species_richness</code> 和 <code>Species_richness</code> 视为两个不同的名称。</p>
+</section>
+<section id="三类最常用的改法" class="level2">
+<h2 class="anchored" data-anchor-id="三类最常用的改法">三类最常用的改法</h2>
+<p>正文中的代码通常只需要替换数据名、列名或分组条件。先从下面三个模板开始。</p>
+<section id="按条件保留观测" class="level3">
+<h3 class="anchored" data-anchor-id="按条件保留观测">按条件保留观测</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>after <span class="ot">&lt;-</span> rest[rest<span class="sc">$</span>period <span class="sc">==</span> <span class="st">"after"</span>, ]</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(after)      <span class="co"># 应为 60</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>逗号前写行的条件，逗号后留空表示保留全部列。若要选择处理前的数据，只改条件值。</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>before <span class="ot">&lt;-</span> rest[rest<span class="sc">$</span>period <span class="sc">==</span> <span class="st">"before"</span>, ]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="按组计算均值" class="level3">
+<h3 class="anchored" data-anchor-id="按组计算均值">按组计算均值</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">aggregate</span>(</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  species_richness <span class="sc">~</span> status,</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> after,</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">FUN =</span> mean</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>波浪号左边是要汇总的变量，右边是分组变量。<code>data = after</code> 指定数据来源，<code>FUN = mean</code> 指定计算均值。若要比较乡土植物盖度，只替换波浪号左边的列名。</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">aggregate</span>(native_cover <span class="sc">~</span> status, <span class="at">data =</span> after, <span class="at">FUN =</span> mean)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="画一个分组箱线图" class="level3">
+<h3 class="anchored" data-anchor-id="画一个分组箱线图">画一个分组箱线图</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  species_richness <span class="sc">~</span> status,</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> after,</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">xlab =</span> <span class="st">"地块状态"</span>,</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">ylab =</span> <span class="st">"物种丰富度"</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>箱线图是否适合当前问题、图中的差异能否解释为处理效应，要回到数据可视化和研究设计章节判断。这里先确认变量能正确传给绘图函数。</p>
+</section>
+</section>
+<section id="模型代码先学会运行" class="level2">
+<h2 class="anchored" data-anchor-id="模型代码先学会运行">模型代码先学会运行</h2>
+<p>模型解释属于统计正文。本节只说明模型对象保存在哪里，以及常见输出怎样打开。</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>fit <span class="ot">&lt;-</span> <span class="fu">lm</span>(species_richness <span class="sc">~</span> soil_moisture, <span class="at">data =</span> after)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(fit)</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="fu">coef</span>(fit)</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="fu">confint</span>(fit)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>第一行运行模型，并把结果保存为 <code>fit</code>。后三行读取同一个模型对象的不同部分。<code>summary(fit)</code> 显示较完整的结果，<code>coef(fit)</code> 只取系数，<code>confint(fit)</code> 给出系数的置信区间。系数和置信区间怎样解释，见<a href="../chapters/11-correlation-regression.html">相关与回归</a>。</p>
+<p>换分析问题时，先改公式和 <code>data</code>，再检查读取结果的几行是否仍使用同一个对象名。若第一行保存为 <code>model_1</code>，后面也应写 <code>summary(model_1)</code>。</p>
+</section>
+<section id="报错时先查什么" class="level2">
+<h2 class="anchored" data-anchor-id="报错时先查什么">报错时先查什么</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>提示中的常见文字</th>
+<th>先检查</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>object ... not found</code></td>
+<td>对象是否已经创建，名称和大小写是否一致</td>
+</tr>
+<tr class="even">
+<td><code>cannot open the connection</code></td>
+<td>文件路径是否正确，<code>file.exists(data_path)</code> 是否返回 <code>TRUE</code></td>
+</tr>
+<tr class="odd">
+<td><code>undefined columns selected</code></td>
+<td>列名是否存在，可先运行 <code>names()</code></td>
+</tr>
+<tr class="even">
+<td><code>non-numeric argument</code></td>
+<td>本应为数值的列是否被读成文字，可用 <code>str()</code> 检查</td>
+</tr>
+<tr class="odd">
+<td><code>could not find function</code></td>
+<td>函数名是否拼错；若函数来自扩展包，该包是否已安装并载入</td>
+</tr>
+</tbody>
+</table>
+<p>报错往往出现在当前行之前。比如 <code>summary(fit)</code> 提示找不到 <code>fit</code>，先回看创建 <code>fit</code> 的那一行是否成功运行。不要只盯着最后一条错误信息。</p>
+</section>
+<section id="三个小练习" class="level2">
+<h2 class="anchored" data-anchor-id="三个小练习">三个小练习</h2>
+<p>练习 1：从 <code>rest</code> 中选出 <code>period</code> 为 <code>before</code> 的观测，并确认行数。</p>
+<details>
+<summary>
+查看答案
+</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>before <span class="ot">&lt;-</span> rest[rest<span class="sc">$</span>period <span class="sc">==</span> <span class="st">"before"</span>, ]</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(before)     <span class="co"># 60</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<p>练习 2：在 <code>after</code> 数据中，按 <code>status</code> 计算 <code>native_cover</code> 的均值。</p>
+<details>
+<summary>
+查看答案
+</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">aggregate</span>(native_cover <span class="sc">~</span> status, <span class="at">data =</span> after, <span class="at">FUN =</span> mean)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<p>练习 3：把箱线图的纵轴从物种丰富度改为土壤湿度。</p>
+<details>
+<summary>
+查看答案
+</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  soil_moisture <span class="sc">~</span> status,</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> after,</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">xlab =</span> <span class="st">"地块状态"</span>,</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">ylab =</span> <span class="st">"土壤湿度"</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<p>三题都能独立运行，就可以回到正文。若代码能运行但不知道结果说明什么，应查阅相应统计章节，而不是在函数帮助页里猜统计含义。</p>
+</section>
+<section id="一页速查" class="level2">
+<h2 class="anchored" data-anchor-id="一页速查">一页速查</h2>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>要做的事</th>
+<th>可先使用</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>手动选择文件</td>
+<td><code>data_path &lt;- file.choose()</code></td>
+</tr>
+<tr class="even">
+<td>检查文件路径</td>
+<td><code>file.exists(data_path)</code></td>
+</tr>
+<tr class="odd">
+<td>读取 CSV 文件</td>
+<td><code>read.csv(data_path)</code></td>
+</tr>
+<tr class="even">
+<td>查看行数和列名</td>
+<td><code>nrow(data)</code>、<code>names(data)</code></td>
+</tr>
+<tr class="odd">
+<td>查看数据结构</td>
+<td><code>str(data)</code></td>
+</tr>
+<tr class="even">
+<td>查看数据前几行</td>
+<td><code>head(data)</code></td>
+</tr>
+<tr class="odd">
+<td>查看基本摘要</td>
+<td><code>summary(data)</code></td>
+</tr>
+<tr class="even">
+<td>取一列</td>
+<td><code>data$列名</code></td>
+</tr>
+<tr class="odd">
+<td>按条件取行</td>
+<td><code>data[data$列名 == "值", ]</code></td>
+</tr>
+<tr class="even">
+<td>按组汇总</td>
+<td><code>aggregate(响应变量 ~ 分组变量, data = data, FUN = mean)</code></td>
+</tr>
+<tr class="odd">
+<td>画分组箱线图</td>
+<td><code>boxplot(响应变量 ~ 分组变量, data = data)</code></td>
+</tr>
+<tr class="even">
+<td>保存模型</td>
+<td><code>fit &lt;- lm(响应变量 ~ 解释变量, data = data)</code></td>
+</tr>
+<tr class="odd">
+<td>查看模型结果</td>
+<td><code>summary(fit)</code>、<code>coef(fit)</code>、<code>confint(fit)</code></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="本附录不负责什么" class="level2">
+<h2 class="anchored" data-anchor-id="本附录不负责什么">本附录不负责什么</h2>
+<p>这里不系统讲授向量、循环、自定义函数、扩展包生态、数据整理语法或项目开发，也不把 R 和统计概念合并成一门课。需要完整学习 R 时，应使用独立的 R 课程材料。本附录只保留读懂并修改本书示例所需的最低操作。</p>
 
 
 <!-- -->
 
+</section>
 </section>
 
 </main> <!-- /main -->
@@ -871,21 +1135,230 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       </a>
   </div>
 </nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "R 基础速查"</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="an">maturity:</span><span class="co"> seed</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="an">updated:</span><span class="co"> 2026-06-15</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu"># R 基础速查</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>::: {{.callout-note}}</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="fu">## 本附录状态：seed</span></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>内容尚在建设中。</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- 待补充 --&gt;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "R 基础速查"</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="an">maturity:</span><span class="co"> budding</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="an">updated:</span><span class="co"> 2026-08-27</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="fu"># R 基础速查</span></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>本附录不讲一门完整的 R 课程。它只处理阅读本书时最常见的阻塞，例如代码在哪里运行、数据怎样读入、变量名怎样替换、报错后先查什么。已经能独立读取 CSV 文件、筛选数据和运行模型的读者可以跳过。</span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>::: {.callout-note}</span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a><span class="fu">## 使用范围</span></span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a>完成本附录大约需要 60 至 90 分钟。这里使用书中的教学数据，目标是让你能照着正文运行代码。统计方法的含义仍由相应章节解释。</span>
+<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a><span class="fu">## 先让 R 跑起来</span></span>
+<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a>打开 R 或 RStudio 后，把下面两行分别送到控制台运行。RStudio 中可将代码写在脚本窗口，再用 <span class="in">`Ctrl + Enter`</span> 运行当前行。</span>
+<span id="cb16-20"><a href="#cb16-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-21"><a href="#cb16-21" aria-hidden="true" tabindex="-1"></a><span class="in">```r</span></span>
+<span id="cb16-22"><a href="#cb16-22" aria-hidden="true" tabindex="-1"></a>R.version.string</span>
+<span id="cb16-23"><a href="#cb16-23" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">+</span> <span class="dv">1</span></span>
+<span id="cb16-24"><a href="#cb16-24" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb16-25"><a href="#cb16-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-26"><a href="#cb16-26" aria-hidden="true" tabindex="-1"></a>第一行应返回 R 的版本信息，第二行应得到 <span class="in">`2`</span>。如果这两行都不能运行，问题出在安装或运行环境，还没有进入本书的数据分析环节。先解决 R 的安装问题，再继续本附录。</span>
+<span id="cb16-27"><a href="#cb16-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-28"><a href="#cb16-28" aria-hidden="true" tabindex="-1"></a><span class="fu">## 先认出五个符号</span></span>
+<span id="cb16-29"><a href="#cb16-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-30"><a href="#cb16-30" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 符号 <span class="pp">|</span> 在本书代码中的作用 <span class="pp">|</span> 例子 <span class="pp">|</span></span>
+<span id="cb16-31"><a href="#cb16-31" aria-hidden="true" tabindex="-1"></a><span class="pp">|---|---|---|</span></span>
+<span id="cb16-32"><a href="#cb16-32" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`&lt;-`</span> <span class="pp">|</span> 把右侧结果保存到左侧名称中 <span class="pp">|</span> <span class="in">`after &lt;- ...`</span> <span class="pp">|</span></span>
+<span id="cb16-33"><a href="#cb16-33" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`()`</span> <span class="pp">|</span> 给函数提供参数 <span class="pp">|</span> <span class="in">`mean(x)`</span> <span class="pp">|</span></span>
+<span id="cb16-34"><a href="#cb16-34" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`$`</span> <span class="pp">|</span> 从数据框中取出一列 <span class="pp">|</span> <span class="in">`rest$period`</span> <span class="pp">|</span></span>
+<span id="cb16-35"><a href="#cb16-35" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`[]`</span> <span class="pp">|</span> 按条件取出行或列 <span class="pp">|</span> <span class="in">`rest[条件, ]`</span> <span class="pp">|</span></span>
+<span id="cb16-36"><a href="#cb16-36" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`~`</span> <span class="pp">|</span> 写出响应变量和解释变量的关系 <span class="pp">|</span> <span class="in">`richness ~ status`</span> <span class="pp">|</span></span>
+<span id="cb16-37"><a href="#cb16-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-38"><a href="#cb16-38" aria-hidden="true" tabindex="-1"></a>以 <span class="in">`after &lt;- rest[rest$period == "after", ]`</span> 为例，这行代码从 <span class="in">`rest`</span> 中选出 <span class="in">`period`</span> 等于 <span class="in">`after`</span> 的行，再把结果保存为 <span class="in">`after`</span>。两个等号 <span class="in">`==`</span> 用于比较是否相等，不能写成一个等号。</span>
+<span id="cb16-39"><a href="#cb16-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-40"><a href="#cb16-40" aria-hidden="true" tabindex="-1"></a>井号 <span class="in">`#`</span> 后的文字是注释，R 不会运行它。修改示例代码时，可以先保留注释，确认每行的用途后再改变量名。</span>
+<span id="cb16-41"><a href="#cb16-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-42"><a href="#cb16-42" aria-hidden="true" tabindex="-1"></a><span class="in">```r</span></span>
+<span id="cb16-43"><a href="#cb16-43" aria-hidden="true" tabindex="-1"></a><span class="co"># 只保留处理后的观测</span></span>
+<span id="cb16-44"><a href="#cb16-44" aria-hidden="true" tabindex="-1"></a>after <span class="ot">&lt;-</span> rest[rest<span class="sc">$</span>period <span class="sc">==</span> <span class="st">"after"</span>, ]</span>
+<span id="cb16-45"><a href="#cb16-45" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb16-46"><a href="#cb16-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-47"><a href="#cb16-47" aria-hidden="true" tabindex="-1"></a><span class="fu">## 读入一份教学数据</span></span>
+<span id="cb16-48"><a href="#cb16-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-49"><a href="#cb16-49" aria-hidden="true" tabindex="-1"></a>下面使用修复地块的重复观测数据。它位于本书的 <span class="in">`data/teaching`</span> 目录，也可以从在线教材中<span class="co">[</span><span class="ot">下载这份 CSV 文件</span><span class="co">](../data/teaching/restoration_site_period.csv)</span>。</span>
+<span id="cb16-50"><a href="#cb16-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-51"><a href="#cb16-51" aria-hidden="true" tabindex="-1"></a>在教材项目中打开本附录时，可使用下面的相对路径。先把路径保存为 <span class="in">`data_path`</span>，再检查 R 能否找到文件。</span>
+<span id="cb16-52"><a href="#cb16-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-53"><a href="#cb16-53" aria-hidden="true" tabindex="-1"></a><span class="in">```r</span></span>
+<span id="cb16-54"><a href="#cb16-54" aria-hidden="true" tabindex="-1"></a>data_path <span class="ot">&lt;-</span> <span class="st">"../data/teaching/restoration_site_period.csv"</span></span>
+<span id="cb16-55"><a href="#cb16-55" aria-hidden="true" tabindex="-1"></a><span class="fu">file.exists</span>(data_path)</span>
+<span id="cb16-56"><a href="#cb16-56" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb16-57"><a href="#cb16-57" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-58"><a href="#cb16-58" aria-hidden="true" tabindex="-1"></a>结果应为 <span class="in">`TRUE`</span>。如果你只下载了 CSV 文件，或者文件保存在别处，可以让 R 弹出文件选择窗口。</span>
+<span id="cb16-59"><a href="#cb16-59" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-60"><a href="#cb16-60" aria-hidden="true" tabindex="-1"></a><span class="in">```r</span></span>
+<span id="cb16-61"><a href="#cb16-61" aria-hidden="true" tabindex="-1"></a>data_path <span class="ot">&lt;-</span> <span class="fu">file.choose</span>()</span>
+<span id="cb16-62"><a href="#cb16-62" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb16-63"><a href="#cb16-63" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-64"><a href="#cb16-64" aria-hidden="true" tabindex="-1"></a>无论采用哪种方式，确认 <span class="in">`file.exists(data_path)`</span> 返回 <span class="in">`TRUE`</span> 后再读入数据。</span>
+<span id="cb16-65"><a href="#cb16-65" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-66"><a href="#cb16-66" aria-hidden="true" tabindex="-1"></a>文件可以找到后再读入数据。</span>
+<span id="cb16-67"><a href="#cb16-67" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-68"><a href="#cb16-68" aria-hidden="true" tabindex="-1"></a><span class="in">```r</span></span>
+<span id="cb16-69"><a href="#cb16-69" aria-hidden="true" tabindex="-1"></a>rest <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(</span>
+<span id="cb16-70"><a href="#cb16-70" aria-hidden="true" tabindex="-1"></a>  data_path,</span>
+<span id="cb16-71"><a href="#cb16-71" aria-hidden="true" tabindex="-1"></a>  <span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span></span>
+<span id="cb16-72"><a href="#cb16-72" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb16-73"><a href="#cb16-73" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb16-74"><a href="#cb16-74" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-75"><a href="#cb16-75" aria-hidden="true" tabindex="-1"></a>读入后先做检查，不要直接进入分析。</span>
+<span id="cb16-76"><a href="#cb16-76" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-77"><a href="#cb16-77" aria-hidden="true" tabindex="-1"></a><span class="in">```r</span></span>
+<span id="cb16-78"><a href="#cb16-78" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(rest)       <span class="co"># 行数，应为 120</span></span>
+<span id="cb16-79"><a href="#cb16-79" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(rest)      <span class="co"># 列名</span></span>
+<span id="cb16-80"><a href="#cb16-80" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(rest)       <span class="co"># 前 6 行</span></span>
+<span id="cb16-81"><a href="#cb16-81" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(rest)        <span class="co"># 每列的数据类型</span></span>
+<span id="cb16-82"><a href="#cb16-82" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(rest)    <span class="co"># 数值范围和基本摘要</span></span>
+<span id="cb16-83"><a href="#cb16-83" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb16-84"><a href="#cb16-84" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-85"><a href="#cb16-85" aria-hidden="true" tabindex="-1"></a>本书的示例代码依赖准确的列名。复制代码后出现列不存在的错误，先运行 <span class="in">`names(rest)`</span>，再核对拼写和大小写。R 会把 <span class="in">`species_richness`</span> 和 <span class="in">`Species_richness`</span> 视为两个不同的名称。</span>
+<span id="cb16-86"><a href="#cb16-86" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-87"><a href="#cb16-87" aria-hidden="true" tabindex="-1"></a><span class="fu">## 三类最常用的改法</span></span>
+<span id="cb16-88"><a href="#cb16-88" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-89"><a href="#cb16-89" aria-hidden="true" tabindex="-1"></a>正文中的代码通常只需要替换数据名、列名或分组条件。先从下面三个模板开始。</span>
+<span id="cb16-90"><a href="#cb16-90" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-91"><a href="#cb16-91" aria-hidden="true" tabindex="-1"></a><span class="fu">### 按条件保留观测</span></span>
+<span id="cb16-92"><a href="#cb16-92" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-93"><a href="#cb16-93" aria-hidden="true" tabindex="-1"></a><span class="in">```r</span></span>
+<span id="cb16-94"><a href="#cb16-94" aria-hidden="true" tabindex="-1"></a>after <span class="ot">&lt;-</span> rest[rest<span class="sc">$</span>period <span class="sc">==</span> <span class="st">"after"</span>, ]</span>
+<span id="cb16-95"><a href="#cb16-95" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(after)      <span class="co"># 应为 60</span></span>
+<span id="cb16-96"><a href="#cb16-96" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb16-97"><a href="#cb16-97" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-98"><a href="#cb16-98" aria-hidden="true" tabindex="-1"></a>逗号前写行的条件，逗号后留空表示保留全部列。若要选择处理前的数据，只改条件值。</span>
+<span id="cb16-99"><a href="#cb16-99" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-100"><a href="#cb16-100" aria-hidden="true" tabindex="-1"></a><span class="in">```r</span></span>
+<span id="cb16-101"><a href="#cb16-101" aria-hidden="true" tabindex="-1"></a>before <span class="ot">&lt;-</span> rest[rest<span class="sc">$</span>period <span class="sc">==</span> <span class="st">"before"</span>, ]</span>
+<span id="cb16-102"><a href="#cb16-102" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb16-103"><a href="#cb16-103" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-104"><a href="#cb16-104" aria-hidden="true" tabindex="-1"></a><span class="fu">### 按组计算均值</span></span>
+<span id="cb16-105"><a href="#cb16-105" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-106"><a href="#cb16-106" aria-hidden="true" tabindex="-1"></a><span class="in">```r</span></span>
+<span id="cb16-107"><a href="#cb16-107" aria-hidden="true" tabindex="-1"></a><span class="fu">aggregate</span>(</span>
+<span id="cb16-108"><a href="#cb16-108" aria-hidden="true" tabindex="-1"></a>  species_richness <span class="sc">~</span> status,</span>
+<span id="cb16-109"><a href="#cb16-109" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> after,</span>
+<span id="cb16-110"><a href="#cb16-110" aria-hidden="true" tabindex="-1"></a>  <span class="at">FUN =</span> mean</span>
+<span id="cb16-111"><a href="#cb16-111" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb16-112"><a href="#cb16-112" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb16-113"><a href="#cb16-113" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-114"><a href="#cb16-114" aria-hidden="true" tabindex="-1"></a>波浪号左边是要汇总的变量，右边是分组变量。<span class="in">`data = after`</span> 指定数据来源，<span class="in">`FUN = mean`</span> 指定计算均值。若要比较乡土植物盖度，只替换波浪号左边的列名。</span>
+<span id="cb16-115"><a href="#cb16-115" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-116"><a href="#cb16-116" aria-hidden="true" tabindex="-1"></a><span class="in">```r</span></span>
+<span id="cb16-117"><a href="#cb16-117" aria-hidden="true" tabindex="-1"></a><span class="fu">aggregate</span>(native_cover <span class="sc">~</span> status, <span class="at">data =</span> after, <span class="at">FUN =</span> mean)</span>
+<span id="cb16-118"><a href="#cb16-118" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb16-119"><a href="#cb16-119" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-120"><a href="#cb16-120" aria-hidden="true" tabindex="-1"></a><span class="fu">### 画一个分组箱线图</span></span>
+<span id="cb16-121"><a href="#cb16-121" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-122"><a href="#cb16-122" aria-hidden="true" tabindex="-1"></a><span class="in">```r</span></span>
+<span id="cb16-123"><a href="#cb16-123" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(</span>
+<span id="cb16-124"><a href="#cb16-124" aria-hidden="true" tabindex="-1"></a>  species_richness <span class="sc">~</span> status,</span>
+<span id="cb16-125"><a href="#cb16-125" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> after,</span>
+<span id="cb16-126"><a href="#cb16-126" aria-hidden="true" tabindex="-1"></a>  <span class="at">xlab =</span> <span class="st">"地块状态"</span>,</span>
+<span id="cb16-127"><a href="#cb16-127" aria-hidden="true" tabindex="-1"></a>  <span class="at">ylab =</span> <span class="st">"物种丰富度"</span></span>
+<span id="cb16-128"><a href="#cb16-128" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb16-129"><a href="#cb16-129" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb16-130"><a href="#cb16-130" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-131"><a href="#cb16-131" aria-hidden="true" tabindex="-1"></a>箱线图是否适合当前问题、图中的差异能否解释为处理效应，要回到数据可视化和研究设计章节判断。这里先确认变量能正确传给绘图函数。</span>
+<span id="cb16-132"><a href="#cb16-132" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-133"><a href="#cb16-133" aria-hidden="true" tabindex="-1"></a><span class="fu">## 模型代码先学会运行</span></span>
+<span id="cb16-134"><a href="#cb16-134" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-135"><a href="#cb16-135" aria-hidden="true" tabindex="-1"></a>模型解释属于统计正文。本节只说明模型对象保存在哪里，以及常见输出怎样打开。</span>
+<span id="cb16-136"><a href="#cb16-136" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-137"><a href="#cb16-137" aria-hidden="true" tabindex="-1"></a><span class="in">```r</span></span>
+<span id="cb16-138"><a href="#cb16-138" aria-hidden="true" tabindex="-1"></a>fit <span class="ot">&lt;-</span> <span class="fu">lm</span>(species_richness <span class="sc">~</span> soil_moisture, <span class="at">data =</span> after)</span>
+<span id="cb16-139"><a href="#cb16-139" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-140"><a href="#cb16-140" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(fit)</span>
+<span id="cb16-141"><a href="#cb16-141" aria-hidden="true" tabindex="-1"></a><span class="fu">coef</span>(fit)</span>
+<span id="cb16-142"><a href="#cb16-142" aria-hidden="true" tabindex="-1"></a><span class="fu">confint</span>(fit)</span>
+<span id="cb16-143"><a href="#cb16-143" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb16-144"><a href="#cb16-144" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-145"><a href="#cb16-145" aria-hidden="true" tabindex="-1"></a>第一行运行模型，并把结果保存为 <span class="in">`fit`</span>。后三行读取同一个模型对象的不同部分。<span class="in">`summary(fit)`</span> 显示较完整的结果，<span class="in">`coef(fit)`</span> 只取系数，<span class="in">`confint(fit)`</span> 给出系数的置信区间。系数和置信区间怎样解释，见<span class="co">[</span><span class="ot">相关与回归</span><span class="co">](../chapters/11-correlation-regression.qmd)</span>。</span>
+<span id="cb16-146"><a href="#cb16-146" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-147"><a href="#cb16-147" aria-hidden="true" tabindex="-1"></a>换分析问题时，先改公式和 <span class="in">`data`</span>，再检查读取结果的几行是否仍使用同一个对象名。若第一行保存为 <span class="in">`model_1`</span>，后面也应写 <span class="in">`summary(model_1)`</span>。</span>
+<span id="cb16-148"><a href="#cb16-148" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-149"><a href="#cb16-149" aria-hidden="true" tabindex="-1"></a><span class="fu">## 报错时先查什么</span></span>
+<span id="cb16-150"><a href="#cb16-150" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-151"><a href="#cb16-151" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 提示中的常见文字 <span class="pp">|</span> 先检查 <span class="pp">|</span></span>
+<span id="cb16-152"><a href="#cb16-152" aria-hidden="true" tabindex="-1"></a><span class="pp">|---|---|</span></span>
+<span id="cb16-153"><a href="#cb16-153" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`object ... not found`</span> <span class="pp">|</span> 对象是否已经创建，名称和大小写是否一致 <span class="pp">|</span></span>
+<span id="cb16-154"><a href="#cb16-154" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`cannot open the connection`</span> <span class="pp">|</span> 文件路径是否正确，<span class="in">`file.exists(data_path)`</span> 是否返回 <span class="in">`TRUE`</span> <span class="pp">|</span></span>
+<span id="cb16-155"><a href="#cb16-155" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`undefined columns selected`</span> <span class="pp">|</span> 列名是否存在，可先运行 <span class="in">`names()`</span> <span class="pp">|</span></span>
+<span id="cb16-156"><a href="#cb16-156" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`non-numeric argument`</span> <span class="pp">|</span> 本应为数值的列是否被读成文字，可用 <span class="in">`str()`</span> 检查 <span class="pp">|</span></span>
+<span id="cb16-157"><a href="#cb16-157" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`could not find function`</span> <span class="pp">|</span> 函数名是否拼错；若函数来自扩展包，该包是否已安装并载入 <span class="pp">|</span></span>
+<span id="cb16-158"><a href="#cb16-158" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-159"><a href="#cb16-159" aria-hidden="true" tabindex="-1"></a>报错往往出现在当前行之前。比如 <span class="in">`summary(fit)`</span> 提示找不到 <span class="in">`fit`</span>，先回看创建 <span class="in">`fit`</span> 的那一行是否成功运行。不要只盯着最后一条错误信息。</span>
+<span id="cb16-160"><a href="#cb16-160" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-161"><a href="#cb16-161" aria-hidden="true" tabindex="-1"></a><span class="fu">## 三个小练习</span></span>
+<span id="cb16-162"><a href="#cb16-162" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-163"><a href="#cb16-163" aria-hidden="true" tabindex="-1"></a>练习 1：从 <span class="in">`rest`</span> 中选出 <span class="in">`period`</span> 为 <span class="in">`before`</span> 的观测，并确认行数。</span>
+<span id="cb16-164"><a href="#cb16-164" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-165"><a href="#cb16-165" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">details</span><span class="dt">&gt;</span></span>
+<span id="cb16-166"><a href="#cb16-166" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">summary</span><span class="dt">&gt;</span>查看答案<span class="dt">&lt;/</span><span class="kw">summary</span><span class="dt">&gt;</span></span>
+<span id="cb16-167"><a href="#cb16-167" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-168"><a href="#cb16-168" aria-hidden="true" tabindex="-1"></a><span class="in">```r</span></span>
+<span id="cb16-169"><a href="#cb16-169" aria-hidden="true" tabindex="-1"></a>before <span class="ot">&lt;-</span> rest[rest<span class="sc">$</span>period <span class="sc">==</span> <span class="st">"before"</span>, ]</span>
+<span id="cb16-170"><a href="#cb16-170" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(before)     <span class="co"># 60</span></span>
+<span id="cb16-171"><a href="#cb16-171" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb16-172"><a href="#cb16-172" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-173"><a href="#cb16-173" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">details</span><span class="dt">&gt;</span></span>
+<span id="cb16-174"><a href="#cb16-174" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-175"><a href="#cb16-175" aria-hidden="true" tabindex="-1"></a>练习 2：在 <span class="in">`after`</span> 数据中，按 <span class="in">`status`</span> 计算 <span class="in">`native_cover`</span> 的均值。</span>
+<span id="cb16-176"><a href="#cb16-176" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-177"><a href="#cb16-177" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">details</span><span class="dt">&gt;</span></span>
+<span id="cb16-178"><a href="#cb16-178" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">summary</span><span class="dt">&gt;</span>查看答案<span class="dt">&lt;/</span><span class="kw">summary</span><span class="dt">&gt;</span></span>
+<span id="cb16-179"><a href="#cb16-179" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-180"><a href="#cb16-180" aria-hidden="true" tabindex="-1"></a><span class="in">```r</span></span>
+<span id="cb16-181"><a href="#cb16-181" aria-hidden="true" tabindex="-1"></a><span class="fu">aggregate</span>(native_cover <span class="sc">~</span> status, <span class="at">data =</span> after, <span class="at">FUN =</span> mean)</span>
+<span id="cb16-182"><a href="#cb16-182" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb16-183"><a href="#cb16-183" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-184"><a href="#cb16-184" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">details</span><span class="dt">&gt;</span></span>
+<span id="cb16-185"><a href="#cb16-185" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-186"><a href="#cb16-186" aria-hidden="true" tabindex="-1"></a>练习 3：把箱线图的纵轴从物种丰富度改为土壤湿度。</span>
+<span id="cb16-187"><a href="#cb16-187" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-188"><a href="#cb16-188" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">details</span><span class="dt">&gt;</span></span>
+<span id="cb16-189"><a href="#cb16-189" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">summary</span><span class="dt">&gt;</span>查看答案<span class="dt">&lt;/</span><span class="kw">summary</span><span class="dt">&gt;</span></span>
+<span id="cb16-190"><a href="#cb16-190" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-191"><a href="#cb16-191" aria-hidden="true" tabindex="-1"></a><span class="in">```r</span></span>
+<span id="cb16-192"><a href="#cb16-192" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(</span>
+<span id="cb16-193"><a href="#cb16-193" aria-hidden="true" tabindex="-1"></a>  soil_moisture <span class="sc">~</span> status,</span>
+<span id="cb16-194"><a href="#cb16-194" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> after,</span>
+<span id="cb16-195"><a href="#cb16-195" aria-hidden="true" tabindex="-1"></a>  <span class="at">xlab =</span> <span class="st">"地块状态"</span>,</span>
+<span id="cb16-196"><a href="#cb16-196" aria-hidden="true" tabindex="-1"></a>  <span class="at">ylab =</span> <span class="st">"土壤湿度"</span></span>
+<span id="cb16-197"><a href="#cb16-197" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb16-198"><a href="#cb16-198" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb16-199"><a href="#cb16-199" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-200"><a href="#cb16-200" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">details</span><span class="dt">&gt;</span></span>
+<span id="cb16-201"><a href="#cb16-201" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-202"><a href="#cb16-202" aria-hidden="true" tabindex="-1"></a>三题都能独立运行，就可以回到正文。若代码能运行但不知道结果说明什么，应查阅相应统计章节，而不是在函数帮助页里猜统计含义。</span>
+<span id="cb16-203"><a href="#cb16-203" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-204"><a href="#cb16-204" aria-hidden="true" tabindex="-1"></a><span class="fu">## 一页速查</span></span>
+<span id="cb16-205"><a href="#cb16-205" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-206"><a href="#cb16-206" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 要做的事 <span class="pp">|</span> 可先使用 <span class="pp">|</span></span>
+<span id="cb16-207"><a href="#cb16-207" aria-hidden="true" tabindex="-1"></a><span class="pp">|---|---|</span></span>
+<span id="cb16-208"><a href="#cb16-208" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 手动选择文件 <span class="pp">|</span> <span class="in">`data_path &lt;- file.choose()`</span> <span class="pp">|</span></span>
+<span id="cb16-209"><a href="#cb16-209" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 检查文件路径 <span class="pp">|</span> <span class="in">`file.exists(data_path)`</span> <span class="pp">|</span></span>
+<span id="cb16-210"><a href="#cb16-210" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 读取 CSV 文件 <span class="pp">|</span> <span class="in">`read.csv(data_path)`</span> <span class="pp">|</span></span>
+<span id="cb16-211"><a href="#cb16-211" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 查看行数和列名 <span class="pp">|</span> <span class="in">`nrow(data)`</span>、<span class="in">`names(data)`</span> <span class="pp">|</span></span>
+<span id="cb16-212"><a href="#cb16-212" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 查看数据结构 <span class="pp">|</span> <span class="in">`str(data)`</span> <span class="pp">|</span></span>
+<span id="cb16-213"><a href="#cb16-213" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 查看数据前几行 <span class="pp">|</span> <span class="in">`head(data)`</span> <span class="pp">|</span></span>
+<span id="cb16-214"><a href="#cb16-214" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 查看基本摘要 <span class="pp">|</span> <span class="in">`summary(data)`</span> <span class="pp">|</span></span>
+<span id="cb16-215"><a href="#cb16-215" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 取一列 <span class="pp">|</span> <span class="in">`data$列名`</span> <span class="pp">|</span></span>
+<span id="cb16-216"><a href="#cb16-216" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 按条件取行 <span class="pp">|</span> <span class="in">`data[data$列名 == "值", ]`</span> <span class="pp">|</span></span>
+<span id="cb16-217"><a href="#cb16-217" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 按组汇总 <span class="pp">|</span> <span class="in">`aggregate(响应变量 ~ 分组变量, data = data, FUN = mean)`</span> <span class="pp">|</span></span>
+<span id="cb16-218"><a href="#cb16-218" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 画分组箱线图 <span class="pp">|</span> <span class="in">`boxplot(响应变量 ~ 分组变量, data = data)`</span> <span class="pp">|</span></span>
+<span id="cb16-219"><a href="#cb16-219" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 保存模型 <span class="pp">|</span> <span class="in">`fit &lt;- lm(响应变量 ~ 解释变量, data = data)`</span> <span class="pp">|</span></span>
+<span id="cb16-220"><a href="#cb16-220" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 查看模型结果 <span class="pp">|</span> <span class="in">`summary(fit)`</span>、<span class="in">`coef(fit)`</span>、<span class="in">`confint(fit)`</span> <span class="pp">|</span></span>
+<span id="cb16-221"><a href="#cb16-221" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-222"><a href="#cb16-222" aria-hidden="true" tabindex="-1"></a><span class="fu">## 本附录不负责什么</span></span>
+<span id="cb16-223"><a href="#cb16-223" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-224"><a href="#cb16-224" aria-hidden="true" tabindex="-1"></a>这里不系统讲授向量、循环、自定义函数、扩展包生态、数据整理语法或项目开发，也不把 R 和统计概念合并成一门课。需要完整学习 R 时，应使用独立的 R 课程材料。本附录只保留读懂并修改本书示例所需的最低操作。</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 
