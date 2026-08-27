@@ -191,13 +191,9 @@ class ChapterTwoSourceTests(unittest.TestCase):
             )
 
     def test_mascot_notes_have_correct_two_child_structure(self):
-        """两个 .mascot-note 都必须有 img + .mascot-note-copy 两个直接子元素。"""
+        """每个 .mascot-note 都必须有 img + .mascot-note-copy 两个直接子元素。"""
         results = _extract(self.source, "mascot-note")
-        self.assertEqual(
-            len(results),
-            2,
-            f"第 2 章应有 2 个 .mascot-note，实际 {len(results)}",
-        )
+        self.assertGreaterEqual(len(results), 1, "第 2 章应至少有 1 个 .mascot-note")
         for idx, note in enumerate(results, 1):
             children = note["children"]
             # 直接子元素恰好 2 个
@@ -235,6 +231,20 @@ class ChapterTwoSourceTests(unittest.TestCase):
             "禁止用 word-break: break-all 掩盖错误布局",
         )
 
+    def test_harking_content_is_not_present(self):
+        """所有读者正文都不再引入 HARKing 及其中文标题。"""
+        reader_paths = [ROOT / "index.qmd"]
+        reader_paths.extend(sorted((ROOT / "chapters").glob("*.qmd")))
+        reader_paths.extend(sorted((ROOT / "appendices").glob("*.qmd")))
+        for path in reader_paths:
+            text = path.read_text(encoding="utf-8")
+            for banned in (
+                "HARKing",
+                "Hypothesizing After the Results are Known",
+                "看完数据再编假设",
+            ):
+                self.assertNotIn(banned, text, f"{path.name} 不应包含 {banned}")
+
 
 @unittest.skipUnless(
     RENDERED_HTML.exists(),
@@ -267,10 +277,8 @@ class ChapterTwoRenderedTests(unittest.TestCase):
     def test_mascot_notes_render_with_only_two_direct_children(self):
         """关键：渲染后 .mascot-note 不能多出 <p> 兄弟，否则正文会被塞进图标列。"""
         results = _extract(self.html, "mascot-note")
-        self.assertEqual(
-            len(results),
-            2,
-            f"渲染后第 2 章应有 2 个 .mascot-note，实际 {len(results)}",
+        self.assertGreaterEqual(
+            len(results), 1, "渲染后第 2 章应至少有 1 个 .mascot-note"
         )
         for idx, note in enumerate(results, 1):
             children = note["children"]
@@ -289,11 +297,10 @@ class ChapterTwoRenderedTests(unittest.TestCase):
 
     def test_mascot_note_body_is_inside_copy_column(self):
         """提醒正文必须落在 .mascot-note-copy 内（即文字不能在图标列）。"""
-        # 简易检查：搜两个提醒标题对应的正文片段，应该出现在 .mascot-note-copy
+        # 简易检查：提醒正文应该出现在 .mascot-note-copy
         # 块内部，且与 mascot-note-copy 的距离比与 <img class="mascot"> 近。
         for body_fragment in (
             "测量过程本身是研究设计的一部分",
-            "用同一份数据既找规律又验证规律",
         ):
             idx_body = self.html.find(body_fragment)
             self.assertGreater(
