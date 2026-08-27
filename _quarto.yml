@@ -1,6 +1,8 @@
 project:
   type: book
   output-dir: _site
+  resources:
+    - data/teaching/**
 
 book:
   title: "从样地到结论：保护生物学数据实战"

@@ -86,6 +86,14 @@ def _part4_chapters(profile_parts):
 
 
 class BookVersionContractTests(unittest.TestCase):
+    def test_teaching_data_are_published_as_site_resources(self):
+        base = _read_yaml("_quarto.yml")
+        self.assertRegex(
+            base,
+            r"(?m)^\s{2}resources:\s*$\n\s{4}-\s+data/teaching/\*\*\s*$",
+            "教学数据必须声明为 Quarto 资源，才能进入三个线上版本",
+        )
+
     def test_base_config_has_no_chapter_beyond_part_three(self):
         base = _read_yaml("_quarto.yml")
         # 去掉注释行后再扫描（注释里会提到第四篇/第五篇）
